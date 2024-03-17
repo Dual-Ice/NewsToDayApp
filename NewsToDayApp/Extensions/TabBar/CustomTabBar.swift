@@ -14,8 +14,8 @@ open class CustomTabBarController: UITabBarController, CustomTabBarViewProtocol 
         static let tabBarButtonType = "UITabBarButton"
         static let borderWidth: CGFloat = 0.5
         static let borderColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
-        static let whiteBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
-        static let blackBackgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.9)
+        static let whiteBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.7)
+        static let blackBackgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
         static let fullAlpha: CGFloat = 1.0
         static let emptyAlpha: CGFloat = 0.0
         
@@ -80,11 +80,12 @@ open class CustomTabBarController: UITabBarController, CustomTabBarViewProtocol 
         
         let mainVC = MainBuilder(navigationVC: navigationVC).buildMainView()
         mainVC.tabBarItem = UITabBarItem(title: "Main", image: UIImage(systemName: "house.fill"), tag: 0)
-        navigationVC.setViewControllers([mainVC], animated: true)
+        
         
         let profileVC = ProfileBuilder(navigationVC: navigationVC).buildProfileView()
         profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
-        viewControllers = [navigationVC, profileVC]
+        
+        viewControllers = [mainVC, profileVC]
         
     }
     
