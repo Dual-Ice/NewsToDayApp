@@ -57,6 +57,7 @@
 		A5CBDC3B2BA7AD2200C81385 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = A5CBDC3A2BA7AD2200C81385 /* FirebaseStorageCombine-Community */; };
 		A5CBDC3E2BA7AD3700C81385 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A5CBDC3D2BA7AD3700C81385 /* GoogleSignIn */; };
 		A5CBDC402BA7AD3700C81385 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5CBDC3F2BA7AD3700C81385 /* GoogleSignInSwift */; };
+		A5CBDC432BA7AE5E00C81385 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5CBDC452BA7AE5E00C81385 /* Localizable.strings */; };
 		D97126CA2BA7906000FF3048 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D97126C52BA7906000FF3048 /* Inter-Medium.ttf */; };
 		D97126CB2BA7906000FF3048 /* Adamina-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D97126C62BA7906000FF3048 /* Adamina-Regular.ttf */; };
 		D97126CC2BA7906000FF3048 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D97126C72BA7906000FF3048 /* Inter-SemiBold.ttf */; };
@@ -105,6 +106,8 @@
 		A5CBDBF92BA77F4900C81385 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A5CBDBFB2BA77F8000C81385 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A5CBDBFD2BA77FEB00C81385 /* ProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBuilder.swift; sourceTree = "<group>"; };
+		A5CBDC442BA7AE5E00C81385 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5CBDC462BA7AE7500C81385 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D97126C52BA7906000FF3048 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
 		D97126C62BA7906000FF3048 /* Adamina-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Adamina-Regular.ttf"; sourceTree = "<group>"; };
 		D97126C72BA7906000FF3048 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -229,6 +232,7 @@
 				A5CBDBA22BA75DD900C81385 /* Assets.xcassets */,
 				A5CBDBA42BA75DD900C81385 /* LaunchScreen.storyboard */,
 				A5CBDBA72BA75DD900C81385 /* Info.plist */,
+				A5CBDC452BA7AE5E00C81385 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -510,11 +514,12 @@
 			};
 			buildConfigurationList = A5CBDB912BA75DD500C81385 /* Build configuration list for PBXProject "NewsToDayApp" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ru;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = A5CBDB8D2BA75DD500C81385;
 			packageReferences = (
@@ -547,6 +552,7 @@
 				D97126E22BA7A2AC00FF3048 /* angle-right.png in Resources */,
 				D97126EF2BA7A2AC00FF3048 /* bookmark-selected.png in Resources */,
 				D97126EA2BA7A2AC00FF3048 /* signout.png in Resources */,
+				A5CBDC432BA7AE5E00C81385 /* Localizable.strings in Resources */,
 				D97126CC2BA7906000FF3048 /* Inter-SemiBold.ttf in Resources */,
 				D97126F02BA7A2AC00FF3048 /* bookmark.png in Resources */,
 				D97126E42BA7A2AC00FF3048 /* main.png in Resources */,
@@ -604,6 +610,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		A5CBDC452BA7AE5E00C81385 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5CBDC442BA7AE5E00C81385 /* en */,
+				A5CBDC462BA7AE7500C81385 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -612,6 +627,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -675,6 +691,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
