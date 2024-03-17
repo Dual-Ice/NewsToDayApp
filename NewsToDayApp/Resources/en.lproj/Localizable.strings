@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  NewsToDayApp
+
+  Created by Sergey on 18.03.2024.
+  
+*/
+
+//MARK: - TabBarItem
+
+"UITabBarItemMain" = "Main"
+"UITabBarItemProfile" = "Profile"
