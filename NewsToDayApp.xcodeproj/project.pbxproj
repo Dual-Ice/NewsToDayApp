@@ -9,21 +9,57 @@
 /* Begin PBXBuildFile section */
 		A5CBDB9A2BA75DD500C81385 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB992BA75DD500C81385 /* AppDelegate.swift */; };
 		A5CBDB9C2BA75DD500C81385 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB9B2BA75DD500C81385 /* SceneDelegate.swift */; };
-		A5CBDB9E2BA75DD500C81385 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB9D2BA75DD500C81385 /* ViewController.swift */; };
-		A5CBDBA12BA75DD500C81385 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CBDB9F2BA75DD500C81385 /* Main.storyboard */; };
 		A5CBDBA32BA75DD900C81385 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CBDBA22BA75DD900C81385 /* Assets.xcassets */; };
 		A5CBDBA62BA75DD900C81385 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CBDBA42BA75DD900C81385 /* LaunchScreen.storyboard */; };
+		A5CBDBBC2BA7618D00C81385 /* MainBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDBBB2BA7618D00C81385 /* MainBuilder.swift */; };
+		A5CBDBC32BA7627F00C81385 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDBC22BA7627F00C81385 /* MainPresenter.swift */; };
+		A5CBDBC52BA7630F00C81385 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDBC42BA7630F00C81385 /* MainRouter.swift */; };
+		A5CBDBC72BA7637700C81385 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDBC62BA7637700C81385 /* CustomViewController.swift */; };
+		A5CBDBC92BA7638500C81385 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDBC82BA7638500C81385 /* CustomView.swift */; };
+		A5CBDBCB2BA76E1200C81385 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDBCA2BA76E1200C81385 /* MainViewController.swift */; };
+		A5CBDBCD2BA76E3D00C81385 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDBCC2BA76E3D00C81385 /* MainView.swift */; };
+		A5CBDBD02BA76FEC00C81385 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A5CBDBCF2BA76FEC00C81385 /* SnapKit */; };
+		A5CBDBD22BA76FEC00C81385 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = A5CBDBD12BA76FEC00C81385 /* SnapKit-Dynamic */; };
+		A5CBDBD52BA7700C00C81385 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5CBDBD42BA7700C00C81385 /* IQKeyboardManagerSwift */; };
+		A5CBDBD82BA770DA00C81385 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A5CBDBD72BA770DA00C81385 /* FirebaseAuth */; };
+		A5CBDBDA2BA770DA00C81385 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A5CBDBD92BA770DA00C81385 /* FirebaseFirestore */; };
+		A5CBDBDC2BA770DA00C81385 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5CBDBDB2BA770DA00C81385 /* FirebaseFirestoreSwift */; };
+		A5CBDBDE2BA770DA00C81385 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = A5CBDBDD2BA770DA00C81385 /* FirebaseInstallations */; };
+		A5CBDBE02BA770DA00C81385 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A5CBDBDF2BA770DA00C81385 /* FirebaseStorage */; };
+		A5CBDBE32BA771CB00C81385 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A5CBDBE22BA771CB00C81385 /* GoogleSignIn */; };
+		A5CBDBE52BA771CB00C81385 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5CBDBE42BA771CB00C81385 /* GoogleSignInSwift */; };
+		A5CBDBE82BA772B300C81385 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDBE72BA772B300C81385 /* CustomTabBar.swift */; };
+		A5CBDBEB2BA7734300C81385 /* UIBezierPath+createCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDBEA2BA7734300C81385 /* UIBezierPath+createCurve.swift */; };
+		A5CBDBED2BA776C100C81385 /* TabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDBEC2BA776C100C81385 /* TabBarPresenter.swift */; };
+		A5CBDBF62BA77C1000C81385 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDBF52BA77C1000C81385 /* ProfilePresenter.swift */; };
+		A5CBDBF82BA77E0100C81385 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDBF72BA77E0100C81385 /* ProfileRouter.swift */; };
+		A5CBDBFA2BA77F4900C81385 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDBF92BA77F4900C81385 /* ProfileViewController.swift */; };
+		A5CBDBFC2BA77F8000C81385 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDBFB2BA77F8000C81385 /* ProfileView.swift */; };
+		A5CBDBFE2BA77FEB00C81385 /* ProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDBFD2BA77FEB00C81385 /* ProfileBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A5CBDB962BA75DD500C81385 /* NewsToDayApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsToDayApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CBDB992BA75DD500C81385 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CBDB9B2BA75DD500C81385 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A5CBDB9D2BA75DD500C81385 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A5CBDBA02BA75DD500C81385 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5CBDBA22BA75DD900C81385 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5CBDBA52BA75DD900C81385 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5CBDBA72BA75DD900C81385 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5CBDBBB2BA7618D00C81385 /* MainBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBuilder.swift; sourceTree = "<group>"; };
+		A5CBDBC22BA7627F00C81385 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
+		A5CBDBC42BA7630F00C81385 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
+		A5CBDBC62BA7637700C81385 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
+		A5CBDBC82BA7638500C81385 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		A5CBDBCA2BA76E1200C81385 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A5CBDBCC2BA76E3D00C81385 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A5CBDBE72BA772B300C81385 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		A5CBDBEA2BA7734300C81385 /* UIBezierPath+createCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+createCurve.swift"; sourceTree = "<group>"; };
+		A5CBDBEC2BA776C100C81385 /* TabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPresenter.swift; sourceTree = "<group>"; };
+		A5CBDBF52BA77C1000C81385 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		A5CBDBF72BA77E0100C81385 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
+		A5CBDBF92BA77F4900C81385 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A5CBDBFB2BA77F8000C81385 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A5CBDBFD2BA77FEB00C81385 /* ProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +67,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5CBDBD02BA76FEC00C81385 /* SnapKit in Frameworks */,
+				A5CBDBDE2BA770DA00C81385 /* FirebaseInstallations in Frameworks */,
+				A5CBDBD22BA76FEC00C81385 /* SnapKit-Dynamic in Frameworks */,
+				A5CBDBD52BA7700C00C81385 /* IQKeyboardManagerSwift in Frameworks */,
+				A5CBDBDA2BA770DA00C81385 /* FirebaseFirestore in Frameworks */,
+				A5CBDBE52BA771CB00C81385 /* GoogleSignInSwift in Frameworks */,
+				A5CBDBE02BA770DA00C81385 /* FirebaseStorage in Frameworks */,
+				A5CBDBD82BA770DA00C81385 /* FirebaseAuth in Frameworks */,
+				A5CBDBDC2BA770DA00C81385 /* FirebaseFirestoreSwift in Frameworks */,
+				A5CBDBE32BA771CB00C81385 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +102,212 @@
 		A5CBDB982BA75DD500C81385 /* NewsToDayApp */ = {
 			isa = PBXGroup;
 			children = (
-				A5CBDB992BA75DD500C81385 /* AppDelegate.swift */,
+				A5CBDBAD2BA75E2D00C81385 /* App */,
+				A5CBDBB12BA75E7F00C81385 /* Modules */,
+				A5CBDBB22BA75E8800C81385 /* Services */,
+				A5CBDBB02BA75E5400C81385 /* Resources */,
+				A5CBDBAF2BA75E4A00C81385 /* Extensions */,
+			);
+			path = NewsToDayApp;
+			sourceTree = "<group>";
+		};
+		A5CBDBAD2BA75E2D00C81385 /* App */ = {
+			isa = PBXGroup;
+			children = (
 				A5CBDB9B2BA75DD500C81385 /* SceneDelegate.swift */,
-				A5CBDB9D2BA75DD500C81385 /* ViewController.swift */,
-				A5CBDB9F2BA75DD500C81385 /* Main.storyboard */,
+				A5CBDB992BA75DD500C81385 /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A5CBDBAF2BA75E4A00C81385 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A5CBDBE92BA772BE00C81385 /* CustomView */,
+				A5CBDBE62BA7729C00C81385 /* TabBar */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A5CBDBB02BA75E5400C81385 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				A5CBDBA22BA75DD900C81385 /* Assets.xcassets */,
 				A5CBDBA42BA75DD900C81385 /* LaunchScreen.storyboard */,
 				A5CBDBA72BA75DD900C81385 /* Info.plist */,
 			);
-			path = NewsToDayApp;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A5CBDBB12BA75E7F00C81385 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				A5CBDBEE2BA77B9900C81385 /* ProfileModule */,
+				A5CBDBB52BA75EEE00C81385 /* MainView */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		A5CBDBB22BA75E8800C81385 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A5CBDBB42BA75EA800C81385 /* Auth */,
+				A5CBDBB32BA75E9F00C81385 /* Network */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A5CBDBB32BA75E9F00C81385 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		A5CBDBB42BA75EA800C81385 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		A5CBDBB52BA75EEE00C81385 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				A5CBDBBA2BA75F2000C81385 /* Builder */,
+				A5CBDBB82BA75F1100C81385 /* View */,
+				A5CBDBB72BA75F0900C81385 /* Controller */,
+				A5CBDBB92BA75F1600C81385 /* Model */,
+				A5CBDBB62BA75EFA00C81385 /* Router */,
+				A5CBDBC12BA7625C00C81385 /* Presenter */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		A5CBDBB62BA75EFA00C81385 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A5CBDBC42BA7630F00C81385 /* MainRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		A5CBDBB72BA75F0900C81385 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A5CBDBCA2BA76E1200C81385 /* MainViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A5CBDBB82BA75F1100C81385 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A5CBDBCC2BA76E3D00C81385 /* MainView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A5CBDBB92BA75F1600C81385 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A5CBDBBA2BA75F2000C81385 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				A5CBDBBB2BA7618D00C81385 /* MainBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		A5CBDBC12BA7625C00C81385 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A5CBDBC22BA7627F00C81385 /* MainPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A5CBDBE62BA7729C00C81385 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				A5CBDBE72BA772B300C81385 /* CustomTabBar.swift */,
+				A5CBDBEA2BA7734300C81385 /* UIBezierPath+createCurve.swift */,
+				A5CBDBEC2BA776C100C81385 /* TabBarPresenter.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		A5CBDBE92BA772BE00C81385 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				A5CBDBC62BA7637700C81385 /* CustomViewController.swift */,
+				A5CBDBC82BA7638500C81385 /* CustomView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		A5CBDBEE2BA77B9900C81385 /* ProfileModule */ = {
+			isa = PBXGroup;
+			children = (
+				A5CBDBF42BA77BEC00C81385 /* Builder */,
+				A5CBDBF32BA77BE400C81385 /* View */,
+				A5CBDBF22BA77BDA00C81385 /* Controller */,
+				A5CBDBF12BA77BC400C81385 /* Model */,
+				A5CBDBF02BA77BB600C81385 /* Router */,
+				A5CBDBEF2BA77BAB00C81385 /* Presenter */,
+			);
+			path = ProfileModule;
+			sourceTree = "<group>";
+		};
+		A5CBDBEF2BA77BAB00C81385 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A5CBDBF52BA77C1000C81385 /* ProfilePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A5CBDBF02BA77BB600C81385 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A5CBDBF72BA77E0100C81385 /* ProfileRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		A5CBDBF12BA77BC400C81385 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A5CBDBF22BA77BDA00C81385 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A5CBDBF92BA77F4900C81385 /* ProfileViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A5CBDBF32BA77BE400C81385 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A5CBDBFB2BA77F8000C81385 /* ProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A5CBDBF42BA77BEC00C81385 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				A5CBDBFD2BA77FEB00C81385 /* ProfileBuilder.swift */,
+			);
+			path = Builder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +326,18 @@
 			dependencies = (
 			);
 			name = NewsToDayApp;
+			packageProductDependencies = (
+				A5CBDBCF2BA76FEC00C81385 /* SnapKit */,
+				A5CBDBD12BA76FEC00C81385 /* SnapKit-Dynamic */,
+				A5CBDBD42BA7700C00C81385 /* IQKeyboardManagerSwift */,
+				A5CBDBD72BA770DA00C81385 /* FirebaseAuth */,
+				A5CBDBD92BA770DA00C81385 /* FirebaseFirestore */,
+				A5CBDBDB2BA770DA00C81385 /* FirebaseFirestoreSwift */,
+				A5CBDBDD2BA770DA00C81385 /* FirebaseInstallations */,
+				A5CBDBDF2BA770DA00C81385 /* FirebaseStorage */,
+				A5CBDBE22BA771CB00C81385 /* GoogleSignIn */,
+				A5CBDBE42BA771CB00C81385 /* GoogleSignInSwift */,
+			);
 			productName = NewsToDayApp;
 			productReference = A5CBDB962BA75DD500C81385 /* NewsToDayApp.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +366,12 @@
 				Base,
 			);
 			mainGroup = A5CBDB8D2BA75DD500C81385;
+			packageReferences = (
+				A5CBDBCE2BA76FEC00C81385 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				A5CBDBD32BA7700C00C81385 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				A5CBDBD62BA770DA00C81385 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A5CBDBE12BA771CB00C81385 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
 			productRefGroup = A5CBDB972BA75DD500C81385 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +388,6 @@
 			files = (
 				A5CBDBA62BA75DD900C81385 /* LaunchScreen.storyboard in Resources */,
 				A5CBDBA32BA75DD900C81385 /* Assets.xcassets in Resources */,
-				A5CBDBA12BA75DD500C81385 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +398,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5CBDB9E2BA75DD500C81385 /* ViewController.swift in Sources */,
+				A5CBDBC52BA7630F00C81385 /* MainRouter.swift in Sources */,
+				A5CBDBCD2BA76E3D00C81385 /* MainView.swift in Sources */,
 				A5CBDB9A2BA75DD500C81385 /* AppDelegate.swift in Sources */,
+				A5CBDBEB2BA7734300C81385 /* UIBezierPath+createCurve.swift in Sources */,
 				A5CBDB9C2BA75DD500C81385 /* SceneDelegate.swift in Sources */,
+				A5CBDBC92BA7638500C81385 /* CustomView.swift in Sources */,
+				A5CBDBF82BA77E0100C81385 /* ProfileRouter.swift in Sources */,
+				A5CBDBC72BA7637700C81385 /* CustomViewController.swift in Sources */,
+				A5CBDBFC2BA77F8000C81385 /* ProfileView.swift in Sources */,
+				A5CBDBE82BA772B300C81385 /* CustomTabBar.swift in Sources */,
+				A5CBDBED2BA776C100C81385 /* TabBarPresenter.swift in Sources */,
+				A5CBDBFE2BA77FEB00C81385 /* ProfileBuilder.swift in Sources */,
+				A5CBDBBC2BA7618D00C81385 /* MainBuilder.swift in Sources */,
+				A5CBDBC32BA7627F00C81385 /* MainPresenter.swift in Sources */,
+				A5CBDBFA2BA77F4900C81385 /* ProfileViewController.swift in Sources */,
+				A5CBDBCB2BA76E1200C81385 /* MainViewController.swift in Sources */,
+				A5CBDBF62BA77C1000C81385 /* ProfilePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A5CBDB9F2BA75DD500C81385 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A5CBDBA02BA75DD500C81385 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A5CBDBA42BA75DD900C81385 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -294,12 +560,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TWQL7PLAUC;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NewsToDayApp/Info.plist;
+				INFOPLIST_FILE = NewsToDayApp/Resources/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,9 +574,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "zvontsov-adadigital.ru.NewsToDayApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -322,12 +593,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TWQL7PLAUC;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NewsToDayApp/Info.plist;
+				INFOPLIST_FILE = NewsToDayApp/Resources/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -335,9 +607,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "zvontsov-adadigital.ru.NewsToDayApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -363,6 +639,94 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A5CBDBCE2BA76FEC00C81385 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		A5CBDBD32BA7700C00C81385 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.1;
+			};
+		};
+		A5CBDBD62BA770DA00C81385 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.22.1;
+			};
+		};
+		A5CBDBE12BA771CB00C81385 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A5CBDBCF2BA76FEC00C81385 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5CBDBCE2BA76FEC00C81385 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		A5CBDBD12BA76FEC00C81385 /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5CBDBCE2BA76FEC00C81385 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+		A5CBDBD42BA7700C00C81385 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5CBDBD32BA7700C00C81385 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+		A5CBDBD72BA770DA00C81385 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5CBDBD62BA770DA00C81385 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		A5CBDBD92BA770DA00C81385 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5CBDBD62BA770DA00C81385 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		A5CBDBDB2BA770DA00C81385 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5CBDBD62BA770DA00C81385 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		A5CBDBDD2BA770DA00C81385 /* FirebaseInstallations */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5CBDBD62BA770DA00C81385 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseInstallations;
+		};
+		A5CBDBDF2BA770DA00C81385 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5CBDBD62BA770DA00C81385 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		A5CBDBE22BA771CB00C81385 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5CBDBE12BA771CB00C81385 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		A5CBDBE42BA771CB00C81385 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5CBDBE12BA771CB00C81385 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A5CBDB8E2BA75DD500C81385 /* Project object */;
 }
