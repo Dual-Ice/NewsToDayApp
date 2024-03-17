@@ -36,6 +36,12 @@
 		A5CBDBFA2BA77F4900C81385 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDBF92BA77F4900C81385 /* ProfileViewController.swift */; };
 		A5CBDBFC2BA77F8000C81385 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDBFB2BA77F8000C81385 /* ProfileView.swift */; };
 		A5CBDBFE2BA77FEB00C81385 /* ProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDBFD2BA77FEB00C81385 /* ProfileBuilder.swift */; };
+		D97126CA2BA7906000FF3048 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D97126C52BA7906000FF3048 /* Inter-Medium.ttf */; };
+		D97126CB2BA7906000FF3048 /* Adamina-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D97126C62BA7906000FF3048 /* Adamina-Regular.ttf */; };
+		D97126CC2BA7906000FF3048 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D97126C72BA7906000FF3048 /* Inter-SemiBold.ttf */; };
+		D97126CD2BA7906000FF3048 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D97126C82BA7906000FF3048 /* Inter-Regular.ttf */; };
+		D97126CE2BA7906000FF3048 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D97126C92BA7906000FF3048 /* Inter-Bold.ttf */; };
+		D97126D02BA7910C00FF3048 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97126CF2BA7910C00FF3048 /* Fonts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +66,12 @@
 		A5CBDBF92BA77F4900C81385 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A5CBDBFB2BA77F8000C81385 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A5CBDBFD2BA77FEB00C81385 /* ProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBuilder.swift; sourceTree = "<group>"; };
+		D97126C52BA7906000FF3048 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
+		D97126C62BA7906000FF3048 /* Adamina-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Adamina-Regular.ttf"; sourceTree = "<group>"; };
+		D97126C72BA7906000FF3048 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
+		D97126C82BA7906000FF3048 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
+		D97126C92BA7906000FF3048 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
+		D97126CF2BA7910C00FF3048 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +137,7 @@
 			children = (
 				A5CBDBE92BA772BE00C81385 /* CustomView */,
 				A5CBDBE62BA7729C00C81385 /* TabBar */,
+				D97126CF2BA7910C00FF3048 /* Fonts.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -132,6 +145,7 @@
 		A5CBDBB02BA75E5400C81385 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D97126C42BA78EE400FF3048 /* fonts */,
 				A5CBDBA22BA75DD900C81385 /* Assets.xcassets */,
 				A5CBDBA42BA75DD900C81385 /* LaunchScreen.storyboard */,
 				A5CBDBA72BA75DD900C81385 /* Info.plist */,
@@ -310,6 +324,18 @@
 			path = Builder;
 			sourceTree = "<group>";
 		};
+		D97126C42BA78EE400FF3048 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D97126C62BA7906000FF3048 /* Adamina-Regular.ttf */,
+				D97126C92BA7906000FF3048 /* Inter-Bold.ttf */,
+				D97126C52BA7906000FF3048 /* Inter-Medium.ttf */,
+				D97126C82BA7906000FF3048 /* Inter-Regular.ttf */,
+				D97126C72BA7906000FF3048 /* Inter-SemiBold.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -387,7 +413,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5CBDBA62BA75DD900C81385 /* LaunchScreen.storyboard in Resources */,
+				D97126CB2BA7906000FF3048 /* Adamina-Regular.ttf in Resources */,
 				A5CBDBA32BA75DD900C81385 /* Assets.xcassets in Resources */,
+				D97126CE2BA7906000FF3048 /* Inter-Bold.ttf in Resources */,
+				D97126CC2BA7906000FF3048 /* Inter-SemiBold.ttf in Resources */,
+				D97126CD2BA7906000FF3048 /* Inter-Regular.ttf in Resources */,
+				D97126CA2BA7906000FF3048 /* Inter-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +445,7 @@
 				A5CBDBC32BA7627F00C81385 /* MainPresenter.swift in Sources */,
 				A5CBDBFA2BA77F4900C81385 /* ProfileViewController.swift in Sources */,
 				A5CBDBCB2BA76E1200C81385 /* MainViewController.swift in Sources */,
+				D97126D02BA7910C00FF3048 /* Fonts.swift in Sources */,
 				A5CBDBF62BA77C1000C81385 /* ProfilePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
