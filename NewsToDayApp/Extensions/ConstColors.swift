@@ -21,6 +21,4 @@ enum ConstColors {
     static let purpleLigher = "purple-ligher"
     static let purpleLight = "purple-light"
     static let purplePrimary = "purple-primary"
-    
-    
 }
