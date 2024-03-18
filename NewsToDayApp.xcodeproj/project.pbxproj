@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		369AB6172BA86FC800EBF483 /* OnboardingFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6162BA86FC800EBF483 /* OnboardingFactory.swift */; };
+		369AB6192BA87E6600EBF483 /* Labels + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6182BA87E6600EBF483 /* Labels + ext.swift */; };
+		369AB61B2BA8833A00EBF483 /* UIImageView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB61A2BA8833A00EBF483 /* UIImageView + ext.swift */; };
+		369AB61D2BA8850800EBF483 /* MainScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB61C2BA8850800EBF483 /* MainScreenFactory.swift */; };
+		369AB61F2BA88B6300EBF483 /* ConstColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB61E2BA88B6300EBF483 /* ConstColors.swift */; };
+		369AB6212BA88E8800EBF483 /* BookmarksFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6202BA88E8800EBF483 /* BookmarksFactory.swift */; };
 		A5CBDB9A2BA75DD500C81385 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB992BA75DD500C81385 /* AppDelegate.swift */; };
 		A5CBDB9C2BA75DD500C81385 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB9B2BA75DD500C81385 /* SceneDelegate.swift */; };
 		A5CBDBA32BA75DD900C81385 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CBDBA22BA75DD900C81385 /* Assets.xcassets */; };
@@ -85,6 +91,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		369AB6162BA86FC800EBF483 /* OnboardingFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFactory.swift; sourceTree = "<group>"; };
+		369AB6182BA87E6600EBF483 /* Labels + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Labels + ext.swift"; sourceTree = "<group>"; };
+		369AB61A2BA8833A00EBF483 /* UIImageView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + ext.swift"; sourceTree = "<group>"; };
+		369AB61C2BA8850800EBF483 /* MainScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenFactory.swift; sourceTree = "<group>"; };
+		369AB61E2BA88B6300EBF483 /* ConstColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstColors.swift; sourceTree = "<group>"; };
+		369AB6202BA88E8800EBF483 /* BookmarksFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksFactory.swift; sourceTree = "<group>"; };
 		A5CBDB962BA75DD500C81385 /* NewsToDayApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsToDayApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CBDB992BA75DD500C81385 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CBDB9B2BA75DD500C81385 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +188,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		369AB6152BA86F7E00EBF483 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				369AB6162BA86FC800EBF483 /* OnboardingFactory.swift */,
+				369AB61C2BA8850800EBF483 /* MainScreenFactory.swift */,
+				369AB6202BA88E8800EBF483 /* BookmarksFactory.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
 		A5CBDB8D2BA75DD500C81385 = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +217,7 @@
 		A5CBDB982BA75DD500C81385 /* NewsToDayApp */ = {
 			isa = PBXGroup;
 			children = (
+				369AB6152BA86F7E00EBF483 /* Factories */,
 				A5CBDBAD2BA75E2D00C81385 /* App */,
 				A5CBDBB12BA75E7F00C81385 /* Modules */,
 				A5CBDBB22BA75E8800C81385 /* Services */,
@@ -219,7 +242,10 @@
 				A5CBDBE92BA772BE00C81385 /* CustomView */,
 				A5CBDBE62BA7729C00C81385 /* TabBar */,
 				D97126CF2BA7910C00FF3048 /* Fonts.swift */,
+				369AB61E2BA88B6300EBF483 /* ConstColors.swift */,
 				D97126F42BA7A3B500FF3048 /* Images.swift */,
+				369AB6182BA87E6600EBF483 /* Labels + ext.swift */,
+				369AB61A2BA8833A00EBF483 /* UIImageView + ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -578,21 +604,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5CBDBC52BA7630F00C81385 /* MainRouter.swift in Sources */,
+				369AB61F2BA88B6300EBF483 /* ConstColors.swift in Sources */,
 				A5CBDBCD2BA76E3D00C81385 /* MainView.swift in Sources */,
 				A5CBDB9A2BA75DD500C81385 /* AppDelegate.swift in Sources */,
 				A5CBDBEB2BA7734300C81385 /* UIBezierPath+createCurve.swift in Sources */,
+				369AB61D2BA8850800EBF483 /* MainScreenFactory.swift in Sources */,
 				A5CBDB9C2BA75DD500C81385 /* SceneDelegate.swift in Sources */,
+				369AB6172BA86FC800EBF483 /* OnboardingFactory.swift in Sources */,
 				A5CBDBC92BA7638500C81385 /* CustomView.swift in Sources */,
 				A5CBDBF82BA77E0100C81385 /* ProfileRouter.swift in Sources */,
 				A5CBDBC72BA7637700C81385 /* CustomViewController.swift in Sources */,
 				A5CBDBFC2BA77F8000C81385 /* ProfileView.swift in Sources */,
 				A5CBDBE82BA772B300C81385 /* CustomTabBar.swift in Sources */,
 				A5CBDBED2BA776C100C81385 /* TabBarPresenter.swift in Sources */,
+				369AB61B2BA8833A00EBF483 /* UIImageView + ext.swift in Sources */,
 				D97126F52BA7A3B500FF3048 /* Images.swift in Sources */,
+				369AB6192BA87E6600EBF483 /* Labels + ext.swift in Sources */,
 				A5CBDBFE2BA77FEB00C81385 /* ProfileBuilder.swift in Sources */,
 				A5CBDBBC2BA7618D00C81385 /* MainBuilder.swift in Sources */,
 				A5CBDBC32BA7627F00C81385 /* MainPresenter.swift in Sources */,
 				A5CBDBFA2BA77F4900C81385 /* ProfileViewController.swift in Sources */,
+				369AB6212BA88E8800EBF483 /* BookmarksFactory.swift in Sources */,
 				A5CBDBCB2BA76E1200C81385 /* MainViewController.swift in Sources */,
 				D97126D02BA7910C00FF3048 /* Fonts.swift in Sources */,
 				A5CBDBF62BA77C1000C81385 /* ProfilePresenter.swift in Sources */,
