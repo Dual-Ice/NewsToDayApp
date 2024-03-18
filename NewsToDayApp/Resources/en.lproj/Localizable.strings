@@ -8,5 +8,5 @@
 
 //MARK: - TabBarItem
 
-"UITabBarItemMain" = "Main"
-"UITabBarItemProfile" = "Profile"
+"UITabBarItemMain" = "Main";
+"UITabBarItemProfile" = "Profile";
