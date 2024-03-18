@@ -16,6 +16,7 @@
 		369AB6232BA89B5700EBF483 /* ArticleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6222BA89B5700EBF483 /* ArticleFactory.swift */; };
 		369AB6252BA89EE200EBF483 /* ProfileFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6242BA89EE200EBF483 /* ProfileFactory.swift */; };
 		369AB6272BA8A15300EBF483 /* TermsConditionsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6262BA8A15300EBF483 /* TermsConditionsFactory.swift */; };
+		369AB6292BA8A2AD00EBF483 /* AuthFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6282BA8A2AD00EBF483 /* AuthFactory.swift */; };
 		A5CBDB9A2BA75DD500C81385 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB992BA75DD500C81385 /* AppDelegate.swift */; };
 		A5CBDB9C2BA75DD500C81385 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB9B2BA75DD500C81385 /* SceneDelegate.swift */; };
 		A5CBDBA32BA75DD900C81385 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CBDBA22BA75DD900C81385 /* Assets.xcassets */; };
@@ -103,6 +104,7 @@
 		369AB6222BA89B5700EBF483 /* ArticleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleFactory.swift; sourceTree = "<group>"; };
 		369AB6242BA89EE200EBF483 /* ProfileFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFactory.swift; sourceTree = "<group>"; };
 		369AB6262BA8A15300EBF483 /* TermsConditionsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsConditionsFactory.swift; sourceTree = "<group>"; };
+		369AB6282BA8A2AD00EBF483 /* AuthFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFactory.swift; sourceTree = "<group>"; };
 		A5CBDB962BA75DD500C81385 /* NewsToDayApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsToDayApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CBDB992BA75DD500C81385 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CBDB9B2BA75DD500C81385 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				369AB6222BA89B5700EBF483 /* ArticleFactory.swift */,
 				369AB6242BA89EE200EBF483 /* ProfileFactory.swift */,
 				369AB6262BA8A15300EBF483 /* TermsConditionsFactory.swift */,
+				369AB6282BA8A2AD00EBF483 /* AuthFactory.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				369AB61D2BA8850800EBF483 /* MainScreenFactory.swift in Sources */,
 				A5CBDB9C2BA75DD500C81385 /* SceneDelegate.swift in Sources */,
 				369AB6172BA86FC800EBF483 /* OnboardingFactory.swift in Sources */,
+				369AB6292BA8A2AD00EBF483 /* AuthFactory.swift in Sources */,
 				A5CBDBC92BA7638500C81385 /* CustomView.swift in Sources */,
 				369AB6232BA89B5700EBF483 /* ArticleFactory.swift in Sources */,
 				A5CBDBF82BA77E0100C81385 /* ProfileRouter.swift in Sources */,
