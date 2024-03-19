@@ -37,7 +37,6 @@ class ArticleCouruselCell: UICollectionViewCell {
         categoryLabel.text = nil
         articleNameLabel.text = nil
         backImage.image = nil
-        
     }
     
     private func setUpViews(){
@@ -51,17 +50,17 @@ class ArticleCouruselCell: UICollectionViewCell {
     }
     
     private func setViews(){
-        contentView.addSubview(backImage)
-        contentView.addSubview(favoriteButton)
         [
+            backImage,
+            favoriteButton,
             categoryLabel,
             articleNameLabel,
-        ].forEach { backImage.addSubview($0) }
+        ].forEach { contentView.addSubview($0) }
     }
     
     private func applyGradient(){
         backImage.bounds = self.contentView.bounds
-        backImage.applyGradientMask(colors: [#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)], locations: [0.2, 1.0])
+        backImage.applyGradientMask(colors: [UIColor.clear,  #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.743064842)], locations: [0.1, 1.0])
     }
     
     private func layoutViews(){
@@ -86,7 +85,6 @@ class ArticleCouruselCell: UICollectionViewCell {
             make.top.equalTo(contentView.snp.top).offset(16)
             make.trailing.equalTo(contentView.snp.trailing).offset(-16)
             make.width.height.equalTo(24)        }
-        
     }
 }
 

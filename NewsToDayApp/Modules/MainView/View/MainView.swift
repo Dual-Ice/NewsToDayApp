@@ -194,7 +194,5 @@ extension MainView: HeaderRecomendedViewDelegate {
     func tappedSeeAllButton() {
         delegate?.tappedSeeAllButton()
     }
-    
-    
 }
 

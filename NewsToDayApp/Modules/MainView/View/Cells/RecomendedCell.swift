@@ -49,10 +49,10 @@ class RecomendedCell: UICollectionViewCell {
         ].forEach { contentView.addSubview($0) }
     }
     
-    private func applyGradient(){
-        backImage.bounds = self.contentView.bounds
-        backImage.applyGradientMask(colors: [#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)], locations: [0.2, 1.0])
-    }
+//    private func applyGradient(){
+//        backImage.bounds = self.contentView.bounds
+//        backImage.applyGradientMask(colors: [UIColor.clear, #colorLiteral(red: 0.768627451, green: 0.768627451, blue: 0.768627451, alpha: 1)], locations: [0.1, 1.0])
+//    }
     
     private func layoutViews(){
         backImage.snp.makeConstraints { make in
@@ -80,7 +80,6 @@ extension RecomendedCell{
         articleNameLabel.text = articleNameText
         if let image = image{
             backImage.image = image
-            //applyGradient()
         } else{
             backImage.backgroundColor = .blue
             //добавить spineer
