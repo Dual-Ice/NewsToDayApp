@@ -10,3 +10,9 @@
 
 "UITabBarItemMain" = "Начало";
 "UITabBarItemProfile" = "Профиль";
+
+
+//MARK: - Network Errors
+"InvalidURL" = "Неверный URL!";
+"EmptyResponse" = "Запрос вернул пустой ответ!";
+"ErrorCodeResponse" = "Запрос завершился с ошибкой!";

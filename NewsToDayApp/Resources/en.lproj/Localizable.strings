@@ -10,3 +10,8 @@
 
 "UITabBarItemMain" = "Main";
 "UITabBarItemProfile" = "Profile";
+
+//MARK: - Network Errors
+"InvalidURL" = "Invalid URL!";
+"EmptyResponse" = "No data from network call!";
+"ErrorCodeResponse" = "Error code response";
