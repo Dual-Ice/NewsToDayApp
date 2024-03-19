@@ -60,15 +60,15 @@ class RecomendedCell: UICollectionViewCell {
             make.height.width.equalTo(96)
         }
         categoryLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(articleNameLabel.snp.top).offset(8)
+            make.bottom.equalTo(articleNameLabel.snp.top).offset(-8)
             make.leading.equalTo(backImage.snp.trailing).offset(8)
             make.height.equalTo(20)
         }
         
         articleNameLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(contentView.snp.bottom).offset(8)
+            make.bottom.equalTo(contentView.snp.bottom).offset(-8)
             make.leading.equalTo(backImage.snp.trailing).offset(8)
-            make.trailing.equalTo(contentView.snp.trailing).offset(8)
+            make.trailing.equalTo(contentView.snp.trailing).offset(-8)
             make.height.equalTo(48)
         }
     }
@@ -81,8 +81,9 @@ extension RecomendedCell{
         articleNameLabel.text = articleNameText
         if let image = image{
             backImage.image = image
-            applyGradient()
+            //applyGradient()
         } else{
+            backImage.backgroundColor = .blue
             //добавить spineer
         }
         

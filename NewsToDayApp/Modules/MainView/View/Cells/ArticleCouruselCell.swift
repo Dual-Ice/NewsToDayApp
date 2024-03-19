@@ -36,7 +36,6 @@ class ArticleCouruselCell: UICollectionViewCell {
     }
     
     private func setUpViews(){
-        favoriteButton.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         favoriteButton.backgroundColor = .clear
         favoriteButton.setBackgroundImage(UIImage(named: "bookmark-light"), for: .normal)
     }
@@ -62,22 +61,20 @@ class ArticleCouruselCell: UICollectionViewCell {
             make.top.equalTo(contentView.snp.top)
             make.bottom.equalTo(contentView.snp.bottom)
         }
-        articleNameLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(backImage.snp.bottom).offset(16)
-            make.leading.equalTo(backImage.snp.leading).offset(16)
-            make.trailing.equalTo(backImage.snp.trailing).offset(16)
-            make.height.equalTo(48)
-        }
         
         categoryLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(articleNameLabel.snp.top).offset(8)
+            make.bottom.equalTo(articleNameLabel.snp.top).offset(-8)
             make.leading.equalTo(backImage.snp.leading).offset(16)
-            make.height.equalTo(18)
         }
         
+        articleNameLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(backImage.snp.bottom).offset(-16)
+            make.leading.equalTo(backImage.snp.leading).offset(16)
+            make.trailing.equalTo(backImage.snp.trailing).offset(-16)
+        }
         favoriteButton.snp.makeConstraints { make in
             make.top.equalTo(backImage.snp.top).offset(16)
-            make.trailing.equalTo(backImage.snp.trailing).offset(16)
+            make.trailing.equalTo(backImage.snp.trailing).offset(-16)
             make.width.height.equalTo(24)        }
         
     }
@@ -86,13 +83,14 @@ class ArticleCouruselCell: UICollectionViewCell {
 //MARK: - Configure Cell UI Public Method
 extension ArticleCouruselCell{
     func configCell(categoryLabelText: String, articleNameText: String, image: UIImage?){
-        categoryLabel.text = categoryLabelText
+        categoryLabel.text = categoryLabelText.uppercased()
         articleNameLabel.text = articleNameText
         if let image = image{
             backImage.image = image
-            applyGradient()
+            print("Done")
+            //applyGradient()
         } else{
-            //добавить spineer
+            backImage.backgroundColor = .blue
         }
         
     }

@@ -33,6 +33,7 @@ class CategoriesCell: UICollectionViewCell {
     private func setUpViews(){
         backImage.layer.cornerRadius = 16
         backImage.backgroundColor = UIColor(named: ConstColors.greyLighter)
+        categoryLabel.textColor = UIColor(named: ConstColors.greyPrimary)
     }
     
     private func setViews(){

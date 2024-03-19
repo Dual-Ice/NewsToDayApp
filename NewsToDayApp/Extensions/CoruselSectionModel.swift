@@ -17,6 +17,6 @@ struct OneItemCourusel{
 }
 extension CoruselSectionModel{
     static func getCourusel() -> [OneItemCourusel]{
-        CoruselSectionModel(articles: [OneItemCourusel(image: "book-alt", articleCategory: "Politic", articleName: "The latest situation in the presidential election"),OneItemCourusel(image: "book-alt", articleCategory: "Politic", articleName: "The latest situation in the presidential election"),OneItemCourusel(image: "book-alt", articleCategory: "Politic", articleName: "The latest situation in the presidential election")]).articles
+        CoruselSectionModel(articles: [OneItemCourusel(image: "mockImage", articleCategory: "Politic", articleName: "The latest situation in the presidential election"),OneItemCourusel(image: "mockImage", articleCategory: "Politic", articleName: "The latest situation in the presidential election"),OneItemCourusel(image: "mockImage", articleCategory: "Politic", articleName: "The latest situation in the presidential election"), OneItemCourusel(image: "mockImage", articleCategory: "Politic", articleName: "The latest situation in the presidential election")]).articles
     }
 }

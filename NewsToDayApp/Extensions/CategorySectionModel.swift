@@ -14,6 +14,6 @@ struct Category{
 }
 extension CategorySectionModel{
     static func getCategories() -> [Category]{
-        CategorySectionModel(category: [Category(title: "Business"), Category(title: "Entertainment"), Category(title: "General"), Category(title: "Health"), Category(title: "Science"), Category(title: "Sports"), Category(title: "technology")]).category
+        CategorySectionModel(category: [Category(title: "Business"), Category(title: "Entertainment"), Category(title: "General"), Category(title: "Health"), Category(title: "Science"), Category(title: "Sports"), Category(title: "Technology")]).category
     }
 }
