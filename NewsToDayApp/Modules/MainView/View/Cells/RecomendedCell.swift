@@ -36,6 +36,7 @@ class RecomendedCell: UICollectionViewCell {
     
     private func setUpViews(){
         categoryLabel.font = UIFont.TextFont.Main.recommendedArticleCategory
+        categoryLabel.textColor = UIColor(named: ConstColors.greyPrimary)
         articleNameLabel.textColor = UIColor(named: ConstColors.blackPrimary)
         articleNameLabel.font = UIFont.TextFont.Main.recommendedArticleLabel
     }
@@ -61,15 +62,13 @@ class RecomendedCell: UICollectionViewCell {
         }
         categoryLabel.snp.makeConstraints { make in
             make.bottom.equalTo(articleNameLabel.snp.top).offset(-8)
-            make.leading.equalTo(backImage.snp.trailing).offset(8)
-            make.height.equalTo(20)
+            make.leading.equalTo(backImage.snp.trailing).offset(16)
         }
         
         articleNameLabel.snp.makeConstraints { make in
             make.bottom.equalTo(contentView.snp.bottom).offset(-8)
-            make.leading.equalTo(backImage.snp.trailing).offset(8)
+            make.leading.equalTo(backImage.snp.trailing).offset(16)
             make.trailing.equalTo(contentView.snp.trailing).offset(-8)
-            make.height.equalTo(48)
         }
     }
 }

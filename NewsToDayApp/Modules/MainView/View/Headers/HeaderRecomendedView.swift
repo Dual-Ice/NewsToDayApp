@@ -7,9 +7,13 @@
 
 
 import UIKit
+protocol HeaderRecomendedViewDelegate: AnyObject {
+    func tappedSeeAllButton()
+}
 
 class HeaderRecomendedView: UICollectionReusableView {
     static let resuseID = "HeaderRecomendedView"
+    weak var delegate: HeaderRecomendedViewDelegate?
     private let headerLabel = LabelsFactory.makeHeaderLabel()
     private let buttonSeeAll = ButtonsFactory.makeButton()
     
@@ -31,6 +35,11 @@ class HeaderRecomendedView: UICollectionReusableView {
         buttonSeeAll.setTitle("See all", for: .normal)
         buttonSeeAll.setTitleColor(UIColor(named: ConstColors.greyPrimary), for: .normal)
         buttonSeeAll.titleLabel?.font = UIFont.TextFont.Main.seeAllLabel
+        buttonSeeAll.addTarget(nil, action: #selector(buttonSeeAllTapped), for: .touchUpInside)
+    }
+    
+    @objc private func buttonSeeAllTapped(){
+        delegate?.tappedSeeAllButton()
     }
     
     private func setViews(){

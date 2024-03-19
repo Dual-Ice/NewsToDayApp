@@ -10,6 +10,8 @@ import SnapKit
 
 protocol MainViewDelegate: AnyObject {
     func getSections() -> Int
+    func tappedFavoriteButton()
+    func tappedSeeAllButton()
 }
 
 class MainView: CustomView {
@@ -146,6 +148,7 @@ extension MainView: UICollectionViewDataSource{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArticleCouruselCell.resuseID, for: indexPath) as? ArticleCouruselCell else { return UICollectionViewCell() }
             let data = corusel[indexPath.row]
             cell.configCell(categoryLabelText: data.articleCategory, articleNameText: data.articleName, image: UIImage(named: data.image))
+            cell.delegate = self
             return cell
         case .recomendations(let recomendations):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecomendedCell.resuseID, for: indexPath) as? RecomendedCell else { return UICollectionViewCell() }
@@ -160,6 +163,7 @@ extension MainView: UICollectionViewDataSource{
         case UICollectionView.elementKindSectionHeader:
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderRecomendedView.resuseID, for: indexPath) as? HeaderRecomendedView else { return UICollectionReusableView()}
             header.configureHeader(sectionTitle: mockData[indexPath.section].title)
+            header.delegate = self
             return header
         default:
             return UICollectionReusableView()
@@ -177,5 +181,20 @@ extension MainView: UISearchBarDelegate{
 }
 //MARK: - UICollectionViewDelegate
 extension MainView: UICollectionViewDelegate{
+}
+//MARK: - FavoriteButton
+extension MainView: ArticleCouruselCellDelegate {
+    func tappedFavoriteButton() {
+        delegate?.tappedFavoriteButton()
+    }
+}
+
+//MARK: - HeaderButton SeeAll
+extension MainView: HeaderRecomendedViewDelegate {
+    func tappedSeeAllButton() {
+        delegate?.tappedSeeAllButton()
+    }
+    
+    
 }
 

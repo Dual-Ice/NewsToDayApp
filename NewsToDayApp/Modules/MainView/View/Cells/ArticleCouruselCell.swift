@@ -8,8 +8,13 @@
 import UIKit
 import SnapKit
 
+protocol ArticleCouruselCellDelegate: AnyObject {
+    func tappedFavoriteButton()
+}
+
 class ArticleCouruselCell: UICollectionViewCell {
     static let resuseID = "ArticleCouruselCell"
+    weak var delegate: ArticleCouruselCellDelegate?
     
     private let categoryLabel = LabelsFactory.makeCategoryLabel()
     private let articleNameLabel = LabelsFactory.makeArticleHeaderLabel()
@@ -38,14 +43,19 @@ class ArticleCouruselCell: UICollectionViewCell {
     private func setUpViews(){
         favoriteButton.backgroundColor = .clear
         favoriteButton.setBackgroundImage(UIImage(named: "bookmark-light"), for: .normal)
+        favoriteButton.addTarget(nil, action: #selector(favoriteTapped), for: .touchUpInside)
+    }
+    
+    @objc private func favoriteTapped(){
+        delegate?.tappedFavoriteButton()
     }
     
     private func setViews(){
         contentView.addSubview(backImage)
+        contentView.addSubview(favoriteButton)
         [
             categoryLabel,
             articleNameLabel,
-            favoriteButton,
         ].forEach { backImage.addSubview($0) }
     }
     
@@ -73,8 +83,8 @@ class ArticleCouruselCell: UICollectionViewCell {
             make.trailing.equalTo(backImage.snp.trailing).offset(-16)
         }
         favoriteButton.snp.makeConstraints { make in
-            make.top.equalTo(backImage.snp.top).offset(16)
-            make.trailing.equalTo(backImage.snp.trailing).offset(-16)
+            make.top.equalTo(contentView.snp.top).offset(16)
+            make.trailing.equalTo(contentView.snp.trailing).offset(-16)
             make.width.height.equalTo(24)        }
         
     }

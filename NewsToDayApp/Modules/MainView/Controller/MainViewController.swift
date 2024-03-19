@@ -21,11 +21,14 @@ class MainViewController: CustomViewController<MainView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
+        navigationController?.isNavigationBarHidden = false
     }
     
     private func setDelegates(){
         customView.delegate = self
     }
+    
+    
     
 }
 
@@ -34,9 +37,18 @@ extension MainViewController: MainViewProtocol {
 }
 
 extension MainViewController: MainViewDelegate{
+    func tappedSeeAllButton() {
+        print("Tapped SeeAll")
+    }
+    
+    func tappedFavoriteButton() {
+        print("Tapped Favorite")
+    }
+    
     func getSections() -> Int {
         mockData.count
     }
 }
+
 
 
