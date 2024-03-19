@@ -27,7 +27,6 @@ class MainViewController: CustomViewController<MainView> {
         customView.delegate = self
     }
     
-    
 }
 
 extension MainViewController: MainViewProtocol {
