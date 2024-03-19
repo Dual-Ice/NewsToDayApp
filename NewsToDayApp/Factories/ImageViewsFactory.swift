@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ImageViewFactory: ImageViewsFactoryProtocol{
+final class ImageViewFactory{
     static func makeCornerRadiusImage() -> UIImageView {
         let imageView = UIImageView()
         imageView.configImageView(cornerRadius: 12)
