@@ -7,12 +7,10 @@
 
 import UIKit
 
-protocol ButtonsFactoryProtocol{
-    func makeButton() -> UIButton
-}
 
-final class ButtonsFactory: ButtonsFactoryProtocol{
-    func makeButton() -> UIButton {
+
+final class ButtonsFactory{
+    static func makeButton() -> UIButton {
         let button = UIButton()
         button.layer.cornerRadius = 12
         button.backgroundColor = UIColor(named: ConstColors.purplePrimary)
