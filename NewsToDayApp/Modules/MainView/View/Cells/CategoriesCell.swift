@@ -12,9 +12,13 @@ class CategoriesCell: UICollectionViewCell {
     static let resuseID = "CategoriesCell"
     
     private let categoryLabel = LabelsFactory.makeCategoryTagLabel()
+    private let backImage = ImageViewFactory.makeCornerRadiusImage()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setUpViews()
+        setViews()
+        layoutViews()
     }
   
     required init?(coder: NSCoder) {
@@ -23,5 +27,37 @@ class CategoriesCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        categoryLabel.text = nil
+    }
+    
+    private func setUpViews(){
+        backImage.layer.cornerRadius = 16
+        backImage.backgroundColor = UIColor(named: ConstColors.greyLighter)
+    }
+    
+    private func setViews(){
+        contentView.addSubview(backImage)
+        backImage.addSubview(categoryLabel)
+    }
+    
+    private func layoutViews(){
+        backImage.snp.makeConstraints { make in
+            make.leading.equalTo(contentView.snp.leading)
+            make.trailing.equalTo(contentView.snp.trailing)
+            make.top.equalTo(contentView.snp.top)
+            make.bottom.equalTo(contentView.snp.bottom)
+        }
+        categoryLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(backImage.snp.centerX)
+            make.centerY.equalTo(backImage.snp.centerY)
+        }
+    }
+    
+}
+
+//MARK: - Configure Cell UI Public Method
+extension CategoriesCell{
+    func configCell(categoryLabelText: String){
+        categoryLabel.text = categoryLabelText
     }
 }

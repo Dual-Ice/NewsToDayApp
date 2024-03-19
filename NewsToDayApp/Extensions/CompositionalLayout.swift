@@ -29,13 +29,13 @@ struct CompositionalLayout{
         }
     }
     
-    static func createSection(group: NSCollectionLayoutGroup, scrollBehavior:  UICollectionLayoutSectionOrthogonalScrollingBehavior, groupSpacing: CGFloat, leading: CGFloat, trailing: CGFloat, supplementary: [NSCollectionLayoutBoundarySupplementaryItem]) -> NSCollectionLayoutSection{
+    static func createSection(group: NSCollectionLayoutGroup, scrollBehavior:  UICollectionLayoutSectionOrthogonalScrollingBehavior, groupSpacing: CGFloat, leading: CGFloat, trailing: CGFloat, supplementary: [NSCollectionLayoutBoundarySupplementaryItem]?) -> NSCollectionLayoutSection{
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = scrollBehavior
         section.interGroupSpacing = groupSpacing
         section.contentInsets = .init(top: 0, leading: leading, bottom: 0, trailing: trailing)
         section.supplementariesFollowContentInsets = false
-        section.boundarySupplementaryItems = supplementary
+        section.boundarySupplementaryItems = supplementary ?? []
         return section
     }
 }
