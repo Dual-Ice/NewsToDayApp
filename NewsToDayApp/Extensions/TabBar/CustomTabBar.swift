@@ -76,13 +76,11 @@ open class CustomTabBarController: UITabBarController, CustomTabBarViewProtocol 
     
     func setupViewControllers() {
         
-        let navigationVC = UINavigationController()
-        
-        let mainVC = MainBuilder(navigationVC: navigationVC).buildMainView()
+        let mainVC = MainBuilder().buildMainView()
         mainVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemMain", comment: ""), image: UIImage(systemName: "house.fill"), tag: 0)
         
         
-        let profileVC = ProfileBuilder(navigationVC: navigationVC).buildProfileView()
+        let profileVC = ProfileBuilder().buildProfileView()
         profileVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemProfile", comment: ""), image: UIImage(systemName: "person.fill"), tag: 1)
         
         viewControllers = [mainVC, profileVC]

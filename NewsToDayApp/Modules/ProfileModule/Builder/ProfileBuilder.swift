@@ -10,24 +10,18 @@ import UIKit
 protocol ProfileBuilderProtocol: AnyObject {
     
     func buildProfileView() -> UIViewController
-    init(navigationVC: UINavigationController)
     
 }
 
 class ProfileBuilder: ProfileBuilderProtocol {
     
-    weak var navigationVC: UINavigationController?
+    let navigationVC = UINavigationController()
     
-    required init(navigationVC: UINavigationController) {
-        self.navigationVC = navigationVC
-    }
     
     func buildProfileView() -> UIViewController {
         
-        guard let navigationVC = navigationVC else {
-            fatalError("ProfileBuilder requires a valid navigationController")
-        }
         let vc = ProfileViewController()
+        navigationVC.setViewControllers([vc], animated: true)
         let router = ProfileRouter(navigationVC: navigationVC)
         let presenter = ProfilePresenter(view: vc, router: router)
         
