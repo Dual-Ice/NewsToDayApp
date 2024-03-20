@@ -14,3 +14,9 @@
 "ListSectionModelTitle" = "Recommended for you";
 "DetailArticleViewAuthor" = "Author";
 "DetailArticleViewResult" = "Result";
+
+//MARK: - Network Errors
+"InvalidURL" = "Invalid URL!";
+"EmptyResponse" = "No data from network call!";
+"ErrorCodeResponse" = "Error code response";
+"InvalidImageData" = "Image has corrupted data";

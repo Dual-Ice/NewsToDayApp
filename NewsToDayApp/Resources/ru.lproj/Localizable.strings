@@ -14,3 +14,9 @@
 "ListSectionModelTitle" = "Рекомендации";
 "DetailArticleViewAuthor" = "Автор";
 "DetailArticleViewResult" = "Результат";
+
+//MARK: - Network Errors
+"InvalidURL" = "Неверный URL!";
+"EmptyResponse" = "Запрос вернул пустой ответ!";
+"ErrorCodeResponse" = "Запрос завершился с ошибкой!";
+"InvalidImageData" = "Изображение не может быть отображено!";
