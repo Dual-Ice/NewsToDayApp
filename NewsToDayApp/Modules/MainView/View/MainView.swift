@@ -21,25 +21,26 @@ class MainView: CustomView {
     
     weak var delegate: MainViewDelegate?
     
-    var collectionViewDelegate: UICollectionViewDelegate? {
-            get {
-                return self.collectionView.delegate
-            }
-            set {
-                self.collectionView.delegate = newValue
-            }
-        }
-    
-     var searchBarDelegate: UISearchBarDelegate?{
-        get {
-            return self.searchBar.delegate
-        }
-        set {
-            self.searchBar.delegate = newValue
-        }
-    }
+//    var collectionViewDelegate: UICollectionViewDelegate? {
+//            get {
+//                return self.collectionView.delegate
+//            }
+//            set {
+//                self.collectionView.delegate = newValue
+//            }
+//        }
+//    
+//     var searchBarDelegate: UISearchBarDelegate?{
+//        get {
+//            return self.searchBar.delegate
+//        }
+//        set {
+//            self.searchBar.delegate = newValue
+//        }
+//    }
     
     private let searchBar = SearchBarView()
+    private var selectedIndexPath: IndexPath = .init()
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -154,6 +155,7 @@ extension MainView: UICollectionViewDataSource{
         case .categories(let categories):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCell.resuseID, for: indexPath) as? CategoriesCell else { return UICollectionViewCell() }
             cell.configCell(categoryLabelText: categories[indexPath.row].articleCategory)
+            selectedIndexPath == indexPath ?  cell.setSelectedColors() : cell.setDefaultColors()
             return cell
         case .corusel(let corusel):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArticleCouruselCell.resuseID, for: indexPath) as? ArticleCouruselCell else { return UICollectionViewCell() }
@@ -203,8 +205,22 @@ extension MainView: HeaderRecomendedViewDelegate {
 }
 //MARK: - MainVCDelegate
 extension MainView: MainVCDelegate{
+    func setSearchBarDelegate(vc: MainViewController) {
+        searchBar.delegate = vc
+    }
+    
+    func setCollectionViewDelegate(vc: MainViewController) {
+        collectionView.delegate = vc
+    }
+    
+    func changeCellColor(index: IndexPath) {
+        selectedIndexPath = index // save selectedIndexPath
+    }
+    
     func reloadCollectionView() {
-        collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }
 

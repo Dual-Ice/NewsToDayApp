@@ -21,6 +21,19 @@ class CategoriesCell: UICollectionViewCell {
         layoutViews()
     }
   
+//    override var isSelected: Bool {
+//        didSet {
+//            if isSelected {
+//                categoryLabel.textColor = UIColor(named: ConstColors.customWhite)
+//                backImage.backgroundColor = UIColor(named: ConstColors.purplePrimary)
+//                print("Sellected \(backImage.backgroundColor)")
+//            } else {
+//                categoryLabel.textColor = UIColor(named: ConstColors.greyPrimary)
+//                backImage.backgroundColor = UIColor(named: ConstColors.greyLighter)
+//            }
+//        }
+//    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -38,7 +51,7 @@ class CategoriesCell: UICollectionViewCell {
     
     private func setViews(){
         contentView.addSubview(backImage)
-        backImage.addSubview(categoryLabel)
+        contentView.addSubview(categoryLabel)
     }
     
     private func layoutViews(){
@@ -46,8 +59,8 @@ class CategoriesCell: UICollectionViewCell {
             make.edges.equalTo(contentView)
         }
         categoryLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(backImage.snp.centerX)
-            make.centerY.equalTo(backImage.snp.centerY)
+            make.centerX.equalTo(contentView.snp.centerX)
+            make.centerY.equalTo(contentView.snp.centerY)
         }
     }
 }
@@ -56,5 +69,15 @@ class CategoriesCell: UICollectionViewCell {
 extension CategoriesCell{
     func configCell(categoryLabelText: String?){
         categoryLabel.text = categoryLabelText
+    }
+    
+    func setSelectedColors(){
+        categoryLabel.textColor = UIColor(named: ConstColors.customWhite)
+        backImage.backgroundColor = UIColor(named: ConstColors.purplePrimary)
+    }
+    
+    func setDefaultColors(){
+        categoryLabel.textColor = UIColor(named: ConstColors.greyPrimary)
+        backImage.backgroundColor = UIColor(named: ConstColors.greyLighter)
     }
 }
