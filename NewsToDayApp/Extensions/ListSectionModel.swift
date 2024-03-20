@@ -6,55 +6,25 @@
 //
 
 import Foundation
+
 enum ListSectionModel{
-    case categories([Category])
-    case corusel([OneItemCourusel])
-    case recomendations([OneItemCourusel])
+    case categories([OneItem])
+    case corusel([OneItem])
+    case recomendations([OneItem])
     
-    private var categoriesData: [Category] {
+    private var itemsData: [OneItem] {
         switch self {
         case .categories(let categories):
             return categories
-        case .corusel(_):
-            return []
-        case .recomendations(_):
-            return []
-        }
-    }
-    
-    private var coruselsData: [OneItemCourusel] {
-        switch self {
-        case .categories(_):
-            return []
         case .corusel(let corusel):
             return corusel
-        case .recomendations(_):
-            return []
-        }
-    }
-    
-    private var recomendationsData: [OneItemCourusel]  {
-        switch self {
-        case .categories(_):
-            return []
-        case .corusel(_):
-            return []
         case .recomendations(let recomendations):
             return recomendations
         }
     }
     
-    
-    var countCategories: Int{
-        categoriesData.count
-    }
-    
-    var countCorusel: Int{
-        coruselsData.count
-    }
-    
-    var countRecomendations: Int{
-        recomendationsData.count
+    var countData: Int{
+        itemsData.count
     }
     
     var title: String{
@@ -64,7 +34,7 @@ enum ListSectionModel{
         case .corusel(_):
             return ""
         case .recomendations(_):
-            return "Recommended for you"
+            return NSLocalizedString("ListSectionModelTitle", comment: "")
         }
     }
 }
