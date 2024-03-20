@@ -32,7 +32,7 @@ class HeaderRecomendedView: UICollectionReusableView {
         backgroundColor = .white
         headerLabel.font = UIFont.TextFont.Main.recommendedLabel
         buttonSeeAll.backgroundColor = .none
-        buttonSeeAll.setTitle("See all", for: .normal)
+        buttonSeeAll.setTitle(NSLocalizedString("HeaderSeeAll", comment: ""), for: .normal)
         buttonSeeAll.setTitleColor(UIColor(named: ConstColors.greyPrimary), for: .normal)
         buttonSeeAll.titleLabel?.font = UIFont.TextFont.Main.seeAllLabel
         buttonSeeAll.addTarget(nil, action: #selector(buttonSeeAllTapped), for: .touchUpInside)

@@ -10,3 +10,7 @@
 
 "UITabBarItemMain" = "Main";
 "UITabBarItemProfile" = "Profile";
+"HeaderSeeAll" = "See all";
+"ListSectionModelTitle" = "Recommended for you";
+"DetailArticleViewAuthor" = "Author";
+"DetailArticleViewResult" = "Result";

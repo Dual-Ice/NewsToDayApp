@@ -34,7 +34,7 @@ enum ListSectionModel{
         case .corusel(_):
             return ""
         case .recomendations(_):
-            return "Recommended for you"
+            return NSLocalizedString("ListSectionModelTitle", comment: "")
         }
     }
 }

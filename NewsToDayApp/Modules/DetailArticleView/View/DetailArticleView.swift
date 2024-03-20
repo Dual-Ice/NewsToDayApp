@@ -175,10 +175,10 @@ final class DetailArticleView: CustomView {
         articleNameLabel.font = UIFont.TextFont.Article.articleLabel
         authorNameLabel.font = UIFont.TextFont.Article.authorName
         authorLabel.font = UIFont.TextFont.Article.authorLabel
-        authorLabel.text = "Author"
+        authorLabel.text = NSLocalizedString("DetailArticleViewAuthor", comment: "")
         resultLabel.textColor = UIColor(named: ConstColors.blackPrimary)
         resultLabel.font = UIFont.TextFont.Main.recommendedArticleLabel
-        resultLabel.text = "Result"
+        resultLabel.text = NSLocalizedString("DetailArticleViewResult", comment: "")
         //MARK: - setUp Buttons
         favoriteButton.backgroundColor = .clear
         favoriteButton.addTarget(nil, action: #selector(favoriteTapped), for: .touchUpInside)
