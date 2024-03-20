@@ -43,22 +43,18 @@ class CategoriesCell: UICollectionViewCell {
     
     private func layoutViews(){
         backImage.snp.makeConstraints { make in
-            make.leading.equalTo(contentView.snp.leading)
-            make.trailing.equalTo(contentView.snp.trailing)
-            make.top.equalTo(contentView.snp.top)
-            make.bottom.equalTo(contentView.snp.bottom)
+            make.edges.equalTo(contentView)
         }
         categoryLabel.snp.makeConstraints { make in
             make.centerX.equalTo(backImage.snp.centerX)
             make.centerY.equalTo(backImage.snp.centerY)
         }
     }
-    
 }
 
 //MARK: - Configure Cell UI Public Method
 extension CategoriesCell{
-    func configCell(categoryLabelText: String){
+    func configCell(categoryLabelText: String?){
         categoryLabel.text = categoryLabelText
     }
 }

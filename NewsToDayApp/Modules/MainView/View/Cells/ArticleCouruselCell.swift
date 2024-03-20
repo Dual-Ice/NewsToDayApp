@@ -20,6 +20,12 @@ class ArticleCouruselCell: UICollectionViewCell {
     private let articleNameLabel = LabelsFactory.makeArticleHeaderLabel()
     private let backImage = ImageViewFactory.makeCornerRadiusImage()
     private let favoriteButton = ButtonsFactory.makeButton()
+    private let backView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,6 +56,7 @@ class ArticleCouruselCell: UICollectionViewCell {
     }
     
     private func setViews(){
+        backImage.addSubview(backView)
         [
             backImage,
             favoriteButton,
@@ -58,17 +65,13 @@ class ArticleCouruselCell: UICollectionViewCell {
         ].forEach { contentView.addSubview($0) }
     }
     
-    private func applyGradient(){
-        backImage.bounds = self.contentView.bounds
-        backImage.applyGradientMask(colors: [UIColor.clear,  #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.743064842)], locations: [0.1, 1.0])
-    }
-    
     private func layoutViews(){
         backImage.snp.makeConstraints { make in
-            make.leading.equalTo(contentView.snp.leading)
-            make.trailing.equalTo(contentView.snp.trailing)
-            make.top.equalTo(contentView.snp.top)
-            make.bottom.equalTo(contentView.snp.bottom)
+            make.edges.equalTo(contentView)
+        }
+        
+        backView.snp.makeConstraints { make in
+            make.edges.equalTo(backImage)
         }
         
         categoryLabel.snp.makeConstraints { make in
@@ -84,22 +87,20 @@ class ArticleCouruselCell: UICollectionViewCell {
         favoriteButton.snp.makeConstraints { make in
             make.top.equalTo(contentView.snp.top).offset(16)
             make.trailing.equalTo(contentView.snp.trailing).offset(-16)
-            make.width.height.equalTo(24)        }
+            make.width.height.equalTo(24)     
+        }
     }
 }
 
 //MARK: - Configure Cell UI Public Method
 extension ArticleCouruselCell{
-    func configCell(categoryLabelText: String, articleNameText: String, image: UIImage?){
-        categoryLabel.text = categoryLabelText.uppercased()
+    func configCell(categoryLabelText: String?, articleNameText: String?, image: UIImage?){
+        categoryLabel.text = categoryLabelText?.uppercased()
         articleNameLabel.text = articleNameText
         if let image = image{
             backImage.image = image
-            print("Done")
-            //applyGradient()
         } else{
             backImage.backgroundColor = .blue
         }
-        
     }
 }

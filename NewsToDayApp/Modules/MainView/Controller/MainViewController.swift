@@ -10,9 +10,9 @@ import UIKit
 class MainViewController: CustomViewController<MainView> {
     
     private var mockData: [ListSectionModel]{
-        let data1 = CategorySectionModel.getCategories()
-        let data2 = CoruselSectionModel.getCourusel()
-        let data3 = CoruselSectionModel.getCourusel()
+        let data1 = MockDataModel.getCategoriesModel()
+        let data2 = MockDataModel.getArticleModel()
+        let data3 = MockDataModel.getArticleModel()
         return   [.categories(data1), .corusel(data2), .recomendations(data3)]
     }
     

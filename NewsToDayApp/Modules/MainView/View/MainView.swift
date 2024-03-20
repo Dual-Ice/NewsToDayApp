@@ -19,9 +19,9 @@ class MainView: CustomView {
     weak var delegate: MainViewDelegate?
     
     private var mockData: [ListSectionModel]{
-        let data1 = CategorySectionModel.getCategories()
-        let data2 = CoruselSectionModel.getCourusel()
-        let data3 = CoruselSectionModel.getCourusel()
+        let data1 = MockDataModel.getCategoriesModel()
+        let data2 = MockDataModel.getArticleModel()
+        let data3 = MockDataModel.getArticleModel()
         return   [.categories(data1), .corusel(data2), .recomendations(data3)]
     }
     
@@ -38,9 +38,10 @@ class MainView: CustomView {
         self.backgroundColor = .white
         configureCollectionView()
         configSearchBar()
-        addSubview(collectionView)
-        addSubview(searchBar)
-        
+        [
+            collectionView,
+            searchBar
+        ].forEach { addSubview($0) }
     }
     
     private func configSearchBar(){
@@ -128,32 +129,25 @@ extension MainView: UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section{
-        case 0: return mockData[section].countCategories
-        case 1: return mockData[section].countCorusel
-        case 2: return mockData[section].countRecomendations
-        default:
-            print("Default section")
-            return 0
-        }
+        mockData[section].countData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch mockData[indexPath.section]{
         case .categories(let categories):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCell.resuseID, for: indexPath) as? CategoriesCell else { return UICollectionViewCell() }
-            cell.configCell(categoryLabelText: categories[indexPath.row].title)
+            cell.configCell(categoryLabelText: categories[indexPath.row].articleCategory)
             return cell
         case .corusel(let corusel):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArticleCouruselCell.resuseID, for: indexPath) as? ArticleCouruselCell else { return UICollectionViewCell() }
             let data = corusel[indexPath.row]
-            cell.configCell(categoryLabelText: data.articleCategory, articleNameText: data.articleName, image: UIImage(named: data.image))
+            cell.configCell(categoryLabelText: data.articleCategory, articleNameText: data.articleName, image: UIImage(named: data.image ?? "DefaultImage"))
             cell.delegate = self
             return cell
         case .recomendations(let recomendations):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecomendedCell.resuseID, for: indexPath) as? RecomendedCell else { return UICollectionViewCell() }
             let data = recomendations[indexPath.row]
-            cell.configCell(categoryLabelText: data.articleCategory, articleNameText: data.articleName, image: UIImage(named: data.image))
+            cell.configCell(categoryLabelText: data.articleCategory, articleNameText: data.articleName, image: UIImage(named: data.image ?? "DefaultImage"))
             return cell
         }
     }
