@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol MainViewDelegate: AnyObject {
-    func getSections() -> Int
+    func getData() -> [ListSectionModel]
     func tappedFavoriteButton()
     func tappedSeeAllButton()
 }
@@ -18,11 +18,22 @@ class MainView: CustomView {
     
     weak var delegate: MainViewDelegate?
     
-    private var mockData: [ListSectionModel]{
-        let data1 = MockDataModel.getCategoriesModel()
-        let data2 = MockDataModel.getArticleModel()
-        let data3 = MockDataModel.getArticleModel()
-        return   [.categories(data1), .corusel(data2), .recomendations(data3)]
+    var collectionViewDelegate: UICollectionViewDelegate? {
+            get {
+                return self.collectionView.delegate
+            }
+            set {
+                self.collectionView.delegate = newValue
+            }
+        }
+    
+     var searchBarDelegate: UISearchBarDelegate?{
+        get {
+            return self.searchBar.delegate
+        }
+        set {
+            self.searchBar.delegate = newValue
+        }
     }
     
     private let searchBar = SearchBarView()
@@ -37,15 +48,10 @@ class MainView: CustomView {
     override func setViews() {
         self.backgroundColor = .white
         configureCollectionView()
-        configSearchBar()
         [
             collectionView,
             searchBar
         ].forEach { addSubview($0) }
-    }
-    
-    private func configSearchBar(){
-        searchBar.delegate = self
     }
     
     private func configureCollectionView(){
@@ -53,7 +59,6 @@ class MainView: CustomView {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.bounces = false
-        collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.collectionViewLayout = createLayout()
         collectionView.register(CategoriesCell.self, forCellWithReuseIdentifier: CategoriesCell.resuseID)
@@ -83,7 +88,9 @@ private extension MainView{
     private func createLayout() -> UICollectionViewCompositionalLayout{
         UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
             guard let self else { return nil }
-            let section = mockData[sectionIndex]
+            let data = delegate?.getData()
+            let section = data?[sectionIndex]
+            //mockData[sectionIndex]
             switch section{
             case .categories(_):
                return  createCategoriesSectionLayout()
@@ -91,6 +98,8 @@ private extension MainView{
                return createCoruselArticleSectionLayout()
             case .recomendations(_):
                 return createRecomendedArticleSectionLayout()
+            case .none:
+                return nil
             }
         }
     }
@@ -124,16 +133,21 @@ private extension MainView{
 //MARK: - UICollectionViewDataSource
 extension MainView: UICollectionViewDataSource{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        mockData.count
-        //delegate?.getSections() ?? 0
+        //mockData.count
+        delegate?.getData().count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        mockData[section].countData
+        let data = delegate?.getData()
+        return data?[section].countData ?? 0
+        //mockData[section].countData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch mockData[indexPath.section]{
+        //mockData[indexPath.section]
+        let data = delegate?.getData()
+        let sections = data?[indexPath.section]
+        switch sections{
         case .categories(let categories):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCell.resuseID, for: indexPath) as? CategoriesCell else { return UICollectionViewCell() }
             cell.configCell(categoryLabelText: categories[indexPath.row].articleCategory)
@@ -149,6 +163,8 @@ extension MainView: UICollectionViewDataSource{
             let data = recomendations[indexPath.row]
             cell.configCell(categoryLabelText: data.articleCategory, articleNameText: data.articleName, image: UIImage(named: data.image ?? "DefaultImage"))
             return cell
+        case .none:
+            return UICollectionViewCell()
         }
     }
     
@@ -156,25 +172,14 @@ extension MainView: UICollectionViewDataSource{
         switch kind{
         case UICollectionView.elementKindSectionHeader:
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderRecomendedView.resuseID, for: indexPath) as? HeaderRecomendedView else { return UICollectionReusableView()}
-            header.configureHeader(sectionTitle: mockData[indexPath.section].title)
+            let data = delegate?.getData()
+            header.configureHeader(sectionTitle: data?[indexPath.section].title ?? "")
             header.delegate = self
             return header
         default:
             return UICollectionReusableView()
         }
     }
-}
-//MARK: - UISearchBarDelegate
-extension MainView: UISearchBarDelegate{
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchText = searchBar.text, !searchText.isEmpty else { return }
-        print(searchText)
-        searchBar.resignFirstResponder()
-    }
-    
-}
-//MARK: - UICollectionViewDelegate
-extension MainView: UICollectionViewDelegate{
 }
 //MARK: - FavoriteButton
 extension MainView: ArticleCouruselCellDelegate {
