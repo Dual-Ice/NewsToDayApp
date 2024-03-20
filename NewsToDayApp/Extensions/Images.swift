@@ -42,8 +42,12 @@ extension UIImage {
             return UIImage(named: "bookmark-selected")
         }
         
-        static var bookmarkLight: UIImage? {
-            return UIImage(named: "bookmark-light")
+        static var bookmarkBordered: UIImage? {
+            return UIImage(named: "bookmark-bordered")
+        }
+        
+        static var bookmarkFilled: UIImage? {
+            return UIImage(named: "bookmark-filled")
         }
         
         static var book: UIImage? {

@@ -11,6 +11,7 @@ enum NetworkError: LocalizedError {
     case wrongUrl
     case notFoundData
     case wrongCode
+    case invalidImageData
 }
 
 extension NetworkError {
@@ -22,6 +23,8 @@ extension NetworkError {
             return NSLocalizedString("EmptyResponse", comment: "")
         case .wrongCode:
             return NSLocalizedString("ErrorCodeResponse", comment: "")
+        case .invalidImageData:
+            return NSLocalizedString("InvalidImageData", comment: "")
         }
     }
 }

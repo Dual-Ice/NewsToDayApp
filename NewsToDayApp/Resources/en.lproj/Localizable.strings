@@ -19,3 +19,4 @@
 "InvalidURL" = "Invalid URL!";
 "EmptyResponse" = "No data from network call!";
 "ErrorCodeResponse" = "Error code response";
+"InvalidImageData" = "Image has corrupted data";
