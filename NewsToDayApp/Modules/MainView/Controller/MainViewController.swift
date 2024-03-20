@@ -64,11 +64,15 @@ extension MainViewController: UICollectionViewDelegate{
         case .categories(let gategories):
             mainView?.changeCellColor(index: indexPath)
             mainView?.reloadCollectionView() // запрос в сеть и в нем уже  reloadCollectionView
-            print("gategories \(gategories[indexPath.row].articleCategory)")
+            print("gategories \(gategories[indexPath.row].articleCategory ?? "")")
         case .corusel(let corusel):
-            print("corusel \(corusel[indexPath.row].articleName)")
+            let favorite = presenter?.favorities[corusel[indexPath.row]]
+            let detailVC = DetailArticleViewController(data: corusel[indexPath.row], isLiked: favorite ?? false)
+            detailVC.modalPresentationStyle = .fullScreen
+            present(detailVC, animated: true)
+           // print("corusel \(corusel[indexPath.row].articleName ?? "")")
         case .recomendations(let recomendations):
-            print("recomendations \(recomendations[indexPath.row].articleCategory)")
+            print("recomendations \(recomendations[indexPath.row].articleCategory ?? "")")
         case .none:
             print("none case tapped")
         }
