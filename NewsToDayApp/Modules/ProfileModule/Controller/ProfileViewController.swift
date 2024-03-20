@@ -14,7 +14,6 @@ class ProfileViewController: CustomViewController<ProfileView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
 }

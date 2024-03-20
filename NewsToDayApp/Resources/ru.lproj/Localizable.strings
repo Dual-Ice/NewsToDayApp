@@ -10,3 +10,7 @@
 
 "UITabBarItemMain" = "Начало";
 "UITabBarItemProfile" = "Профиль";
+"HeaderSeeAll" = "Все";
+"ListSectionModelTitle" = "Рекомендации";
+"DetailArticleViewAuthor" = "Автор";
+"DetailArticleViewResult" = "Результат";
