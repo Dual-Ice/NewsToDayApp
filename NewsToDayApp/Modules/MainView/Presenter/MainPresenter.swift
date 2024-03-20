@@ -8,18 +8,21 @@
 import Foundation
 
 protocol MainViewProtocol: AnyObject {
-    
+    func reloadCollectionView()
 }
 
 protocol MainPresenterProtocol: AnyObject {
     
     init(view: MainViewProtocol, router: MainRouterProtocol)
     var mockData: [ListSectionModel] { get }
+    var favorities: [OneItem : Bool] { get }
+    func handleCellEvent(article: OneItem, event: FavoriteButtonCellEvent)
     
 }
 
 class MainPresenter: MainPresenterProtocol {
-    
+    var favorities: [OneItem : Bool] = .init()
+        
     weak var view: MainViewProtocol?
     var router: MainRouterProtocol?
     
@@ -35,5 +38,18 @@ class MainPresenter: MainPresenterProtocol {
         self.router = router
     }
     
+    func handleCellEvent(article: OneItem, event: FavoriteButtonCellEvent) {
+        switch event {
+        case .favoriteDidTapped:
+            favorities[article] = !(favorities[article] ?? false) //если нет значения то ?? вернет false и favorities[article] = !false то есть true
+            print(favorities)
+            view?.reloadCollectionView()
+            if favorities[article] == true {
+                //сохранить в закладки
+            } else {
+                //удалить из закладок если нажал на кнопку в ячейки повторно
+            }
+        }
+    }
     
 }

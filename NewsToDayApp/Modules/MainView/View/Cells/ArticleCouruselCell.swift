@@ -12,9 +12,14 @@ protocol ArticleCouruselCellDelegate: AnyObject {
     func tappedFavoriteButton()
 }
 
+enum FavoriteButtonCellEvent {
+    case favoriteDidTapped
+}
+
 class ArticleCouruselCell: UICollectionViewCell {
     static let resuseID = "ArticleCouruselCell"
-    weak var delegate: ArticleCouruselCellDelegate?
+    //weak var delegate: ArticleCouruselCellDelegate?
+    var onFavoriteButtonTap: ((FavoriteButtonCellEvent) -> Void)?
     
     private let categoryLabel = LabelsFactory.makeCategoryLabel()
     private let articleNameLabel = LabelsFactory.makeArticleHeaderLabel()
@@ -47,12 +52,13 @@ class ArticleCouruselCell: UICollectionViewCell {
     
     private func setUpViews(){
         favoriteButton.backgroundColor = .clear
-        favoriteButton.setBackgroundImage(UIImage(named: "bookmark-light"), for: .normal)
         favoriteButton.addTarget(nil, action: #selector(favoriteTapped), for: .touchUpInside)
     }
     
     @objc private func favoriteTapped(){
-        delegate?.tappedFavoriteButton()
+        let event = FavoriteButtonCellEvent.favoriteDidTapped
+        onFavoriteButtonTap?(event)
+        //delegate?.tappedFavoriteButton()
     }
     
     private func setViews(){
@@ -94,9 +100,11 @@ class ArticleCouruselCell: UICollectionViewCell {
 
 //MARK: - Configure Cell UI Public Method
 extension ArticleCouruselCell{
-    func configCell(categoryLabelText: String?, articleNameText: String?, image: UIImage?){
+    func configCell(categoryLabelText: String?, articleNameText: String?, image: UIImage?, isLiked: Bool){
         categoryLabel.text = categoryLabelText?.uppercased()
         articleNameLabel.text = articleNameText
+        let favoriteImage: UIImage? = isLiked ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-light")
+        favoriteButton.setBackgroundImage(favoriteImage, for: .normal)
         if let image = image{
             backImage.image = image
         } else{

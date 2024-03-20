@@ -7,39 +7,49 @@
 
 import UIKit
 
+protocol MainVCDelegate{
+    func reloadCollectionView()
+}
+
 class MainViewController: CustomViewController<MainView> {
     
     var presenter: MainPresenterProtocol?
+    var mainView: MainVCDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
-        navigationController?.isNavigationBarHidden = false
     }
     
     private func setDelegates(){
         customView.delegate = self
         customView.collectionViewDelegate = self
         customView.searchBarDelegate = self
+        mainView = customView
     }
-    
 }
 //MARK: - MainViewProtocol
 extension MainViewController: MainViewProtocol {
-    
+    func reloadCollectionView() {
+        mainView?.reloadCollectionView()
+    }
 }
 //MARK: - MainViewDelegate
 extension MainViewController: MainViewDelegate{
+    func getFavoritesData() -> [OneItem : Bool] {
+        presenter?.favorities ?? [:]
+    }
+    
+    func tappedFavoriteButton(event: FavoriteButtonCellEvent, data: OneItem) {
+        presenter?.handleCellEvent(article: data, event: event)
+    }
+    
     func getData() -> [ListSectionModel] {
         presenter?.mockData ?? []
     }
     
     func tappedSeeAllButton() {
         print("Tapped SeeAll")
-    }
-    
-    func tappedFavoriteButton() {
-        print("Tapped Favorite")
     }
 }
 //MARK: - UICollectionViewDelegate

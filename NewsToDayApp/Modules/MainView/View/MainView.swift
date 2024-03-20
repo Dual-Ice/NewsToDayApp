@@ -8,9 +8,12 @@
 import UIKit
 import SnapKit
 
+
+
 protocol MainViewDelegate: AnyObject {
     func getData() -> [ListSectionModel]
-    func tappedFavoriteButton()
+    func getFavoritesData() -> [OneItem : Bool]
+    func tappedFavoriteButton(event: FavoriteButtonCellEvent, data: OneItem)
     func tappedSeeAllButton()
 }
 
@@ -155,8 +158,12 @@ extension MainView: UICollectionViewDataSource{
         case .corusel(let corusel):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArticleCouruselCell.resuseID, for: indexPath) as? ArticleCouruselCell else { return UICollectionViewCell() }
             let data = corusel[indexPath.row]
-            cell.configCell(categoryLabelText: data.articleCategory, articleNameText: data.articleName, image: UIImage(named: data.image ?? "DefaultImage"))
-            cell.delegate = self
+            let favoriteData = delegate?.getFavoritesData()
+            cell.configCell(categoryLabelText: data.articleCategory, articleNameText: data.articleName, image: UIImage(named: data.image ?? "DefaultImage"), isLiked: favoriteData?[data] ?? false )
+            //cell.delegate = self
+            cell.onFavoriteButtonTap = { [weak self] event in
+                self?.delegate?.tappedFavoriteButton(event: event, data: data)
+            }
             return cell
         case .recomendations(let recomendations):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecomendedCell.resuseID, for: indexPath) as? RecomendedCell else { return UICollectionViewCell() }
@@ -181,17 +188,23 @@ extension MainView: UICollectionViewDataSource{
         }
     }
 }
-//MARK: - FavoriteButton
-extension MainView: ArticleCouruselCellDelegate {
-    func tappedFavoriteButton() {
-        delegate?.tappedFavoriteButton()
-    }
-}
+////MARK: - FavoriteButton
+//extension MainView: ArticleCouruselCellDelegate {
+//    func tappedFavoriteButton() {
+//        
+//    }
+//}
 
 //MARK: - HeaderButton SeeAll
 extension MainView: HeaderRecomendedViewDelegate {
     func tappedSeeAllButton() {
         delegate?.tappedSeeAllButton()
+    }
+}
+//MARK: - MainVCDelegate
+extension MainView: MainVCDelegate{
+    func reloadCollectionView() {
+        collectionView.reloadData()
     }
 }
 
