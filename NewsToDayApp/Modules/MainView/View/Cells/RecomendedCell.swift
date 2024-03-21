@@ -14,6 +14,13 @@ class RecomendedCell: UICollectionViewCell {
     private let categoryLabel = LabelsFactory.makeCategoryLabel()
     private let articleNameLabel = LabelsFactory.makeArticleHeaderLabel()
     private let backImage = ImageViewFactory.makeCornerRadiusImage()
+    private lazy var spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView()
+        spinner.color = .white
+        spinner.style = .medium
+        spinner.hidesWhenStopped = true
+        return spinner
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,6 +45,15 @@ class RecomendedCell: UICollectionViewCell {
         categoryLabel.textColor = UIColor(named: ConstColors.greyPrimary)
         articleNameLabel.textColor = UIColor(named: ConstColors.blackPrimary)
         articleNameLabel.font = UIFont.TextFont.Main.recommendedArticleLabel
+    }
+    
+    private func setUpSpiner(){
+        addSubview(spinner)
+        spinner.snp.makeConstraints { make in
+            make.centerY.equalTo(backImage.snp.centerY)
+            make.centerX.equalTo(backImage.snp.centerX)
+        }
+        spinner.startAnimating()
     }
     
     private func setViews(){
@@ -73,10 +89,13 @@ extension RecomendedCell{
         categoryLabel.text = categoryLabelText
         articleNameLabel.text = articleNameText
         if let image = image{
+            spinner.stopAnimating()
+            spinner.removeFromSuperview()
             backImage.image = image
         } else{
+            //setUpSpiner() //добавить spineer
             backImage.backgroundColor = .blue
-            //добавить spineer
+            
         }
     }
 }

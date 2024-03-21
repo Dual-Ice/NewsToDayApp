@@ -32,6 +32,14 @@ class ArticleCouruselCell: UICollectionViewCell {
         return view
     }()
     
+    private lazy var spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView()
+        spinner.color = .white
+        spinner.style = .medium
+        spinner.hidesWhenStopped = true
+        return spinner
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpViews()
@@ -53,6 +61,15 @@ class ArticleCouruselCell: UICollectionViewCell {
     private func setUpViews(){
         favoriteButton.backgroundColor = .clear
         favoriteButton.addTarget(nil, action: #selector(favoriteTapped), for: .touchUpInside)
+    }
+    
+    private func setUpSpiner(){
+        addSubview(spinner)
+        spinner.snp.makeConstraints { make in
+            make.centerY.equalTo(backImage.snp.centerY)
+            make.centerX.equalTo(backImage.snp.centerX)
+        }
+        spinner.startAnimating()
     }
     
     @objc private func favoriteTapped(){
@@ -106,8 +123,11 @@ extension ArticleCouruselCell{
         let favoriteImage: UIImage? = isLiked ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-bordered")
         favoriteButton.setBackgroundImage(favoriteImage, for: .normal)
         if let image = image{
+            spinner.stopAnimating()
+            spinner.removeFromSuperview()
             backImage.image = image
         } else{
+            //setUpSpiner() //setUpSpiner() //добавить spineer
             backImage.backgroundColor = .blue
         }
     }
