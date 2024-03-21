@@ -9,16 +9,22 @@
 //MARK: - TabBarItem
 "UITabBarItemMain" = "Main";
 "UITabBarItemProfile" = "Profile";
+"UITabBarItemBookmarks" = "Bookmarks";
 
 //MARK: - MainView
 "MainViewTitle" = "Main";
 "MainViewSubTitle" = "Discover things of this world";
+"HeaderSeeAll" = "See all";
+"ListSectionModelTitle" = "Recommended for you";
+
+//MARK: - BookmarksView
+"BookmarksViewTitle" = "Bookmarks";
+"BookmarksViewSubTitle" = "Saved articles to the library";
+"BookmarksViewEmptyText" = "You haven't saved any articles yet. Start reading and bookmarking them now";
 
 //MARK: - DetailArticleView
 "DetailArticleViewAuthor" = "Author";
 "DetailArticleViewResult" = "Result";
-"HeaderSeeAll" = "See all";
-"ListSectionModelTitle" = "Recommended for you";
 
 //MARK: - Network Errors
 "InvalidURL" = "Invalid URL!";

@@ -12,6 +12,7 @@ final class ImageViewFactory{
     static func makeCornerRadiusImage() -> UIImageView {
         let imageView = UIImageView()
         imageView.configImageView(cornerRadius: 12)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }
 }

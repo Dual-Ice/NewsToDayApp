@@ -7,15 +7,24 @@
 */
 
 //MARK: - TabBarItem
-
 "UITabBarItemMain" = "Начало";
 "UITabBarItemProfile" = "Профиль";
+"UITabBarItemBookmarks" = "Закладки";
+
+//MARK: - MainView
 "HeaderSeeAll" = "Все";
 "ListSectionModelTitle" = "Рекомендации";
-"DetailArticleViewAuthor" = "Автор";
-"DetailArticleViewResult" = "Результат";
 "MainViewTitle" = "Главная";
 "MainViewSubTitle" = "Новости";
+
+//MARK: - BookmarksView
+"BookmarksViewTitle" = "Закладки";
+"BookmarksViewSubTitle" = "Сохранненые статьи в библиотеку";
+"BookmarksViewEmptyText" = "Нет сохранненых статей. Начни читать и сохранять статьи";
+
+//MARK: - DetailArticleView
+"DetailArticleViewAuthor" = "Автор";
+"DetailArticleViewResult" = "Результат";
 
 //MARK: - Network Errors
 "InvalidURL" = "Неверный URL!";

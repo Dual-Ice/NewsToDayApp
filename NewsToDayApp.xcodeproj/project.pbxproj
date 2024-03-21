@@ -27,6 +27,12 @@
 		369AB6562BAC3A5F00EBF483 /* DetailArticleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6552BAC3A5F00EBF483 /* DetailArticleRouter.swift */; };
 		369AB6582BAC3AA700EBF483 /* DetailArticleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6572BAC3AA700EBF483 /* DetailArticleBuilder.swift */; };
 		369AB65A2BAC3DD000EBF483 /* DetailArticlePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6592BAC3DD000EBF483 /* DetailArticlePresenter.swift */; };
+		369AB6632BAC4A5100EBF483 /* BookmarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6622BAC4A5100EBF483 /* BookmarksView.swift */; };
+		369AB6652BAC4A6B00EBF483 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6642BAC4A6B00EBF483 /* BookmarksViewController.swift */; };
+		369AB6672BAC4ACB00EBF483 /* BookmarksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6662BAC4ACB00EBF483 /* BookmarksPresenter.swift */; };
+		369AB6692BAC4B7D00EBF483 /* BookmarksRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6682BAC4B7D00EBF483 /* BookmarksRouter.swift */; };
+		369AB66B2BAC4C5B00EBF483 /* BookmarksBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB66A2BAC4C5B00EBF483 /* BookmarksBuilder.swift */; };
+		369AB66E2BAC5E6E00EBF483 /* BookmarksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB66D2BAC5E6E00EBF483 /* BookmarksCell.swift */; };
 		A5CBDB9A2BA75DD500C81385 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB992BA75DD500C81385 /* AppDelegate.swift */; };
 		A5CBDB9C2BA75DD500C81385 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB9B2BA75DD500C81385 /* SceneDelegate.swift */; };
 		A5CBDBA32BA75DD900C81385 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CBDBA22BA75DD900C81385 /* Assets.xcassets */; };
@@ -131,6 +137,12 @@
 		369AB6552BAC3A5F00EBF483 /* DetailArticleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticleRouter.swift; sourceTree = "<group>"; };
 		369AB6572BAC3AA700EBF483 /* DetailArticleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticleBuilder.swift; sourceTree = "<group>"; };
 		369AB6592BAC3DD000EBF483 /* DetailArticlePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticlePresenter.swift; sourceTree = "<group>"; };
+		369AB6622BAC4A5100EBF483 /* BookmarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksView.swift; sourceTree = "<group>"; };
+		369AB6642BAC4A6B00EBF483 /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
+		369AB6662BAC4ACB00EBF483 /* BookmarksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksPresenter.swift; sourceTree = "<group>"; };
+		369AB6682BAC4B7D00EBF483 /* BookmarksRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksRouter.swift; sourceTree = "<group>"; };
+		369AB66A2BAC4C5B00EBF483 /* BookmarksBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksBuilder.swift; sourceTree = "<group>"; };
+		369AB66D2BAC5E6E00EBF483 /* BookmarksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksCell.swift; sourceTree = "<group>"; };
 		A5CBDB962BA75DD500C81385 /* NewsToDayApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsToDayApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CBDB992BA75DD500C81385 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CBDB9B2BA75DD500C81385 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -316,6 +328,75 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		369AB65B2BAC493A00EBF483 /* BooksmarksView */ = {
+			isa = PBXGroup;
+			children = (
+				369AB6612BAC49A400EBF483 /* Builder */,
+				369AB6602BAC499C00EBF483 /* View */,
+				369AB65F2BAC499300EBF483 /* Controller */,
+				369AB65E2BAC498A00EBF483 /* Model */,
+				369AB65D2BAC498100EBF483 /* Router */,
+				369AB65C2BAC497200EBF483 /* Presenter */,
+			);
+			path = BooksmarksView;
+			sourceTree = "<group>";
+		};
+		369AB65C2BAC497200EBF483 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				369AB6662BAC4ACB00EBF483 /* BookmarksPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		369AB65D2BAC498100EBF483 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				369AB6682BAC4B7D00EBF483 /* BookmarksRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		369AB65E2BAC498A00EBF483 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		369AB65F2BAC499300EBF483 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				369AB6642BAC4A6B00EBF483 /* BookmarksViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		369AB6602BAC499C00EBF483 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				369AB66C2BAC5E2C00EBF483 /* Cells */,
+				369AB6622BAC4A5100EBF483 /* BookmarksView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		369AB6612BAC49A400EBF483 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				369AB66A2BAC4C5B00EBF483 /* BookmarksBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		369AB66C2BAC5E2C00EBF483 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				369AB66D2BAC5E6E00EBF483 /* BookmarksCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		A5CBDB8D2BA75DD500C81385 = {
 			isa = PBXGroup;
 			children = (
@@ -386,6 +467,7 @@
 		A5CBDBB12BA75E7F00C81385 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				369AB65B2BAC493A00EBF483 /* BooksmarksView */,
 				369AB64A2BAB290700EBF483 /* DetailArticleView */,
 				A5CBDBEE2BA77B9900C81385 /* ProfileModule */,
 				A5CBDBB52BA75EEE00C81385 /* MainView */,
@@ -741,6 +823,7 @@
 				369AB61F2BA88B6300EBF483 /* ConstColors.swift in Sources */,
 				D97126FD2BAA01EA00FF3048 /* ImageManager.swift in Sources */,
 				A5CBDBCD2BA76E3D00C81385 /* MainView.swift in Sources */,
+				369AB6672BAC4ACB00EBF483 /* BookmarksPresenter.swift in Sources */,
 				A5CBDB9A2BA75DD500C81385 /* AppDelegate.swift in Sources */,
 				369AB6402BA97A6C00EBF483 /* RecomendedCell.swift in Sources */,
 				A5CBDBEB2BA7734300C81385 /* UIBezierPath+createCurve.swift in Sources */,
@@ -749,6 +832,7 @@
 				A5CBDB9C2BA75DD500C81385 /* SceneDelegate.swift in Sources */,
 				A5CBDBC92BA7638500C81385 /* CustomView.swift in Sources */,
 				D97126F72BA9F31200FF3048 /* Article.swift in Sources */,
+				369AB6632BAC4A5100EBF483 /* BookmarksView.swift in Sources */,
 				369AB62F2BA8CADB00EBF483 /* ButtonsFactory.swift in Sources */,
 				A5CBDBF82BA77E0100C81385 /* ProfileRouter.swift in Sources */,
 				369AB6312BA972C000EBF483 /* CompositionalLayout.swift in Sources */,
@@ -760,10 +844,12 @@
 				A5CBDBED2BA776C100C81385 /* TabBarPresenter.swift in Sources */,
 				369AB6542BAB2A0200EBF483 /* DetailArticleViewController.swift in Sources */,
 				369AB63C2BA97A3800EBF483 /* CategoriesCell.swift in Sources */,
+				369AB6692BAC4B7D00EBF483 /* BookmarksRouter.swift in Sources */,
 				369AB6522BAB29D100EBF483 /* DetailArticleView.swift in Sources */,
 				369AB61B2BA8833A00EBF483 /* UIImageView + ext.swift in Sources */,
 				369AB6582BAC3AA700EBF483 /* DetailArticleBuilder.swift in Sources */,
 				369AB62D2BA8BB7800EBF483 /* ImageViewsFactory.swift in Sources */,
+				369AB66E2BAC5E6E00EBF483 /* BookmarksCell.swift in Sources */,
 				D97126F52BA7A3B500FF3048 /* Images.swift in Sources */,
 				369AB6562BAC3A5F00EBF483 /* DetailArticleRouter.swift in Sources */,
 				369AB6192BA87E6600EBF483 /* Labels + ext.swift in Sources */,
@@ -772,6 +858,7 @@
 				A5CBDBBC2BA7618D00C81385 /* MainBuilder.swift in Sources */,
 				369AB6492BA9DB3C00EBF483 /* UIImage + ext.swift in Sources */,
 				A5CBDBC32BA7627F00C81385 /* MainPresenter.swift in Sources */,
+				369AB66B2BAC4C5B00EBF483 /* BookmarksBuilder.swift in Sources */,
 				D97126F92BAA005A00FF3048 /* NewsManager.swift in Sources */,
 				A5CBDBFA2BA77F4900C81385 /* ProfileViewController.swift in Sources */,
 				369AB65A2BAC3DD000EBF483 /* DetailArticlePresenter.swift in Sources */,
@@ -779,6 +866,7 @@
 				A5CBDBCB2BA76E1200C81385 /* MainViewController.swift in Sources */,
 				D97126D02BA7910C00FF3048 /* Fonts.swift in Sources */,
 				369AB6472BA9C95400EBF483 /* SearchBarView.swift in Sources */,
+				369AB6652BAC4A6B00EBF483 /* BookmarksViewController.swift in Sources */,
 				A5CBDBF62BA77C1000C81385 /* ProfilePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
