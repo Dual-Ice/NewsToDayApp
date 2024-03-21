@@ -45,7 +45,7 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
         for (index, item) in selectedIndexPathArray.enumerated(){
             if item == indexPath{
                 selectedIndexPathArray.remove(at: index)
-                print(" array3 \(selectedIndexPathArray)")
+                //print(" array3 \(selectedIndexPathArray)")
             }
         }
     }

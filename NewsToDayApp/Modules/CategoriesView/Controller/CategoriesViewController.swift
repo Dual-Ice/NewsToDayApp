@@ -61,7 +61,7 @@ extension CategoriesViewController: UICollectionViewDataSource{
 extension CategoriesViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        print(" array1 \(presenter?.selectedIndexPathArray)")
+        //print(" array1 \(presenter?.selectedIndexPathArray)")
         if let cell = collectionView.cellForItem(at: indexPath) as? CategoriesCell, let presenter = presenter{
             cell.setSelectedColors()
 
@@ -81,7 +81,7 @@ extension CategoriesViewController: UICollectionViewDelegate{
                 print("save")
             }
         }
-        print(" array2 \(presenter?.selectedIndexPathArray)")
+       // print(" array2 \(presenter?.selectedIndexPathArray)")
     }
 }
 

@@ -22,6 +22,7 @@ class CategoriesView: CustomView {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         return view
     }()
+    private let button = ButtonsFactory.makeButton()
     
     override func setViews(){
         self.backgroundColor = .white
@@ -31,6 +32,7 @@ class CategoriesView: CustomView {
             title,
             subTitle,
             collectionView,
+            button,
         ].forEach{ addSubview($0) }
         
     }
@@ -52,11 +54,19 @@ class CategoriesView: CustomView {
             make.leading.equalToSuperview().offset(16)
         }
         
+        
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(subTitle.snp.bottom).offset(32)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
+            make.bottom.equalTo(button.snp.top).offset(-8)
+        }
+        
+        button.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-8)
+            make.height.equalTo(56)
         }
     }
     
