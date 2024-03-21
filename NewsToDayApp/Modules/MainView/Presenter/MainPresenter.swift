@@ -16,11 +16,14 @@ protocol MainPresenterProtocol: AnyObject {
     init(view: MainViewProtocol, router: MainRouterProtocol)
     var mockData: [ListSectionModel] { get }
     var favorities: [OneItem : Bool] { get }
+    var selectedIndexPath: IndexPath { get }
+    func saveSelectedCell(indexPath: IndexPath)
     func handleCellEvent(article: OneItem, event: FavoriteButtonCellEvent)
     
 }
 
 class MainPresenter: MainPresenterProtocol {
+    var selectedIndexPath: IndexPath = .init()
     var favorities: [OneItem : Bool] = .init()
         
     weak var view: MainViewProtocol?
@@ -38,11 +41,15 @@ class MainPresenter: MainPresenterProtocol {
         self.router = router
     }
     
+    func saveSelectedCell(indexPath: IndexPath) {
+        selectedIndexPath = indexPath
+    }
+    
     func handleCellEvent(article: OneItem, event: FavoriteButtonCellEvent) {
         switch event {
         case .favoriteDidTapped:
             favorities[article] = !(favorities[article] ?? false) //если нет значения то ?? вернет false и favorities[article] = !false то есть true
-            print(favorities)
+            print("tapped favorite button on cell\(favorities)")
             view?.reloadCollectionView()
             if favorities[article] == true {
                 //сохранить в закладки

@@ -57,7 +57,7 @@ final class DetailArticleView: CustomView {
             backImage.backgroundColor = .blue
         }
         //MARK: - config favoriteButton
-        let favoriteImage: UIImage? = isLiked ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-light")
+        let favoriteImage: UIImage? = isLiked ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-bordered")
         favoriteButton.setBackgroundImage(favoriteImage, for: .normal)
         //MARK: - config Labels
         categoryLabel.text = data.articleCategory

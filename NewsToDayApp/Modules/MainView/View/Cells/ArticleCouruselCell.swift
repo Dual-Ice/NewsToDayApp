@@ -103,7 +103,7 @@ extension ArticleCouruselCell{
     func configCell(categoryLabelText: String?, articleNameText: String?, image: UIImage?, isLiked: Bool){
         categoryLabel.text = categoryLabelText?.uppercased()
         articleNameLabel.text = articleNameText
-        let favoriteImage: UIImage? = isLiked ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-light")
+        let favoriteImage: UIImage? = isLiked ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-bordered")
         favoriteButton.setBackgroundImage(favoriteImage, for: .normal)
         if let image = image{
             backImage.image = image
