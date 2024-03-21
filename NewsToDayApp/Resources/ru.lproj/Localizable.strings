@@ -14,6 +14,8 @@
 "ListSectionModelTitle" = "Рекомендации";
 "DetailArticleViewAuthor" = "Автор";
 "DetailArticleViewResult" = "Результат";
+"MainViewTitle" = "Главная";
+"MainViewSubTitle" = "Новости";
 
 //MARK: - Network Errors
 "InvalidURL" = "Неверный URL!";

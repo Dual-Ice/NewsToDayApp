@@ -12,17 +12,15 @@ import SnapKit
 
 protocol MainViewDelegate: AnyObject {
     func getData() -> [ListSectionModel]
-//    func getFavoritesData() -> [OneItem : Bool]
-//    func tappedFavoriteButton(event: FavoriteButtonCellEvent, data: OneItem)
-    //func tappedSeeAllButton()
 }
 
 class MainView: CustomView {
     
     weak var delegate: MainViewDelegate?
     
+    private let title = LabelsFactory.makeHeaderLabel()
+    private let subTitle = LabelsFactory.makeTextLabel()
     private let searchBar = SearchBarView()
-    
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -32,11 +30,19 @@ class MainView: CustomView {
     
     override func setViews() {
         self.backgroundColor = .white
+        setUpViews()
         configureCollectionView()
         [
+            title,
+            subTitle,
             collectionView,
             searchBar
         ].forEach { addSubview($0) }
+    }
+    
+    private func setUpViews(){
+        title.text = NSLocalizedString("MainViewTitle", comment: "")
+        subTitle.text = NSLocalizedString("MainViewSubTitle", comment: "")
     }
     
     private func configureCollectionView(){
@@ -52,10 +58,20 @@ class MainView: CustomView {
     }
     
     override func layoutViews() {
+        title.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(28)
+            make.leading.equalToSuperview().offset(16)
+        }
+        
+        subTitle.snp.makeConstraints { make in
+            make.top.equalTo(title.snp.bottom).offset(8)
+            make.leading.equalToSuperview().offset(16)
+        }
+        
         searchBar.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(5)
+            make.top.equalTo(subTitle.snp.bottom).offset(32)
             make.height.equalTo(56)
         }
         

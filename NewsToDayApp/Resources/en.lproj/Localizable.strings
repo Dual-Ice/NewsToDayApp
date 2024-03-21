@@ -7,13 +7,18 @@
 */
 
 //MARK: - TabBarItem
-
 "UITabBarItemMain" = "Main";
 "UITabBarItemProfile" = "Profile";
-"HeaderSeeAll" = "See all";
-"ListSectionModelTitle" = "Recommended for you";
+
+//MARK: - MainView
+"MainViewTitle" = "Main";
+"MainViewSubTitle" = "Discover things of this world";
+
+//MARK: - DetailArticleView
 "DetailArticleViewAuthor" = "Author";
 "DetailArticleViewResult" = "Result";
+"HeaderSeeAll" = "See all";
+"ListSectionModelTitle" = "Recommended for you";
 
 //MARK: - Network Errors
 "InvalidURL" = "Invalid URL!";

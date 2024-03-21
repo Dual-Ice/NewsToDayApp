@@ -17,16 +17,12 @@ class MainBuilder: MainBuilderProtocol {
     
     let navigationVC = UINavigationController()
     
-    
-    
     func buildMainView() -> UIViewController {
-        
         let vc = MainViewController()
+        navigationVC.viewControllers = [vc]
         let router = MainRouter(navigationVC: navigationVC)
         let presenter = MainPresenter(view: vc, router: router)
-        
         vc.presenter = presenter
-        
         return vc
     }
 }

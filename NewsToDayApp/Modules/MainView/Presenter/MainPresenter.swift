@@ -20,9 +20,12 @@ protocol MainPresenterProtocol: AnyObject {
     func saveSelectedCell(indexPath: IndexPath)
     func handleCellEvent(article: OneItem, event: FavoriteButtonCellEvent)
     
+    func goToDetailVC(data: OneItem, isLiked: Bool)
+    
 }
 
 class MainPresenter: MainPresenterProtocol {
+    
     var selectedIndexPath: IndexPath = .init()
     var favorities: [OneItem : Bool] = .init()
         
@@ -57,6 +60,10 @@ class MainPresenter: MainPresenterProtocol {
                 //удалить из закладок если нажал на кнопку в ячейки повторно
             }
         }
+    }
+    
+    func goToDetailVC(data: OneItem, isLiked: Bool) {
+        router?.pushDetailVC(data: data, isLiked: isLiked)
     }
     
 }
