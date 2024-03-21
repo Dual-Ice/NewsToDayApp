@@ -80,14 +80,14 @@ open class CustomTabBarController: UITabBarController, CustomTabBarViewProtocol 
         mainVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemMain", comment: ""), image: UIImage(systemName: "house.fill"), tag: 0)
         
         
-//        let profileVC = ProfileBuilder().buildProfileView()
-//        profileVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemProfile", comment: ""), image: UIImage(systemName: "person.fill"), tag: 1)
+        let profileVC = ProfileBuilder().buildProfileView()
+        profileVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemProfile", comment: ""), image: UIImage(systemName: "person.fill"), tag: 2)
         
         let bookMarksVC = BookmarksBuilder().buildBookmarksView()
         bookMarksVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemBookmarks", comment: ""), image: UIImage(systemName: "bookmark.fill"), tag: 1)
         
-        //viewControllers = [mainVC, profileVC]
-        self.setViewControllers([mainVC.navigationController!, bookMarksVC.navigationController!], animated: false)
+        viewControllers = [mainVC.navigationController!, bookMarksVC, profileVC.navigationController! ]
+//        self.setViewControllers([mainVC.navigationController!, bookMarksVC.navigationController!], animated: false)
         
     }
     
