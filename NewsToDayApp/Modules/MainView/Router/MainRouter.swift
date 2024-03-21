@@ -24,7 +24,9 @@ class MainRouter: MainRouterProtocol {
     }
     
     func pushDetailVC(data: OneItem, isLiked: Bool) {
-        let detailVC = DetailArticleViewController(data: data, isLiked: isLiked)
-        navigationVC?.pushViewController(detailVC, animated: true)
+        guard let navigationVC = navigationVC else { return }
+        let detailVC = DetailArticleBuilder(navigationVC: navigationVC).buildDetailArticleVC(data: data, isLiked: isLiked)
+        guard let detailVC = detailVC else { return }
+        navigationVC.pushViewController(detailVC, animated: true)
     }
 }

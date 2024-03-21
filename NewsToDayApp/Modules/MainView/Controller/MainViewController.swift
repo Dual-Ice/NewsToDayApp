@@ -105,10 +105,10 @@ extension MainViewController: UICollectionViewDelegate{
             print("gategories \(gategories[indexPath.row].articleCategory ?? "")")
         case .corusel(let corusel):
             let favorite = presenter?.favorities[corusel[indexPath.row]]
-//            presenter?.goToDetailVC(data: corusel[indexPath.row], isLiked: favorite ?? false)
-            let detailVC = DetailArticleViewController(data: corusel[indexPath.row], isLiked: favorite ?? false)
-            detailVC.modalPresentationStyle = .fullScreen
-            present(detailVC, animated: true)
+            presenter?.goToDetailVC(data: corusel[indexPath.row], isLiked: favorite ?? false)
+//            let detailVC = DetailArticleViewController(data: corusel[indexPath.row], isLiked: favorite ?? false)
+//            detailVC.modalPresentationStyle = .fullScreen
+//            present(detailVC, animated: true)
            // print("corusel \(corusel[indexPath.row].articleName ?? "")")
         case .recomendations(let recomendations):
             print("recomendations \(recomendations[indexPath.row].articleCategory ?? "")")

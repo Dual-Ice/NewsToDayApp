@@ -83,7 +83,8 @@ open class CustomTabBarController: UITabBarController, CustomTabBarViewProtocol 
         let profileVC = ProfileBuilder().buildProfileView()
         profileVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemProfile", comment: ""), image: UIImage(systemName: "person.fill"), tag: 1)
         
-        viewControllers = [mainVC, profileVC]
+        //viewControllers = [mainVC, profileVC]
+        self.setViewControllers([mainVC.navigationController!, profileVC.navigationController!], animated: false)
         
     }
     

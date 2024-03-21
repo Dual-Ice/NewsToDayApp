@@ -48,20 +48,20 @@ final class DetailArticleView: CustomView {
     private let shareButton = ButtonsFactory.makeButton()
     
     //MARK: - ConfigView public method
-    func configView(data: OneItem, isLiked: Bool){
+    func configView(data: OneItem?, isLiked: Bool?){
         //MARK: - config backImage
-        let image = UIImage(named: data.image ?? "")
+        let image = UIImage(named: data?.image ?? "")
         if let image = image{
             backImage.image = image
         } else{
             backImage.backgroundColor = .blue
         }
         //MARK: - config favoriteButton
-        let favoriteImage: UIImage? = isLiked ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-bordered")
+        let favoriteImage: UIImage? = isLiked ?? false ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-bordered")
         favoriteButton.setBackgroundImage(favoriteImage, for: .normal)
         //MARK: - config Labels
-        categoryLabel.text = data.articleCategory
-        articleNameLabel.text = data.articleName
+        categoryLabel.text = data?.articleCategory
+        articleNameLabel.text = data?.articleName
         authorNameLabel.text = "Default Author"
         //MARK: - config newsText
         newsText.text = """
@@ -147,19 +147,19 @@ final class DetailArticleView: CustomView {
         }
         
         favoriteButton.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).offset(32)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top)
             make.trailing.equalToSuperview().offset(-16)
             make.width.height.equalTo(24)
         }
         
         shareButton.snp.makeConstraints { make in
-            make.top.equalTo(favoriteButton.snp.bottom).offset(32)
+            make.top.equalTo(favoriteButton.snp.bottom).offset(24)
             make.trailing.equalToSuperview().offset(-16)
             make.width.height.equalTo(24)
         }
         
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).offset(32)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top)
             make.leading.equalToSuperview().offset(16)
             make.width.height.equalTo(24)
         }
