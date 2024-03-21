@@ -10,12 +10,17 @@
 "UITabBarItemMain" = "Начало";
 "UITabBarItemProfile" = "Профиль";
 "UITabBarItemBookmarks" = "Закладки";
+"UITabBarItemCategories" = "Категории";
 
 //MARK: - MainView
 "HeaderSeeAll" = "Все";
 "ListSectionModelTitle" = "Рекомендации";
 "MainViewTitle" = "Главная";
 "MainViewSubTitle" = "Новости";
+
+//MARK: - CategoriesView
+"CategoriesViewTitle" = "Категории";
+"CategoriesViewSubTitle" = "Множество статей в каждой категории";
 
 //MARK: - BookmarksView
 "BookmarksViewTitle" = "Закладки";

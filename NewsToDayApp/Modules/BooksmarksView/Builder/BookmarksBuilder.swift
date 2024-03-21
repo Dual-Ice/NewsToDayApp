@@ -27,7 +27,7 @@ class BookmarksBuilder: BookmarksBuilderProtocol {
     func buildBookmarksView() -> UIViewController {
         let vc = BookmarksViewController()
         let navigationController = UINavigationController(rootViewController: vc)
-        let router = BookmarksRouter(navigationVC: navigationVC)
+        let router = BookmarksRouter(navigationVC: navigationController)
         let presenter = BookmarksPresenter(view: vc, router: router)
         vc.presenter = presenter
         return navigationController

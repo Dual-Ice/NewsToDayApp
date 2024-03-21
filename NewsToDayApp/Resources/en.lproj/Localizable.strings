@@ -10,12 +10,17 @@
 "UITabBarItemMain" = "Main";
 "UITabBarItemProfile" = "Profile";
 "UITabBarItemBookmarks" = "Bookmarks";
+"UITabBarItemCategories" = "Categories";
 
 //MARK: - MainView
 "MainViewTitle" = "Main";
 "MainViewSubTitle" = "Discover things of this world";
 "HeaderSeeAll" = "See all";
 "ListSectionModelTitle" = "Recommended for you";
+
+//MARK: - CategoriesView
+"CategoriesViewTitle" = "Categories";
+"CategoriesViewSubTitle" = "Thousands of articles in each category";
 
 //MARK: - BookmarksView
 "BookmarksViewTitle" = "Bookmarks";

@@ -15,14 +15,12 @@ protocol MainBuilderProtocol: AnyObject {
 
 class MainBuilder: MainBuilderProtocol {
     
-    let navigationVC = UINavigationController()
-    
     func buildMainView() -> UIViewController {
         let vc = MainViewController()
-        navigationVC.viewControllers = [vc]
-        let router = MainRouter(navigationVC: navigationVC)
+        let navigationController = UINavigationController(rootViewController: vc)
+        let router = MainRouter(navigationVC: navigationController)
         let presenter = MainPresenter(view: vc, router: router)
         vc.presenter = presenter
-        return vc
+        return navigationController
     }
 }
