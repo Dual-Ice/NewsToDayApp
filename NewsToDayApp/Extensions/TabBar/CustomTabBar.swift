@@ -88,7 +88,7 @@ open class CustomTabBarController: UITabBarController, CustomTabBarViewProtocol 
         let bookMarksVC = BookmarksBuilder().buildBookmarksView()
         bookMarksVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemBookmarks", comment: ""), image: UIImage(systemName: "bookmark.fill"), tag: 2)
         
-        viewControllers = [mainVC, bookMarksVC, profileVC, categoriesVC ]
+        viewControllers = [mainVC, categoriesVC, bookMarksVC, profileVC]
 //        self.setViewControllers([mainVC.navigationController!, bookMarksVC.navigationController!], animated: false)
         
     }

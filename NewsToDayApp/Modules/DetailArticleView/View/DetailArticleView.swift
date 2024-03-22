@@ -153,7 +153,7 @@ final class DetailArticleView: CustomView {
         }
         
         shareButton.snp.makeConstraints { make in
-            make.top.equalTo(favoriteButton.snp.bottom).offset(24)
+            make.top.equalTo(favoriteButton.snp.bottom).offset(28)
             make.trailing.equalToSuperview().offset(-16)
             make.width.height.equalTo(24)
         }
@@ -161,7 +161,7 @@ final class DetailArticleView: CustomView {
         backButton.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide.snp.top)
             make.leading.equalToSuperview().offset(16)
-            make.width.height.equalTo(24)
+            make.width.height.equalTo(28)
         }
         
     }

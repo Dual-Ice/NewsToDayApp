@@ -8,7 +8,8 @@
 import Foundation
 
 protocol BookmarksPresenterViewProtocol: AnyObject {
-    
+    func emptyBookmarks()
+    func fullBookmarks()
     
 }
 
@@ -16,6 +17,7 @@ protocol BookmarksPresenterProtocol: AnyObject {
     
     init(view: BookmarksPresenterViewProtocol, router: BookmarksRouter)
     var data: [OneItem] { get }
+    func checkBookmarks()
 }
 
 
@@ -28,5 +30,11 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
     required init(view: BookmarksPresenterViewProtocol, router: BookmarksRouter) {
         self.view = view
         self.router = router
+        
+    }
+    
+     func checkBookmarks(){
+        //проверяем базу данных если пустая вызываем emptyBookmarks() иначе fullBookmarks()
+        view?.emptyBookmarks()
     }
 }

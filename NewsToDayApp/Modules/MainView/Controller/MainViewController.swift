@@ -24,6 +24,11 @@ class MainViewController: CustomViewController<MainView> {
         setDelegates()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+   
     private func setDelegates(){
         customView.delegate = self
         mainView = customView

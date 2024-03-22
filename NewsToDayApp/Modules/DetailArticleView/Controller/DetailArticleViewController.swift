@@ -23,6 +23,7 @@ class DetailArticleViewController: CustomViewController<DetailArticleView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.setHidesBackButton(true, animated: false)
+        navigationController?.navigationBar.isHidden = true
     }
     
     private func setDelegates(){

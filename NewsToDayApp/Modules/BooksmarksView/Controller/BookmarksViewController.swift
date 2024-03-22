@@ -11,6 +11,8 @@ protocol BookmarksVCDelegate{
     func reloadTableView()
     func setTableDelegate(vc: BookmarksViewController)
     func setTableViewDataSource(vc: BookmarksViewController)
+    func emptyBookmarsTrue()
+    func emptyBookmarsFalse()
 }
 
 class BookmarksViewController: CustomViewController<BookmarksView> {
@@ -23,18 +25,29 @@ class BookmarksViewController: CustomViewController<BookmarksView> {
         setDelegates()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     private func setDelegates(){
         customView.delegate = self
         bookmarksView = customView
         bookmarksView?.setTableDelegate(vc: self)
         bookmarksView?.setTableViewDataSource(vc: self)
+        presenter?.checkBookmarks()
     }
     
 }
 //MARK: - BookmarksPresenterViewProtocol
 extension BookmarksViewController: BookmarksPresenterViewProtocol {
-
+    func emptyBookmarks() {
+        bookmarksView?.emptyBookmarsTrue()
+    }
     
+    func fullBookmarks() {
+        bookmarksView?.emptyBookmarsFalse()
+    }
 }
 
 //MARK: - BookmarksViewDelegate

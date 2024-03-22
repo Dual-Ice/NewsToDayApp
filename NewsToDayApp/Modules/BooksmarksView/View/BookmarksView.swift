@@ -40,19 +40,15 @@ class BookmarksView: CustomView {
         subTitle.text = NSLocalizedString("BookmarksViewSubTitle", comment: "")
         
         circleView.layer.cornerRadius = 36
-        circleView.backgroundColor = UIColor(named: ConstColors.greyPrimary)
+        circleView.backgroundColor = UIColor(named: ConstColors.greyLighter)
         bookImage.translatesAutoresizingMaskIntoConstraints = false
         emptyBookmarksLabel.textAlignment = .center
         emptyBookmarksLabel.textColor = UIColor(named: ConstColors.blackPrimary)
         emptyBookmarksLabel.font = UIFont.TextFont.Bookmarks.emptyText
         emptyBookmarksLabel.text = NSLocalizedString("BookmarksViewEmptyText", comment: "")
-        
-        circleView.isHidden = true
-        emptyBookmarksLabel.isHidden = true
     }
     
     private func configureTableView() {
-        //tableView.isHidden = true
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.bounces = false
@@ -64,7 +60,7 @@ class BookmarksView: CustomView {
     
     override func layoutViews() {
         title.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(28)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(24)
             make.leading.equalToSuperview().offset(16)
         }
         
@@ -113,5 +109,17 @@ extension BookmarksView: BookmarksVCDelegate{
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+    
+    func emptyBookmarsTrue() {
+        tableView.isHidden = true
+        circleView.isHidden = false
+        emptyBookmarksLabel.isHidden = false
+    }
+    
+    func emptyBookmarsFalse() {
+        tableView.isHidden = false
+        circleView.isHidden = true
+        emptyBookmarksLabel.isHidden = true
     }
 }
