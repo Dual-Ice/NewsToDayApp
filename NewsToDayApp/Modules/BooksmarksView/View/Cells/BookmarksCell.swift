@@ -1,34 +1,27 @@
 //
-//  RecomendedCell.swift
+//  BookmarksCell.swift
 //  NewsToDayApp
 //
-//  Created by Polina on 19.03.2024.
+//  Created by Polina on 21.03.2024.
 //
 
 import UIKit
 import SnapKit
 
-class RecomendedCell: UICollectionViewCell {
-    static let resuseID = "RecomendedCell"
+class BookmarksCell: UITableViewCell {
+    static let resuseID = "BookmarksCell"
     
     private let categoryLabel = LabelsFactory.makeCategoryLabel()
     private let articleNameLabel = LabelsFactory.makeArticleHeaderLabel()
     private let backImage = ImageViewFactory.makeCornerRadiusImage()
-    private lazy var spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView()
-        spinner.color = .white
-        spinner.style = .medium
-        spinner.hidesWhenStopped = true
-        return spinner
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpViews()
         setViews()
         layoutViews()
     }
-  
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -47,15 +40,6 @@ class RecomendedCell: UICollectionViewCell {
         articleNameLabel.font = UIFont.TextFont.Main.recommendedArticleLabel
     }
     
-    private func setUpSpiner(){
-        addSubview(spinner)
-        spinner.snp.makeConstraints { make in
-            make.centerY.equalTo(backImage.snp.centerY)
-            make.centerX.equalTo(backImage.snp.centerX)
-        }
-        spinner.startAnimating()
-    }
-    
     private func setViews(){
         [
             backImage,
@@ -70,13 +54,15 @@ class RecomendedCell: UICollectionViewCell {
             make.top.equalTo(contentView.snp.top)
             make.height.width.equalTo(96)
         }
+        
         categoryLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(articleNameLabel.snp.top).offset(-8)
+            make.top.equalTo(contentView.snp.top).offset(8)
             make.leading.equalTo(backImage.snp.trailing).offset(16)
+            make.trailing.equalTo(contentView.snp.trailing).offset(-8)
         }
         
         articleNameLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(contentView.snp.bottom).offset(-8)
+            make.top.equalTo(categoryLabel.snp.bottom).offset(8)
             make.leading.equalTo(backImage.snp.trailing).offset(16)
             make.trailing.equalTo(contentView.snp.trailing).offset(-8)
         }
@@ -84,18 +70,14 @@ class RecomendedCell: UICollectionViewCell {
 }
 
 //MARK: - Configure Cell UI Public Method
-extension RecomendedCell{
+extension BookmarksCell{
     func configCell(categoryLabelText: String?, articleNameText: String?, image: UIImage?){
         categoryLabel.text = categoryLabelText
         articleNameLabel.text = articleNameText
         if let image = image{
-            spinner.stopAnimating()
-            spinner.removeFromSuperview()
             backImage.image = image
         } else{
-            //setUpSpiner() //добавить spineer
             backImage.backgroundColor = .blue
-            
         }
     }
 }

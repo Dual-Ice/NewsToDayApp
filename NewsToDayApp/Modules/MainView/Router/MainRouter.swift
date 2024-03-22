@@ -11,15 +11,29 @@ import UIKit
 protocol MainRouterProtocol: AnyObject {
     
     init(navigationVC: UINavigationController)
+    func pushDetailVC(data: MockItem, isLiked: Bool)
+    func pushRecomendedView()
     
 }
 
 class MainRouter: MainRouterProtocol {
-    
+  
     weak var navigationVC: UINavigationController?
     
     required init(navigationVC: UINavigationController) {
         self.navigationVC = navigationVC
     }
     
+    func pushDetailVC(data: MockItem, isLiked: Bool) {
+        guard let navigationVC = navigationVC else { return }
+        let detailVC = DetailArticleBuilder(navigationVC: navigationVC).buildDetailArticleVC(data: data, isLiked: isLiked)
+        guard let detailVC = detailVC else { return }
+        navigationVC.pushViewController(detailVC, animated: true)
+    }
+    
+    func pushRecomendedView(){
+        guard let navigationVC = navigationVC else { return }
+        let recomendedVC = RecomendedBuilder().buildRecomendedVC()
+        navigationVC.pushViewController(recomendedVC, animated: true)
+    }
 }

@@ -9,24 +9,21 @@ import UIKit
 
 class DetailArticleViewController: CustomViewController<DetailArticleView> {
     
-    let data: OneItem
-    let isLiked: Bool
-    
-    init(data: OneItem, isLiked: Bool) {
-        self.data = data
-        self.isLiked = isLiked
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    let data: OneItem
+//    let isLiked: Bool
+    var presenter: DetailArticlePresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
-        customView.configView(data: data, isLiked: isLiked)
+        customView.configView(data: presenter?.data , isLiked: presenter?.isLiked)
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        navigationController?.navigationBar.isHidden = true
     }
     
     private func setDelegates(){
@@ -38,7 +35,7 @@ class DetailArticleViewController: CustomViewController<DetailArticleView> {
 //MARK: - DetailArticleViewDelegate
 extension DetailArticleViewController: DetailArticleViewDelegate {
     func tappedBackButton() {
-        dismiss(animated: false)
+        presenter?.dismissDetailArticleVC()
     }
     
     func tappedFavoriteButton() {
@@ -49,6 +46,10 @@ extension DetailArticleViewController: DetailArticleViewDelegate {
         print("tappedShareButton")
     }
     
+}
+
+//MARK: - DetailArticlePresenterViewProtocol
+extension DetailArticleViewController: DetailArticlePresenterViewProtocol {
     
 }
 

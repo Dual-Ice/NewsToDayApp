@@ -9,28 +9,32 @@ import UIKit
 
 protocol MainVCDelegate{
     func reloadCollectionView()
-    func changeCellColor(index: IndexPath)
     func setSearchBarDelegate(vc: MainViewController)
     func setCollectionViewDelegate(vc: MainViewController)
+    func setCollectionViewDataSource(vc: MainViewController)
 }
 
 class MainViewController: CustomViewController<MainView> {
     
     var presenter: MainPresenterProtocol?
     var mainView: MainVCDelegate?
-    
+    //var previouslySelectedIndexPath: IndexPath?
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+   
     private func setDelegates(){
         customView.delegate = self
-//        customView.collectionViewDelegate = self
-//        customView.searchBarDelegate = self
         mainView = customView
         mainView?.setCollectionViewDelegate(vc: self)
         mainView?.setSearchBarDelegate(vc: self)
+        mainView?.setCollectionViewDataSource(vc: self)
     }
 }
 //MARK: - MainViewProtocol
@@ -41,20 +45,71 @@ extension MainViewController: MainViewProtocol {
 }
 //MARK: - MainViewDelegate
 extension MainViewController: MainViewDelegate{
-    func getFavoritesData() -> [OneItem : Bool] {
-        presenter?.favorities ?? [:]
-    }
-    
-    func tappedFavoriteButton(event: FavoriteButtonCellEvent, data: OneItem) {
-        presenter?.handleCellEvent(article: data, event: event)
-    }
-    
     func getData() -> [ListSectionModel] {
         presenter?.mockData ?? []
     }
+}
+
+//MARK: - UICollectionViewDataSource
+extension MainViewController: UICollectionViewDataSource{
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        presenter?.mockData.count ?? 0
+    }
     
-    func tappedSeeAllButton() {
-        print("Tapped SeeAll")
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if let presenter{
+            switch presenter.mockData[section]{
+            case .categories(let categories):
+                return categories.count
+            case .corusel(_):
+                return 3
+            case .recomendations(_):
+                return 6
+            }
+        }else{
+            return 0
+        }
+        //return presenter?.mockData[section].countData ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let sections = presenter?.mockData[indexPath.section]
+        switch sections{
+        case .categories(let categories):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCell.resuseID, for: indexPath) as? CategoriesCell else { return UICollectionViewCell() }
+            cell.configCell(categoryLabelText: categories[indexPath.row].articleCategory, emojiString: nil)
+            presenter?.selectedIndexPath == indexPath ?  cell.setSelectedColors() : cell.setDefaultColors()// меняет цвет при переиспользовании ячейки
+            return cell
+        case .corusel(let corusel):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArticleCouruselCell.resuseID, for: indexPath) as? ArticleCouruselCell else { return UICollectionViewCell() }
+            let data = corusel[indexPath.row]
+            let favoriteData = presenter?.favorities
+            cell.configCell(categoryLabelText: data.articleCategory, articleNameText: data.articleName, image: UIImage(named: data.image ), isLiked: favoriteData?[data] ?? false )
+            cell.onFavoriteButtonTap = { [weak self] event in
+                self?.presenter?.handleCellEvent(article: data, event: event)
+            }
+            return cell
+        case .recomendations(let recomendations):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecomendedCell.resuseID, for: indexPath) as? RecomendedCell else { return UICollectionViewCell() }
+            let data = recomendations[indexPath.row]
+            cell.configCell(categoryLabelText: data.articleCategory, articleNameText: data.articleName, image: UIImage(named: data.image ))
+            return cell
+        case .none:
+            return UICollectionViewCell()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind{
+        case UICollectionView.elementKindSectionHeader:
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderRecomendedView.resuseID, for: indexPath) as? HeaderRecomendedView else { return UICollectionReusableView()}
+            let data = presenter?.mockData
+            header.configureHeader(sectionTitle: data?[indexPath.section].title ?? "")
+            header.delegate = self
+            return header
+        default:
+            return UICollectionReusableView()
+        }
     }
 }
 //MARK: - UICollectionViewDelegate
@@ -62,20 +117,46 @@ extension MainViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch presenter?.mockData[indexPath.section]{
         case .categories(let gategories):
-            mainView?.changeCellColor(index: indexPath)
-            mainView?.reloadCollectionView() // запрос в сеть и в нем уже  reloadCollectionView
-            print("gategories \(gategories[indexPath.row].articleCategory ?? "")")
+            if let cell = collectionView.cellForItem(at: indexPath) as? CategoriesCell, let previosIndex = presenter?.selectedIndexPath {
+                if let previousCell = collectionView.cellForItem(at: previosIndex) as? CategoriesCell {
+                    previousCell.setDefaultColors()
+                }
+                cell.setSelectedColors()
+                presenter?.saveSelectedCell(indexPath: indexPath)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.presenter?.goToRecomendedVC()
+                }
+                print("gategories \(gategories[indexPath.row].articleCategory )")
+            }
+                // mainView?.reloadCollectionView() // запрос в сеть и в нем уже  reloadCollectionView
+                
+                //                if let previouslySelectedIndexPath = previouslySelectedIndexPath,
+                //                   let previousCell = collectionView.cellForItem(at: previouslySelectedIndexPath) as? CategoriesCell {
+                //                    previousCell.setDefaultColors()
+                //                }
+                //                cell.setSelectedColors()
+                //                previouslySelectedIndexPath = indexPath
+                //                presenter?.saveSelectedCell(indexPath: indexPath)
+                //                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                //                    self.presenter?.goToRecomendedVC()
+                //                }
+            
         case .corusel(let corusel):
             let favorite = presenter?.favorities[corusel[indexPath.row]]
-            let detailVC = DetailArticleViewController(data: corusel[indexPath.row], isLiked: favorite ?? false)
-            detailVC.modalPresentationStyle = .fullScreen
-            present(detailVC, animated: true)
-           // print("corusel \(corusel[indexPath.row].articleName ?? "")")
+            presenter?.goToDetailVC(data: corusel[indexPath.row], isLiked: favorite ?? false)
         case .recomendations(let recomendations):
-            print("recomendations \(recomendations[indexPath.row].articleCategory ?? "")")
+            print("recomendations \(recomendations[indexPath.row].articleCategory)")
         case .none:
             print("none case tapped")
         }
+    }
+}
+
+//MARK: - HeaderButton SeeAll
+extension MainViewController: HeaderRecomendedViewDelegate {
+    func tappedSeeAllButton() {
+        print("Tapped SeeAll")
+        presenter?.goToRecomendedVC()
     }
 }
 

@@ -12,36 +12,15 @@ import SnapKit
 
 protocol MainViewDelegate: AnyObject {
     func getData() -> [ListSectionModel]
-    func getFavoritesData() -> [OneItem : Bool]
-    func tappedFavoriteButton(event: FavoriteButtonCellEvent, data: OneItem)
-    func tappedSeeAllButton()
 }
 
 class MainView: CustomView {
     
     weak var delegate: MainViewDelegate?
     
-//    var collectionViewDelegate: UICollectionViewDelegate? {
-//            get {
-//                return self.collectionView.delegate
-//            }
-//            set {
-//                self.collectionView.delegate = newValue
-//            }
-//        }
-//    
-//     var searchBarDelegate: UISearchBarDelegate?{
-//        get {
-//            return self.searchBar.delegate
-//        }
-//        set {
-//            self.searchBar.delegate = newValue
-//        }
-//    }
-    
+    private let title = LabelsFactory.makeHeaderLabel()
+    private let subTitle = LabelsFactory.makeTextLabel()
     private let searchBar = SearchBarView()
-    private var selectedIndexPath: IndexPath = .init()
-    
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -51,11 +30,19 @@ class MainView: CustomView {
     
     override func setViews() {
         self.backgroundColor = .white
+        setUpViews()
         configureCollectionView()
         [
+            title,
+            subTitle,
             collectionView,
             searchBar
         ].forEach { addSubview($0) }
+    }
+    
+    private func setUpViews(){
+        title.text = NSLocalizedString("MainViewTitle", comment: "")
+        subTitle.text = NSLocalizedString("MainViewSubTitle", comment: "")
     }
     
     private func configureCollectionView(){
@@ -63,7 +50,6 @@ class MainView: CustomView {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.bounces = false
-        collectionView.dataSource = self
         collectionView.collectionViewLayout = createLayout()
         collectionView.register(CategoriesCell.self, forCellWithReuseIdentifier: CategoriesCell.resuseID)
         collectionView.register(ArticleCouruselCell.self, forCellWithReuseIdentifier: ArticleCouruselCell.resuseID)
@@ -72,10 +58,20 @@ class MainView: CustomView {
     }
     
     override func layoutViews() {
+        title.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(28)
+            make.leading.equalToSuperview().offset(16)
+        }
+        
+        subTitle.snp.makeConstraints { make in
+            make.top.equalTo(title.snp.bottom).offset(8)
+            make.leading.equalToSuperview().offset(16)
+        }
+        
         searchBar.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(5)
+            make.top.equalTo(subTitle.snp.bottom).offset(32)
             make.height.equalTo(56)
         }
         
@@ -134,87 +130,18 @@ private extension MainView{
     }
 }
 
-//MARK: - UICollectionViewDataSource
-extension MainView: UICollectionViewDataSource{
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        //mockData.count
-        delegate?.getData().count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let data = delegate?.getData()
-        return data?[section].countData ?? 0
-        //mockData[section].countData
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        //mockData[indexPath.section]
-        let data = delegate?.getData()
-        let sections = data?[indexPath.section]
-        switch sections{
-        case .categories(let categories):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCell.resuseID, for: indexPath) as? CategoriesCell else { return UICollectionViewCell() }
-            cell.configCell(categoryLabelText: categories[indexPath.row].articleCategory)
-            selectedIndexPath == indexPath ?  cell.setSelectedColors() : cell.setDefaultColors()
-            return cell
-        case .corusel(let corusel):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArticleCouruselCell.resuseID, for: indexPath) as? ArticleCouruselCell else { return UICollectionViewCell() }
-            let data = corusel[indexPath.row]
-            let favoriteData = delegate?.getFavoritesData()
-            cell.configCell(categoryLabelText: data.articleCategory, articleNameText: data.articleName, image: UIImage(named: data.image ?? "DefaultImage"), isLiked: favoriteData?[data] ?? false )
-            //cell.delegate = self
-            cell.onFavoriteButtonTap = { [weak self] event in
-                self?.delegate?.tappedFavoriteButton(event: event, data: data)
-            }
-            return cell
-        case .recomendations(let recomendations):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecomendedCell.resuseID, for: indexPath) as? RecomendedCell else { return UICollectionViewCell() }
-            let data = recomendations[indexPath.row]
-            cell.configCell(categoryLabelText: data.articleCategory, articleNameText: data.articleName, image: UIImage(named: data.image ?? "DefaultImage"))
-            return cell
-        case .none:
-            return UICollectionViewCell()
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind{
-        case UICollectionView.elementKindSectionHeader:
-            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderRecomendedView.resuseID, for: indexPath) as? HeaderRecomendedView else { return UICollectionReusableView()}
-            let data = delegate?.getData()
-            header.configureHeader(sectionTitle: data?[indexPath.section].title ?? "")
-            header.delegate = self
-            return header
-        default:
-            return UICollectionReusableView()
-        }
-    }
-}
-////MARK: - FavoriteButton
-//extension MainView: ArticleCouruselCellDelegate {
-//    func tappedFavoriteButton() {
-//        
-//    }
-//}
-
-//MARK: - HeaderButton SeeAll
-extension MainView: HeaderRecomendedViewDelegate {
-    func tappedSeeAllButton() {
-        delegate?.tappedSeeAllButton()
-    }
-}
 //MARK: - MainVCDelegate
 extension MainView: MainVCDelegate{
+    func setCollectionViewDataSource(vc: MainViewController) {
+        collectionView.dataSource = vc
+    }
+    
     func setSearchBarDelegate(vc: MainViewController) {
         searchBar.delegate = vc
     }
     
     func setCollectionViewDelegate(vc: MainViewController) {
         collectionView.delegate = vc
-    }
-    
-    func changeCellColor(index: IndexPath) {
-        selectedIndexPath = index // save selectedIndexPath
     }
     
     func reloadCollectionView() {

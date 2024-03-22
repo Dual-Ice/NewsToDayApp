@@ -7,13 +7,50 @@
 */
 
 //MARK: - TabBarItem
-
 "UITabBarItemMain" = "Начало";
 "UITabBarItemProfile" = "Профиль";
+"UITabBarItemBookmarks" = "Закладки";
+"UITabBarItemCategories" = "Категории";
+
+//MARK: - Categories
+"CategoriesBusiness" = "Бизнес";
+"CategoriesHealth" = "Здоровье";
+"CategoriesScience" = "Наука";
+"CategoriesSports" = "Спорт";
+"CategoriesTechnology" = "Технологии";
+"CategoriesCrime" = "Преступность";
+"CategoriesEducation" = "Образование";
+"CategoriesEntertainment" = "Развлечения";
+"CategoriesEnvironment" = "Мир вокруг";
+"CategoriesFood" = "Еда";
+"CategoriesLifestyle" = "Образ жизни";
+"CategoriesPolitics" = "Политика";
+
+//MARK: - Onbording
+"OnbordingNext" = "Далее";
+
+//MARK: - MainView
 "HeaderSeeAll" = "Все";
 "ListSectionModelTitle" = "Рекомендации";
+"MainViewTitle" = "Главная";
+"MainViewSubTitle" = "Новости";
+
+//MARK: - CategoriesView
+"CategoriesViewTitle" = "Категории";
+"CategoriesViewSubTitle" = "Множество статей в каждой категории";
+
+//MARK: - BookmarksView
+"BookmarksViewTitle" = "Закладки";
+"BookmarksViewSubTitle" = "Сохранненые статьи в библиотеку";
+"BookmarksViewEmptyText" = "Нет сохранненых статей. Начни читать и сохранять статьи";
+
+//MARK: - DetailArticleView
 "DetailArticleViewAuthor" = "Автор";
 "DetailArticleViewResult" = "Результат";
+
+//MARK: - RecomendedView
+"RecomendedViewTitle" = "Все статьи";
+"RecomendedViewSubTitle" = "Рекомендации для тебя";
 
 //MARK: - Network Errors
 "InvalidURL" = "Неверный URL!";

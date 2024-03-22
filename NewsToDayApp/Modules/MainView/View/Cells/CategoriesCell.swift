@@ -10,7 +10,7 @@ import SnapKit
 
 class CategoriesCell: UICollectionViewCell {
     static let resuseID = "CategoriesCell"
-    
+    var categoryTitle: String = ""
     private let categoryLabel = LabelsFactory.makeCategoryTagLabel()
     private let backImage = ImageViewFactory.makeCornerRadiusImage()
     
@@ -67,8 +67,15 @@ class CategoriesCell: UICollectionViewCell {
 
 //MARK: - Configure Cell UI Public Method
 extension CategoriesCell{
-    func configCell(categoryLabelText: String?){
-        categoryLabel.text = categoryLabelText
+    func configCell(categoryLabelText: String, emojiString: String?){
+        if let emojiString{
+            categoryLabel.text = emojiString + " " + categoryLabelText
+            categoryTitle = categoryLabelText
+        } else{
+            categoryLabel.text = categoryLabelText
+            categoryTitle = categoryLabelText
+        }
+        
     }
     
     func setSelectedColors(){
