@@ -45,6 +45,12 @@
 "BookmarksViewSubTitle" = "Saved articles to the library";
 "BookmarksViewEmptyText" = "You haven't saved any articles yet. Start reading and bookmarking them now";
 
+//MARK: - ProfileView
+"ProfleViewTitle" = "Profile";
+"ProfleViewLanguageButton" = "Language";
+"ProfleViewTermsAndConditionsButton" = "Terms and conditions";
+"ProfleViewSignOutButton" = "Sign Out";
+
 //MARK: - DetailArticleView
 "DetailArticleViewAuthor" = "Author";
 "DetailArticleViewResult" = "Result";

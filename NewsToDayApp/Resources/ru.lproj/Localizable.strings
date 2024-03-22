@@ -44,6 +44,12 @@
 "BookmarksViewSubTitle" = "Сохранненые статьи в библиотеку";
 "BookmarksViewEmptyText" = "Нет сохранненых статей. Начни читать и сохранять статьи";
 
+//MARK: - ProfileView
+"ProfleViewTitle" = "Профиль";
+"ProfleViewLanguageButton" = "Язык";
+"ProfleViewTermsAndConditionsButton" = "Условия и положения";
+"ProfleViewSignOutButton" = "Выйти";
+
 //MARK: - DetailArticleView
 "DetailArticleViewAuthor" = "Автор";
 "DetailArticleViewResult" = "Результат";
