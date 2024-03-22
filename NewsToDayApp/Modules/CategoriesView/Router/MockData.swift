@@ -11,13 +11,19 @@ struct MockData{
     
     private let categories: ListSectionModel = {
         .categories([
-            .init(image: "", articleCategory: "Business", articleName: ""),
-            .init(image: "", articleCategory: "Entertainment", articleName: ""),
-            .init(image: "", articleCategory: "General", articleName: ""),
-            .init(image: "", articleCategory: "Health", articleName: ""),
-            .init(image: "", articleCategory: "Science", articleName: ""),
-            .init(image: "", articleCategory: "Sports", articleName: ""),
-            .init(image: "", articleCategory: "Technology", articleName: ""),
+            .init(image: "", articleCategory: NSLocalizedString("CategoriesBusiness", comment: ""), articleName: ""),
+            .init(image: "", articleCategory: NSLocalizedString("CategoriesHealth", comment: ""), articleName: ""),
+            .init(image: "", articleCategory: NSLocalizedString("CategoriesScience", comment: ""), articleName: ""),
+            .init(image: "", articleCategory: NSLocalizedString("CategoriesSports", comment: ""), articleName: ""),
+            .init(image: "", articleCategory: NSLocalizedString("CategoriesTechnology", comment: ""), articleName: ""),
+            .init(image: "", articleCategory: NSLocalizedString("CategoriesCrime", comment: ""), articleName: ""),
+            .init(image: "", articleCategory: NSLocalizedString("CategoriesEducation", comment: ""), articleName: ""),
+            .init(image: "", articleCategory: NSLocalizedString("CategoriesEntertainment", comment: ""), articleName: ""),
+            .init(image: "", articleCategory: NSLocalizedString("CategoriesEnvironment", comment: ""), articleName: ""),
+            .init(image: "", articleCategory: NSLocalizedString("CategoriesFood", comment: ""), articleName: ""),
+            .init(image: "", articleCategory: NSLocalizedString("CategoriesLifestyle", comment: ""), articleName: ""),
+            .init(image: "", articleCategory: NSLocalizedString("CategoriesPolitics", comment: ""), articleName: ""),
+
         ])
     }()
     

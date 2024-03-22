@@ -93,7 +93,7 @@ class CategoriesView: CustomView {
         button.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.top.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-90)
+            make.top.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-60)
             make.height.equalTo(56)
         }
     }

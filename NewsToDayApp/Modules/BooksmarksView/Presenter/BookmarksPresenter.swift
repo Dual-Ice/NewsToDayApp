@@ -35,6 +35,6 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
     
      func checkBookmarks(){
         //проверяем базу данных если пустая вызываем emptyBookmarks() иначе fullBookmarks()
-        view?.emptyBookmarks()
+        view?.fullBookmarks()
     }
 }

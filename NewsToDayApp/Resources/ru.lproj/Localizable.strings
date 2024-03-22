@@ -12,6 +12,20 @@
 "UITabBarItemBookmarks" = "Закладки";
 "UITabBarItemCategories" = "Категории";
 
+//MARK: - Categories
+"CategoriesBusiness" = "Бизнес";
+"CategoriesHealth" = "Здоровье";
+"CategoriesScience" = "Наука";
+"CategoriesSports" = "Спорт";
+"CategoriesTechnology" = "Технологии";
+"CategoriesCrime" = "Преступность";
+"CategoriesEducation" = "Образование";
+"CategoriesEntertainment" = "Развлечения";
+"CategoriesEnvironment" = "Мир вокруг";
+"CategoriesFood" = "Еда";
+"CategoriesLifestyle" = "Образ жизни";
+"CategoriesPolitics" = "Политика";
+
 //MARK: - Onbording
 "OnbordingNext" = "Далее";
 

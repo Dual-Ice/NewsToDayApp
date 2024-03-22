@@ -14,13 +14,19 @@ struct CategoriesModel {
 extension CategoriesModel{
     static func getAllCategories()  -> [CategoriesModel]{
         [
-            .init(emojiString: "⚽️", categoryName: "Business"),
-            .init(emojiString: "⚽️", categoryName: "Entertainment"),
-            .init(emojiString: "⚽️", categoryName: "General"),
-            .init(emojiString: "⚽️", categoryName: "Health"),
-            .init(emojiString: "⚽️", categoryName: "Science"),
-            .init(emojiString: "⚽️", categoryName: "Sports"),
-            .init(emojiString: "⚽️", categoryName: "Technology"),
+            .init(emojiString: "💼", categoryName: NSLocalizedString("CategoriesBusiness", comment: "")),
+            .init(emojiString: "🩺", categoryName: NSLocalizedString("CategoriesHealth", comment: "")),
+            .init(emojiString: "🔬", categoryName: NSLocalizedString("CategoriesScience", comment: "")),
+            .init(emojiString: "⚽️", categoryName: NSLocalizedString("CategoriesSports", comment: "")),
+            .init(emojiString: "💻", categoryName: NSLocalizedString("CategoriesTechnology", comment: "")),
+            .init(emojiString: "🚓", categoryName: NSLocalizedString("CategoriesCrime", comment: "")),
+            .init(emojiString: "🎓", categoryName: NSLocalizedString("CategoriesEducation", comment: "")),
+            .init(emojiString: "🎬", categoryName: NSLocalizedString("CategoriesEntertainment", comment: "")),
+            .init(emojiString: "🌳", categoryName: NSLocalizedString("CategoriesEnvironment", comment: "")),
+            .init(emojiString: "🍔", categoryName: NSLocalizedString("CategoriesFood", comment: "")),
+            .init(emojiString: "🛋️", categoryName: NSLocalizedString("CategoriesLifestyle", comment: "")),
+            .init(emojiString: "🗳️", categoryName: NSLocalizedString("CategoriesPolitics", comment: "")),
         ]
     }
 }
+

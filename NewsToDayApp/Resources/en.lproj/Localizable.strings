@@ -12,6 +12,21 @@
 "UITabBarItemBookmarks" = "Bookmarks";
 "UITabBarItemCategories" = "Categories";
 
+//MARK: - Categories
+"CategoriesBusiness" = "Business";
+"CategoriesHealth" = "Health";
+"CategoriesScience" = "Science";
+"CategoriesSports" = "Sports";
+"CategoriesTechnology" = "Technology";
+"CategoriesCrime" = "Crime";
+"CategoriesEducation" = "Education";
+"CategoriesEntertainment" = "Entertainment";
+"CategoriesEnvironment" = "Environment";
+"CategoriesFood" = "Food";
+"CategoriesLifestyle" = "Lifestyle";
+"CategoriesPolitics" = "Politics";
+
+
 //MARK: - Onbording
 "OnbordingNext" = "Next";
 
