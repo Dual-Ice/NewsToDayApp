@@ -21,6 +21,7 @@ protocol MainPresenterProtocol: AnyObject {
     func handleCellEvent(article: MockItem, event: FavoriteButtonCellEvent)
     
     func goToDetailVC(data: MockItem, isLiked: Bool)
+    func goToRecomendedVC()
     
 }
 
@@ -61,6 +62,10 @@ class MainPresenter: MainPresenterProtocol {
     
     func goToDetailVC(data: MockItem, isLiked: Bool) {
         router?.pushDetailVC(data: data, isLiked: isLiked)
+    }
+    
+    func goToRecomendedVC() {
+        router?.pushRecomendedView()
     }
     
 }

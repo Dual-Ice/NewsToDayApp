@@ -40,6 +40,11 @@
 		369AB67F2BAC8F9800EBF483 /* CategoriesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB67E2BAC8F9800EBF483 /* CategoriesRouter.swift */; };
 		369AB6822BAD909A00EBF483 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6812BAD909A00EBF483 /* MockData.swift */; };
 		369AB6842BAD962C00EBF483 /* CategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6832BAD962C00EBF483 /* CategoriesModel.swift */; };
+		369AB68F2BADB11300EBF483 /* RecomendedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB68E2BADB11300EBF483 /* RecomendedView.swift */; };
+		369AB6912BADB1CD00EBF483 /* RecomendedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6902BADB1CD00EBF483 /* RecomendedViewController.swift */; };
+		369AB6932BADB30700EBF483 /* RecomendedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6922BADB30700EBF483 /* RecomendedPresenter.swift */; };
+		369AB6952BADB41400EBF483 /* RecomendedBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6942BADB41400EBF483 /* RecomendedBuilder.swift */; };
+		369AB6972BADB4D000EBF483 /* RecomendedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6962BADB4D000EBF483 /* RecomendedRouter.swift */; };
 		A5CBDB9A2BA75DD500C81385 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB992BA75DD500C81385 /* AppDelegate.swift */; };
 		A5CBDB9C2BA75DD500C81385 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB9B2BA75DD500C81385 /* SceneDelegate.swift */; };
 		A5CBDBA32BA75DD900C81385 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CBDBA22BA75DD900C81385 /* Assets.xcassets */; };
@@ -157,6 +162,11 @@
 		369AB67E2BAC8F9800EBF483 /* CategoriesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRouter.swift; sourceTree = "<group>"; };
 		369AB6812BAD909A00EBF483 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MockData.swift; path = NewsToDayApp/Modules/CategoriesView/Router/MockData.swift; sourceTree = SOURCE_ROOT; };
 		369AB6832BAD962C00EBF483 /* CategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
+		369AB68E2BADB11300EBF483 /* RecomendedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendedView.swift; sourceTree = "<group>"; };
+		369AB6902BADB1CD00EBF483 /* RecomendedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendedViewController.swift; sourceTree = "<group>"; };
+		369AB6922BADB30700EBF483 /* RecomendedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendedPresenter.swift; sourceTree = "<group>"; };
+		369AB6942BADB41400EBF483 /* RecomendedBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendedBuilder.swift; sourceTree = "<group>"; };
+		369AB6962BADB4D000EBF483 /* RecomendedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendedRouter.swift; sourceTree = "<group>"; };
 		A5CBDB962BA75DD500C81385 /* NewsToDayApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsToDayApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CBDB992BA75DD500C81385 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CBDB9B2BA75DD500C81385 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -480,6 +490,66 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		369AB6872BADB01D00EBF483 /* RecomendedView */ = {
+			isa = PBXGroup;
+			children = (
+				369AB68D2BADB07500EBF483 /* Builder */,
+				369AB68C2BADB06A00EBF483 /* View */,
+				369AB68B2BADB05F00EBF483 /* Controller */,
+				369AB68A2BADB05100EBF483 /* Model */,
+				369AB6892BADB04800EBF483 /* Router */,
+				369AB6882BADB03E00EBF483 /* Presenter */,
+			);
+			path = RecomendedView;
+			sourceTree = "<group>";
+		};
+		369AB6882BADB03E00EBF483 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				369AB6922BADB30700EBF483 /* RecomendedPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		369AB6892BADB04800EBF483 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				369AB6962BADB4D000EBF483 /* RecomendedRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		369AB68A2BADB05100EBF483 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		369AB68B2BADB05F00EBF483 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				369AB6902BADB1CD00EBF483 /* RecomendedViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		369AB68C2BADB06A00EBF483 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				369AB68E2BADB11300EBF483 /* RecomendedView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		369AB68D2BADB07500EBF483 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				369AB6942BADB41400EBF483 /* RecomendedBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
 		A5CBDB8D2BA75DD500C81385 = {
 			isa = PBXGroup;
 			children = (
@@ -550,6 +620,7 @@
 		A5CBDBB12BA75E7F00C81385 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				369AB6872BADB01D00EBF483 /* RecomendedView */,
 				369AB66F2BAC8CD500EBF483 /* CategoriesView */,
 				369AB65B2BAC493A00EBF483 /* BooksmarksView */,
 				369AB64A2BAB290700EBF483 /* DetailArticleView */,
@@ -910,9 +981,11 @@
 				A5CBDBCD2BA76E3D00C81385 /* MainView.swift in Sources */,
 				369AB6822BAD909A00EBF483 /* MockData.swift in Sources */,
 				369AB6672BAC4ACB00EBF483 /* BookmarksPresenter.swift in Sources */,
+				369AB6952BADB41400EBF483 /* RecomendedBuilder.swift in Sources */,
 				369AB67D2BAC8F2400EBF483 /* CategoriesPresenter.swift in Sources */,
 				A5CBDB9A2BA75DD500C81385 /* AppDelegate.swift in Sources */,
 				369AB6402BA97A6C00EBF483 /* RecomendedCell.swift in Sources */,
+				369AB6932BADB30700EBF483 /* RecomendedPresenter.swift in Sources */,
 				369AB67F2BAC8F9800EBF483 /* CategoriesRouter.swift in Sources */,
 				A5CBDBEB2BA7734300C81385 /* UIBezierPath+createCurve.swift in Sources */,
 				369AB67B2BAC8EA800EBF483 /* CategoriesViewController.swift in Sources */,
@@ -935,9 +1008,11 @@
 				369AB6542BAB2A0200EBF483 /* DetailArticleViewController.swift in Sources */,
 				369AB63C2BA97A3800EBF483 /* CategoriesCell.swift in Sources */,
 				369AB6692BAC4B7D00EBF483 /* BookmarksRouter.swift in Sources */,
+				369AB6912BADB1CD00EBF483 /* RecomendedViewController.swift in Sources */,
 				369AB6522BAB29D100EBF483 /* DetailArticleView.swift in Sources */,
 				369AB61B2BA8833A00EBF483 /* UIImageView + ext.swift in Sources */,
 				369AB6582BAC3AA700EBF483 /* DetailArticleBuilder.swift in Sources */,
+				369AB6972BADB4D000EBF483 /* RecomendedRouter.swift in Sources */,
 				369AB62D2BA8BB7800EBF483 /* ImageViewsFactory.swift in Sources */,
 				369AB6792BAC8E8200EBF483 /* CategoriesView.swift in Sources */,
 				369AB66E2BAC5E6E00EBF483 /* BookmarksCell.swift in Sources */,
@@ -959,6 +1034,7 @@
 				369AB6472BA9C95400EBF483 /* SearchBarView.swift in Sources */,
 				369AB6652BAC4A6B00EBF483 /* BookmarksViewController.swift in Sources */,
 				369AB6842BAD962C00EBF483 /* CategoriesModel.swift in Sources */,
+				369AB68F2BADB11300EBF483 /* RecomendedView.swift in Sources */,
 				A5CBDBF62BA77C1000C81385 /* ProfilePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

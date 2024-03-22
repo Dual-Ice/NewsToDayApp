@@ -95,7 +95,7 @@ class BookmarksView: CustomView {
     }
 }
 
-//MARK: - MainVCDelegate
+//MARK: - BookmarksVCDelegate
 extension BookmarksView: BookmarksVCDelegate{
     func setTableDelegate(vc: BookmarksViewController) {
         tableView.delegate = vc

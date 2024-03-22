@@ -12,6 +12,7 @@ protocol MainRouterProtocol: AnyObject {
     
     init(navigationVC: UINavigationController)
     func pushDetailVC(data: MockItem, isLiked: Bool)
+    func pushRecomendedView()
     
 }
 
@@ -28,5 +29,11 @@ class MainRouter: MainRouterProtocol {
         let detailVC = DetailArticleBuilder(navigationVC: navigationVC).buildDetailArticleVC(data: data, isLiked: isLiked)
         guard let detailVC = detailVC else { return }
         navigationVC.pushViewController(detailVC, animated: true)
+    }
+    
+    func pushRecomendedView(){
+        guard let navigationVC = navigationVC else { return }
+        let recomendedVC = RecomendedBuilder().buildRecomendedVC()
+        navigationVC.pushViewController(recomendedVC, animated: true)
     }
 }

@@ -74,11 +74,11 @@ extension CategoriesViewController: UICollectionViewDelegate{
         if let cell = collectionView.cellForItem(at: indexPath) as? CategoriesCell {
             if let indexPathToRemove = presenter?.selectedIndexPathArray.first(where: { $0 == indexPath }) {
                 cell.setDefaultColors()
-                presenter?.removeUnSelectedCell(indexPath: indexPathToRemove)
+                presenter?.removeUnSelectedCell(indexPath: indexPathToRemove, category: cell.categoryTitle)
                 print("delete")
             } else {
                 cell.setSelectedColors()
-                presenter?.saveSelectedCell(indexPath: indexPath)
+                presenter?.saveSelectedCell(indexPath: indexPath, category: cell.categoryTitle)
                 print("save")
             }
         }

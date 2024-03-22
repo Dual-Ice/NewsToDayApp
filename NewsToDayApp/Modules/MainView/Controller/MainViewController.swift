@@ -127,6 +127,7 @@ extension MainViewController: UICollectionViewDelegate{
 extension MainViewController: HeaderRecomendedViewDelegate {
     func tappedSeeAllButton() {
         print("Tapped SeeAll")
+        presenter?.goToRecomendedVC()
     }
 }
 
