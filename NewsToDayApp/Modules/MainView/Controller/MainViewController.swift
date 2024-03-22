@@ -65,14 +65,14 @@ extension MainViewController: UICollectionViewDataSource{
         switch sections{
         case .categories(let categories):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCell.resuseID, for: indexPath) as? CategoriesCell else { return UICollectionViewCell() }
-            cell.configCell(categoryLabelText: categories[indexPath.row].articleCategory)
+            cell.configCell(categoryLabelText: categories[indexPath.row].articleCategory, emojiString: nil)
             presenter?.selectedIndexPath == indexPath ?  cell.setSelectedColors() : cell.setDefaultColors()
             return cell
         case .corusel(let corusel):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArticleCouruselCell.resuseID, for: indexPath) as? ArticleCouruselCell else { return UICollectionViewCell() }
             let data = corusel[indexPath.row]
             let favoriteData = presenter?.favorities
-            cell.configCell(categoryLabelText: data.articleCategory, articleNameText: data.articleName, image: UIImage(named: data.image ?? "DefaultImage"), isLiked: favoriteData?[data] ?? false )
+            cell.configCell(categoryLabelText: data.articleCategory, articleNameText: data.articleName, image: UIImage(named: data.image ), isLiked: favoriteData?[data] ?? false )
             cell.onFavoriteButtonTap = { [weak self] event in
                 self?.presenter?.handleCellEvent(article: data, event: event)
             }
@@ -80,7 +80,7 @@ extension MainViewController: UICollectionViewDataSource{
         case .recomendations(let recomendations):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecomendedCell.resuseID, for: indexPath) as? RecomendedCell else { return UICollectionViewCell() }
             let data = recomendations[indexPath.row]
-            cell.configCell(categoryLabelText: data.articleCategory, articleNameText: data.articleName, image: UIImage(named: data.image ?? "DefaultImage"))
+            cell.configCell(categoryLabelText: data.articleCategory, articleNameText: data.articleName, image: UIImage(named: data.image ))
             return cell
         case .none:
             return UICollectionViewCell()
@@ -107,7 +107,7 @@ extension MainViewController: UICollectionViewDelegate{
         case .categories(let gategories):
             presenter?.saveSelectedCell(indexPath: indexPath)
             mainView?.reloadCollectionView() // запрос в сеть и в нем уже  reloadCollectionView
-            print("gategories \(gategories[indexPath.row].articleCategory ?? "")")
+            print("gategories \(gategories[indexPath.row].articleCategory )")
         case .corusel(let corusel):
             let favorite = presenter?.favorities[corusel[indexPath.row]]
             presenter?.goToDetailVC(data: corusel[indexPath.row], isLiked: favorite ?? false)
@@ -116,7 +116,7 @@ extension MainViewController: UICollectionViewDelegate{
 //            present(detailVC, animated: true)
            // print("corusel \(corusel[indexPath.row].articleName ?? "")")
         case .recomendations(let recomendations):
-            print("recomendations \(recomendations[indexPath.row].articleCategory ?? "")")
+            print("recomendations \(recomendations[indexPath.row].articleCategory)")
         case .none:
             print("none case tapped")
         }

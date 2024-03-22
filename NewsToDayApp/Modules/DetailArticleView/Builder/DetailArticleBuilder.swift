@@ -10,7 +10,7 @@ import UIKit
 
 protocol DetailBuilderProtocol: AnyObject {
     
-    func buildDetailArticleVC(data: OneItem, isLiked: Bool) -> UIViewController?
+    func buildDetailArticleVC(data: MockItem, isLiked: Bool) -> UIViewController?
 }
 
 class DetailArticleBuilder: DetailBuilderProtocol{
@@ -20,7 +20,7 @@ class DetailArticleBuilder: DetailBuilderProtocol{
         self.navigationVC = navigationVC
     }
     
-    func buildDetailArticleVC(data: OneItem, isLiked: Bool) -> UIViewController? {
+    func buildDetailArticleVC(data: MockItem, isLiked: Bool) -> UIViewController? {
         guard let navigationVC = navigationVC else { return nil}
         let vc = DetailArticleViewController()
         let router = DetailArticleRouter(navigationVC: navigationVC)

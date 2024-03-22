@@ -48,7 +48,7 @@ final class DetailArticleView: CustomView {
     private let shareButton = ButtonsFactory.makeButton()
     
     //MARK: - ConfigView public method
-    func configView(data: OneItem?, isLiked: Bool?){
+    func configView(data: MockItem?, isLiked: Bool?){
         //MARK: - config backImage
         let image = UIImage(named: data?.image ?? "")
         if let image = image{

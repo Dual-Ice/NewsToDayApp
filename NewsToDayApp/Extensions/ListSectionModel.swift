@@ -8,11 +8,11 @@
 import Foundation
 
 enum ListSectionModel{
-    case categories([OneItem])
-    case corusel([OneItem])
-    case recomendations([OneItem])
+    case categories([MockItem])
+    case corusel([MockItem])
+    case recomendations([MockItem])
     
-    private var itemsData: [OneItem] {
+    private var itemsData: [MockItem] {
         switch self {
         case .categories(let categories):
             return categories

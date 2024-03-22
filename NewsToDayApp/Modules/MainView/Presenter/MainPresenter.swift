@@ -15,28 +15,25 @@ protocol MainPresenterProtocol: AnyObject {
     
     init(view: MainViewProtocol, router: MainRouterProtocol)
     var mockData: [ListSectionModel] { get }
-    var favorities: [OneItem : Bool] { get }
+    var favorities: [MockItem : Bool] { get }
     var selectedIndexPath: IndexPath { get }
     func saveSelectedCell(indexPath: IndexPath)
-    func handleCellEvent(article: OneItem, event: FavoriteButtonCellEvent)
+    func handleCellEvent(article: MockItem, event: FavoriteButtonCellEvent)
     
-    func goToDetailVC(data: OneItem, isLiked: Bool)
+    func goToDetailVC(data: MockItem, isLiked: Bool)
     
 }
 
 class MainPresenter: MainPresenterProtocol {
     
     var selectedIndexPath: IndexPath = .init()
-    var favorities: [OneItem : Bool] = .init()
+    var favorities: [MockItem : Bool] = .init()
         
     weak var view: MainViewProtocol?
     var router: MainRouterProtocol?
     
     var mockData: [ListSectionModel]{
-        let data1 = MockDataModel.getCategoriesModel()
-        let data2 = MockDataModel.getArticleModel()
-        let data3 = MockDataModel.getArticleModel()
-        return   [.categories(data1), .corusel(data2), .recomendations(data3)]
+        MockData().sectionData
     }
     
     required init(view: MainViewProtocol, router: MainRouterProtocol) {
@@ -48,7 +45,7 @@ class MainPresenter: MainPresenterProtocol {
         selectedIndexPath = indexPath
     }
     
-    func handleCellEvent(article: OneItem, event: FavoriteButtonCellEvent) {
+    func handleCellEvent(article: MockItem, event: FavoriteButtonCellEvent) {
         switch event {
         case .favoriteDidTapped:
             favorities[article] = !(favorities[article] ?? false) //если нет значения то ?? вернет false и favorities[article] = !false то есть true
@@ -62,7 +59,7 @@ class MainPresenter: MainPresenterProtocol {
         }
     }
     
-    func goToDetailVC(data: OneItem, isLiked: Bool) {
+    func goToDetailVC(data: MockItem, isLiked: Bool) {
         router?.pushDetailVC(data: data, isLiked: isLiked)
     }
     

@@ -16,13 +16,13 @@ protocol BookmarksPresenterViewProtocol: AnyObject {
 protocol BookmarksPresenterProtocol: AnyObject {
     
     init(view: BookmarksPresenterViewProtocol, router: BookmarksRouter)
-    var data: [OneItem] { get }
+    var data: [MockItem] { get }
     func checkBookmarks()
 }
 
 
 class BookmarksPresenter: BookmarksPresenterProtocol {
-    var data: [OneItem] = MockDataModel.getArticleModel()
+    var data: [MockItem] = MockItem.getArticleModel()
     
     weak var view: BookmarksPresenterViewProtocol?
     var router: BookmarksRouter?

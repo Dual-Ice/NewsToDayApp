@@ -11,7 +11,7 @@ import UIKit
 protocol MainRouterProtocol: AnyObject {
     
     init(navigationVC: UINavigationController)
-    func pushDetailVC(data: OneItem, isLiked: Bool)
+    func pushDetailVC(data: MockItem, isLiked: Bool)
     
 }
 
@@ -23,7 +23,7 @@ class MainRouter: MainRouterProtocol {
         self.navigationVC = navigationVC
     }
     
-    func pushDetailVC(data: OneItem, isLiked: Bool) {
+    func pushDetailVC(data: MockItem, isLiked: Bool) {
         guard let navigationVC = navigationVC else { return }
         let detailVC = DetailArticleBuilder(navigationVC: navigationVC).buildDetailArticleVC(data: data, isLiked: isLiked)
         guard let detailVC = detailVC else { return }

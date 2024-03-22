@@ -15,7 +15,7 @@ protocol CategoriesPresenterViewProtocol: AnyObject {
 protocol CategoriesPresenterProtocol: AnyObject {
     
     init(view: CategoriesPresenterViewProtocol, router: CategoriesRouterProtocol)
-    var data: [OneItem] { get }
+    var data: [CategoriesModel] { get }
     var selectedIndexPathArray: [IndexPath] { get }
     func saveSelectedCell(indexPath: IndexPath)
     func removeUnSelectedCell(indexPath: IndexPath)
@@ -26,7 +26,7 @@ protocol CategoriesPresenterProtocol: AnyObject {
 class CategoriesPresenter: CategoriesPresenterProtocol {
     var selectedIndexPathArray: [IndexPath] = .init()
     
-    var data: [OneItem] = MockDataModel.getCategoriesModel()
+    var data: [CategoriesModel] = CategoriesModel.getAllCategories()
     
     weak var view: CategoriesPresenterViewProtocol?
     var router: CategoriesRouterProtocol?
