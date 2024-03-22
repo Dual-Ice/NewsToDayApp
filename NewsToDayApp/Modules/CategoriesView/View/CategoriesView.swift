@@ -7,13 +7,20 @@
 
 import Foundation
 import UIKit
+
+enum HideButtonOnCategoriesView{
+    case categoriesInTabBar
+    case categoriesOnbording
+}
+
 protocol CategoriesViewDelegate: AnyObject {
+    func tappedNextButton()
 }
 
 
 class CategoriesView: CustomView {
     weak var delegate: CategoriesViewDelegate?
-    
+
     private let title = LabelsFactory.makeHeaderLabel()
     private let subTitle = LabelsFactory.makeTextLabel()
     private lazy var collectionView: UICollectionView = {
@@ -40,6 +47,28 @@ class CategoriesView: CustomView {
     private func setUpViews(){
         title.text = NSLocalizedString("CategoriesViewTitle", comment: "")
         subTitle.text = NSLocalizedString("CategoriesViewSubTitle", comment: "")
+        
+        button.setTitle(NSLocalizedString("OnbordingNext", comment: ""), for: .normal)
+        button.setTitleColor(UIColor(named: ConstColors.customWhite), for: .normal)
+        button.titleLabel?.font = UIFont.TextFont.Screen.button
+        button.addTarget(nil, action: #selector(tappedNextButton), for: .touchUpInside)
+    }
+    
+    private func checkHideButtonOrNot(typeToHideButtonOrNot: HideButtonOnCategoriesView?){
+        if let typeToHideButtonOrNot{
+             switch typeToHideButtonOrNot {
+             case .categoriesInTabBar:
+                 button.isHidden = true
+                 button.isUserInteractionEnabled = false
+                 
+             case .categoriesOnbording:
+                 button.isHidden = false
+             }
+         }
+    }
+    
+    @objc private func tappedNextButton(){
+        delegate?.tappedNextButton()
     }
     
     override func layoutViews() {
@@ -54,7 +83,6 @@ class CategoriesView: CustomView {
             make.leading.equalToSuperview().offset(16)
         }
         
-        
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(subTitle.snp.bottom).offset(32)
             make.leading.equalToSuperview().offset(16)
@@ -63,9 +91,9 @@ class CategoriesView: CustomView {
         }
         
         button.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
-            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-8)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.top.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-90)
             make.height.equalTo(56)
         }
     }
@@ -81,6 +109,10 @@ class CategoriesView: CustomView {
 
 //MARK: - CategoriesVCDelegate
 extension CategoriesView: CategoriesVCDelegate {
+    func chechHiddenButtonOrNot(type: HideButtonOnCategoriesView?) {
+        checkHideButtonOrNot(typeToHideButtonOrNot: type)
+    }
+    
     func reloadCollectionView() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()

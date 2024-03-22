@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol CategoriesPresenterViewProtocol: AnyObject {
-    
+
     
 }
 
@@ -42,13 +42,16 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     }
     
     func removeUnSelectedCell(indexPath: IndexPath) {
-        for (index, item) in selectedIndexPathArray.enumerated(){
-            if item == indexPath{
-                selectedIndexPathArray.remove(at: index)
-                //print(" array3 \(selectedIndexPathArray)")
-            }
+        let indexToRemove = selectedIndexPathArray.firstIndex(where: { $0 == indexPath })
+        if let indexToRemove{
+            selectedIndexPathArray.remove(at: indexToRemove)
         }
+        //selectedIndexPathArray.remove(at: indexToRemove)
+//        for (index, item) in selectedIndexPathArray.enumerated(){
+//            if item == indexPath{
+//                selectedIndexPathArray.remove(at: index)
+//                //print(" array3 \(selectedIndexPathArray)")
+//            }
+//        }
     }
-    
-    
 }

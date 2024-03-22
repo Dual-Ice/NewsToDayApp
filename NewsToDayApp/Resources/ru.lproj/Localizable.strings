@@ -12,6 +12,9 @@
 "UITabBarItemBookmarks" = "Закладки";
 "UITabBarItemCategories" = "Категории";
 
+//MARK: - Onbording
+"OnbordingNext" = "Далее";
+
 //MARK: - MainView
 "HeaderSeeAll" = "Все";
 "ListSectionModelTitle" = "Рекомендации";

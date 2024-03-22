@@ -12,12 +12,14 @@ protocol CategoriesVCDelegate{
     func reloadCollectionView()
     func setCollectionViewDelegate(vc: CategoriesViewController)
     func setCollectionViewDataSource(vc: CategoriesViewController)
+    func chechHiddenButtonOrNot(type: HideButtonOnCategoriesView?)
 }
 
 class CategoriesViewController: CustomViewController<CategoriesView> {
     
     var presenter: CategoriesPresenterProtocol?
-    var categoriesView: CategoriesVCDelegate?
+    var typeToHideButtonOrNot: HideButtonOnCategoriesView?
+    private var categoriesView: CategoriesVCDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,18 +31,22 @@ class CategoriesViewController: CustomViewController<CategoriesView> {
         categoriesView = customView
         categoriesView?.setCollectionViewDelegate(vc: self)
         categoriesView?.setCollectionViewDataSource(vc: self)
+        categoriesView?.chechHiddenButtonOrNot(type: typeToHideButtonOrNot)
     }
     
 }
 //MARK: - CategoriesPresenterViewProtocol
 extension CategoriesViewController: CategoriesPresenterViewProtocol {
+  
+    
     
     
 }
 //MARK: - CategoriesViewDelegate
 extension CategoriesViewController: CategoriesViewDelegate {
-    
-    
+    func tappedNextButton() {
+        print("tapped NextButton Onbording")
+    }
 }
 
 //MARK: - UICollectionViewDataSource
@@ -60,27 +66,38 @@ extension CategoriesViewController: UICollectionViewDataSource{
 //MARK: - UICollectionViewDelegate
 extension CategoriesViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-        //print(" array1 \(presenter?.selectedIndexPathArray)")
-        if let cell = collectionView.cellForItem(at: indexPath) as? CategoriesCell, let presenter = presenter{
-            cell.setSelectedColors()
-
-            var cellWasRemoved = false
-            for index in presenter.selectedIndexPathArray{
-                if index == indexPath {
-                    cell.setDefaultColors()
-                    presenter.removeUnSelectedCell(indexPath: indexPath)
-                    cellWasRemoved = true
-                    print("delete")
-                    break
-                }
-            }
-
-            if !cellWasRemoved {
-                presenter.saveSelectedCell(indexPath: indexPath)
+        if let cell = collectionView.cellForItem(at: indexPath) as? CategoriesCell {
+            if let indexPathToRemove = presenter?.selectedIndexPathArray.first(where: { $0 == indexPath }) {
+                cell.setDefaultColors()
+                presenter?.removeUnSelectedCell(indexPath: indexPathToRemove)
+                print("delete")
+            } else {
+                cell.setSelectedColors()
+                presenter?.saveSelectedCell(indexPath: indexPath)
                 print("save")
             }
         }
+        
+        
+        //print(" array1 \(presenter?.selectedIndexPathArray)")
+//        if let cell = collectionView.cellForItem(at: indexPath) as? CategoriesCell, let presenter = presenter{
+//            cell.setSelectedColors()
+//            var cellWasRemoved = false
+//            for index in presenter.selectedIndexPathArray{
+//                if index == indexPath {
+//                    cell.setDefaultColors()
+//                    presenter.removeUnSelectedCell(indexPath: indexPath)
+//                    cellWasRemoved = true
+//                    print("delete")
+//                    break
+//                }
+//            }
+//
+//            if !cellWasRemoved {
+//                presenter.saveSelectedCell(indexPath: indexPath)
+//                print("save")
+//            }
+//        }
        // print(" array2 \(presenter?.selectedIndexPathArray)")
     }
 }

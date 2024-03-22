@@ -19,6 +19,7 @@ class CategoriesBuilder: CategoriesBuilderProtocol {
         let router = CategoriesRouter(navigationVC: navigationController)
         let presenter = CategoriesPresenter(view: vc, router: router)
         vc.presenter = presenter
+        vc.typeToHideButtonOrNot = .categoriesInTabBar
         return navigationController
     }
 }

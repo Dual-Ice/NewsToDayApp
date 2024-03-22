@@ -12,6 +12,9 @@
 "UITabBarItemBookmarks" = "Bookmarks";
 "UITabBarItemCategories" = "Categories";
 
+//MARK: - Onbording
+"OnbordingNext" = "Next";
+
 //MARK: - MainView
 "MainViewTitle" = "Main";
 "MainViewSubTitle" = "Discover things of this world";
