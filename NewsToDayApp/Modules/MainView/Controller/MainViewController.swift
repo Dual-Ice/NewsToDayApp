@@ -18,7 +18,7 @@ class MainViewController: CustomViewController<MainView> {
     
     var presenter: MainPresenterProtocol?
     var mainView: MainVCDelegate?
-    
+    //var previouslySelectedIndexPath: IndexPath?
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
@@ -57,7 +57,19 @@ extension MainViewController: UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter?.mockData[section].countData ?? 0
+        if let presenter{
+            switch presenter.mockData[section]{
+            case .categories(let categories):
+                return categories.count
+            case .corusel(_):
+                return 3
+            case .recomendations(_):
+                return 6
+            }
+        }else{
+            return 0
+        }
+        //return presenter?.mockData[section].countData ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -66,7 +78,7 @@ extension MainViewController: UICollectionViewDataSource{
         case .categories(let categories):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCell.resuseID, for: indexPath) as? CategoriesCell else { return UICollectionViewCell() }
             cell.configCell(categoryLabelText: categories[indexPath.row].articleCategory, emojiString: nil)
-            presenter?.selectedIndexPath == indexPath ?  cell.setSelectedColors() : cell.setDefaultColors()
+            presenter?.selectedIndexPath == indexPath ?  cell.setSelectedColors() : cell.setDefaultColors()// меняет цвет при переиспользовании ячейки
             return cell
         case .corusel(let corusel):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArticleCouruselCell.resuseID, for: indexPath) as? ArticleCouruselCell else { return UICollectionViewCell() }
@@ -105,16 +117,33 @@ extension MainViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch presenter?.mockData[indexPath.section]{
         case .categories(let gategories):
-            presenter?.saveSelectedCell(indexPath: indexPath)
-            mainView?.reloadCollectionView() // запрос в сеть и в нем уже  reloadCollectionView
-            print("gategories \(gategories[indexPath.row].articleCategory )")
+            if let cell = collectionView.cellForItem(at: indexPath) as? CategoriesCell, let previosIndex = presenter?.selectedIndexPath {
+                if let previousCell = collectionView.cellForItem(at: previosIndex) as? CategoriesCell {
+                    previousCell.setDefaultColors()
+                }
+                cell.setSelectedColors()
+                presenter?.saveSelectedCell(indexPath: indexPath)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.presenter?.goToRecomendedVC()
+                }
+                print("gategories \(gategories[indexPath.row].articleCategory )")
+            }
+                // mainView?.reloadCollectionView() // запрос в сеть и в нем уже  reloadCollectionView
+                
+                //                if let previouslySelectedIndexPath = previouslySelectedIndexPath,
+                //                   let previousCell = collectionView.cellForItem(at: previouslySelectedIndexPath) as? CategoriesCell {
+                //                    previousCell.setDefaultColors()
+                //                }
+                //                cell.setSelectedColors()
+                //                previouslySelectedIndexPath = indexPath
+                //                presenter?.saveSelectedCell(indexPath: indexPath)
+                //                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                //                    self.presenter?.goToRecomendedVC()
+                //                }
+            
         case .corusel(let corusel):
             let favorite = presenter?.favorities[corusel[indexPath.row]]
             presenter?.goToDetailVC(data: corusel[indexPath.row], isLiked: favorite ?? false)
-//            let detailVC = DetailArticleViewController(data: corusel[indexPath.row], isLiked: favorite ?? false)
-//            detailVC.modalPresentationStyle = .fullScreen
-//            present(detailVC, animated: true)
-           // print("corusel \(corusel[indexPath.row].articleName ?? "")")
         case .recomendations(let recomendations):
             print("recomendations \(recomendations[indexPath.row].articleCategory)")
         case .none:

@@ -49,6 +49,10 @@
 "DetailArticleViewAuthor" = "Author";
 "DetailArticleViewResult" = "Result";
 
+//MARK: - RecomendedView
+"RecomendedViewTitle" = "All article by Categories";
+"RecomendedViewSubTitle" = "Recomended for you";
+
 //MARK: - Network Errors
 "InvalidURL" = "Invalid URL!";
 "EmptyResponse" = "No data from network call!";

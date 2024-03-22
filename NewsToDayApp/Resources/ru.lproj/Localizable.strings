@@ -48,6 +48,10 @@
 "DetailArticleViewAuthor" = "Автор";
 "DetailArticleViewResult" = "Результат";
 
+//MARK: - RecomendedView
+"RecomendedViewTitle" = "Все статьи";
+"RecomendedViewSubTitle" = "Рекомендации для тебя";
+
 //MARK: - Network Errors
 "InvalidURL" = "Неверный URL!";
 "EmptyResponse" = "Запрос вернул пустой ответ!";

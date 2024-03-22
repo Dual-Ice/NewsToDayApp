@@ -30,8 +30,8 @@ class RecomendedView: CustomView {
     }
     
     private func setUpViews(){
-        title.text = NSLocalizedString("BookmarksViewTitle", comment: "")
-        subTitle.text = NSLocalizedString("BookmarksViewSubTitle", comment: "")
+        title.text = NSLocalizedString("RecomendedViewTitle", comment: "")
+        subTitle.text = NSLocalizedString("RecomendedViewSubTitle", comment: "")
     }
     
     private func configureTableView() {
