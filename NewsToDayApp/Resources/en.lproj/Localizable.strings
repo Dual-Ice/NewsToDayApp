@@ -7,63 +7,66 @@
 */
 
 //MARK: - TabBarItem
-"UITabBarItemMain" = "Main";
-"UITabBarItemProfile" = "Profile";
-"UITabBarItemBookmarks" = "Bookmarks";
-"UITabBarItemCategories" = "Categories";
+"UITabBarItemMain" = "Начало";
+"UITabBarItemProfile" = "Профиль";
+"UITabBarItemBookmarks" = "Закладки";
+"UITabBarItemCategories" = "Категории";
 
 //MARK: - Categories
-"CategoriesBusiness" = "Business";
-"CategoriesHealth" = "Health";
-"CategoriesScience" = "Science";
-"CategoriesSports" = "Sports";
-"CategoriesTechnology" = "Technology";
-"CategoriesCrime" = "Crime";
-"CategoriesEducation" = "Education";
-"CategoriesEntertainment" = "Entertainment";
-"CategoriesEnvironment" = "Environment";
-"CategoriesFood" = "Food";
-"CategoriesLifestyle" = "Lifestyle";
-"CategoriesPolitics" = "Politics";
-
+"CategoriesBusiness" = "Бизнес";
+"CategoriesHealth" = "Здоровье";
+"CategoriesScience" = "Наука";
+"CategoriesSports" = "Спорт";
+"CategoriesTechnology" = "Технологии";
+"CategoriesCrime" = "Преступность";
+"CategoriesEducation" = "Образование";
+"CategoriesEntertainment" = "Развлечения";
+"CategoriesEnvironment" = "Мир вокруг";
+"CategoriesFood" = "Еда";
+"CategoriesLifestyle" = "Образ жизни";
+"CategoriesPolitics" = "Политика";
 
 //MARK: - Onbording
-"OnbordingNext" = "Next";
+"OnbordingNext" = "Далее";
 
 //MARK: - MainView
-"MainViewTitle" = "Main";
-"MainViewSubTitle" = "Discover things of this world";
-"HeaderSeeAll" = "See all";
-"ListSectionModelTitle" = "Recommended for you";
+"HeaderSeeAll" = "Все";
+"ListSectionModelTitle" = "Рекомендации";
+"MainViewTitle" = "Главная";
+"MainViewSubTitle" = "Новости";
 
 //MARK: - CategoriesView
-"CategoriesViewTitle" = "Categories";
-"CategoriesViewSubTitle" = "Thousands of articles in each category";
+"CategoriesViewTitle" = "Категории";
+"CategoriesViewSubTitle" = "Множество статей в каждой категории";
 
 //MARK: - BookmarksView
-"BookmarksViewTitle" = "Bookmarks";
-"BookmarksViewSubTitle" = "Saved articles to the library";
-"BookmarksViewEmptyText" = "You haven't saved any articles yet. Start reading and bookmarking them now";
+"BookmarksViewTitle" = "Закладки";
+"BookmarksViewSubTitle" = "Сохранненые статьи в библиотеку";
+"BookmarksViewEmptyText" = "Нет сохранненых статей. Начни читать и сохранять статьи";
 
 //MARK: - ProfileView
-"ProfleViewTitle" = "Profile";
-"ProfleViewLanguageButton" = "Language";
-"ProfleViewTermsAndConditionsButton" = "Terms & conditions";
-"ProfleViewSignOutButton" = "Sign Out";
+"ProfleViewTitle" = "Профиль";
+"ProfleViewLanguageButton" = "Язык";
+"ProfleViewTermsAndConditionsButton" = "Условия и положения";
+"ProfleViewSignOutButton" = "Выйти";
+
 
 //MARK: - TermsAndConditionsView
-"TermsAndConditionsViewTitle" = "Terms & conditions";
+"TermsAndConditionsViewTitle" = "Условия и положения";
+
+//MARK: - LanguagesView
+"LanguagesViewTitle" = "Язык приложения";
 
 //MARK: - DetailArticleView
-"DetailArticleViewAuthor" = "Author";
-"DetailArticleViewResult" = "Result";
+"DetailArticleViewAuthor" = "Автор";
+"DetailArticleViewResult" = "Результат";
 
 //MARK: - RecomendedView
-"RecomendedViewTitle" = "All article by Categories";
-"RecomendedViewSubTitle" = "Recomended for you";
+"RecomendedViewTitle" = "Все статьи";
+"RecomendedViewSubTitle" = "Рекомендации для тебя";
 
 //MARK: - Network Errors
-"InvalidURL" = "Invalid URL!";
-"EmptyResponse" = "No data from network call!";
-"ErrorCodeResponse" = "Error code response";
-"InvalidImageData" = "Image has corrupted data";
+"InvalidURL" = "Неверный URL!";
+"EmptyResponse" = "Запрос вернул пустой ответ!";
+"ErrorCodeResponse" = "Запрос завершился с ошибкой!";
+"InvalidImageData" = "Изображение не может быть отображено!";

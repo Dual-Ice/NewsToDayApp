@@ -44,7 +44,6 @@ final class TermsAndConditionsView: CustomView {
             make.centerX.equalToSuperview()
         }
         
-        
         backButton.snp.makeConstraints { make in
             make.centerY.equalTo(title)
             make.leading.equalToSuperview().offset(16)

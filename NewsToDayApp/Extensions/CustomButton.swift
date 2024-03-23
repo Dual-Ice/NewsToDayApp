@@ -15,14 +15,17 @@ class CustomButton: UIButton {
         imageView.configImageView(cornerRadius: 0)
         return imageView
     }()
+    var value: String?
 
 
     // MARK: Init
-    init(label: String, icon: UIImage, backgroundColor: String, contenColor: String) {
+    init(label: String, icon: UIImage?, backgroundColor: String, contenColor: String) {
         self.buttonLabel.text = label
         self.buttonLabel.textColor = UIColor(named: contenColor)
-        self.buttonIcon.image = icon
-        self.buttonIcon.tintColor = UIColor(named: contenColor)
+        if icon != nil {
+            self.buttonIcon.image = icon
+            self.buttonIcon.tintColor = UIColor(named: contenColor)
+        }
         
         super.init(frame: .zero)
         self.backgroundColor = UIColor(named: backgroundColor)

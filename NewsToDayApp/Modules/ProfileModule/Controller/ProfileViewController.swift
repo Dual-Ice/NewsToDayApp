@@ -15,6 +15,8 @@ class ProfileViewController: CustomViewController<ProfileView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
+        // pass user data here
+        // customView.configView()
     }
     
     private func setDelegates(){
@@ -34,12 +36,10 @@ extension ProfileViewController: ProfileViewDelegate {
     }
     
     func languageButtonTapped() {
-        print("tapped language button")
         self.presenter?.goToLanguagesVC()
     }
     
     func termsAndConditionsButtonTapped() {
-        print("tapped terms and conditions button ")
         self.presenter?.goToTermsAndConditionsVC()
     }
     
