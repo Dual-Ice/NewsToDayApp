@@ -16,6 +16,8 @@ protocol ProfilePresenterViewProtocol: AnyObject {
 protocol ProfilePresenterProtocol: AnyObject {
     
     init(view: ProfilePresenterViewProtocol, router: ProfileRouterProtocol)
+    func goToLanguagesVC()
+    func goToTermsAndConditionsVC()
     
 }
 
@@ -30,6 +32,12 @@ class ProfilePresenter: ProfilePresenterProtocol {
         self.router = router
     }
     
+    func goToLanguagesVC() {
+        router?.pushLanguagesVC()
+    }
     
+    func goToTermsAndConditionsVC() {
+        router?.pushTermsAndConditionsVC()
+    }
     
 }
