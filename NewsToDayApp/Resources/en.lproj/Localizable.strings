@@ -48,8 +48,11 @@
 //MARK: - ProfileView
 "ProfleViewTitle" = "Profile";
 "ProfleViewLanguageButton" = "Language";
-"ProfleViewTermsAndConditionsButton" = "Terms and conditions";
+"ProfleViewTermsAndConditionsButton" = "Terms & conditions";
 "ProfleViewSignOutButton" = "Sign Out";
+
+//MARK: - TermsAndConditionsView
+"TermsAndConditionsViewTitle" = "Terms & conditions";
 
 //MARK: - DetailArticleView
 "DetailArticleViewAuthor" = "Author";

@@ -50,6 +50,10 @@
 "ProfleViewTermsAndConditionsButton" = "Условия и положения";
 "ProfleViewSignOutButton" = "Выйти";
 
+
+//MARK: - TermsAndConditionsView
+"TermsAndConditionsViewTitle" = "Условия и положения";
+
 //MARK: - DetailArticleView
 "DetailArticleViewAuthor" = "Автор";
 "DetailArticleViewResult" = "Результат";
