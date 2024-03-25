@@ -10,7 +10,8 @@ import UIKit
 class ImageManager: NetworkManager {
     var imageCache: [String: UIImage] = [:]
     
-    func getImage(for url: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
+    func getImage(for url: String?, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        guard let url = url else { return }
         if let cachedImage = imageCache[url] {
             completion(.success(cachedImage))
         }
@@ -19,6 +20,7 @@ class ImageManager: NetworkManager {
     }
 
     private func loadAndCacheImage(_ urlString: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        
         guard let url = URL(string: urlString) else {
             completion(.failure(NetworkError.wrongUrl))
             return

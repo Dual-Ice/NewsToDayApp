@@ -16,7 +16,13 @@ class DetailArticleViewController: CustomViewController<DetailArticleView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
-        customView.configView(data: presenter?.data , isLiked: presenter?.isLiked)
+        presenter?.loadImage(imageUrl: presenter?.data?.imageUrl, completion: { image in
+            let imageToUse = image ?? UIImage(named: "noImage")
+            print("imageToUse\(imageToUse)")
+            self.customView.configView(data: self.presenter?.data , isLiked: self.presenter?.isLiked, image: imageToUse)
+            
+        })
+        customView.configView(data: presenter?.data , isLiked: presenter?.isLiked, image: nil)
 
     }
     

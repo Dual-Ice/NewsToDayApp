@@ -9,6 +9,7 @@ import UIKit
 
 protocol MainVCDelegate{
     func reloadCollectionView()
+    func reloadCollectionView(section: Int)
     func setSearchBarDelegate(vc: MainViewController)
     func setCollectionViewDelegate(vc: MainViewController)
     func setCollectionViewDataSource(vc: MainViewController)
@@ -22,6 +23,8 @@ class MainViewController: CustomViewController<MainView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
+        presenter?.getNewsByCategory(category: "Business")
+        presenter?.getRecomendedNews(categoryArray: ["Science", "Health"])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +42,10 @@ class MainViewController: CustomViewController<MainView> {
 }
 //MARK: - MainViewProtocol
 extension MainViewController: MainViewProtocol {
+    func reloadSectionCollectionView(section: Int) {
+        mainView?.reloadCollectionView(section: section)
+    }
+    
     func reloadCollectionView() {
         mainView?.reloadCollectionView()
     }
@@ -62,9 +69,9 @@ extension MainViewController: UICollectionViewDataSource{
             case .categories(let categories):
                 return categories.count
             case .corusel(_):
-                return 3
+                return presenter.newsDataByCatagory.count
             case .recomendations(_):
-                return 6
+                return presenter.recomendedNews.count
             }
         }else{
             return 0
@@ -80,19 +87,33 @@ extension MainViewController: UICollectionViewDataSource{
             cell.configCell(categoryLabelText: categories[indexPath.row].articleCategory, emojiString: nil)
             presenter?.selectedIndexPath == indexPath ?  cell.setSelectedColors() : cell.setDefaultColors()// меняет цвет при переиспользовании ячейки
             return cell
-        case .corusel(let corusel):
+        case .corusel(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArticleCouruselCell.resuseID, for: indexPath) as? ArticleCouruselCell else { return UICollectionViewCell() }
-            let data = corusel[indexPath.row]
+            let data = presenter?.newsDataByCatagory[indexPath.row]
             let favoriteData = presenter?.favorities
-            cell.configCell(categoryLabelText: data.articleCategory, articleNameText: data.articleName, image: UIImage(named: data.image ), isLiked: favoriteData?[data] ?? false )
-            cell.onFavoriteButtonTap = { [weak self] event in
-                self?.presenter?.handleCellEvent(article: data, event: event)
-            }
+            presenter?.loadImageByCategories(imageUrl: data?.imageUrl, completion: { image in
+                let categoryText = self.presenter?.convertToString(arrayStrings: data?.category ?? [])
+                let articleNameText = data?.title
+                let isLiked = data?.isFavourite ?? false
+                let imageToUse = image ?? UIImage(named: "noImage")
+
+                cell.configCell(categoryLabelText: categoryText, articleNameText: articleNameText, image: imageToUse, isLiked: isLiked)
+            })
+            cell.configCell(categoryLabelText: presenter?.convertToString(arrayStrings: data?.category ?? []), articleNameText: data?.title, image: nil, isLiked: data?.isFavourite ?? false) //favoriteData?[data] ?? false
+//            cell.onFavoriteButtonTap = { [weak self] event in
+//                self?.presenter?.handleCellEvent(article: data, event: event)
+//            }
             return cell
-        case .recomendations(let recomendations):
+        case .recomendations(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecomendedCell.resuseID, for: indexPath) as? RecomendedCell else { return UICollectionViewCell() }
-            let data = recomendations[indexPath.row]
-            cell.configCell(categoryLabelText: data.articleCategory, articleNameText: data.articleName, image: UIImage(named: data.image ))
+            let data = presenter?.recomendedNews[indexPath.row]
+            presenter?.loadImageByCategories(imageUrl: data?.imageUrl, completion: { image in
+                let categoryText = self.presenter?.convertToString(arrayStrings: data?.category ?? [])
+                let articleNameText = data?.title
+                let imageToUse = image ?? UIImage(named: "noImage")
+                cell.configCell(categoryLabelText: categoryText, articleNameText: articleNameText, image: imageToUse)
+            })
+            cell.configCell(categoryLabelText: presenter?.convertToString(arrayStrings: data?.category ?? []), articleNameText: data?.title, image: nil)
             return cell
         case .none:
             return UICollectionViewCell()
@@ -123,29 +144,17 @@ extension MainViewController: UICollectionViewDelegate{
                 }
                 cell.setSelectedColors()
                 presenter?.saveSelectedCell(indexPath: indexPath)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    self.presenter?.goToRecomendedVC()
-                }
+                presenter?.getNewsByCategory(category: gategories[indexPath.row].articleCategory)
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                    self.presenter?.goToRecomendedVC()
+//                }
                 print("gategories \(gategories[indexPath.row].articleCategory )")
             }
-                // mainView?.reloadCollectionView() // запрос в сеть и в нем уже  reloadCollectionView
-                
-                //                if let previouslySelectedIndexPath = previouslySelectedIndexPath,
-                //                   let previousCell = collectionView.cellForItem(at: previouslySelectedIndexPath) as? CategoriesCell {
-                //                    previousCell.setDefaultColors()
-                //                }
-                //                cell.setSelectedColors()
-                //                previouslySelectedIndexPath = indexPath
-                //                presenter?.saveSelectedCell(indexPath: indexPath)
-                //                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                //                    self.presenter?.goToRecomendedVC()
-                //                }
-            
         case .corusel(let corusel):
-            let favorite = presenter?.favorities[corusel[indexPath.row]]
-            presenter?.goToDetailVC(data: corusel[indexPath.row], isLiked: favorite ?? false)
-        case .recomendations(let recomendations):
-            print("recomendations \(recomendations[indexPath.row].articleCategory)")
+            //let favorite = presenter?.favorities[corusel[indexPath.row]]
+            presenter?.goToDetailVC(data: presenter?.newsDataByCatagory[indexPath.row], isLiked: false) //favorite ?? false
+        case .recomendations(_):
+            presenter?.goToDetailVC(data: presenter?.recomendedNews[indexPath.row], isLiked: false)
         case .none:
             print("none case tapped")
         }

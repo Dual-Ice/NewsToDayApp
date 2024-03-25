@@ -149,5 +149,12 @@ extension MainView: MainVCDelegate{
             self.collectionView.reloadData()
         }
     }
+    
+    func reloadCollectionView(section: Int) {
+        DispatchQueue.main.async {
+            let indexSet = IndexSet(integer: section)
+            self.collectionView.reloadSections(indexSet)
+        }
+    }
 }
 

@@ -73,6 +73,7 @@ class RecomendedCell: UICollectionViewCell {
         categoryLabel.snp.makeConstraints { make in
             make.bottom.equalTo(articleNameLabel.snp.top).offset(-8)
             make.leading.equalTo(backImage.snp.trailing).offset(16)
+            make.trailing.equalTo(contentView.snp.trailing).offset(-8)
         }
         
         articleNameLabel.snp.makeConstraints { make in
@@ -93,9 +94,8 @@ extension RecomendedCell{
             spinner.removeFromSuperview()
             backImage.image = image
         } else{
-            //setUpSpiner() //добавить spineer
-            backImage.backgroundColor = .blue
-            
+            setUpSpiner() //добавить spineer
+            backImage.backgroundColor = .lightGray
         }
     }
 }

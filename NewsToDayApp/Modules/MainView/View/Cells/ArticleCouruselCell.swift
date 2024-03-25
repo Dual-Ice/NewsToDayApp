@@ -127,8 +127,8 @@ extension ArticleCouruselCell{
             spinner.removeFromSuperview()
             backImage.image = image
         } else{
-            //setUpSpiner() //setUpSpiner() //добавить spineer
-            backImage.backgroundColor = .blue
+            setUpSpiner() //добавить spineer
+            backImage.backgroundColor = .none
         }
     }
 }

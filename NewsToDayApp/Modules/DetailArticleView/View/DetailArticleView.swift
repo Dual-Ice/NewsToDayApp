@@ -48,34 +48,24 @@ final class DetailArticleView: CustomView {
     private let shareButton = ButtonsFactory.makeButton()
     
     //MARK: - ConfigView public method
-    func configView(data: MockItem?, isLiked: Bool?){
+    func configView(data: Article?, isLiked: Bool?, image: UIImage?){
         //MARK: - config backImage
-        let image = UIImage(named: data?.image ?? "")
         if let image = image{
             backImage.image = image
         } else{
-            backImage.backgroundColor = .blue
+            backImage.backgroundColor = .white
         }
         //MARK: - config favoriteButton
         let favoriteImage: UIImage? = isLiked ?? false ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-bordered")
         favoriteButton.setBackgroundImage(favoriteImage, for: .normal)
         //MARK: - config Labels
-        categoryLabel.text = data?.articleCategory
-        articleNameLabel.text = data?.articleName
-        authorNameLabel.text = "Default Author"
+        categoryLabel.text = data?.category.joined(separator: ",").uppercased()
+        articleNameLabel.text = data?.title
+        authorNameLabel.text = data?.creator?.joined(separator: ",")  ?? "Author"
         //MARK: - config newsText
-        newsText.text = """
-        Leads in individual states may change from one party to another as all the votes are counted. Select a state for detailed results, and select the Senate, House or Governor tabs to view those races.
-        
-        For more detailed state results click on the States A-Z links at the bottom of this page. Results source: NEP/Edison via Reuters.
-
-        Leads in individual states may change from one party to another as all the votes are counted. Select a state for detailed results, and select the Senate, House or Governor tabs to view those races.
-
-        For more detailed state results click on the States A-Z links at the bottom of this page. Results source: NEP/Edison via Reuters.
-        Leads in individual states may change from one party to another as all the votes are counted. Select a state for detailed results, and select the Senate, House or Governor tabs to view those races.
-
-        For more detailed state results click on the States A-Z links at the bottom of this page. Results source: NEP/Edison via Reuters.
-"""
+        let descriptionText = data?.description ?? "No Description"
+        let repeatedText = String(repeating: descriptionText, count: 10)
+        newsText.text = repeatedText
     }
     
     override func setViews() {
@@ -137,6 +127,7 @@ final class DetailArticleView: CustomView {
         articleNameLabel.snp.makeConstraints { make in
             make.bottom.equalTo(authorNameLabel.snp.top).offset(-32)
             make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-8)
         }
         
         categoryLabeImage.snp.makeConstraints { make in
@@ -173,6 +164,7 @@ final class DetailArticleView: CustomView {
         categoryLabeImage.backgroundColor = UIColor(named: ConstColors.purplePrimary)
         //MARK: - setUp Labels
         articleNameLabel.font = UIFont.TextFont.Article.articleLabel
+        articleNameLabel.numberOfLines = 3
         authorNameLabel.font = UIFont.TextFont.Article.authorName
         authorLabel.font = UIFont.TextFont.Article.authorLabel
         authorLabel.text = NSLocalizedString("DetailArticleViewAuthor", comment: "")

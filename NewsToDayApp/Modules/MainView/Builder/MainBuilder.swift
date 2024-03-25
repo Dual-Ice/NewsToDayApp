@@ -19,7 +19,9 @@ class MainBuilder: MainBuilderProtocol {
         let vc = MainViewController()
         let navigationController = UINavigationController(rootViewController: vc)
         let router = MainRouter(navigationVC: navigationController)
-        let presenter = MainPresenter(view: vc, router: router)
+        let newsManager = NewsManager()
+        let imageManager = ImageManager()
+        let presenter = MainPresenter(view: vc, router: router, newsManager: newsManager, imageManager: imageManager)
         vc.presenter = presenter
         return navigationController
     }
