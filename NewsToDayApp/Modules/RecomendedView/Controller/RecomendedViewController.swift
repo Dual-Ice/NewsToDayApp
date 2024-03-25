@@ -73,6 +73,6 @@ extension RecomendedViewController: UITableViewDataSource{
 //MARK: - UITableViewDelegate
 extension RecomendedViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.goToDetailVC(data: presenter?.data[indexPath.row], isLiked: false)
+        presenter?.goToDetailVC(data: presenter?.data[indexPath.row], isLiked: presenter?.data[indexPath.row].isFavourite ?? false)
     }
 }

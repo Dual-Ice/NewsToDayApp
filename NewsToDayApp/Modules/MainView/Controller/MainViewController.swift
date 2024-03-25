@@ -94,7 +94,6 @@ extension MainViewController: UICollectionViewDataSource{
         case .corusel(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArticleCouruselCell.resuseID, for: indexPath) as? ArticleCouruselCell else { return UICollectionViewCell() }
             let data = presenter?.newsDataByCatagory[indexPath.row]
-            let favoriteData = presenter?.favorities
             presenter?.loadImageByCategories(imageUrl: data?.imageUrl, completion: { image in
                 let categoryText = self.presenter?.convertToString(arrayStrings: data?.category ?? [])
                 let articleNameText = data?.title
@@ -153,7 +152,7 @@ extension MainViewController: UICollectionViewDelegate{
         case .corusel(_):
             presenter?.goToDetailVC(data: presenter?.newsDataByCatagory[indexPath.row], isLiked: presenter?.newsDataByCatagory[indexPath.row].isFavourite ?? false)
         case .recomendations(_):
-            presenter?.goToDetailVC(data: presenter?.recomendedNews[indexPath.row], isLiked: false)
+            presenter?.goToDetailVC(data: presenter?.recomendedNews[indexPath.row], isLiked: presenter?.newsDataByCatagory[indexPath.row].isFavourite ?? false)
         case .none:
             print("none case tapped")
         }

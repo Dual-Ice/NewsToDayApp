@@ -18,7 +18,7 @@ protocol MainPresenterProtocol: AnyObject {
     
     init(view: MainViewProtocol, router: MainRouterProtocol, newsManager: NewsManager,  imageManager: ImageManager )
     var mockData: [ListSectionModel] { get }
-    var favorities: [String : Bool] { get }
+//    var favorities: [String : Bool] { get }
     var selectedIndexPath: IndexPath { get }
     func saveSelectedCell(indexPath: IndexPath)
     func handleCellEvent(article: Int, event: FavoriteButtonCellEvent)
@@ -39,7 +39,7 @@ protocol MainPresenterProtocol: AnyObject {
 class MainPresenter: MainPresenterProtocol {
     
     var selectedIndexPath: IndexPath = .init()
-    var favorities: [String : Bool] = .init()
+   // var favorities: [String : Bool] = .init()
     
     var newsDataByCatagory: [Article] = .init()
     var recomendedNews: [Article] = .init()
