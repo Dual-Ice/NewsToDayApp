@@ -15,11 +15,11 @@ protocol RecomendedPresenterViewProtocol: AnyObject {
 
 protocol RecomendedPresenterProtocol: AnyObject {
     
-    init(view: RecomendedPresenterViewProtocol, router: RecomendedRouterProtocol, newsManager: NewsManager, imageManager: ImageManager)
+    init(view: RecomendedPresenterViewProtocol, router: RecomendedRouterProtocol, newsManager: NewsManager, imageManager: ImageManager, searchWord: String?)
     var data: [Article] { get }
-    func getRecomendedNews(categoryArray: [String])
     func loadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
     func goToDetailVC(data: Article?, isLiked: Bool)
+    func dismisRecomendedVC()
 }
 
 
@@ -30,16 +30,19 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
     var router: RecomendedRouterProtocol?
     private let newsManager: NewsManager
     private let imageManager: ImageManager
-    
-    required init(view: RecomendedPresenterViewProtocol, router: RecomendedRouterProtocol, newsManager: NewsManager, imageManager: ImageManager) {
+    private let searchWord: String?
+    required init(view: RecomendedPresenterViewProtocol, router: RecomendedRouterProtocol, newsManager: NewsManager, imageManager: ImageManager, searchWord: String?) {
         self.view = view
         self.router = router
         self.newsManager = newsManager
         self.imageManager = imageManager
+        self.searchWord = searchWord
+        print("SEARCH WORD \(searchWord)")
+        searchWord != nil ? getRecomendedNews(request: NewsRequest(query: searchWord)) : getRecomendedNews(request: NewsRequest(categories: ["Science", "Health"]))
+        
     }
     
-    func getRecomendedNews(categoryArray: [String]){
-        let request = NewsRequest(categories: categoryArray)
+    private func getRecomendedNews(request: NewsRequest){
         newsManager.getNews(with: request) { result in
             DispatchQueue.main.async {
                 switch result{
@@ -70,5 +73,9 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
     
     func goToDetailVC(data: Article?, isLiked: Bool){
         router?.goToDetailVC(data: data, isLiked: isLiked)
+    }
+    
+    func dismisRecomendedVC(){
+        router?.dismissVC()
     }
 }

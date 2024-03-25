@@ -10,6 +10,7 @@ import UIKit
 protocol MainVCDelegate{
     func reloadCollectionView()
     func reloadCollectionView(section: Int)
+    func reloadOneCell(indexItem: Int)
     func setSearchBarDelegate(vc: MainViewController)
     func setCollectionViewDelegate(vc: MainViewController)
     func setCollectionViewDataSource(vc: MainViewController)
@@ -19,7 +20,7 @@ class MainViewController: CustomViewController<MainView> {
     
     var presenter: MainPresenterProtocol?
     var mainView: MainVCDelegate?
-    //var previouslySelectedIndexPath: IndexPath?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
@@ -49,6 +50,10 @@ extension MainViewController: MainViewProtocol {
     func reloadCollectionView() {
         mainView?.reloadCollectionView()
     }
+    
+    func reloadOneCell(indexItem: Int){
+        mainView?.reloadOneCell(indexItem: indexItem)
+    }
 }
 //MARK: - MainViewDelegate
 extension MainViewController: MainViewDelegate{
@@ -76,7 +81,6 @@ extension MainViewController: UICollectionViewDataSource{
         }else{
             return 0
         }
-        //return presenter?.mockData[section].countData ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -100,9 +104,9 @@ extension MainViewController: UICollectionViewDataSource{
                 cell.configCell(categoryLabelText: categoryText, articleNameText: articleNameText, image: imageToUse, isLiked: isLiked)
             })
             cell.configCell(categoryLabelText: presenter?.convertToString(arrayStrings: data?.category ?? []), articleNameText: data?.title, image: nil, isLiked: data?.isFavourite ?? false) //favoriteData?[data] ?? false
-//            cell.onFavoriteButtonTap = { [weak self] event in
-//                self?.presenter?.handleCellEvent(article: data, event: event)
-//            }
+            cell.onFavoriteButtonTap = { [weak self] event in
+                self?.presenter?.handleCellEvent(article: indexPath.row, event: event)
+            }
             return cell
         case .recomendations(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecomendedCell.resuseID, for: indexPath) as? RecomendedCell else { return UICollectionViewCell() }
@@ -146,9 +150,8 @@ extension MainViewController: UICollectionViewDelegate{
                 presenter?.saveSelectedCell(indexPath: indexPath)
                 presenter?.getNewsByCategory(category: gategories[indexPath.row].articleCategory)
             }
-        case .corusel(let corusel):
-            //let favorite = presenter?.favorities[corusel[indexPath.row]]
-            presenter?.goToDetailVC(data: presenter?.newsDataByCatagory[indexPath.row], isLiked: false) //favorite ?? false
+        case .corusel(_):
+            presenter?.goToDetailVC(data: presenter?.newsDataByCatagory[indexPath.row], isLiked: presenter?.newsDataByCatagory[indexPath.row].isFavourite ?? false)
         case .recomendations(_):
             presenter?.goToDetailVC(data: presenter?.recomendedNews[indexPath.row], isLiked: false)
         case .none:
@@ -160,7 +163,6 @@ extension MainViewController: UICollectionViewDelegate{
 //MARK: - HeaderButton SeeAll
 extension MainViewController: HeaderRecomendedViewDelegate {
     func tappedSeeAllButton() {
-        print("Tapped SeeAll")
         presenter?.goToRecomendedVC()
     }
 }
@@ -169,7 +171,7 @@ extension MainViewController: HeaderRecomendedViewDelegate {
 extension MainViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text, !searchText.isEmpty else { return }
-        print(searchText)
+        presenter?.goToSearchByWorldVC(searchWord: searchText)
         searchBar.resignFirstResponder()
     }
 }

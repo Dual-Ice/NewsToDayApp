@@ -11,7 +11,7 @@ import UIKit
 protocol RecomendedRouterProtocol: AnyObject {
     init(navigationVC: UINavigationController)
     func goToDetailVC(data: Article?, isLiked: Bool)
-  
+    func dismissVC()
     
 }
 
@@ -27,5 +27,10 @@ class RecomendedRouter: RecomendedRouterProtocol {
         let detailVC = DetailArticleBuilder(navigationVC: navigationVC).buildDetailArticleVC(data: data, isLiked: isLiked)
         guard let detailVC else { return }
         navigationVC.pushViewController(detailVC, animated: true)
+    }
+    
+    func dismissVC(){
+        guard let navigationVC else { return }
+        navigationVC.popViewController(animated: true)
     }
 }

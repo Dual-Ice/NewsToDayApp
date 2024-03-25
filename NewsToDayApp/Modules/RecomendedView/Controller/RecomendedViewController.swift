@@ -21,12 +21,11 @@ class RecomendedViewController: CustomViewController<RecomendedView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
-        presenter?.getRecomendedNews(categoryArray: ["Science", "Health"])
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.isHidden = true
     }
     
     private func setDelegates(){
@@ -42,13 +41,15 @@ extension RecomendedViewController: RecomendedPresenterViewProtocol {
     func reloadTableView() {
         recomendedView?.reloadTableView()
     }
-
 }
 
 //MARK: - RecomendedViewDelegate
 extension RecomendedViewController: RecomendedViewDelegate{
-    
+    func tappedBackButton() {
+        presenter?.dismisRecomendedVC()
+    }
 }
+
 //MARK: - UITableViewDataSource
 extension RecomendedViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,6 +73,6 @@ extension RecomendedViewController: UITableViewDataSource{
 //MARK: - UITableViewDelegate
 extension RecomendedViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.goToDetailVC(data: presenter?.data[indexPath.row], isLiked: false) //favorite ?? false
+        presenter?.goToDetailVC(data: presenter?.data[indexPath.row], isLiked: false)
     }
 }

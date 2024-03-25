@@ -132,6 +132,14 @@ private extension MainView{
 
 //MARK: - MainVCDelegate
 extension MainView: MainVCDelegate{
+    func reloadOneCell(indexItem: Int) {
+        let indexPath = IndexPath(item: indexItem, section: 1)
+        DispatchQueue.main.async {
+            self.collectionView.reloadItems(at: [indexPath])
+            print("RELOAD ONE CELL")
+        }
+    }
+    
     func setCollectionViewDataSource(vc: MainViewController) {
         collectionView.dataSource = vc
     }

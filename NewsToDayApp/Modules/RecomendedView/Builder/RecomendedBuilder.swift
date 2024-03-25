@@ -9,7 +9,7 @@ import UIKit
 
 protocol RecomendedBuilderProtocol: AnyObject {
     
-    func buildRecomendedVC() -> UIViewController?
+    func buildRecomendedVC(searchWord: String?) -> UIViewController?
 }
 
 class RecomendedBuilder: RecomendedBuilderProtocol{
@@ -19,13 +19,13 @@ class RecomendedBuilder: RecomendedBuilderProtocol{
         self.navigationVC = navigationVC
     }
     
-    func buildRecomendedVC() -> UIViewController? {
+    func buildRecomendedVC(searchWord: String?) -> UIViewController? {
        guard let navigationVC = navigationVC else { return nil}
         let vc = RecomendedViewController()
         let router = RecomendedRouter(navigationVC: navigationVC)
         let newsManager = NewsManager()
         let imageManager = ImageManager()
-        let presenter = RecomendedPresenter(view: vc, router: router, newsManager: newsManager, imageManager: imageManager)
+        let presenter = RecomendedPresenter(view: vc, router: router, newsManager: newsManager, imageManager: imageManager, searchWord: searchWord)
         vc.presenter = presenter
         return vc
     }

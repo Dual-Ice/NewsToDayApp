@@ -11,19 +11,21 @@ import UIKit
 protocol MainViewProtocol: AnyObject {
     func reloadCollectionView()
     func reloadSectionCollectionView(section: Int)
+    func reloadOneCell(indexItem: Int)
 }
 
 protocol MainPresenterProtocol: AnyObject {
     
     init(view: MainViewProtocol, router: MainRouterProtocol, newsManager: NewsManager,  imageManager: ImageManager )
     var mockData: [ListSectionModel] { get }
-    var favorities: [MockItem : Bool] { get }
+    var favorities: [String : Bool] { get }
     var selectedIndexPath: IndexPath { get }
     func saveSelectedCell(indexPath: IndexPath)
-    func handleCellEvent(article: MockItem, event: FavoriteButtonCellEvent)
+    func handleCellEvent(article: Int, event: FavoriteButtonCellEvent)
     
     func goToDetailVC(data: Article?, isLiked: Bool)
     func goToRecomendedVC()
+    func goToSearchByWorldVC(searchWord: String)
     
     func getNewsByCategory(category: String)
     var newsDataByCatagory: [Article] { get }
@@ -31,14 +33,13 @@ protocol MainPresenterProtocol: AnyObject {
     func getRecomendedNews(categoryArray: [String])
     func convertToString(arrayStrings: [String]) -> String
     func loadImageByCategories(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
-    //func loadImageRecomended(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
     
 }
 
 class MainPresenter: MainPresenterProtocol {
     
     var selectedIndexPath: IndexPath = .init()
-    var favorities: [MockItem : Bool] = .init()
+    var favorities: [String : Bool] = .init()
     
     var newsDataByCatagory: [Article] = .init()
     var recomendedNews: [Article] = .init()
@@ -82,6 +83,7 @@ class MainPresenter: MainPresenterProtocol {
     
     func getRecomendedNews(categoryArray: [String]){
         let request = NewsRequest(categories: categoryArray, size: 5)
+        recomendedNews = .init() //очищать массив при смене массива категорий
         newsManager.getNews(with: request) { result in
             DispatchQueue.main.async {
                 switch result{
@@ -109,33 +111,17 @@ class MainPresenter: MainPresenterProtocol {
             }
         })
     }
-//    
-//    func loadImageRecomended(imageUrl: String?, completion: @escaping (UIImage?) -> Void) {
-//        imageManager.getImage(for: imageUrl, completion: { result in
-//            DispatchQueue.main.async {
-//                switch result {
-//                case .success(let image):
-//                    completion(image)
-//                case .failure(let error):
-//                    print(" error downloadImage \(error.localizedDescription)")
-//                    completion(nil)
-//                }
-//            }
-//        })
-//    }
-
     
     func convertToString(arrayStrings: [String]) -> String {
         return arrayStrings.joined(separator: ",")
     }
     
-    func handleCellEvent(article: MockItem, event: FavoriteButtonCellEvent) {
+    func handleCellEvent(article: Int, event: FavoriteButtonCellEvent) {
         switch event {
         case .favoriteDidTapped:
-            favorities[article] = !(favorities[article] ?? false) //если нет значения то ?? вернет false и favorities[article] = !false то есть true
-            print("tapped favorite button on cell\(favorities)")
-            view?.reloadCollectionView()
-            if favorities[article] == true {
+            newsDataByCatagory[article].isFavourite = !newsDataByCatagory[article].isFavourite
+            view?.reloadOneCell(indexItem: article)
+            if newsDataByCatagory[article].isFavourite == true {
                 //сохранить в закладки
             } else {
                 //удалить из закладок если нажал на кнопку в ячейки повторно
@@ -149,6 +135,10 @@ class MainPresenter: MainPresenterProtocol {
     
     func goToRecomendedVC() {
         router?.pushRecomendedView()
+    }
+    
+    func goToSearchByWorldVC(searchWord: String){
+        router?.pushSearchByWordScreen(searchWord: searchWord)
     }
     
 }

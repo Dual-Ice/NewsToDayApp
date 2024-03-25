@@ -13,7 +13,7 @@ protocol MainRouterProtocol: AnyObject {
     init(navigationVC: UINavigationController)
     func pushDetailVC(data: Article?, isLiked: Bool)
     func pushRecomendedView()
-    
+    func pushSearchByWordScreen(searchWord: String)
 }
 
 class MainRouter: MainRouterProtocol {
@@ -33,8 +33,15 @@ class MainRouter: MainRouterProtocol {
     
     func pushRecomendedView(){
         guard let navigationVC = navigationVC else { return }
-        let recomendedVC = RecomendedBuilder(navigationVC: navigationVC).buildRecomendedVC()
+        let recomendedVC = RecomendedBuilder(navigationVC: navigationVC).buildRecomendedVC(searchWord: nil)
         guard let recomendedVC else { return }
         navigationVC.pushViewController(recomendedVC, animated: true)
+    }
+    
+    func pushSearchByWordScreen(searchWord: String){
+        guard let navigationVC = navigationVC else { return }
+        let serachByWordVC = RecomendedBuilder(navigationVC: navigationVC).buildRecomendedVC(searchWord: searchWord)
+        guard let serachByWordVC else { return }
+        navigationVC.pushViewController(serachByWordVC, animated: true)
     }
 }
