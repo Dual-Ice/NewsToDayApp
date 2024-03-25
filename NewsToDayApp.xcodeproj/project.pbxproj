@@ -45,6 +45,30 @@
 		369AB6932BADB30700EBF483 /* RecomendedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6922BADB30700EBF483 /* RecomendedPresenter.swift */; };
 		369AB6952BADB41400EBF483 /* RecomendedBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6942BADB41400EBF483 /* RecomendedBuilder.swift */; };
 		369AB6972BADB4D000EBF483 /* RecomendedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6962BADB4D000EBF483 /* RecomendedRouter.swift */; };
+		59DEB0682BB1B8240011DE99 /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEB0592BB1B8230011DE99 /* AuthPresenter.swift */; };
+		59DEB0692BB1B8240011DE99 /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEB05B2BB1B8230011DE99 /* LoginUserRequest.swift */; };
+		59DEB06A2BB1B8240011DE99 /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEB05C2BB1B8230011DE99 /* RegisterUserRequest.swift */; };
+		59DEB06C2BB1B8240011DE99 /* FirestoreUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEB05E2BB1B8230011DE99 /* FirestoreUser.swift */; };
+		59DEB06D2BB1B8240011DE99 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEB0602BB1B8230011DE99 /* AuthViewController.swift */; };
+		59DEB06E2BB1B8240011DE99 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEB0622BB1B8230011DE99 /* AuthenticationView.swift */; };
+		59DEB06F2BB1B8240011DE99 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEB0632BB1B8230011DE99 /* BaseTextField.swift */; };
+		59DEB0702BB1B8240011DE99 /* AuthBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEB0652BB1B8230011DE99 /* AuthBuilder.swift */; };
+		59DEB0712BB1B8240011DE99 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEB0672BB1B8230011DE99 /* AuthRouter.swift */; };
+		59DEB0772BB1B85E0011DE99 /* AuthAlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEB0732BB1B85E0011DE99 /* AuthAlertManager.swift */; };
+		59DEB0782BB1B85E0011DE99 /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEB0742BB1B85E0011DE99 /* ValidationManager.swift */; };
+		59DEB0792BB1B85E0011DE99 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEB0752BB1B85E0011DE99 /* AuthManager.swift */; };
+		59DEB07A2BB1B85E0011DE99 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEB0762BB1B85E0011DE99 /* FirestoreManager.swift */; };
+		59DEB07C2BB1B8890011DE99 /* TextFieldFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEB07B2BB1B8890011DE99 /* TextFieldFactory.swift */; };
+		59DEB0852BB1B8B50011DE99 /* email-editing.png in Resources */ = {isa = PBXBuildFile; fileRef = 59DEB07E2BB1B8B50011DE99 /* email-editing.png */; };
+		59DEB0862BB1B8B50011DE99 /* email-basic.png in Resources */ = {isa = PBXBuildFile; fileRef = 59DEB07F2BB1B8B50011DE99 /* email-basic.png */; };
+		59DEB0872BB1B8B50011DE99 /* user-editing.png in Resources */ = {isa = PBXBuildFile; fileRef = 59DEB0802BB1B8B50011DE99 /* user-editing.png */; };
+		59DEB0882BB1B8B50011DE99 /* user-basic.png in Resources */ = {isa = PBXBuildFile; fileRef = 59DEB0812BB1B8B50011DE99 /* user-basic.png */; };
+		59DEB0892BB1B8B50011DE99 /* password-basic.png in Resources */ = {isa = PBXBuildFile; fileRef = 59DEB0822BB1B8B50011DE99 /* password-basic.png */; };
+		59DEB08A2BB1B8B50011DE99 /* secureInput.png in Resources */ = {isa = PBXBuildFile; fileRef = 59DEB0832BB1B8B50011DE99 /* secureInput.png */; };
+		59DEB08B2BB1B8B50011DE99 /* password-editing.png in Resources */ = {isa = PBXBuildFile; fileRef = 59DEB0842BB1B8B50011DE99 /* password-editing.png */; };
+		59DEB08D2BB1B9C60011DE99 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59DEB08C2BB1B9C60011DE99 /* GoogleService-Info.plist */; };
+		59DEB08F2BB1BA140011DE99 /* UITextfield + Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEB08E2BB1BA140011DE99 /* UITextfield + Icon.swift */; };
+		59DEB0912BB1BD080011DE99 /* UITapGestureRecognizer + AttributedTextLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEB0902BB1BD080011DE99 /* UITapGestureRecognizer + AttributedTextLocator.swift */; };
 		A5CBDB9A2BA75DD500C81385 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB992BA75DD500C81385 /* AppDelegate.swift */; };
 		A5CBDB9C2BA75DD500C81385 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB9B2BA75DD500C81385 /* SceneDelegate.swift */; };
 		A5CBDBA32BA75DD900C81385 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CBDBA22BA75DD900C81385 /* Assets.xcassets */; };
@@ -167,6 +191,30 @@
 		369AB6922BADB30700EBF483 /* RecomendedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendedPresenter.swift; sourceTree = "<group>"; };
 		369AB6942BADB41400EBF483 /* RecomendedBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendedBuilder.swift; sourceTree = "<group>"; };
 		369AB6962BADB4D000EBF483 /* RecomendedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendedRouter.swift; sourceTree = "<group>"; };
+		59DEB0592BB1B8230011DE99 /* AuthPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
+		59DEB05B2BB1B8230011DE99 /* LoginUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
+		59DEB05C2BB1B8230011DE99 /* RegisterUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
+		59DEB05E2BB1B8230011DE99 /* FirestoreUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirestoreUser.swift; sourceTree = "<group>"; };
+		59DEB0602BB1B8230011DE99 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		59DEB0622BB1B8230011DE99 /* AuthenticationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		59DEB0632BB1B8230011DE99 /* BaseTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
+		59DEB0652BB1B8230011DE99 /* AuthBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthBuilder.swift; sourceTree = "<group>"; };
+		59DEB0672BB1B8230011DE99 /* AuthRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
+		59DEB0732BB1B85E0011DE99 /* AuthAlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthAlertManager.swift; sourceTree = "<group>"; };
+		59DEB0742BB1B85E0011DE99 /* ValidationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
+		59DEB0752BB1B85E0011DE99 /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		59DEB0762BB1B85E0011DE99 /* FirestoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
+		59DEB07B2BB1B8890011DE99 /* TextFieldFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldFactory.swift; sourceTree = "<group>"; };
+		59DEB07E2BB1B8B50011DE99 /* email-editing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email-editing.png"; sourceTree = "<group>"; };
+		59DEB07F2BB1B8B50011DE99 /* email-basic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email-basic.png"; sourceTree = "<group>"; };
+		59DEB0802BB1B8B50011DE99 /* user-editing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-editing.png"; sourceTree = "<group>"; };
+		59DEB0812BB1B8B50011DE99 /* user-basic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-basic.png"; sourceTree = "<group>"; };
+		59DEB0822BB1B8B50011DE99 /* password-basic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password-basic.png"; sourceTree = "<group>"; };
+		59DEB0832BB1B8B50011DE99 /* secureInput.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = secureInput.png; sourceTree = "<group>"; };
+		59DEB0842BB1B8B50011DE99 /* password-editing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password-editing.png"; sourceTree = "<group>"; };
+		59DEB08C2BB1B9C60011DE99 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		59DEB08E2BB1BA140011DE99 /* UITextfield + Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextfield + Icon.swift"; sourceTree = "<group>"; };
+		59DEB0902BB1BD080011DE99 /* UITapGestureRecognizer + AttributedTextLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITapGestureRecognizer + AttributedTextLocator.swift"; sourceTree = "<group>"; };
 		A5CBDB962BA75DD500C81385 /* NewsToDayApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsToDayApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CBDB992BA75DD500C81385 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CBDB9B2BA75DD500C81385 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -270,6 +318,7 @@
 				369AB62A2BA8BB6100EBF483 /* LabelsFactory.swift */,
 				369AB62C2BA8BB7800EBF483 /* ImageViewsFactory.swift */,
 				369AB62E2BA8CADB00EBF483 /* ButtonsFactory.swift */,
+				59DEB07B2BB1B8890011DE99 /* TextFieldFactory.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -550,6 +599,95 @@
 			path = Builder;
 			sourceTree = "<group>";
 		};
+		59DEB0572BB1B8230011DE99 /* AuthModule */ = {
+			isa = PBXGroup;
+			children = (
+				59DEB0582BB1B8230011DE99 /* Presenter */,
+				59DEB05A2BB1B8230011DE99 /* Models */,
+				59DEB05F2BB1B8230011DE99 /* Controller */,
+				59DEB0612BB1B8230011DE99 /* View */,
+				59DEB0632BB1B8230011DE99 /* BaseTextField.swift */,
+				59DEB0642BB1B8230011DE99 /* Builder */,
+				59DEB0662BB1B8230011DE99 /* Router */,
+			);
+			path = AuthModule;
+			sourceTree = "<group>";
+		};
+		59DEB0582BB1B8230011DE99 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				59DEB0592BB1B8230011DE99 /* AuthPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		59DEB05A2BB1B8230011DE99 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				59DEB05B2BB1B8230011DE99 /* LoginUserRequest.swift */,
+				59DEB05C2BB1B8230011DE99 /* RegisterUserRequest.swift */,
+				59DEB05E2BB1B8230011DE99 /* FirestoreUser.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		59DEB05F2BB1B8230011DE99 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				59DEB0602BB1B8230011DE99 /* AuthViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		59DEB0612BB1B8230011DE99 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				59DEB0622BB1B8230011DE99 /* AuthenticationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		59DEB0642BB1B8230011DE99 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				59DEB0652BB1B8230011DE99 /* AuthBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		59DEB0662BB1B8230011DE99 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				59DEB0672BB1B8230011DE99 /* AuthRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		59DEB0722BB1B85E0011DE99 /* Authorisation */ = {
+			isa = PBXGroup;
+			children = (
+				59DEB0732BB1B85E0011DE99 /* AuthAlertManager.swift */,
+				59DEB0742BB1B85E0011DE99 /* ValidationManager.swift */,
+				59DEB0752BB1B85E0011DE99 /* AuthManager.swift */,
+				59DEB0762BB1B85E0011DE99 /* FirestoreManager.swift */,
+			);
+			path = Authorisation;
+			sourceTree = "<group>";
+		};
+		59DEB07D2BB1B8B50011DE99 /* AuthIcons */ = {
+			isa = PBXGroup;
+			children = (
+				59DEB07E2BB1B8B50011DE99 /* email-editing.png */,
+				59DEB07F2BB1B8B50011DE99 /* email-basic.png */,
+				59DEB0802BB1B8B50011DE99 /* user-editing.png */,
+				59DEB0812BB1B8B50011DE99 /* user-basic.png */,
+				59DEB0822BB1B8B50011DE99 /* password-basic.png */,
+				59DEB0832BB1B8B50011DE99 /* secureInput.png */,
+				59DEB0842BB1B8B50011DE99 /* password-editing.png */,
+			);
+			path = AuthIcons;
+			sourceTree = "<group>";
+		};
 		A5CBDB8D2BA75DD500C81385 = {
 			isa = PBXGroup;
 			children = (
@@ -600,6 +738,8 @@
 				369AB61A2BA8833A00EBF483 /* UIImageView + ext.swift */,
 				369AB6302BA972C000EBF483 /* CompositionalLayout.swift */,
 				369AB6482BA9DB3C00EBF483 /* UIImage + ext.swift */,
+				59DEB08E2BB1BA140011DE99 /* UITextfield + Icon.swift */,
+				59DEB0902BB1BD080011DE99 /* UITapGestureRecognizer + AttributedTextLocator.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -612,6 +752,7 @@
 				A5CBDBA22BA75DD900C81385 /* Assets.xcassets */,
 				A5CBDBA42BA75DD900C81385 /* LaunchScreen.storyboard */,
 				A5CBDBA72BA75DD900C81385 /* Info.plist */,
+				59DEB08C2BB1B9C60011DE99 /* GoogleService-Info.plist */,
 				A5CBDC452BA7AE5E00C81385 /* Localizable.strings */,
 			);
 			path = Resources;
@@ -620,6 +761,7 @@
 		A5CBDBB12BA75E7F00C81385 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				59DEB0572BB1B8230011DE99 /* AuthModule */,
 				369AB6872BADB01D00EBF483 /* RecomendedView */,
 				369AB66F2BAC8CD500EBF483 /* CategoriesView */,
 				369AB65B2BAC493A00EBF483 /* BooksmarksView */,
@@ -633,6 +775,7 @@
 		A5CBDBB22BA75E8800C81385 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				59DEB0722BB1B85E0011DE99 /* Authorisation */,
 				A5CBDBB42BA75EA800C81385 /* Auth */,
 				A5CBDBB32BA75E9F00C81385 /* Network */,
 			);
@@ -818,6 +961,7 @@
 		D97126D12BA7A1E100FF3048 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				59DEB07D2BB1B8B50011DE99 /* AuthIcons */,
 				D9766B612BAB9566000B6AF6 /* bookmark-bordered.png */,
 				D9766B622BAB9566000B6AF6 /* bookmark-filled.png */,
 				D97126F22BA7A37F00FF3048 /* book-alt.png */,
@@ -942,26 +1086,34 @@
 				A5CBDBA62BA75DD900C81385 /* LaunchScreen.storyboard in Resources */,
 				D9766B642BAB9566000B6AF6 /* bookmark-filled.png in Resources */,
 				D97126E52BA7A2AC00FF3048 /* user-selected.png in Resources */,
+				59DEB08B2BB1B8B50011DE99 /* password-editing.png in Resources */,
 				D97126CB2BA7906000FF3048 /* Adamina-Regular.ttf in Resources */,
 				D97126E82BA7A2AC00FF3048 /* search.png in Resources */,
 				A5CBDBA32BA75DD900C81385 /* Assets.xcassets in Resources */,
+				59DEB0872BB1B8B50011DE99 /* user-editing.png in Resources */,
 				D97126CE2BA7906000FF3048 /* Inter-Bold.ttf in Resources */,
 				D97126E22BA7A2AC00FF3048 /* angle-right.png in Resources */,
 				D97126EF2BA7A2AC00FF3048 /* bookmark-selected.png in Resources */,
 				D97126EA2BA7A2AC00FF3048 /* signout.png in Resources */,
 				D9766B632BAB9566000B6AF6 /* bookmark-bordered.png in Resources */,
+				59DEB0882BB1B8B50011DE99 /* user-basic.png in Resources */,
 				A5CBDC432BA7AE5E00C81385 /* Localizable.strings in Resources */,
 				D97126CC2BA7906000FF3048 /* Inter-SemiBold.ttf in Resources */,
+				59DEB0852BB1B8B50011DE99 /* email-editing.png in Resources */,
+				59DEB0892BB1B8B50011DE99 /* password-basic.png in Resources */,
 				D97126F02BA7A2AC00FF3048 /* bookmark.png in Resources */,
 				D97126E42BA7A2AC00FF3048 /* main.png in Resources */,
 				D97126EE2BA7A2AC00FF3048 /* categories.png in Resources */,
+				59DEB0862BB1B8B50011DE99 /* email-basic.png in Resources */,
 				D97126E62BA7A2AC00FF3048 /* email.png in Resources */,
 				D97126ED2BA7A2AC00FF3048 /* user.png in Resources */,
 				D97126F32BA7A37F00FF3048 /* book-alt.png in Resources */,
 				D97126CD2BA7906000FF3048 /* Inter-Regular.ttf in Resources */,
 				D97126F12BA7A2AC00FF3048 /* main-selected.png in Resources */,
 				D97126E32BA7A2AC00FF3048 /* categories-selected.png in Resources */,
+				59DEB08D2BB1B9C60011DE99 /* GoogleService-Info.plist in Resources */,
 				D97126E92BA7A2AC00FF3048 /* password.png in Resources */,
+				59DEB08A2BB1B8B50011DE99 /* secureInput.png in Resources */,
 				D97126CA2BA7906000FF3048 /* Inter-Medium.ttf in Resources */,
 				D97126E72BA7A2AC00FF3048 /* share.png in Resources */,
 			);
@@ -975,6 +1127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5CBDBC52BA7630F00C81385 /* MainRouter.swift in Sources */,
+				59DEB06F2BB1B8240011DE99 /* BaseTextField.swift in Sources */,
 				369AB63E2BA97A5300EBF483 /* ArticleCouruselCell.swift in Sources */,
 				369AB61F2BA88B6300EBF483 /* ConstColors.swift in Sources */,
 				D97126FD2BAA01EA00FF3048 /* ImageManager.swift in Sources */,
@@ -982,6 +1135,8 @@
 				369AB6822BAD909A00EBF483 /* MockData.swift in Sources */,
 				369AB6672BAC4ACB00EBF483 /* BookmarksPresenter.swift in Sources */,
 				369AB6952BADB41400EBF483 /* RecomendedBuilder.swift in Sources */,
+				59DEB06A2BB1B8240011DE99 /* RegisterUserRequest.swift in Sources */,
+				59DEB08F2BB1BA140011DE99 /* UITextfield + Icon.swift in Sources */,
 				369AB67D2BAC8F2400EBF483 /* CategoriesPresenter.swift in Sources */,
 				A5CBDB9A2BA75DD500C81385 /* AppDelegate.swift in Sources */,
 				369AB6402BA97A6C00EBF483 /* RecomendedCell.swift in Sources */,
@@ -991,29 +1146,39 @@
 				369AB67B2BAC8EA800EBF483 /* CategoriesViewController.swift in Sources */,
 				369AB6392BA976EB00EBF483 /* ListSectionModel.swift in Sources */,
 				369AB6432BA9A07600EBF483 /* HeaderRecomendedView.swift in Sources */,
+				59DEB06C2BB1B8240011DE99 /* FirestoreUser.swift in Sources */,
 				A5CBDB9C2BA75DD500C81385 /* SceneDelegate.swift in Sources */,
 				A5CBDBC92BA7638500C81385 /* CustomView.swift in Sources */,
+				59DEB0912BB1BD080011DE99 /* UITapGestureRecognizer + AttributedTextLocator.swift in Sources */,
 				D97126F72BA9F31200FF3048 /* Article.swift in Sources */,
 				369AB6632BAC4A5100EBF483 /* BookmarksView.swift in Sources */,
 				369AB62F2BA8CADB00EBF483 /* ButtonsFactory.swift in Sources */,
+				59DEB0682BB1B8240011DE99 /* AuthPresenter.swift in Sources */,
+				59DEB07C2BB1B8890011DE99 /* TextFieldFactory.swift in Sources */,
+				59DEB07A2BB1B85E0011DE99 /* FirestoreManager.swift in Sources */,
 				A5CBDBF82BA77E0100C81385 /* ProfileRouter.swift in Sources */,
+				59DEB0782BB1B85E0011DE99 /* ValidationManager.swift in Sources */,
 				369AB6312BA972C000EBF483 /* CompositionalLayout.swift in Sources */,
 				A5CBDBC72BA7637700C81385 /* CustomViewController.swift in Sources */,
 				D97126FF2BAA099F00FF3048 /* NetworkError.swift in Sources */,
 				A5CBDBFC2BA77F8000C81385 /* ProfileView.swift in Sources */,
 				A5CBDBE82BA772B300C81385 /* CustomTabBar.swift in Sources */,
+				59DEB0772BB1B85E0011DE99 /* AuthAlertManager.swift in Sources */,
 				D97126FB2BAA01C300FF3048 /* NetworkManager.swift in Sources */,
 				A5CBDBED2BA776C100C81385 /* TabBarPresenter.swift in Sources */,
 				369AB6772BAC8D6900EBF483 /* CategoriesBuilder.swift in Sources */,
 				369AB6542BAB2A0200EBF483 /* DetailArticleViewController.swift in Sources */,
+				59DEB0702BB1B8240011DE99 /* AuthBuilder.swift in Sources */,
 				369AB63C2BA97A3800EBF483 /* CategoriesCell.swift in Sources */,
 				369AB6692BAC4B7D00EBF483 /* BookmarksRouter.swift in Sources */,
 				369AB6912BADB1CD00EBF483 /* RecomendedViewController.swift in Sources */,
 				369AB6522BAB29D100EBF483 /* DetailArticleView.swift in Sources */,
 				369AB61B2BA8833A00EBF483 /* UIImageView + ext.swift in Sources */,
+				59DEB06E2BB1B8240011DE99 /* AuthenticationView.swift in Sources */,
 				369AB6582BAC3AA700EBF483 /* DetailArticleBuilder.swift in Sources */,
 				369AB6972BADB4D000EBF483 /* RecomendedRouter.swift in Sources */,
 				369AB62D2BA8BB7800EBF483 /* ImageViewsFactory.swift in Sources */,
+				59DEB0792BB1B85E0011DE99 /* AuthManager.swift in Sources */,
 				369AB6792BAC8E8200EBF483 /* CategoriesView.swift in Sources */,
 				369AB66E2BAC5E6E00EBF483 /* BookmarksCell.swift in Sources */,
 				D97126F52BA7A3B500FF3048 /* Images.swift in Sources */,
@@ -1023,18 +1188,21 @@
 				369AB6352BA9752A00EBF483 /* MockItem.swift in Sources */,
 				A5CBDBBC2BA7618D00C81385 /* MainBuilder.swift in Sources */,
 				369AB6492BA9DB3C00EBF483 /* UIImage + ext.swift in Sources */,
+				59DEB0692BB1B8240011DE99 /* LoginUserRequest.swift in Sources */,
 				A5CBDBC32BA7627F00C81385 /* MainPresenter.swift in Sources */,
 				369AB66B2BAC4C5B00EBF483 /* BookmarksBuilder.swift in Sources */,
 				D97126F92BAA005A00FF3048 /* NewsManager.swift in Sources */,
 				A5CBDBFA2BA77F4900C81385 /* ProfileViewController.swift in Sources */,
 				369AB65A2BAC3DD000EBF483 /* DetailArticlePresenter.swift in Sources */,
 				369AB62B2BA8BB6200EBF483 /* LabelsFactory.swift in Sources */,
+				59DEB06D2BB1B8240011DE99 /* AuthViewController.swift in Sources */,
 				A5CBDBCB2BA76E1200C81385 /* MainViewController.swift in Sources */,
 				D97126D02BA7910C00FF3048 /* Fonts.swift in Sources */,
 				369AB6472BA9C95400EBF483 /* SearchBarView.swift in Sources */,
 				369AB6652BAC4A6B00EBF483 /* BookmarksViewController.swift in Sources */,
 				369AB6842BAD962C00EBF483 /* CategoriesModel.swift in Sources */,
 				369AB68F2BADB11300EBF483 /* RecomendedView.swift in Sources */,
+				59DEB0712BB1B8240011DE99 /* AuthRouter.swift in Sources */,
 				A5CBDBF62BA77C1000C81385 /* ProfilePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
