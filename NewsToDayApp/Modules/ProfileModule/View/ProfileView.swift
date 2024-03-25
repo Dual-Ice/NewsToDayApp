@@ -5,7 +5,6 @@
 //  Created by Sergey on 17.03.2024.
 //
 
-import Foundation
 import UIKit
 
 protocol ProfileViewDelegate: AnyObject {
@@ -133,5 +132,9 @@ class ProfileView: CustomView {
     
     @objc private func termsAndConditionsButtonTapped(){
         delegate?.termsAndConditionsButtonTapped()
+    
+    func configure(with user: FirestoreUser) {
+        usernameLabel.text = user.username
     }
+
 }

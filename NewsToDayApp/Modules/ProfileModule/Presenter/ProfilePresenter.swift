@@ -5,12 +5,11 @@
 //  Created by Sergey on 17.03.2024.
 //
 
-import Foundation
 import UIKit
 
 protocol ProfilePresenterViewProtocol: AnyObject {
     
-    
+    func render(with user: FirestoreUser)
 }
 
 protocol ProfilePresenterProtocol: AnyObject {
@@ -30,6 +29,10 @@ class ProfilePresenter: ProfilePresenterProtocol {
     required init(view: ProfilePresenterViewProtocol, router: ProfileRouterProtocol) {
         self.view = view
         self.router = router
+        AuthManager.shared.fetchUser { [weak self] user, error in
+            guard let user = user else { return }
+            self?.view?.render(with: user)
+        }
     }
     
     func goToLanguagesVC() {
