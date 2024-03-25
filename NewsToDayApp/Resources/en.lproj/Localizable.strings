@@ -65,6 +65,12 @@
 "RecomendedViewTitle" = "All article by Categories";
 "RecomendedViewSubTitle" = "Recomended for you";
 
+//MARK: - ImagePicker
+"ImagePickerChooseFromLibrary" = "Choose from Library";
+"ImagePickerTakePhoto" = "Take Photo";
+"ImagePickerCameraError" = "Camera not available";
+"ImagePickerCancel" = "Cancel";
+
 //MARK: - Network Errors
 "InvalidURL" = "Invalid URL!";
 "EmptyResponse" = "No data from network call!";

@@ -65,6 +65,12 @@
 "RecomendedViewTitle" = "Все статьи";
 "RecomendedViewSubTitle" = "Рекомендации для тебя";
 
+//MARK: - ImagePicker
+"ImagePickerChooseFromLibrary" = "Выбрать из галереи";
+"ImagePickerTakePhoto" = "Сделать фото";
+"ImagePickerCameraError" = "Камера недоступна";
+"ImagePickerCancel" = "Отмена";
+
 //MARK: - Network Errors
 "InvalidURL" = "Неверный URL!";
 "EmptyResponse" = "Запрос вернул пустой ответ!";

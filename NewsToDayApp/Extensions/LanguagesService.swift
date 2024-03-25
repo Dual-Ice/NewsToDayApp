@@ -22,6 +22,17 @@ final class LanguagesService {
         return Locale.preferredLanguages[0]
     }
     
+    static func getCurrentLanguageCodeForRequest() -> String {
+        switch getCurrentLanguageCode() {
+        case "en-US":
+            return "en"
+        case "ru-RU":
+            return "ru"
+        default:
+            return "en"
+        }
+    }
+    
     static func setLanguage(code: String) {
         
         if (code == "" || code == LanguagesService.getCurrentLanguageCode()) {

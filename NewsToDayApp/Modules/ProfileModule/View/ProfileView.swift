@@ -11,6 +11,7 @@ protocol ProfileViewDelegate: AnyObject {
     func signOutButtonTapped()
     func languageButtonTapped()
     func termsAndConditionsButtonTapped()
+    func changeProfileImage()
 }
 
 class ProfileView: CustomView {
@@ -45,7 +46,6 @@ class ProfileView: CustomView {
     override func setViews() {
         setUpViews()
         self.backgroundColor = .white
-        setUpViews()
         [
             title,
             profileName,
@@ -103,17 +103,18 @@ class ProfileView: CustomView {
         }
     }
     
-    
     private func setUpViews(){
         title.text = NSLocalizedString("ProfleViewTitle", comment: "")
         profileImage.backgroundColor = UIColor(named: ConstColors.greyLighter)
         profileImage.layer.cornerRadius = 36
+        profileImage.image = UIImage.Icons.userAvatar
+        makeProfileImageTappable()
         
-        profileName.text = "Some name"
+        profileName.text = ""
         profileName.textColor = UIColor(named: ConstColors.blackPrimary)
         profileName.font = UIFont.TextFont.Profile.profileName
         
-        profileEmail.text = "foo@bar.com"
+        profileEmail.text = ""
         profileEmail.textColor = UIColor(named: ConstColors.greyPrimary)
         profileEmail.font = UIFont.TextFont.Profile.profileEmail
         languageButton.addTarget(nil, action: #selector(languageButtonTapped), for: .touchUpInside)
@@ -121,6 +122,32 @@ class ProfileView: CustomView {
         signOutButton.addTarget(nil, action: #selector(signOutButtonTapped), for: .touchUpInside)
     }
     
+    func configView(with user: FirestoreUser) {
+        profileName.text = user.username
+        profileEmail.text = user.email
+        if user.image != nil {
+            profileImage.image = UIImage(data: user.image!)
+        }
+    }
+    
+    
+    private func makeProfileImageTappable() {
+        if profileImage.gestureRecognizers != nil {
+            profileImage.gestureRecognizers?.removeAll()
+        }
+        
+        let tapRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(profileImageTapped)
+        )
+        
+        profileImage.isUserInteractionEnabled = true
+        profileImage.addGestureRecognizer(tapRecognizer)
+    }
+    
+    func updateProfileImage(_ image: UIImage) {
+        profileImage.image = image
+    }
     
     @objc private func signOutButtonTapped(){
         delegate?.signOutButtonTapped()
@@ -132,9 +159,10 @@ class ProfileView: CustomView {
     
     @objc private func termsAndConditionsButtonTapped(){
         delegate?.termsAndConditionsButtonTapped()
-    
-    func configure(with user: FirestoreUser) {
-        usernameLabel.text = user.username
     }
-
+    
+    
+    @objc private func profileImageTapped(_ gesture: UITapGestureRecognizer) {
+        delegate?.changeProfileImage()
+    }
 }

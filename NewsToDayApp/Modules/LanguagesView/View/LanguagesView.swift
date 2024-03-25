@@ -51,7 +51,16 @@ final class LanguagesView: CustomView {
         for view in languagesButtonsVStack.subviews {
             if let button = view as? CustomButton {
                 if button.value == currentLanguageCode {
-                    button.changeState(icon: UIImage.Icons.checkmark, backgroundColor: ConstColors.purplePrimary, contenColor: ConstColors.customWhite
+                    button.changeState(
+                        icon: UIImage.Icons.checkmark,
+                        backgroundColor: ConstColors.purplePrimary,
+                        contenColor: ConstColors.customWhite
+                    )
+                } else {
+                    button.changeState(
+                        icon: nil,
+                        backgroundColor: ConstColors.greyLighter,
+                        contenColor: ConstColors.greyDarker
                     )
                 }
             }
@@ -124,11 +133,6 @@ final class LanguagesView: CustomView {
             return
         }
         
-        sender.changeState(
-            icon: nil,
-            backgroundColor: ConstColors.greyLighter,
-            contenColor: ConstColors.greyDarker
-        )
         delegate?.languageButtonTapped(value: sender.value)
     }
 }

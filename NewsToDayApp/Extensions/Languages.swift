@@ -27,15 +27,4 @@ extension Languages {
             return "ru-RU"
         }
     }
-    
-    func getLanguageCodeForRequest(_ language: String) -> String {
-        switch language {
-        case "en-US":
-            return "en"
-        case "ru-RU":
-            return "ru"
-        default:
-            return "en"
-        }
-    }
 }

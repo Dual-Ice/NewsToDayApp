@@ -33,6 +33,7 @@ class LanguagesViewController: CustomViewController<LanguagesView> {
 extension LanguagesViewController: LanguagesViewDelegate {
     func languageButtonTapped(value: String?) {
         LanguagesService.setLanguage(code: value ?? "")
+        customView.configView(currentLanguageCode: LanguagesService.getCurrentLanguageCode())
     }
     
     func tappedBackButton() {
