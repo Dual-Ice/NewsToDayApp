@@ -24,18 +24,21 @@ class ProfileView: CustomView {
     
     private let languageButton = CustomButton(
         label: NSLocalizedString("ProfleViewLanguageButton", comment: ""),
+        value: nil,
         icon: UIImage.Icons.chevronRight ?? UIImage(),
         backgroundColor: ConstColors.greyLighter,
         contenColor: ConstColors.greyDarker
     )
     private let termsAndConditionsButton = CustomButton(
         label: NSLocalizedString("ProfleViewTermsAndConditionsButton", comment: ""),
+        value: nil,
         icon: UIImage.Icons.chevronRight ?? UIImage(),
         backgroundColor: ConstColors.greyLighter,
         contenColor: ConstColors.greyDarker
     )
     private let signOutButton = CustomButton(
         label: NSLocalizedString("ProfleViewSignOutButton", comment: ""),
+        value: nil,
         icon: UIImage.Icons.signout ?? UIImage(),
         backgroundColor: ConstColors.greyLighter,
         contenColor: ConstColors.greyDarker

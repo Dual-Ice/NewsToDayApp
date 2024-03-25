@@ -19,7 +19,8 @@ class CustomButton: UIButton {
 
 
     // MARK: Init
-    init(label: String, icon: UIImage?, backgroundColor: String, contenColor: String) {
+    init(label: String, value: String?, icon: UIImage?, backgroundColor: String, contenColor: String) {
+        self.value = value
         self.buttonLabel.text = label
         self.buttonLabel.textColor = UIColor(named: contenColor)
         if icon != nil {
@@ -55,6 +56,16 @@ class CustomButton: UIButton {
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().offset(-20)
         }
+    }
+    
+    func changeState(icon: UIImage?, backgroundColor: String, contenColor: String) {
+        buttonLabel.textColor = UIColor(named: contenColor)
+        if icon != nil {
+            buttonIcon.image = icon
+            buttonIcon.tintColor = UIColor(named: contenColor)
+        }
+        
+        self.backgroundColor = UIColor(named: backgroundColor)
     }
 }
 

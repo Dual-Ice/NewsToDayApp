@@ -9,8 +9,6 @@ import Foundation
 
 
 protocol LanguagesPresenterViewProtocol: AnyObject {
-
-    
 }
 
 protocol LanguagesPresenterProtocol: AnyObject {

@@ -107,6 +107,8 @@
 		D918D56E2BAE3AA6005B0DD3 /* TermsAndConditionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918D5602BAE3AA6005B0DD3 /* TermsAndConditionsPresenter.swift */; };
 		D918D56F2BAE3AA6005B0DD3 /* TermsAndConditionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918D5622BAE3AA6005B0DD3 /* TermsAndConditionsRouter.swift */; };
 		D918D5702BAE3AA6005B0DD3 /* TermsAndConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918D5642BAE3AA6005B0DD3 /* TermsAndConditionsView.swift */; };
+		D918D5742BB1B8C3005B0DD3 /* LanguagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918D5732BB1B8C3005B0DD3 /* LanguagesService.swift */; };
+		D93DD60A2BB2058000BAA536 /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93DD6092BB2058000BAA536 /* Languages.swift */; };
 		D97126CA2BA7906000FF3048 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D97126C52BA7906000FF3048 /* Inter-Medium.ttf */; };
 		D97126CB2BA7906000FF3048 /* Adamina-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D97126C62BA7906000FF3048 /* Adamina-Regular.ttf */; };
 		D97126CC2BA7906000FF3048 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D97126C72BA7906000FF3048 /* Inter-SemiBold.ttf */; };
@@ -212,6 +214,8 @@
 		D918D5602BAE3AA6005B0DD3 /* TermsAndConditionsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsPresenter.swift; sourceTree = "<group>"; };
 		D918D5622BAE3AA6005B0DD3 /* TermsAndConditionsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsRouter.swift; sourceTree = "<group>"; };
 		D918D5642BAE3AA6005B0DD3 /* TermsAndConditionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsView.swift; sourceTree = "<group>"; };
+		D918D5732BB1B8C3005B0DD3 /* LanguagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LanguagesService.swift; path = NewsToDayApp/Extensions/LanguagesService.swift; sourceTree = SOURCE_ROOT; };
+		D93DD6092BB2058000BAA536 /* Languages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		D97126C52BA7906000FF3048 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
 		D97126C62BA7906000FF3048 /* Adamina-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Adamina-Regular.ttf"; sourceTree = "<group>"; };
 		D97126C72BA7906000FF3048 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -623,6 +627,7 @@
 				369AB6302BA972C000EBF483 /* CompositionalLayout.swift */,
 				369AB6482BA9DB3C00EBF483 /* UIImage + ext.swift */,
 				D918D52B2BAE0818005B0DD3 /* CustomButton.swift */,
+				D93DD6092BB2058000BAA536 /* Languages.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -660,6 +665,7 @@
 			children = (
 				A5CBDBB42BA75EA800C81385 /* Auth */,
 				A5CBDBB32BA75E9F00C81385 /* Network */,
+				D918D5732BB1B8C3005B0DD3 /* LanguagesService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1039,7 +1045,7 @@
 			};
 			buildConfigurationList = A5CBDB912BA75DD500C81385 /* Build configuration list for PBXProject "NewsToDayApp" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ru;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -1126,11 +1132,13 @@
 				369AB6392BA976EB00EBF483 /* ListSectionModel.swift in Sources */,
 				369AB6432BA9A07600EBF483 /* HeaderRecomendedView.swift in Sources */,
 				A5CBDB9C2BA75DD500C81385 /* SceneDelegate.swift in Sources */,
+				D93DD60A2BB2058000BAA536 /* Languages.swift in Sources */,
 				A5CBDBC92BA7638500C81385 /* CustomView.swift in Sources */,
 				D97126F72BA9F31200FF3048 /* Article.swift in Sources */,
 				369AB6632BAC4A5100EBF483 /* BookmarksView.swift in Sources */,
 				369AB62F2BA8CADB00EBF483 /* ButtonsFactory.swift in Sources */,
 				A5CBDBF82BA77E0100C81385 /* ProfileRouter.swift in Sources */,
+				D918D5742BB1B8C3005B0DD3 /* LanguagesService.swift in Sources */,
 				369AB6312BA972C000EBF483 /* CompositionalLayout.swift in Sources */,
 				A5CBDBC72BA7637700C81385 /* CustomViewController.swift in Sources */,
 				D97126FF2BAA099F00FF3048 /* NetworkError.swift in Sources */,

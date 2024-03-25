@@ -19,6 +19,21 @@ final class LanguagesView: CustomView {
     private let title = LabelsFactory.makeHeaderLabel()
     private let backButton = ButtonsFactory.makeButton()
     
+    private let enLanguageButton = CustomButton(
+        label: Languages.en.label,
+        value: Languages.en.code,
+        icon: nil,
+        backgroundColor: ConstColors.greyLighter,
+        contenColor: ConstColors.greyDarker
+    )
+    private let ruLanguageButton = CustomButton(
+        label: Languages.ru.label,
+        value: Languages.ru.code,
+        icon: nil,
+        backgroundColor: ConstColors.greyLighter,
+        contenColor: ConstColors.greyDarker
+    )
+    
     private lazy var languagesButtonsVStack: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -28,42 +43,38 @@ final class LanguagesView: CustomView {
         return stackView
     } ()
     
+    private var currentLanguage: String?
+    
     //MARK: - ConfigView public method
-    func configView(languages: [String:String], currentLanguageCode: String){
-        for (languageCode, languageName) in languages {
-            let isCurrentLanguage = currentLanguageCode == languageCode
-            let languageButton = CustomButton(
-                label: languageName,
-                icon: isCurrentLanguage ? UIImage.Icons.checkmark : nil,
-                backgroundColor: isCurrentLanguage ? ConstColors.purplePrimary : ConstColors.greyLighter,
-                contenColor: isCurrentLanguage ? ConstColors.customWhite : ConstColors.greyDarker
-            )
-            languageButton.value = languageCode
-            
-            languageButton.snp.makeConstraints { make in
-                make.height.equalTo(56)
+    func configView(currentLanguageCode: String) {
+        currentLanguage = currentLanguageCode
+        for view in languagesButtonsVStack.subviews {
+            if let button = view as? CustomButton {
+                if button.value == currentLanguageCode {
+                    button.changeState(icon: UIImage.Icons.checkmark, backgroundColor: ConstColors.purplePrimary, contenColor: ConstColors.customWhite
+                    )
+                }
             }
-            
-            languageButton.addTarget(self, action: #selector(languageButtonTapped), for: .touchUpInside)
-                        
-            languagesButtonsVStack.addArrangedSubview(languageButton)
         }
     }
     
     override func setViews() {
-        setUpViews()
-        print(Bundle.main.localizations.filter { $0 != "Base" })
-        
         backgroundColor = .white
+        
+        [
+            enLanguageButton,
+            ruLanguageButton
+        ].forEach { languagesButtonsVStack.addArrangedSubview($0) }
+        
         [
             title,
             backButton,
             languagesButtonsVStack
         ].forEach { addSubview($0) }
+        setUpViews()
     }
     
     override func layoutViews() {
-        
         title.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide.snp.top)
             make.centerX.equalToSuperview()
@@ -80,6 +91,14 @@ final class LanguagesView: CustomView {
             make.leading.equalToSuperview().offset(16)
             make.centerX.equalTo(self)
         }
+        
+        for view in languagesButtonsVStack.subviews {
+            if let languageButton = view as? CustomButton {
+                languageButton.snp.makeConstraints { make in
+                    make.height.equalTo(56)
+                }
+            }
+        }
     }
     
     private func setUpViews(){
@@ -88,6 +107,12 @@ final class LanguagesView: CustomView {
         backButton.addTarget(nil, action: #selector(backTapped), for: .touchUpInside)
         backButton.setBackgroundImage(UIImage.Icons.arrowLeft, for: .normal)
         backButton.tintColor = UIColor(named: ConstColors.greyPrimary)
+        
+        for view in languagesButtonsVStack.subviews {
+            if let languageButton = view as? CustomButton {
+                languageButton.addTarget(self, action: #selector(languageButtonTapped), for: .touchUpInside)
+            }
+        }
     }
     
     @objc private func backTapped(){
@@ -95,6 +120,15 @@ final class LanguagesView: CustomView {
     }
     
     @objc private func languageButtonTapped(_ sender: CustomButton){
+        if currentLanguage == sender.value {
+            return
+        }
+        
+        sender.changeState(
+            icon: nil,
+            backgroundColor: ConstColors.greyLighter,
+            contenColor: ConstColors.greyDarker
+        )
         delegate?.languageButtonTapped(value: sender.value)
     }
 }
