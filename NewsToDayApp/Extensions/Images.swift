@@ -81,5 +81,33 @@ extension UIImage {
         static var signout: UIImage? {
             return UIImage(named: "signout")
         }
+        
+        static var userBasic: UIImage? {
+            return UIImage(named: "user-basic")
+        }
+        
+        static var userEditing: UIImage? {
+            return UIImage(named: "user-editing")
+        }
+        
+        static var passwordBasic: UIImage? {
+            return UIImage(named: "password-basic")
+        }
+        
+        static var passwordEditing: UIImage? {
+            return UIImage(named: "password-editing")
+        }
+        
+        static var emailBasic: UIImage? {
+            return UIImage(named: "email-basic")
+        }
+        
+        static var emailEditing: UIImage? {
+            return UIImage(named: "email-editing")
+        }
+        
+        static var secureInput: UIImage? {
+            return UIImage(named: "secureInput")
+        }
     }
 }
