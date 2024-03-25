@@ -25,19 +25,12 @@ class ArticleCouruselCell: UICollectionViewCell {
     private let articleNameLabel = LabelsFactory.makeArticleHeaderLabel()
     private let backImage = ImageViewFactory.makeCornerRadiusImage()
     private let favoriteButton = ButtonsFactory.makeButton()
+    private lazy var spinner = SpinnersFactory.getSpinner()
     private let backView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
-    }()
-    
-    private lazy var spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView()
-        spinner.color = .white
-        spinner.style = .medium
-        spinner.hidesWhenStopped = true
-        return spinner
     }()
     
     override init(frame: CGRect) {

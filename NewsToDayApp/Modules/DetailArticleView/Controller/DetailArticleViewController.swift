@@ -18,7 +18,6 @@ class DetailArticleViewController: CustomViewController<DetailArticleView> {
         setDelegates()
         presenter?.loadImage(imageUrl: presenter?.data?.imageUrl, completion: { image in
             let imageToUse = image ?? UIImage(named: "noImage")
-            print("imageToUse\(imageToUse)")
             self.customView.configView(data: self.presenter?.data , isLiked: self.presenter?.isLiked, image: imageToUse)
             
         })

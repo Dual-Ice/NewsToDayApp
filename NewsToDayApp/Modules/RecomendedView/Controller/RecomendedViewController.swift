@@ -21,6 +21,7 @@ class RecomendedViewController: CustomViewController<RecomendedView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
+        presenter?.getRecomendedNews(categoryArray: ["Science", "Health"])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,7 +39,10 @@ class RecomendedViewController: CustomViewController<RecomendedView> {
 }
 //MARK: - RecomendedPresenterViewProtocol
 extension RecomendedViewController: RecomendedPresenterViewProtocol {
-  
+    func reloadTableView() {
+        recomendedView?.reloadTableView()
+    }
+
 }
 
 //MARK: - RecomendedViewDelegate
@@ -56,12 +60,18 @@ extension RecomendedViewController: UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BookmarksCell.resuseID, for: indexPath) as? BookmarksCell else {return UITableViewCell()}
         let data = presenter?.data[indexPath.row]
         cell.selectionStyle = .none
-        cell.configCell(categoryLabelText: data?.articleCategory, articleNameText: data?.articleName, image: UIImage(named: data?.image ?? ""))
+        presenter?.loadImage(imageUrl: data?.imageUrl, completion: { image in
+            let imageToUse = image ?? UIImage(named: "noImage")
+            cell.configCell(categoryLabelText: data?.category.joined(separator: ","), articleNameText: data?.title, image: imageToUse)
+        })
+        cell.configCell(categoryLabelText: data?.category.joined(separator: ","), articleNameText: data?.title, image: nil)
         return cell
     }
 
 }
 //MARK: - UITableViewDelegate
 extension RecomendedViewController: UITableViewDelegate{
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.goToDetailVC(data: presenter?.data[indexPath.row], isLiked: false) //favorite ?? false
+    }
 }

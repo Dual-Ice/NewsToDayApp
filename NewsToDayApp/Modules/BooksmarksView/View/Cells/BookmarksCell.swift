@@ -14,6 +14,7 @@ class BookmarksCell: UITableViewCell {
     private let categoryLabel = LabelsFactory.makeCategoryLabel()
     private let articleNameLabel = LabelsFactory.makeArticleHeaderLabel()
     private let backImage = ImageViewFactory.makeCornerRadiusImage()
+    private lazy var spinner = SpinnersFactory.getSpinner()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -48,6 +49,15 @@ class BookmarksCell: UITableViewCell {
         ].forEach { contentView.addSubview($0) }
     }
     
+    private func setUpSpiner(){
+        addSubview(spinner)
+        spinner.snp.makeConstraints { make in
+            make.centerY.equalTo(backImage.snp.centerY)
+            make.centerX.equalTo(backImage.snp.centerX)
+        }
+        spinner.startAnimating()
+    }
+    
     private func layoutViews(){
         backImage.snp.makeConstraints { make in
             make.leading.equalTo(contentView.snp.leading)
@@ -75,9 +85,12 @@ extension BookmarksCell{
         categoryLabel.text = categoryLabelText
         articleNameLabel.text = articleNameText
         if let image = image{
+            spinner.stopAnimating()
+            spinner.removeFromSuperview()
             backImage.image = image
         } else{
-            backImage.backgroundColor = .blue
+            setUpSpiner()
+            backImage.backgroundColor = .white
         }
     }
 }

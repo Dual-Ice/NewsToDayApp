@@ -145,10 +145,6 @@ extension MainViewController: UICollectionViewDelegate{
                 cell.setSelectedColors()
                 presenter?.saveSelectedCell(indexPath: indexPath)
                 presenter?.getNewsByCategory(category: gategories[indexPath.row].articleCategory)
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                    self.presenter?.goToRecomendedVC()
-//                }
-                print("gategories \(gategories[indexPath.row].articleCategory )")
             }
         case .corusel(let corusel):
             //let favorite = presenter?.favorities[corusel[indexPath.row]]

@@ -33,7 +33,8 @@ class MainRouter: MainRouterProtocol {
     
     func pushRecomendedView(){
         guard let navigationVC = navigationVC else { return }
-        let recomendedVC = RecomendedBuilder().buildRecomendedVC()
+        let recomendedVC = RecomendedBuilder(navigationVC: navigationVC).buildRecomendedVC()
+        guard let recomendedVC else { return }
         navigationVC.pushViewController(recomendedVC, animated: true)
     }
 }

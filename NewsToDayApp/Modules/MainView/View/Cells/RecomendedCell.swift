@@ -14,13 +14,7 @@ class RecomendedCell: UICollectionViewCell {
     private let categoryLabel = LabelsFactory.makeCategoryLabel()
     private let articleNameLabel = LabelsFactory.makeArticleHeaderLabel()
     private let backImage = ImageViewFactory.makeCornerRadiusImage()
-    private lazy var spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView()
-        spinner.color = .white
-        spinner.style = .medium
-        spinner.hidesWhenStopped = true
-        return spinner
-    }()
+    private lazy var spinner = SpinnersFactory.getSpinner()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -94,8 +88,8 @@ extension RecomendedCell{
             spinner.removeFromSuperview()
             backImage.image = image
         } else{
-            setUpSpiner() //добавить spineer
-            backImage.backgroundColor = .lightGray
+            setUpSpiner() //добавить spinner
+            backImage.backgroundColor = .white
         }
     }
 }

@@ -46,14 +46,18 @@ final class DetailArticleView: CustomView {
     private let favoriteButton = ButtonsFactory.makeButton()
     private let backButton = ButtonsFactory.makeButton()
     private let shareButton = ButtonsFactory.makeButton()
+    private let spinner = SpinnersFactory.getSpinner()
     
     //MARK: - ConfigView public method
     func configView(data: Article?, isLiked: Bool?, image: UIImage?){
         //MARK: - config backImage
         if let image = image{
+            spinner.stopAnimating()
+            spinner.removeFromSuperview()
             backImage.image = image
         } else{
-            backImage.backgroundColor = .white
+            setUpSpiner()
+            backImage.backgroundColor = .none
         }
         //MARK: - config favoriteButton
         let favoriteImage: UIImage? = isLiked ?? false ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-bordered")
@@ -66,6 +70,15 @@ final class DetailArticleView: CustomView {
         let descriptionText = data?.description ?? "No Description"
         let repeatedText = String(repeating: descriptionText, count: 10)
         newsText.text = repeatedText
+    }
+    
+    private func setUpSpiner(){
+        addSubview(spinner)
+        spinner.snp.makeConstraints { make in
+            make.centerY.equalTo(backImage.snp.centerY)
+            make.centerX.equalTo(backImage.snp.centerX)
+        }
+        spinner.startAnimating()
     }
     
     override func setViews() {

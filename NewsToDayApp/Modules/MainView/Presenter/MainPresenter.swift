@@ -70,7 +70,7 @@ class MainPresenter: MainPresenterProtocol {
             DispatchQueue.main.async {
                 switch result{
                 case .success(let data):
-                    print("data \(data)")
+                    //print("data \(data)")
                     self.newsDataByCatagory = data.results ?? []
                     self.view?.reloadSectionCollectionView(section: 1)
                 case .failure(let error):
@@ -86,7 +86,7 @@ class MainPresenter: MainPresenterProtocol {
             DispatchQueue.main.async {
                 switch result{
                 case .success(let data):
-                    print("DataNEWSRecomended \(data)")
+                   // print("DataNEWSRecomended \(data)")
                     self.recomendedNews = data.results ?? []
                     self.view?.reloadSectionCollectionView(section: 2)
                 case .failure(let error):
