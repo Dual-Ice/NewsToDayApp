@@ -9,32 +9,29 @@ import UIKit
 
 
 protocol DetailArticlePresenterViewProtocol: AnyObject {
-    
+    func changeBacgroundImageButton(isLiked: Bool)
     
 }
 
 protocol DetailArticlePresenterProtocol: AnyObject {
-    
-    init( view: DetailArticlePresenterViewProtocol, router: DetailArticleRouterProtocol, imageManager: ImageManager,  data: Article?, isLiked: Bool)
-    var data: Article? { get }
-    var isLiked: Bool { get }
+    init( view: DetailArticlePresenterViewProtocol, router: DetailArticleRouterProtocol, imageManager: ImageManager,  data: Article)
+    var data: Article { get }
     func dismissDetailArticleVC()
     func loadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
+    func saveToBookMarks()
     
 }
 
-
 class DetailArticlePresenter: DetailArticlePresenterProtocol {
-   
-    weak var view: DetailArticlePresenterViewProtocol?
-    var router: DetailArticleRouterProtocol?
-    let imageManager: ImageManager
-    var data: Article?
-    var isLiked: Bool
     
-    required init(view: DetailArticlePresenterViewProtocol, router: DetailArticleRouterProtocol, imageManager: ImageManager, data: Article?, isLiked: Bool ) {
+    private weak var view: DetailArticlePresenterViewProtocol?
+    private var router: DetailArticleRouterProtocol?
+    let imageManager: ImageManager
+    var data: Article
+   
+    
+    required init(view: DetailArticlePresenterViewProtocol, router: DetailArticleRouterProtocol, imageManager: ImageManager, data: Article ) {
         self.data = data
-        self.isLiked = isLiked
         self.view = view
         self.router = router
         self.imageManager = imageManager
@@ -50,11 +47,20 @@ class DetailArticlePresenter: DetailArticlePresenterProtocol {
                 switch result {
                 case .success(let image):
                     completion(image)
-                case .failure(let error):
-                    print(" error downloadImage DetailVC \(error.localizedDescription)")
+                case .failure(_):
                     completion(nil)
                 }
             }
         })
+    }
+    
+    func saveToBookMarks() {
+        data.isFavourite = !(data.isFavourite)
+        view?.changeBacgroundImageButton(isLiked: data.isFavourite)
+        if data.isFavourite == true {
+            //сохранить в закладки
+        } else {
+            //удалить из закладок если нажал на кнопку в ячейки повторно
+        }
     }
 }

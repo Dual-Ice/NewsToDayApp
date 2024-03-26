@@ -10,7 +10,7 @@ import UIKit
 
 protocol RecomendedRouterProtocol: AnyObject {
     init(navigationVC: UINavigationController)
-    func goToDetailVC(data: Article?, isLiked: Bool)
+    func goToDetailVC(data: Article)
     func dismissVC()
     
 }
@@ -22,9 +22,9 @@ class RecomendedRouter: RecomendedRouterProtocol {
         self.navigationVC = navigationVC
     }
     
-    func goToDetailVC(data: Article?, isLiked: Bool){
+    func goToDetailVC(data: Article){
         guard let navigationVC else { return }
-        let detailVC = DetailArticleBuilder(navigationVC: navigationVC).buildDetailArticleVC(data: data, isLiked: isLiked)
+        let detailVC = DetailArticleBuilder(navigationVC: navigationVC).buildDetailArticleVC(data: data)
         guard let detailVC else { return }
         navigationVC.pushViewController(detailVC, animated: true)
     }

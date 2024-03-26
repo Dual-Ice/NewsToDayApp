@@ -109,15 +109,30 @@ class CategoriesView: CustomView {
 
 //MARK: - CategoriesVCDelegate
 extension CategoriesView: CategoriesVCDelegate {
+    func setDefaultColorCells(selectedIndexPath: [IndexPath]) {
+        for indexPath in selectedIndexPath {
+            if let cell = self.collectionView.cellForItem(at: indexPath) as? CategoriesCell{
+                cell.setDefaultColors()
+            }
+        }
+    }
+    
     func chechHiddenButtonOrNot(type: HideButtonOnCategoriesView?) {
         checkHideButtonOrNot(typeToHideButtonOrNot: type)
     }
     
-    func reloadCollectionView() {
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
-    }
+//    func reloadCollectionView() {
+//        DispatchQueue.main.async {
+//            if let selectedIndexPaths = self.collectionView.indexPathsForSelectedItems {
+//                 for indexPath in selectedIndexPaths {
+//                     print("Index \(indexPath)")
+//                     self.collectionView.deselectItem(at: indexPath, animated: false)
+//                 }
+//             }
+//            self.collectionView.reloadData()
+//            print("Done")
+//        }
+//    }
     
     func setCollectionViewDelegate(vc: CategoriesViewController) {
         collectionView.delegate = vc

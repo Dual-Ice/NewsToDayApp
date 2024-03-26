@@ -84,17 +84,17 @@ class RecomendedView: CustomView {
 
 //MARK: - RecomendedVCDelegate
 extension RecomendedView: RecomendedVCDelegate{
+    func reloadTableView() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     func setTableDelegate(vc: RecomendedViewController) {
         tableView.delegate = vc
     }
     
     func setTableViewDataSource(vc: RecomendedViewController) {
         tableView.dataSource = vc
-    }
-    
-    func reloadTableView() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
     }
 }

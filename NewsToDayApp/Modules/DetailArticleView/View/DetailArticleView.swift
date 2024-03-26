@@ -234,3 +234,11 @@ final class DetailArticleView: CustomView {
         delegate?.tappedShareButton()
     }
 }
+
+// MARK: - DetailArticleVCDelegate
+extension DetailArticleView: DetailArticleVCDelegate{
+    func changeBacgroundImageButton(isLiked: Bool) {
+        let favoriteImage: UIImage? = isLiked ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-bordered")
+        favoriteButton.setBackgroundImage(favoriteImage, for: .normal)
+    }
+}

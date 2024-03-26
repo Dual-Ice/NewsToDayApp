@@ -31,6 +31,7 @@
 "OnbordingNext" = "Next";
 
 //MARK: - MainView
+"MainViewSearchBar" = "Search";
 "MainViewTitle" = "Main";
 "MainViewSubTitle" = "Discover things of this world";
 "HeaderSeeAll" = "See all";

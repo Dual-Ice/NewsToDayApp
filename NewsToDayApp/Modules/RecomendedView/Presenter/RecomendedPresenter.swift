@@ -18,7 +18,7 @@ protocol RecomendedPresenterProtocol: AnyObject {
     init(view: RecomendedPresenterViewProtocol, router: RecomendedRouterProtocol, newsManager: NewsManager, imageManager: ImageManager, searchWord: String?)
     var data: [Article] { get }
     func loadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
-    func goToDetailVC(data: Article?, isLiked: Bool)
+    func goToDetailVC(data: Article)
     func dismisRecomendedVC()
     func filterCategoriesArray(categories: [String]) -> [String]
 }
@@ -45,11 +45,9 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
         self.searchWord = searchWord
         print("SEARCH WORD \(searchWord)")
         searchWord != nil ? getRecomendedNews(request: NewsRequest(query: searchWord)) : getRecomendedNews(request: NewsRequest(categories: arrayCatgories))
-        
     }
+    
     func filterCategoriesArray(categories: [String]) -> [String]{
-//        print("categories \(categories))")
-//        print("filter categories array \(arrayCatgories.filter(categories.contains))")
         if searchWord == nil{
             let categories = arrayCatgories.filter(categories.contains)
             let capitalizedCategories = categories.capitalizingFirstLetterOfEachElement()
@@ -57,19 +55,18 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
         } else {
             return categories.capitalizingFirstLetterOfEachElement()
         }
-    
     }
     
     private func getRecomendedNews(request: NewsRequest){
-        newsManager.getNews(with: request) { result in
+        newsManager.getNews(with: request) { [weak self] result in
+            guard let self else { return }
             DispatchQueue.main.async {
                 switch result{
                 case .success(let data):
-                    print("DataNEWSRecomended RecomendedVC \(data)")
                     self.data = data.results ?? []
                     self.view?.reloadTableView()
                 case .failure(let error):
-                    print("DataNEWSRecomended error \(error.localizedDescription)")
+                    print("DataNEWSRecomended RecomendedVC error \(error.localizedDescription)")
                 }
             }
         }
@@ -81,16 +78,15 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
                 switch result {
                 case .success(let image):
                     completion(image)
-                case .failure(let error):
-                    print(" error downloadImage RecimmendedVC \(error.localizedDescription)")
+                case .failure(_):
                     completion(nil)
                 }
             }
         })
     }
     
-    func goToDetailVC(data: Article?, isLiked: Bool){
-        router?.goToDetailVC(data: data, isLiked: isLiked)
+    func goToDetailVC(data: Article){
+        router?.goToDetailVC(data: data)
     }
     
     func dismisRecomendedVC(){

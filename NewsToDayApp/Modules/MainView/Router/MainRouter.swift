@@ -11,7 +11,7 @@ import UIKit
 protocol MainRouterProtocol: AnyObject {
     
     init(navigationVC: UINavigationController)
-    func pushDetailVC(data: Article?, isLiked: Bool)
+    func pushDetailVC(data: Article)
     func pushRecomendedView()
     func pushSearchByWordScreen(searchWord: String)
 }
@@ -24,9 +24,9 @@ class MainRouter: MainRouterProtocol {
         self.navigationVC = navigationVC
     }
     
-    func pushDetailVC(data: Article?, isLiked: Bool) {
+    func pushDetailVC(data: Article) {
         guard let navigationVC = navigationVC else { return }
-        let detailVC = DetailArticleBuilder(navigationVC: navigationVC).buildDetailArticleVC(data: data, isLiked: isLiked)
+        let detailVC = DetailArticleBuilder(navigationVC: navigationVC).buildDetailArticleVC(data: data)
         guard let detailVC = detailVC else { return }
         navigationVC.pushViewController(detailVC, animated: true)
     }

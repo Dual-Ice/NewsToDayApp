@@ -7,22 +7,29 @@
 
 import UIKit
 
+protocol DetailArticleVCDelegate{
+    func changeBacgroundImageButton(isLiked: Bool)
+}
+
 class DetailArticleViewController: CustomViewController<DetailArticleView> {
-    
-//    let data: OneItem
-//    let isLiked: Bool
+
     var presenter: DetailArticlePresenterProtocol?
+    var detailView: DetailArticleVCDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
-        presenter?.loadImage(imageUrl: presenter?.data?.imageUrl, completion: { image in
+        configView()
+    }
+    
+    private func configView(){
+        presenter?.loadImage(imageUrl: presenter?.data.imageUrl, completion: { [weak self] image in
+            guard let self else { return }
             let imageToUse = image ?? UIImage(named: "noImage")
-            self.customView.configView(data: self.presenter?.data , isLiked: self.presenter?.isLiked, image: imageToUse)
+            self.customView.configView(data: self.presenter?.data , isLiked: self.presenter?.data.isFavourite, image: imageToUse)
             
         })
-        customView.configView(data: presenter?.data , isLiked: presenter?.isLiked, image: nil)
-
+        customView.configView(data: presenter?.data , isLiked: self.presenter?.data.isFavourite, image: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +40,7 @@ class DetailArticleViewController: CustomViewController<DetailArticleView> {
     
     private func setDelegates(){
         customView.delegate = self
+        detailView = customView
     }
 
 }
@@ -44,7 +52,7 @@ extension DetailArticleViewController: DetailArticleViewDelegate {
     }
     
     func tappedFavoriteButton() {
-        print("tappedFavoriteButton")
+        presenter?.saveToBookMarks()
     }
     
     func tappedShareButton() {
@@ -55,6 +63,8 @@ extension DetailArticleViewController: DetailArticleViewDelegate {
 
 //MARK: - DetailArticlePresenterViewProtocol
 extension DetailArticleViewController: DetailArticlePresenterViewProtocol {
-    
+    func changeBacgroundImageButton(isLiked: Bool) {
+        detailView?.changeBacgroundImageButton(isLiked: isLiked)
+    }
 }
 

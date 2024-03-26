@@ -15,15 +15,13 @@ protocol MainViewProtocol: AnyObject {
 }
 
 protocol MainPresenterProtocol: AnyObject {
-    
     init(view: MainViewProtocol, router: MainRouterProtocol, newsManager: NewsManager,  imageManager: ImageManager )
     var mockData: [ListSectionModel] { get }
-//    var favorities: [String : Bool] { get }
     var selectedIndexPath: IndexPath { get }
     func saveSelectedCell(indexPath: IndexPath)
     func handleCellEvent(article: Int, event: FavoriteButtonCellEvent)
     
-    func goToDetailVC(data: Article?, isLiked: Bool)
+    func goToDetailVC(data: Article)
     func goToRecomendedVC()
     func goToSearchByWorldVC(searchWord: String)
     
@@ -40,15 +38,12 @@ protocol MainPresenterProtocol: AnyObject {
 class MainPresenter: MainPresenterProtocol {
     
     var selectedIndexPath: IndexPath = .init()
-   // var favorities: [String : Bool] = .init()
     var selectedCategory: String = "business"
     var newsDataByCatagory: [Article] = .init()
     var recomendedNews: [Article] = .init()
-//    var categoriesDataLabel = OneItem.allCategoryLabel
-//    var categoriesDataValue = OneItem.allCategoryValues
         
     weak var view: MainViewProtocol?
-    var router: MainRouterProtocol?
+    private var router: MainRouterProtocol?
     private let imageManager: ImageManager
     private let newsManager: NewsManager
     
@@ -92,15 +87,16 @@ class MainPresenter: MainPresenterProtocol {
     func getNewsByCategory(category: String){
         let request = NewsRequest(categories: [category])
         newsDataByCatagory = .init() //очищать массив при переключении категории
-        newsManager.getNews(with: request) { result in
+        newsManager.getNews(with: request) { [weak self] result in
+            guard let self else { return }
             DispatchQueue.main.async {
                 switch result{
                 case .success(let data):
-                    print("data by category \(data)")
+                    print("Data by category \(data)")
                     self.newsDataByCatagory = data.results ?? []
                     self.view?.reloadSectionCollectionView(section: 1)
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    print("DataByCategory error \(error.localizedDescription)")
                 }
             }
         }
@@ -129,8 +125,7 @@ class MainPresenter: MainPresenterProtocol {
                 switch result {
                 case .success(let image):
                     completion(image)
-                case .failure(let error):
-                    print(" error downloadImage \(error.localizedDescription)")
+                case .failure(_):
                     completion(nil)
                 }
             }
@@ -150,8 +145,8 @@ class MainPresenter: MainPresenterProtocol {
         }
     }
     // MARK: - Navigation
-    func goToDetailVC(data: Article?, isLiked: Bool) {
-        router?.pushDetailVC(data: data, isLiked: isLiked)
+    func goToDetailVC(data: Article) {
+        router?.pushDetailVC(data: data)
     }
     
     func goToRecomendedVC() {
