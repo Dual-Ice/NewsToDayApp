@@ -25,10 +25,10 @@ class ArticleCouruselCell: UICollectionViewCell {
     private let articleNameLabel = LabelsFactory.makeArticleHeaderLabel()
     private let backImage = ImageViewFactory.makeCornerRadiusImage()
     private let favoriteButton = ButtonsFactory.makeButton()
-    private lazy var spinner = SpinnersFactory.getSpinner()
+    private lazy var spinner = SpinnersFactory.makeSpinner()
     private let backView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -110,8 +110,8 @@ class ArticleCouruselCell: UICollectionViewCell {
 
 //MARK: - Configure Cell UI Public Method
 extension ArticleCouruselCell{
-    func configCell(categoryLabelText: String?, articleNameText: String?, image: UIImage?, isLiked: Bool){
-        categoryLabel.text = categoryLabelText?.uppercased()
+    func configCell(categoryLabelText: [String]?, articleNameText: String?, image: UIImage?, isLiked: Bool){
+        categoryLabel.text = categoryLabelText?.joined(separator: " ").uppercased()
         articleNameLabel.text = articleNameText
         let favoriteImage: UIImage? = isLiked ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-bordered")
         favoriteButton.setBackgroundImage(favoriteImage, for: .normal)

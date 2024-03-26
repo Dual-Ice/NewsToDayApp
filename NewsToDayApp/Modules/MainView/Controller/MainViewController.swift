@@ -24,8 +24,6 @@ class MainViewController: CustomViewController<MainView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
-        presenter?.getNewsByCategory(category: "Business")
-        presenter?.getRecomendedNews(categoryArray: ["Science", "Health"])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,21 +86,17 @@ extension MainViewController: UICollectionViewDataSource{
         switch sections{
         case .categories(let categories):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCell.resuseID, for: indexPath) as? CategoriesCell else { return UICollectionViewCell() }
-            cell.configCell(categoryLabelText: categories[indexPath.row].articleCategory, emojiString: nil)
+            cell.configCell(categoryLabelText: categories[indexPath.row].articleCategoryLabel, emojiString: nil, categoriesValue: categories[indexPath.row].articleCategoryValue)
             presenter?.selectedIndexPath == indexPath ?  cell.setSelectedColors() : cell.setDefaultColors()// меняет цвет при переиспользовании ячейки
             return cell
         case .corusel(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArticleCouruselCell.resuseID, for: indexPath) as? ArticleCouruselCell else { return UICollectionViewCell() }
             let data = presenter?.newsDataByCatagory[indexPath.row]
             presenter?.loadImageByCategories(imageUrl: data?.imageUrl, completion: { image in
-                let categoryText = self.presenter?.convertToString(arrayStrings: data?.category ?? [])
-                let articleNameText = data?.title
-                let isLiked = data?.isFavourite ?? false
                 let imageToUse = image ?? UIImage(named: "noImage")
-
-                cell.configCell(categoryLabelText: categoryText, articleNameText: articleNameText, image: imageToUse, isLiked: isLiked)
+                cell.configCell(categoryLabelText: data?.category ?? [], articleNameText: data?.title, image: imageToUse, isLiked: data?.isFavourite ?? false)
             })
-            cell.configCell(categoryLabelText: presenter?.convertToString(arrayStrings: data?.category ?? []), articleNameText: data?.title, image: nil, isLiked: data?.isFavourite ?? false) //favoriteData?[data] ?? false
+            cell.configCell(categoryLabelText:  data?.category ?? [], articleNameText: data?.title, image: nil, isLiked: data?.isFavourite ?? false) //favoriteData?[data] ?? false
             cell.onFavoriteButtonTap = { [weak self] event in
                 self?.presenter?.handleCellEvent(article: indexPath.row, event: event)
             }
@@ -110,13 +104,13 @@ extension MainViewController: UICollectionViewDataSource{
         case .recomendations(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecomendedCell.resuseID, for: indexPath) as? RecomendedCell else { return UICollectionViewCell() }
             let data = presenter?.recomendedNews[indexPath.row]
+            let categoryFilter = self.presenter?.filterCategoriesArray(categories: data?.category ?? [])
             presenter?.loadImageByCategories(imageUrl: data?.imageUrl, completion: { image in
-                let categoryText = self.presenter?.convertToString(arrayStrings: data?.category ?? [])
                 let articleNameText = data?.title
                 let imageToUse = image ?? UIImage(named: "noImage")
-                cell.configCell(categoryLabelText: categoryText, articleNameText: articleNameText, image: imageToUse)
+                cell.configCell(categoryLabelText: categoryFilter, articleNameText: articleNameText, image: imageToUse)
             })
-            cell.configCell(categoryLabelText: presenter?.convertToString(arrayStrings: data?.category ?? []), articleNameText: data?.title, image: nil)
+            cell.configCell(categoryLabelText: categoryFilter, articleNameText: data?.title, image: nil)
             return cell
         case .none:
             return UICollectionViewCell()
@@ -147,7 +141,7 @@ extension MainViewController: UICollectionViewDelegate{
                 }
                 cell.setSelectedColors()
                 presenter?.saveSelectedCell(indexPath: indexPath)
-                presenter?.getNewsByCategory(category: gategories[indexPath.row].articleCategory)
+                presenter?.getNewsByCategory(category: gategories[indexPath.row].articleCategoryValue)
             }
         case .corusel(_):
             presenter?.goToDetailVC(data: presenter?.newsDataByCatagory[indexPath.row], isLiked: presenter?.newsDataByCatagory[indexPath.row].isFavourite ?? false)

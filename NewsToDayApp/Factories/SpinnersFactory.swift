@@ -8,7 +8,7 @@
 import UIKit
 
 final class SpinnersFactory{
-    static func getSpinner() -> UIActivityIndicatorView{
+    static func makeSpinner() -> UIActivityIndicatorView{
         let spinner = UIActivityIndicatorView()
         spinner.color = UIColor(named: ConstColors.purplePrimary)
         spinner.style = .medium

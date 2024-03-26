@@ -31,9 +31,8 @@ protocol MainPresenterProtocol: AnyObject {
     var newsDataByCatagory: [Article] { get }
     var recomendedNews: [Article] { get }
     func getRecomendedNews(categoryArray: [String])
-    func convertToString(arrayStrings: [String]) -> String
     func loadImageByCategories(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
-    
+    func filterCategoriesArray(categories: [String]) -> [String]
 }
 
 class MainPresenter: MainPresenterProtocol {
@@ -43,6 +42,8 @@ class MainPresenter: MainPresenterProtocol {
     
     var newsDataByCatagory: [Article] = .init()
     var recomendedNews: [Article] = .init()
+//    var categoriesDataLabel = OneItem.allCategoryLabel
+//    var categoriesDataValue = OneItem.allCategoryValues
         
     weak var view: MainViewProtocol?
     var router: MainRouterProtocol?
@@ -53,12 +54,25 @@ class MainPresenter: MainPresenterProtocol {
         MockData().sectionData
     }
     
+    private var arrayCatgories: [String] {
+        ["science", "health"]
+    }
+    
     required init(view: MainViewProtocol, router: MainRouterProtocol, newsManager: NewsManager, imageManager: ImageManager ) {
         self.view = view
         self.router = router
         self.newsManager = newsManager
         self.imageManager = imageManager
+        getNewsByCategory(category: "business")
+        getRecomendedNews(categoryArray: arrayCatgories)
     }
+    
+    func filterCategoriesArray(categories: [String]) -> [String]{
+        print("categories \(categories))")
+        print("filter categories array \(arrayCatgories.filter(categories.contains))")
+        return arrayCatgories.filter(categories.contains)
+    }
+    
     
     func saveSelectedCell(indexPath: IndexPath) {
         selectedIndexPath = indexPath
@@ -110,10 +124,6 @@ class MainPresenter: MainPresenterProtocol {
                 }
             }
         })
-    }
-    
-    func convertToString(arrayStrings: [String]) -> String {
-        return arrayStrings.joined(separator: ",")
     }
     
     func handleCellEvent(article: Int, event: FavoriteButtonCellEvent) {

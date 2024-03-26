@@ -25,8 +25,7 @@ final class DetailArticleView: CustomView {
         return view
     }()
     
-    private let categoryLabel = LabelsFactory.makeCategoryTagLabel()
-    private let categoryLabeImage = ImageViewFactory.makeCornerRadiusImage()
+   // private let categoryLabel = LabelsFactory.makeCategoryTagLabel()
     private let articleNameLabel = LabelsFactory.makeArticleHeaderLabel()
     private let authorNameLabel = LabelsFactory.makeArticleHeaderLabel()
     private let authorLabel = LabelsFactory.makeCategoryLabel()
@@ -43,10 +42,19 @@ final class DetailArticleView: CustomView {
         return textView
     }()
     
+    private lazy var  stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+      
+    
     private let favoriteButton = ButtonsFactory.makeButton()
     private let backButton = ButtonsFactory.makeButton()
     private let shareButton = ButtonsFactory.makeButton()
-    private let spinner = SpinnersFactory.getSpinner()
+    private let spinner = SpinnersFactory.makeSpinner()
     
     //MARK: - ConfigView public method
     func configView(data: Article?, isLiked: Bool?, image: UIImage?){
@@ -54,6 +62,7 @@ final class DetailArticleView: CustomView {
         if let image = image{
             spinner.stopAnimating()
             spinner.removeFromSuperview()
+            stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
             backImage.image = image
         } else{
             setUpSpiner()
@@ -63,7 +72,8 @@ final class DetailArticleView: CustomView {
         let favoriteImage: UIImage? = isLiked ?? false ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-bordered")
         favoriteButton.setBackgroundImage(favoriteImage, for: .normal)
         //MARK: - config Labels
-        categoryLabel.text = data?.category.joined(separator: ",").uppercased()
+        createStackViewLabels(categories: data?.category ?? [])
+        //categoryLabel.text = data?.category.joined(separator: ",").uppercased()
         articleNameLabel.text = data?.title
         authorNameLabel.text = data?.creator?.joined(separator: ",")  ?? "Author"
         //MARK: - config newsText
@@ -72,7 +82,24 @@ final class DetailArticleView: CustomView {
         newsText.text = repeatedText
     }
     
+    private func createStackViewLabels(categories: [String]){
+        print("categories \(categories)")
+        for category in categories {
+            let label =  PaddingLabel(withInsets: 0, 0, 5, 5)
+            label.text = category.uppercased()
+            label.textAlignment = .center
+            label.backgroundColor = UIColor(named: ConstColors.purplePrimary)
+            label.font = UIFont.TextFont.Main.tag
+            label.numberOfLines = 1
+            label.textColor = UIColor(named: ConstColors.customWhite)
+            label.layer.cornerRadius = 16
+            label.layer.masksToBounds = true
+            stackView.addArrangedSubview(label)
+        }
+    }
+    
     private func setUpSpiner(){
+        spinner.color = .white
         addSubview(spinner)
         spinner.snp.makeConstraints { make in
             make.centerY.equalTo(backImage.snp.centerY)
@@ -85,10 +112,10 @@ final class DetailArticleView: CustomView {
         setUpViews()
         backgroundColor = .white
         backImage.addSubview(backView)
-        categoryLabeImage.addSubview(categoryLabel)
         [
             backImage,
-            categoryLabeImage,
+            stackView,
+            //categoryLabel,
             articleNameLabel,
             authorNameLabel,
             authorLabel,
@@ -110,9 +137,11 @@ final class DetailArticleView: CustomView {
             make.edges.equalToSuperview()
         }
         
-        categoryLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(categoryLabeImage.snp.centerX)
-            make.centerY.equalTo(categoryLabeImage.snp.centerY)
+        stackView.snp.makeConstraints { make in
+            make.bottom.equalTo(articleNameLabel.snp.top).offset(-16)
+            make.leading.equalToSuperview().offset(16)
+            //make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(32)
         }
         
         resultLabel.snp.makeConstraints { make in
@@ -143,13 +172,6 @@ final class DetailArticleView: CustomView {
             make.trailing.equalToSuperview().offset(-8)
         }
         
-        categoryLabeImage.snp.makeConstraints { make in
-            make.bottom.equalTo(articleNameLabel.snp.top).offset(-16)
-            make.leading.equalToSuperview().offset(16)
-            make.width.equalTo(75)
-            make.height.equalTo(32)
-        }
-        
         favoriteButton.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide.snp.top)
             make.trailing.equalToSuperview().offset(-16)
@@ -173,8 +195,6 @@ final class DetailArticleView: CustomView {
     private func setUpViews(){
         //MARK: - setUp Images
         backImage.layer.cornerRadius = 0
-        categoryLabeImage.layer.cornerRadius = 16
-        categoryLabeImage.backgroundColor = UIColor(named: ConstColors.purplePrimary)
         //MARK: - setUp Labels
         articleNameLabel.font = UIFont.TextFont.Article.articleLabel
         articleNameLabel.numberOfLines = 3
@@ -184,6 +204,10 @@ final class DetailArticleView: CustomView {
         resultLabel.textColor = UIColor(named: ConstColors.blackPrimary)
         resultLabel.font = UIFont.TextFont.Main.recommendedArticleLabel
         resultLabel.text = NSLocalizedString("DetailArticleViewResult", comment: "")
+//        categoryLabel.textAlignment = .center
+//        categoryLabel.backgroundColor = UIColor(named: ConstColors.purplePrimary)
+//        categoryLabel.layer.cornerRadius = 16
+//        categoryLabel.layer.masksToBounds = true
         //MARK: - setUp Buttons
         favoriteButton.backgroundColor = .clear
         favoriteButton.addTarget(nil, action: #selector(favoriteTapped), for: .touchUpInside)

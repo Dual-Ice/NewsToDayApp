@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		367268D82BB2A107007E82E6 /* OneItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367268D72BB2A107007E82E6 /* OneItem.swift */; };
+		367268DA2BB2C480007E82E6 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367268D92BB2C480007E82E6 /* PaddingLabel.swift */; };
 		369AB6192BA87E6600EBF483 /* Labels + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6182BA87E6600EBF483 /* Labels + ext.swift */; };
 		369AB61B2BA8833A00EBF483 /* UIImageView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB61A2BA8833A00EBF483 /* UIImageView + ext.swift */; };
 		369AB61F2BA88B6300EBF483 /* ConstColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB61E2BA88B6300EBF483 /* ConstColors.swift */; };
@@ -131,6 +133,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		367268D72BB2A107007E82E6 /* OneItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OneItem.swift; path = NewsToDayApp/Factories/OneItem.swift; sourceTree = SOURCE_ROOT; };
+		367268D92BB2C480007E82E6 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		369AB6182BA87E6600EBF483 /* Labels + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Labels + ext.swift"; sourceTree = "<group>"; };
 		369AB61A2BA8833A00EBF483 /* UIImageView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + ext.swift"; sourceTree = "<group>"; };
 		369AB61E2BA88B6300EBF483 /* ConstColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstColors.swift; sourceTree = "<group>"; };
@@ -322,6 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				369AB6512BAB29D000EBF483 /* DetailArticleView.swift */,
+				367268D92BB2C480007E82E6 /* PaddingLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -709,6 +714,7 @@
 				369AB6342BA9752A00EBF483 /* MockItem.swift */,
 				369AB6382BA976EB00EBF483 /* ListSectionModel.swift */,
 				369AB6812BAD909A00EBF483 /* MockData.swift */,
+				367268D72BB2A107007E82E6 /* OneItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1006,6 +1012,7 @@
 				A5CBDBF82BA77E0100C81385 /* ProfileRouter.swift in Sources */,
 				369AB6312BA972C000EBF483 /* CompositionalLayout.swift in Sources */,
 				A5CBDBC72BA7637700C81385 /* CustomViewController.swift in Sources */,
+				367268D82BB2A107007E82E6 /* OneItem.swift in Sources */,
 				D97126FF2BAA099F00FF3048 /* NetworkError.swift in Sources */,
 				A5CBDBFC2BA77F8000C81385 /* ProfileView.swift in Sources */,
 				A5CBDBE82BA772B300C81385 /* CustomTabBar.swift in Sources */,
@@ -1016,6 +1023,7 @@
 				369AB63C2BA97A3800EBF483 /* CategoriesCell.swift in Sources */,
 				369AB6692BAC4B7D00EBF483 /* BookmarksRouter.swift in Sources */,
 				369AB69D2BB19D2200EBF483 /* SpinnersFactory.swift in Sources */,
+				367268DA2BB2C480007E82E6 /* PaddingLabel.swift in Sources */,
 				369AB6912BADB1CD00EBF483 /* RecomendedViewController.swift in Sources */,
 				369AB6522BAB29D100EBF483 /* DetailArticleView.swift in Sources */,
 				369AB61B2BA8833A00EBF483 /* UIImageView + ext.swift in Sources */,

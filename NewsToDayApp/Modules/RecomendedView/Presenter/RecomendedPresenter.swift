@@ -20,6 +20,7 @@ protocol RecomendedPresenterProtocol: AnyObject {
     func loadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
     func goToDetailVC(data: Article?, isLiked: Bool)
     func dismisRecomendedVC()
+    func filterCategoriesArray(categories: [String]) -> [String]
 }
 
 
@@ -31,6 +32,11 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
     private let newsManager: NewsManager
     private let imageManager: ImageManager
     private let searchWord: String?
+    
+    private var arrayCatgories: [String] {
+        ["science", "health"]
+    }
+    
     required init(view: RecomendedPresenterViewProtocol, router: RecomendedRouterProtocol, newsManager: NewsManager, imageManager: ImageManager, searchWord: String?) {
         self.view = view
         self.router = router
@@ -38,8 +44,18 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
         self.imageManager = imageManager
         self.searchWord = searchWord
         print("SEARCH WORD \(searchWord)")
-        searchWord != nil ? getRecomendedNews(request: NewsRequest(query: searchWord)) : getRecomendedNews(request: NewsRequest(categories: ["Science", "Health"]))
+        searchWord != nil ? getRecomendedNews(request: NewsRequest(query: searchWord)) : getRecomendedNews(request: NewsRequest(categories: arrayCatgories))
         
+    }
+    func filterCategoriesArray(categories: [String]) -> [String]{
+//        print("categories \(categories))")
+//        print("filter categories array \(arrayCatgories.filter(categories.contains))")
+        if searchWord == nil{
+            return arrayCatgories.filter(categories.contains)
+        } else {
+            return categories
+        }
+    
     }
     
     private func getRecomendedNews(request: NewsRequest){

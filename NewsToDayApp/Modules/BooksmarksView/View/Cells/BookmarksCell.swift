@@ -14,7 +14,7 @@ class BookmarksCell: UITableViewCell {
     private let categoryLabel = LabelsFactory.makeCategoryLabel()
     private let articleNameLabel = LabelsFactory.makeArticleHeaderLabel()
     private let backImage = ImageViewFactory.makeCornerRadiusImage()
-    private lazy var spinner = SpinnersFactory.getSpinner()
+    private lazy var spinner = SpinnersFactory.makeSpinner()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

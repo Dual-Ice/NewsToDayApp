@@ -63,7 +63,7 @@ extension CategoriesViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCell.resuseID, for: indexPath) as? CategoriesCell else { return UICollectionViewCell() }
         let data = presenter?.data[indexPath.row]
-        cell.configCell(categoryLabelText: data?.categoryName ?? "", emojiString: data?.emojiString)
+        cell.configCell(categoryLabelText: data?.categoryNameLabel ?? "", emojiString: data?.emojiString, categoriesValue: data?.categoryNameValue ?? "")
         return cell
     }
     

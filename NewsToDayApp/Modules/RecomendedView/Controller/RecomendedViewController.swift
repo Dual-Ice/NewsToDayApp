@@ -59,13 +59,14 @@ extension RecomendedViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BookmarksCell.resuseID, for: indexPath) as? BookmarksCell else {return UITableViewCell()}
-        let data = presenter?.data[indexPath.row]
         cell.selectionStyle = .none
+        let data = presenter?.data[indexPath.row]
+        let filterCategories = presenter?.filterCategoriesArray(categories: data?.category ?? [])
         presenter?.loadImage(imageUrl: data?.imageUrl, completion: { image in
             let imageToUse = image ?? UIImage(named: "noImage")
-            cell.configCell(categoryLabelText: data?.category.joined(separator: ","), articleNameText: data?.title, image: imageToUse)
+            cell.configCell(categoryLabelText: filterCategories?.joined(separator: ","), articleNameText: data?.title, image: imageToUse)
         })
-        cell.configCell(categoryLabelText: data?.category.joined(separator: ","), articleNameText: data?.title, image: nil)
+        cell.configCell(categoryLabelText: filterCategories?.joined(separator: ","), articleNameText: data?.title, image: nil)
         return cell
     }
 
