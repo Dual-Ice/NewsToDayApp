@@ -75,7 +75,7 @@ final class DetailArticleView: CustomView {
         createStackViewLabels(categories: data?.category ?? [])
         //categoryLabel.text = data?.category.joined(separator: ",").uppercased()
         articleNameLabel.text = data?.title
-        authorNameLabel.text = data?.creator?.joined(separator: ",")  ?? "Author"
+        authorNameLabel.text = data?.creator?.joined(separator: ",")  ?? ""
         //MARK: - config newsText
         let descriptionText = data?.description ?? "No Description"
         let repeatedText = String(repeating: descriptionText, count: 10)

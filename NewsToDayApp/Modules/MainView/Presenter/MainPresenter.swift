@@ -69,23 +69,26 @@ class MainPresenter: MainPresenterProtocol {
         getRecomendedNews(categoryArray: arrayCatgories)
     }
     
+    // MARK: - Prepare CategoriesArray
     func filterCategoriesArray(categories: [String]) -> [String]{
 //        print("categories \(categories))")
 //        print("filter categories array \(arrayCatgories.filter(categories.contains))")
         let filteredCategories = arrayCatgories.filter(categories.contains)
-        let capitalizedCategories = categories.capitalizingFirstLetterOfEachElement()
+        let capitalizedCategories = filteredCategories.capitalizingFirstLetterOfEachElement()
         return capitalizedCategories
     }
+    
     func filterCategoriesForSelectedCategory(categories: [String]) -> String{
         let filteredCategory = categories.filter { $0 == selectedCategory }
         return filteredCategory.first ?? ""
     }
     
-    
+    // MARK: - Save IndexPath For SelectedIndexPath
     func saveSelectedCell(indexPath: IndexPath) {
         selectedIndexPath = indexPath
     }
     
+    // MARK: - Network
     func getNewsByCategory(category: String){
         let request = NewsRequest(categories: [category])
         newsDataByCatagory = .init() //очищать массив при переключении категории
@@ -133,7 +136,7 @@ class MainPresenter: MainPresenterProtocol {
             }
         })
     }
-    
+    // MARK: - Save To BookMarks
     func handleCellEvent(article: Int, event: FavoriteButtonCellEvent) {
         switch event {
         case .favoriteDidTapped:
@@ -146,7 +149,7 @@ class MainPresenter: MainPresenterProtocol {
             }
         }
     }
-    
+    // MARK: - Navigation
     func goToDetailVC(data: Article?, isLiked: Bool) {
         router?.pushDetailVC(data: data, isLiked: isLiked)
     }
