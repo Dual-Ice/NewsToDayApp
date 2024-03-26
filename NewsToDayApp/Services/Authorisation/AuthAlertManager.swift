@@ -56,7 +56,7 @@ final class AuthAlertManager {
         title: String,
         message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("AuthScreenUDismissButtonText", comment: ""), style: .default, handler: nil))
         viewController.present(alert, animated: true)
     }
 }
@@ -68,8 +68,8 @@ extension AuthAlertManager {
     private func showInvalidEmailOrPasswordAlert(on viewController: UIViewController) {
         presentBasicAlert(
             on: viewController,
-            title: "Invalid username or password.",
-            message: "Please try again."
+            title: NSLocalizedString("AuthScreenUserNameOrPasswordErrorTitle", comment: ""),
+            message: NSLocalizedString("AuthScreenUserNameOrPasswordErrorMessage", comment: "")
         )
     }
 }
@@ -80,32 +80,32 @@ extension AuthAlertManager {
     private func showInvalidUsernameAlert(on viewController: UIViewController) {
         presentBasicAlert(
             on: viewController,
-            title: "Invalid username",
-            message: "Username must contain at least 4 symbols. Please enter correct username."
+            title: NSLocalizedString("AuthScreenUserNameErrorTitle", comment: ""),
+            message: NSLocalizedString("AuthScreenUserNameErrorMessage", comment: "")
         )
     }
     
     private func showInvalidEmailAlert(on viewController: UIViewController) {
         presentBasicAlert(
             on: viewController,
-            title: "Invalid email",
-            message: "Please enter correct username"
+            title: NSLocalizedString("AuthScreenUserEmailErrorTitle", comment: ""),
+            message: NSLocalizedString("AuthScreenUserEmailErrorMessage", comment: "")
         )
     }
     
     private func showInvalidPasswordAlert(on viewController: UIViewController) {
         presentBasicAlert(
             on: viewController,
-            title: "Invalid password",
-            message: "Password must contain at least 6 symbols. Please enter correct password."
+            title: NSLocalizedString("AuthScreenUserPasswordErrorTitle", comment: ""),
+            message: NSLocalizedString("AuthScreenUserPasswordErrorMessage", comment: "")
         )
     }
     
     private func showPasswordsMismatchAlert(on viewController: UIViewController) {
         presentBasicAlert(
             on: viewController,
-            title: "Password mismatch",
-            message: "Passwords do not match. Please try again."
+            title: NSLocalizedString("AuthScreenUserPasswordRepeatErrorTitle", comment: ""),
+            message: NSLocalizedString("AuthScreenUserPasswordRepeatErrorMessage", comment: "")
         )
     }
 }

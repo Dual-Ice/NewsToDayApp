@@ -60,7 +60,7 @@ class BookmarksView: CustomView {
     
     override func layoutViews() {
         title.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(24)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(28)
             make.leading.equalToSuperview().offset(16)
         }
         

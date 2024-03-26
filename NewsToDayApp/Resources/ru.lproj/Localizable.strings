@@ -50,7 +50,6 @@
 "ProfleViewTermsAndConditionsButton" = "Условия и положения";
 "ProfleViewSignOutButton" = "Выйти";
 
-
 //MARK: - TermsAndConditionsView
 "TermsAndConditionsViewTitle" = "Условия и положения";
 
@@ -76,3 +75,31 @@
 "EmptyResponse" = "Запрос вернул пустой ответ!";
 "ErrorCodeResponse" = "Запрос завершился с ошибкой!";
 "InvalidImageData" = "Изображение не может быть отображено!";
+
+//MARK: - AuthScreen
+"AuthScreenLoginTitle" = "C возвращением 👋";
+"AuthScreenLoginSubTitle" = "Я рад видеть вас снова. Вы можете продолжить с того места, на котором остановились, войдя в систему.";
+"AuthScreenLoginButtonText" = "Войти";
+"AuthScreenLoginTappableText" = "Зарегистрироваться!";
+"AuthScreenLoginText" = "Ещё нет аккаунта? Зарегистрироваться!";
+"AuthScreenRegistrationTitle" = "Добро пожаловать в  NewsToDay";
+"AuthScreenRegistrationSubTitle" = "Здравствуйте, я думаю, вы здесь новенький. Вы можете начать использовать приложение после регистрации.";
+"AuthScreenRegistrationButtonText" = "Зарегистрироваться";
+"AuthScreenRegistrationTappableText" = "Войти!";
+"AuthScreenRegistrationText" = "Есть аккаунт? Войти!";
+"AuthScreenUserNameField" = "Имя пользователя";
+"AuthScreenUserEmailField" = "Адрес электронной почты";
+"AuthScreenUserPasswordField" = "Пароль";
+"AuthScreenUserPasswordRepeatField" = "Повторите пароль";
+
+"AuthScreenUDismissButtonText" = "Отмена";
+"AuthScreenUserNameOrPasswordErrorTitle" = "Неверное имя пользователя или пароль.";
+"AuthScreenUserNameOrPasswordErrorMessage" = "Пожалуйста, попробуйте снова.";
+"AuthScreenUserNameErrorTitle" = "Неверное имя пользователя";
+"AuthScreenUserNameErrorMessage" = "Имя пользователя должно содержать как минимум 4 символа. Пожалуйста, введите верное имя пользователя.";
+"AuthScreenUserEmailErrorTitle" = "Неверный email";
+"AuthScreenUserEmailErrorMessage" = "Пожалуйста, введите корректный email.";
+"AuthScreenUserPasswordErrorTitle" = "Неверный пароль";
+"AuthScreenUserPasswordErrorMessage" = "Пароль должен содержать как минимум 6 символов. Пожалуйста, введите корректный пароль.";
+"AuthScreenUserPasswordRepeatErrorTitle" = "Пароли не совпадают";
+"AuthScreenUserPasswordRepeatErrorMessage" = "Пароли не совпали, попробуйте ещё раз.";
