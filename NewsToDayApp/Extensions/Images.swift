@@ -58,8 +58,16 @@ extension UIImage {
             return UIImage(named: "angle-right")
         }
         
-        static var check: UIImage? {
-            return UIImage(named: "check")
+        static var arrowLeft: UIImage? {
+            return UIImage(systemName: "arrow.backward", withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))
+        }
+
+        static var chevronRight: UIImage? {
+            return UIImage(systemName: "chevron.right", withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))
+        }
+        
+        static var checkmark: UIImage? {
+            return UIImage(systemName: "checkmark")
         }
         
         static var email: UIImage? {
@@ -79,7 +87,35 @@ extension UIImage {
         }
         
         static var signout: UIImage? {
-            return UIImage(named: "signout")
+            return UIImage(systemName: "rectangle.portrait.and.arrow.forward", withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))
+        }
+        
+        static var userBasic: UIImage? {
+            return UIImage(named: "user-basic")
+        }
+        
+        static var userEditing: UIImage? {
+            return UIImage(named: "user-editing")
+        }
+        
+        static var passwordBasic: UIImage? {
+            return UIImage(named: "password-basic")
+        }
+        
+        static var passwordEditing: UIImage? {
+            return UIImage(named: "password-editing")
+        }
+        
+        static var emailBasic: UIImage? {
+            return UIImage(named: "email-basic")
+        }
+        
+        static var emailEditing: UIImage? {
+            return UIImage(named: "email-editing")
+        }
+        
+        static var secureInput: UIImage? {
+            return UIImage(named: "secureInput")
         }
     }
 }

@@ -41,7 +41,7 @@ class NewsManager: NetworkManager {
     }
     
     private func prepareUrl(_ request: NewsRequest) -> URL? {
-        let language = UserDefaults.standard.object(forKey: "AppLanguage") ?? "en"
+        let language = LanguagesService.getCurrentLanguageCodeForRequest()
         var urlString = "\(apiUrl)?apikey=\(apiKey)&language=\(language)&image=1&video=0&size=\(request.size)"
         if (!request.categories.isEmpty) {
             let categoriesString = request.categories.joined(separator: ",")

@@ -46,6 +46,18 @@
 "BookmarksViewSubTitle" = "Saved articles to the library";
 "BookmarksViewEmptyText" = "You haven't saved any articles yet. Start reading and bookmarking them now";
 
+//MARK: - ProfileView
+"ProfleViewTitle" = "Profile";
+"ProfleViewLanguageButton" = "Language";
+"ProfleViewTermsAndConditionsButton" = "Terms & conditions";
+"ProfleViewSignOutButton" = "Sign Out";
+
+//MARK: - TermsAndConditionsView
+"TermsAndConditionsViewTitle" = "Terms & conditions";
+
+//MARK: - LanguagesView
+"LanguagesViewTitle" = "Language";
+
 //MARK: - DetailArticleView
 "DetailArticleViewAuthor" = "Author";
 "DetailArticleViewResult" = "Result";
@@ -53,6 +65,12 @@
 //MARK: - RecomendedView
 "RecomendedViewTitle" = "All article by Categories";
 "RecomendedViewSubTitle" = "Recomended for you";
+
+//MARK: - ImagePicker
+"ImagePickerChooseFromLibrary" = "Choose from Library";
+"ImagePickerTakePhoto" = "Take Photo";
+"ImagePickerCameraError" = "Camera not available";
+"ImagePickerCancel" = "Cancel";
 
 //MARK: - Network Errors
 "InvalidURL" = "Invalid URL!";
