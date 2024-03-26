@@ -31,12 +31,14 @@ final class AuthenticationView: CustomView {
     private var viewState: State = .login {
         didSet { setupViews() }
     }
+    private let title = LabelsFactory.makeHeaderLabel()
+    private let subTitle = LabelsFactory.makeTextLabel()
 
     private lazy var userNameTextField = TextFieldFactory
         .makeTextField(placeholder: "Username", image: UIImage.Icons.userBasic)
     
     private lazy var emailTextField = TextFieldFactory
-        .makeTextField(placeholder: "Email Adress", image: UIImage.Icons.emailBasic)
+        .makeTextField(placeholder: "Email Address", image: UIImage.Icons.emailBasic)
 
     private lazy var passwordTextField = TextFieldFactory
         .makeSecureTextField(placeholder: "Password", image: UIImage.Icons.passwordBasic)
@@ -61,28 +63,47 @@ final class AuthenticationView: CustomView {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 16
-        [userNameTextField,
-         emailTextField,
-         passwordTextField,
-         repeatPasswordTextField,
-         loginButton].forEach { stackView.addArrangedSubview($0) }
         
         return stackView
     }()
     
     override func setViews() {
         super.setViews()
+        [
+            userNameTextField,
+            emailTextField,
+            passwordTextField,
+            repeatPasswordTextField,
+            loginButton
+        ].forEach { stackView.addArrangedSubview($0) }
         
-        addSubview(haveAnAccountLabel)
-        addSubview(stackView)
+        [
+            title,
+            subTitle,
+            stackView,
+            haveAnAccountLabel
+        ].forEach { addSubview($0) }
         
         userNameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
         repeatPasswordTextField.delegate = self
+        
+        setupViews()
     }
     
     override func layoutViews() {
+        title.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide.snp.top)
+            make.leading.equalToSuperview().offset(16)
+        }
+    
+        subTitle.snp.makeConstraints { make in
+            make.top.equalTo(title.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+        }
+        
         haveAnAccountLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().inset(16)
@@ -94,11 +115,10 @@ final class AuthenticationView: CustomView {
         }
         
         stackView.snp.makeConstraints {
+            $0.top.equalTo(subTitle.snp.bottom).offset(30)
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().inset(16)
-            $0.top.equalToSuperview().offset(100)
         }
-        setupViews()
     }
     
     private func makeLabelTappable() {
@@ -140,6 +160,7 @@ final class AuthenticationView: CustomView {
     }
     
     private func setupViews() {
+        subTitle.textAlignment = .left
         switch viewState {
         case .login:
             setupLoginViews()
@@ -151,6 +172,8 @@ final class AuthenticationView: CustomView {
     }
     
     private func setupLoginViews() {
+        title.text = "Welcome Back 👋"
+        subTitle.text = "I am happy to see you again. You can continue where you left off by logging in."
         UIView.animate(withDuration: 0.3) { [self] in
             userNameTextField.isHidden = true
             userNameTextField.alpha = 0
@@ -166,6 +189,8 @@ final class AuthenticationView: CustomView {
     }
     
     private func setupRegisterViews() {
+        title.text = "Welcome to NewsToDay"
+        subTitle.text = "Hello, I guess you are new around here. You can start using the application after sign up."
         UIView.animate(withDuration: 0.3) { [self] in
             userNameTextField.isHidden = false
             userNameTextField.alpha = 1

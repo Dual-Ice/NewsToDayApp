@@ -44,6 +44,19 @@
 "BookmarksViewSubTitle" = "Сохранненые статьи в библиотеку";
 "BookmarksViewEmptyText" = "Нет сохранненых статей. Начни читать и сохранять статьи";
 
+//MARK: - ProfileView
+"ProfleViewTitle" = "Профиль";
+"ProfleViewLanguageButton" = "Язык";
+"ProfleViewTermsAndConditionsButton" = "Условия и положения";
+"ProfleViewSignOutButton" = "Выйти";
+
+
+//MARK: - TermsAndConditionsView
+"TermsAndConditionsViewTitle" = "Условия и положения";
+
+//MARK: - LanguagesView
+"LanguagesViewTitle" = "Язык приложения";
+
 //MARK: - DetailArticleView
 "DetailArticleViewAuthor" = "Автор";
 "DetailArticleViewResult" = "Результат";
@@ -51,6 +64,12 @@
 //MARK: - RecomendedView
 "RecomendedViewTitle" = "Все статьи";
 "RecomendedViewSubTitle" = "Рекомендации для тебя";
+
+//MARK: - ImagePicker
+"ImagePickerChooseFromLibrary" = "Выбрать из галереи";
+"ImagePickerTakePhoto" = "Сделать фото";
+"ImagePickerCameraError" = "Камера недоступна";
+"ImagePickerCancel" = "Отмена";
 
 //MARK: - Network Errors
 "InvalidURL" = "Неверный URL!";
