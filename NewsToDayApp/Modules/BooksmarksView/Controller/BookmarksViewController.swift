@@ -64,7 +64,7 @@ extension BookmarksViewController: UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BookmarksCell.resuseID, for: indexPath) as? BookmarksCell else {return UITableViewCell()}
         let data = presenter?.data[indexPath.row]
         cell.selectionStyle = .none
-        cell.configCell(categoryLabelText: data?.articleCategory, articleNameText: data?.articleName, image: UIImage(named: data?.image ?? ""))
+        cell.configCell(categoryLabelText: data?.articleCategoryLabel, articleNameText: data?.articleName, image: UIImage(named: data?.image ?? ""))
         return cell
     }
 

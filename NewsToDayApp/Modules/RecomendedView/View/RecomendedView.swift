@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 protocol RecomendedViewDelegate: AnyObject {
+    func tappedBackButton()
 }
 
 class RecomendedView: CustomView {
@@ -17,12 +18,14 @@ class RecomendedView: CustomView {
     private let title = LabelsFactory.makeHeaderLabel()
     private let subTitle = LabelsFactory.makeTextLabel()
     private let tableView = UITableView()
+    private let backButton = ButtonsFactory.makeButton()
     
     override func setViews() {
         self.backgroundColor = .white
         setUpViews()
         configureTableView()
         [
+            backButton,
             title,
             subTitle,
             tableView,
@@ -32,6 +35,11 @@ class RecomendedView: CustomView {
     private func setUpViews(){
         title.text = NSLocalizedString("RecomendedViewTitle", comment: "")
         subTitle.text = NSLocalizedString("RecomendedViewSubTitle", comment: "")
+        
+        backButton.backgroundColor = .clear
+        backButton.addTarget(nil, action: #selector(backTapped), for: .touchUpInside)
+        backButton.setBackgroundImage(UIImage(systemName: "arrow.left"), for: .normal)
+        backButton.tintColor = UIColor(named: ConstColors.greyPrimary)
     }
     
     private func configureTableView() {
@@ -45,8 +53,14 @@ class RecomendedView: CustomView {
     }
     
     override func layoutViews() {
+        backButton.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide.snp.top)
+            make.leading.equalToSuperview().offset(16)
+            make.width.height.equalTo(28)
+        }
+        
         title.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(24)
+            make.top.equalTo(backButton.snp.bottom).offset(24)
             make.leading.equalToSuperview().offset(16)
         }
         
@@ -62,21 +76,25 @@ class RecomendedView: CustomView {
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
         }
     }
+    
+    @objc private func backTapped(){
+        delegate?.tappedBackButton()
+    }
 }
 
 //MARK: - RecomendedVCDelegate
 extension RecomendedView: RecomendedVCDelegate{
+    func reloadTableView() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     func setTableDelegate(vc: RecomendedViewController) {
         tableView.delegate = vc
     }
     
     func setTableViewDataSource(vc: RecomendedViewController) {
         tableView.dataSource = vc
-    }
-    
-    func reloadTableView() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
     }
 }

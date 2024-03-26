@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CategoriesVCDelegate{
-    func reloadCollectionView()
+    func setDefaultColorCells(selectedIndexPath: [IndexPath])
     func setCollectionViewDelegate(vc: CategoriesViewController)
     func setCollectionViewDataSource(vc: CategoriesViewController)
     func chechHiddenButtonOrNot(type: HideButtonOnCategoriesView?)
@@ -31,6 +31,13 @@ class CategoriesViewController: CustomViewController<CategoriesView> {
         navigationController?.navigationBar.isHidden = true
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        categoriesView?.setDefaultColorCells(selectedIndexPath: presenter?.selectedIndexPathArray ?? [])
+        presenter?.saveCategoriesArray()
+        
+    }
+    
     private func setDelegates(){
         customView.delegate = self
         categoriesView = customView
@@ -43,8 +50,6 @@ class CategoriesViewController: CustomViewController<CategoriesView> {
 //MARK: - CategoriesPresenterViewProtocol
 extension CategoriesViewController: CategoriesPresenterViewProtocol {
   
-    
-    
     
 }
 //MARK: - CategoriesViewDelegate
@@ -63,7 +68,7 @@ extension CategoriesViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCell.resuseID, for: indexPath) as? CategoriesCell else { return UICollectionViewCell() }
         let data = presenter?.data[indexPath.row]
-        cell.configCell(categoryLabelText: data?.categoryName ?? "", emojiString: data?.emojiString)
+        cell.configCell(categoryLabelText: data?.categoryNameLabel ?? "", emojiString: data?.emojiString, categoriesValue: data?.categoryNameValue ?? "")
         return cell
     }
     

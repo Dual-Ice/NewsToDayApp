@@ -13,12 +13,12 @@ protocol CategoriesPresenterViewProtocol: AnyObject {
 }
 
 protocol CategoriesPresenterProtocol: AnyObject {
-    
     init(view: CategoriesPresenterViewProtocol, router: CategoriesRouterProtocol)
     var data: [CategoriesModel] { get }
     var selectedIndexPathArray: [IndexPath] { get }
     func saveSelectedCell(indexPath: IndexPath, category: String)
     func removeUnSelectedCell(indexPath: IndexPath, category: String)
+    func saveCategoriesArray()
     
 }
 
@@ -30,8 +30,8 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     
     var data: [CategoriesModel] = CategoriesModel.getAllCategories()
     
-    weak var view: CategoriesPresenterViewProtocol?
-    var router: CategoriesRouterProtocol?
+    private weak var view: CategoriesPresenterViewProtocol?
+    private var router: CategoriesRouterProtocol?
     
     required init(view: CategoriesPresenterViewProtocol, router: CategoriesRouterProtocol) {
         self.view = view
@@ -41,7 +41,7 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     func saveSelectedCell(indexPath: IndexPath, category: String) {
         selectedIndexPathArray.append(indexPath)
         categoriesArray.append(category)
-        print("categortArray1 \(categoriesArray)")
+       // print("categortArray1 \(categoriesArray)")
     }
     
     func removeUnSelectedCell(indexPath: IndexPath, category: String) {
@@ -49,14 +49,14 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
         if let indexToRemove{
             selectedIndexPathArray.remove(at: indexToRemove)
             categoriesArray.remove(at: indexToRemove)
-            print("categortArray2 \(categoriesArray)")
+           // print("categortArray2 \(categoriesArray)")
         }
-        //selectedIndexPathArray.remove(at: indexToRemove)
-//        for (index, item) in selectedIndexPathArray.enumerated(){
-//            if item == indexPath{
-//                selectedIndexPathArray.remove(at: index)
-//                //print(" array3 \(selectedIndexPathArray)")
-//            }
-//        }
+    }
+    
+    func saveCategoriesArray(){
+        //print("categoriesArray saved\(categoriesArray)")
+        // categoriesArray сохранить, если отличается от уже сохраненного и не пустой
+        selectedIndexPathArray = .init()
+        categoriesArray = .init()
     }
 }

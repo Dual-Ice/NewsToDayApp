@@ -67,13 +67,13 @@ class CategoriesCell: UICollectionViewCell {
 
 //MARK: - Configure Cell UI Public Method
 extension CategoriesCell{
-    func configCell(categoryLabelText: String, emojiString: String?){
+    func configCell(categoryLabelText: String, emojiString: String?, categoriesValue: String){
         if let emojiString{
             categoryLabel.text = emojiString + " " + categoryLabelText
-            categoryTitle = categoryLabelText
+            categoryTitle = categoriesValue
         } else{
             categoryLabel.text = categoryLabelText
-            categoryTitle = categoryLabelText
+            categoryTitle = categoriesValue
         }
         
     }

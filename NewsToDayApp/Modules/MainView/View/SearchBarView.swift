@@ -45,7 +45,7 @@ class SearchBarView: UISearchBar {
         textField.leftViewMode = .always
         
         // Change color of placeholder text
-        let attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor: color ?? .black])
+        let attributedPlaceholder = NSAttributedString(string: NSLocalizedString("MainViewSearchBar", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: color ?? .black])
         textField.attributedPlaceholder = attributedPlaceholder
     }
     

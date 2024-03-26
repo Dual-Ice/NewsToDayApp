@@ -132,6 +132,15 @@ private extension MainView{
 
 //MARK: - MainVCDelegate
 extension MainView: MainVCDelegate{
+    func changeFavoriteCelButtonBackGround(indexItem: Int, isLiked: Bool) {
+        let indexPath = IndexPath(item: indexItem, section: 1)
+        DispatchQueue.main.async {
+            if let cell = self.collectionView.cellForItem(at: indexPath) as? ArticleCouruselCell{
+                cell.setImageForFavoriteButton(isLiked: isLiked)
+            }
+        }
+    }
+    
     func setCollectionViewDataSource(vc: MainViewController) {
         collectionView.dataSource = vc
     }
@@ -147,6 +156,13 @@ extension MainView: MainVCDelegate{
     func reloadCollectionView() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+        }
+    }
+    
+    func reloadCollectionView(section: Int) {
+        DispatchQueue.main.async {
+            let indexSet = IndexSet(integer: section)
+            self.collectionView.reloadSections(indexSet)
         }
     }
 }

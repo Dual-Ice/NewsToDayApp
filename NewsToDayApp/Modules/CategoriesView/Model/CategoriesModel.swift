@@ -7,25 +7,26 @@
 
 import Foundation
 struct CategoriesModel {
-    var emojiString: String
-    var categoryName: String
+    let emojiString: String
+    let categoryNameLabel: String
+    let categoryNameValue: String
 }
 
 extension CategoriesModel{
     static func getAllCategories()  -> [CategoriesModel]{
         [
-            .init(emojiString: "💼", categoryName: NSLocalizedString("CategoriesBusiness", comment: "")),
-            .init(emojiString: "🩺", categoryName: NSLocalizedString("CategoriesHealth", comment: "")),
-            .init(emojiString: "🔬", categoryName: NSLocalizedString("CategoriesScience", comment: "")),
-            .init(emojiString: "⚽️", categoryName: NSLocalizedString("CategoriesSports", comment: "")),
-            .init(emojiString: "💻", categoryName: NSLocalizedString("CategoriesTechnology", comment: "")),
-            .init(emojiString: "🚓", categoryName: NSLocalizedString("CategoriesCrime", comment: "")),
-            .init(emojiString: "🎓", categoryName: NSLocalizedString("CategoriesEducation", comment: "")),
-            .init(emojiString: "🎬", categoryName: NSLocalizedString("CategoriesEntertainment", comment: "")),
-            .init(emojiString: "🌳", categoryName: NSLocalizedString("CategoriesEnvironment", comment: "")),
-            .init(emojiString: "🍔", categoryName: NSLocalizedString("CategoriesFood", comment: "")),
-            .init(emojiString: "🛋️", categoryName: NSLocalizedString("CategoriesLifestyle", comment: "")),
-            .init(emojiString: "🗳️", categoryName: NSLocalizedString("CategoriesPolitics", comment: "")),
+            .init(emojiString: "💼", categoryNameLabel: NSLocalizedString("CategoriesBusiness", comment: ""), categoryNameValue: "business"),
+            .init(emojiString: "🩺", categoryNameLabel: NSLocalizedString("CategoriesHealth", comment: ""), categoryNameValue: "health"),
+            .init(emojiString: "🔬", categoryNameLabel: NSLocalizedString("CategoriesScience", comment: ""), categoryNameValue: "science"),
+            .init(emojiString: "⚽️", categoryNameLabel: NSLocalizedString("CategoriesSports", comment: ""), categoryNameValue: "sports"),
+            .init(emojiString: "💻", categoryNameLabel: NSLocalizedString("CategoriesTechnology", comment: ""), categoryNameValue: "technology"),
+            .init(emojiString: "🚓", categoryNameLabel: NSLocalizedString("CategoriesCrime", comment: ""), categoryNameValue: "crime"),
+            .init(emojiString: "🎓", categoryNameLabel: NSLocalizedString("CategoriesEducation", comment: ""), categoryNameValue: "education"),
+            .init(emojiString: "🎬", categoryNameLabel: NSLocalizedString("CategoriesEntertainment", comment: ""), categoryNameValue: "entertainment"),
+            .init(emojiString: "🌳", categoryNameLabel: NSLocalizedString("CategoriesEnvironment", comment: ""), categoryNameValue: "environment"),
+            .init(emojiString: "🍔", categoryNameLabel: NSLocalizedString("CategoriesFood", comment: ""), categoryNameValue: "food"),
+            .init(emojiString: "🛋️", categoryNameLabel: NSLocalizedString("CategoriesLifestyle", comment: ""), categoryNameValue: "lifestyle"),
+            .init(emojiString: "🗳️", categoryNameLabel: NSLocalizedString("CategoriesPolitics", comment: ""), categoryNameValue: "politics"),
         ]
     }
 }

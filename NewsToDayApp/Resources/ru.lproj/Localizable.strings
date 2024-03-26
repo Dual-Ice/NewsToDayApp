@@ -30,6 +30,7 @@
 "OnbordingNext" = "Далее";
 
 //MARK: - MainView
+"MainViewSearchBar" = "Поиск";
 "HeaderSeeAll" = "Все";
 "ListSectionModelTitle" = "Рекомендации";
 "MainViewTitle" = "Главная";

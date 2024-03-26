@@ -25,8 +25,7 @@ final class DetailArticleView: CustomView {
         return view
     }()
     
-    private let categoryLabel = LabelsFactory.makeCategoryTagLabel()
-    private let categoryLabeImage = ImageViewFactory.makeCornerRadiusImage()
+   // private let categoryLabel = LabelsFactory.makeCategoryTagLabel()
     private let articleNameLabel = LabelsFactory.makeArticleHeaderLabel()
     private let authorNameLabel = LabelsFactory.makeArticleHeaderLabel()
     private let authorLabel = LabelsFactory.makeCategoryLabel()
@@ -43,49 +42,81 @@ final class DetailArticleView: CustomView {
         return textView
     }()
     
+    private lazy var  stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+      
+    
     private let favoriteButton = ButtonsFactory.makeButton()
     private let backButton = ButtonsFactory.makeButton()
     private let shareButton = ButtonsFactory.makeButton()
+    private let spinner = SpinnersFactory.makeSpinner()
     
     //MARK: - ConfigView public method
-    func configView(data: MockItem?, isLiked: Bool?){
+    func configView(data: Article?, isLiked: Bool?, image: UIImage?){
         //MARK: - config backImage
-        let image = UIImage(named: data?.image ?? "")
         if let image = image{
+            spinner.stopAnimating()
+            spinner.removeFromSuperview()
+            stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
             backImage.image = image
         } else{
-            backImage.backgroundColor = .blue
+            setUpSpiner()
+            backImage.backgroundColor = .none
         }
         //MARK: - config favoriteButton
         let favoriteImage: UIImage? = isLiked ?? false ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-bordered")
         favoriteButton.setBackgroundImage(favoriteImage, for: .normal)
         //MARK: - config Labels
-        categoryLabel.text = data?.articleCategory
-        articleNameLabel.text = data?.articleName
-        authorNameLabel.text = "Default Author"
+        createStackViewLabels(categories: data?.category ?? [])
+        //categoryLabel.text = data?.category.joined(separator: ",").uppercased()
+        articleNameLabel.text = data?.title
+        authorNameLabel.text = data?.creator?.joined(separator: ",")  ?? ""
         //MARK: - config newsText
-        newsText.text = """
-        Leads in individual states may change from one party to another as all the votes are counted. Select a state for detailed results, and select the Senate, House or Governor tabs to view those races.
-        
-        For more detailed state results click on the States A-Z links at the bottom of this page. Results source: NEP/Edison via Reuters.
-
-        Leads in individual states may change from one party to another as all the votes are counted. Select a state for detailed results, and select the Senate, House or Governor tabs to view those races.
-
-        For more detailed state results click on the States A-Z links at the bottom of this page. Results source: NEP/Edison via Reuters.
-        Leads in individual states may change from one party to another as all the votes are counted. Select a state for detailed results, and select the Senate, House or Governor tabs to view those races.
-
-        For more detailed state results click on the States A-Z links at the bottom of this page. Results source: NEP/Edison via Reuters.
-"""
+        let descriptionText = data?.description ?? "No Description"
+        let repeatedText = String(repeating: descriptionText, count: 10)
+        newsText.text = repeatedText
+    }
+    
+    private func createStackViewLabels(categories: [String]){
+        for category in categories {
+            if stackView.arrangedSubviews.count < 3 {
+                let label =  PaddingLabel(withInsets: 0, 0, 5, 5)
+                label.text = category.uppercased()
+                label.textAlignment = .center
+                label.backgroundColor = UIColor(named: ConstColors.purplePrimary)
+                label.font = UIFont.TextFont.Main.tag
+                label.numberOfLines = 1
+                label.textColor = UIColor(named: ConstColors.customWhite)
+                label.layer.cornerRadius = 16
+                label.layer.masksToBounds = true
+                stackView.addArrangedSubview(label)
+            }
+        }
+    }
+    
+    private func setUpSpiner(){
+        spinner.color = .white
+        addSubview(spinner)
+        spinner.snp.makeConstraints { make in
+            make.centerY.equalTo(backImage.snp.centerY)
+            make.centerX.equalTo(backImage.snp.centerX)
+        }
+        spinner.startAnimating()
     }
     
     override func setViews() {
         setUpViews()
         backgroundColor = .white
         backImage.addSubview(backView)
-        categoryLabeImage.addSubview(categoryLabel)
         [
             backImage,
-            categoryLabeImage,
+            stackView,
+            //categoryLabel,
             articleNameLabel,
             authorNameLabel,
             authorLabel,
@@ -107,9 +138,11 @@ final class DetailArticleView: CustomView {
             make.edges.equalToSuperview()
         }
         
-        categoryLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(categoryLabeImage.snp.centerX)
-            make.centerY.equalTo(categoryLabeImage.snp.centerY)
+        stackView.snp.makeConstraints { make in
+            make.bottom.equalTo(articleNameLabel.snp.top).offset(-16)
+            make.leading.equalToSuperview().offset(16)
+            //make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(32)
         }
         
         resultLabel.snp.makeConstraints { make in
@@ -137,13 +170,7 @@ final class DetailArticleView: CustomView {
         articleNameLabel.snp.makeConstraints { make in
             make.bottom.equalTo(authorNameLabel.snp.top).offset(-32)
             make.leading.equalToSuperview().offset(16)
-        }
-        
-        categoryLabeImage.snp.makeConstraints { make in
-            make.bottom.equalTo(articleNameLabel.snp.top).offset(-16)
-            make.leading.equalToSuperview().offset(16)
-            make.width.equalTo(75)
-            make.height.equalTo(32)
+            make.trailing.equalToSuperview().offset(-8)
         }
         
         favoriteButton.snp.makeConstraints { make in
@@ -169,16 +196,19 @@ final class DetailArticleView: CustomView {
     private func setUpViews(){
         //MARK: - setUp Images
         backImage.layer.cornerRadius = 0
-        categoryLabeImage.layer.cornerRadius = 16
-        categoryLabeImage.backgroundColor = UIColor(named: ConstColors.purplePrimary)
         //MARK: - setUp Labels
         articleNameLabel.font = UIFont.TextFont.Article.articleLabel
+        articleNameLabel.numberOfLines = 3
         authorNameLabel.font = UIFont.TextFont.Article.authorName
         authorLabel.font = UIFont.TextFont.Article.authorLabel
         authorLabel.text = NSLocalizedString("DetailArticleViewAuthor", comment: "")
         resultLabel.textColor = UIColor(named: ConstColors.blackPrimary)
         resultLabel.font = UIFont.TextFont.Main.recommendedArticleLabel
         resultLabel.text = NSLocalizedString("DetailArticleViewResult", comment: "")
+//        categoryLabel.textAlignment = .center
+//        categoryLabel.backgroundColor = UIColor(named: ConstColors.purplePrimary)
+//        categoryLabel.layer.cornerRadius = 16
+//        categoryLabel.layer.masksToBounds = true
         //MARK: - setUp Buttons
         favoriteButton.backgroundColor = .clear
         favoriteButton.addTarget(nil, action: #selector(favoriteTapped), for: .touchUpInside)
@@ -202,5 +232,13 @@ final class DetailArticleView: CustomView {
     
     @objc private func shareTapped(){
         delegate?.tappedShareButton()
+    }
+}
+
+// MARK: - DetailArticleVCDelegate
+extension DetailArticleView: DetailArticleVCDelegate{
+    func changeBacgroundImageButton(isLiked: Bool) {
+        let favoriteImage: UIImage? = isLiked ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-bordered")
+        favoriteButton.setBackgroundImage(favoriteImage, for: .normal)
     }
 }

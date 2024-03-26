@@ -14,13 +14,7 @@ class RecomendedCell: UICollectionViewCell {
     private let categoryLabel = LabelsFactory.makeCategoryLabel()
     private let articleNameLabel = LabelsFactory.makeArticleHeaderLabel()
     private let backImage = ImageViewFactory.makeCornerRadiusImage()
-    private lazy var spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView()
-        spinner.color = .white
-        spinner.style = .medium
-        spinner.hidesWhenStopped = true
-        return spinner
-    }()
+    private lazy var spinner = SpinnersFactory.makeSpinner()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -73,6 +67,7 @@ class RecomendedCell: UICollectionViewCell {
         categoryLabel.snp.makeConstraints { make in
             make.bottom.equalTo(articleNameLabel.snp.top).offset(-8)
             make.leading.equalTo(backImage.snp.trailing).offset(16)
+            make.trailing.equalTo(contentView.snp.trailing).offset(-8)
         }
         
         articleNameLabel.snp.makeConstraints { make in
@@ -85,17 +80,16 @@ class RecomendedCell: UICollectionViewCell {
 
 //MARK: - Configure Cell UI Public Method
 extension RecomendedCell{
-    func configCell(categoryLabelText: String?, articleNameText: String?, image: UIImage?){
-        categoryLabel.text = categoryLabelText
+    func configCell(categoryLabelText: [String]?, articleNameText: String?, image: UIImage?){
+        categoryLabel.text = categoryLabelText?.joined(separator: " ")
         articleNameLabel.text = articleNameText
         if let image = image{
             spinner.stopAnimating()
             spinner.removeFromSuperview()
             backImage.image = image
         } else{
-            //setUpSpiner() //добавить spineer
-            backImage.backgroundColor = .blue
-            
+            setUpSpiner() //добавить spinner
+            backImage.backgroundColor = .white
         }
     }
 }
