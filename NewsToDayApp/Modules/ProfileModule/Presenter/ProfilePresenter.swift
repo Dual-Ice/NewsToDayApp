@@ -17,6 +17,7 @@ protocol ProfilePresenterProtocol: AnyObject {
     init(view: ProfilePresenterViewProtocol, router: ProfileRouterProtocol)
     func goToLanguagesVC()
     func goToTermsAndConditionsVC()
+    func goToAuthVC()
     
 }
 
@@ -41,6 +42,10 @@ class ProfilePresenter: ProfilePresenterProtocol {
     
     func goToTermsAndConditionsVC() {
         router?.pushTermsAndConditionsVC()
+    }
+    
+    func goToAuthVC() {
+        router?.pushAuthVC()
     }
     
 }

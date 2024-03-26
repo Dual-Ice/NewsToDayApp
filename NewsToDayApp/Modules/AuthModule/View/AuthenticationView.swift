@@ -35,20 +35,20 @@ final class AuthenticationView: CustomView {
     private let subTitle = LabelsFactory.makeTextLabel()
 
     private lazy var userNameTextField = TextFieldFactory
-        .makeTextField(placeholder: "Username", image: UIImage.Icons.userBasic)
+        .makeTextField(placeholder: NSLocalizedString("AuthScreenUserNameField", comment: ""), image: UIImage.Icons.userBasic)
     
     private lazy var emailTextField = TextFieldFactory
-        .makeTextField(placeholder: "Email Address", image: UIImage.Icons.emailBasic)
+        .makeTextField(placeholder: NSLocalizedString("AuthScreenUserEmailField", comment: ""), image: UIImage.Icons.emailBasic)
 
     private lazy var passwordTextField = TextFieldFactory
-        .makeSecureTextField(placeholder: "Password", image: UIImage.Icons.passwordBasic)
+        .makeSecureTextField(placeholder: NSLocalizedString("AuthScreenUserPasswordField", comment: ""), image: UIImage.Icons.passwordBasic)
     
     private lazy var repeatPasswordTextField = TextFieldFactory
-        .makeSecureTextField(placeholder: "Repeat Password", image: UIImage.Icons.passwordBasic)
+        .makeSecureTextField(placeholder: NSLocalizedString("AuthScreenUserPasswordRepeatField", comment: ""), image: UIImage.Icons.passwordBasic)
     
     private lazy var loginButton: UIButton = {
         let button = ButtonsFactory.makeButton()
-        button.setTitle("Sign In", for: .normal)
+        button.setTitle(NSLocalizedString("AuthScreenLoginButtonText", comment: ""), for: .normal)
         button.addTarget(self, action: #selector(makeRequest), for: .touchUpInside)
         return button
     }()
@@ -131,11 +131,11 @@ final class AuthenticationView: CustomView {
                 
         switch viewState {
         case .login:
-            text = "Don't have an account? Sign up!"
-            tappableText = "Sign up!"
+            text = NSLocalizedString("AuthScreenLoginText", comment: "")
+            tappableText = NSLocalizedString("AuthScreenLoginTappableText", comment: "")
         case .register:
-            text = "Already have an account? Sign in!"
-            tappableText = "Sign in!"
+            text = NSLocalizedString("AuthScreenRegistrationText", comment: "")
+            tappableText = NSLocalizedString("AuthScreenRegistrationTappableText", comment: "")
         }
         
         let color = UIColor(
@@ -172,8 +172,8 @@ final class AuthenticationView: CustomView {
     }
     
     private func setupLoginViews() {
-        title.text = "Welcome Back 👋"
-        subTitle.text = "I am happy to see you again. You can continue where you left off by logging in."
+        title.text = NSLocalizedString("AuthScreenLoginTitle", comment: "")
+        subTitle.text =  NSLocalizedString("AuthScreenLoginSubTitle", comment: "")
         UIView.animate(withDuration: 0.3) { [self] in
             userNameTextField.isHidden = true
             userNameTextField.alpha = 0
@@ -181,7 +181,7 @@ final class AuthenticationView: CustomView {
             repeatPasswordTextField.isHidden = true
             repeatPasswordTextField.alpha = 0
             
-            loginButton.setTitle("Sign In", for: .normal)
+            loginButton.setTitle(NSLocalizedString("AuthScreenLoginButtonText", comment: ""), for: .normal)
         } completion: { [self] completed in
             userNameTextField.text = ""
             repeatPasswordTextField.text = ""
@@ -189,8 +189,8 @@ final class AuthenticationView: CustomView {
     }
     
     private func setupRegisterViews() {
-        title.text = "Welcome to NewsToDay"
-        subTitle.text = "Hello, I guess you are new around here. You can start using the application after sign up."
+        title.text = NSLocalizedString("AuthScreenRegistrationTitle", comment: "")
+        subTitle.text = NSLocalizedString("AuthScreenRegistrationSubTitle", comment: "")
         UIView.animate(withDuration: 0.3) { [self] in
             userNameTextField.isHidden = false
             userNameTextField.alpha = 1
@@ -198,7 +198,7 @@ final class AuthenticationView: CustomView {
             repeatPasswordTextField.isHidden = false
             repeatPasswordTextField.alpha = 1
             
-            loginButton.setTitle("Sign Up", for: .normal)
+            loginButton.setTitle(NSLocalizedString("AuthScreenRegistrationButtonText", comment: ""), for: .normal)
         }
     }
     
@@ -261,9 +261,9 @@ final class AuthenticationView: CustomView {
                 
         switch viewState {
         case .login:
-            tappableText = "Sign up!"
+            tappableText = NSLocalizedString("AuthScreenLoginTappableText", comment: "")
         case .register:
-            tappableText = "Sign in!"
+            tappableText = NSLocalizedString("AuthScreenRegistrationTappableText", comment: "")
         }
         
         let tappableRange = (text as NSString).range(of: tappableText)

@@ -125,9 +125,9 @@ class ProfileView: CustomView {
     func configView(with user: FirestoreUser) {
         profileName.text = user.username
         profileEmail.text = user.email
-        if user.image != nil {
-            profileImage.image = UIImage(data: user.image!)
-        }
+//        if user.image != nil {
+//            profileImage.image = UIImage(data: user.image!)
+//        }
     }
     
     
