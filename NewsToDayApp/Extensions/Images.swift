@@ -90,6 +90,10 @@ extension UIImage {
             return UIImage(systemName: "rectangle.portrait.and.arrow.forward", withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))
         }
         
+        static var userAvatar: UIImage? {
+            return UIImage(systemName: "person.crop.circle.fill")
+        }
+        
         static var userBasic: UIImage? {
             return UIImage(named: "user-basic")
         }
