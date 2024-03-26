@@ -30,16 +30,18 @@ protocol MainPresenterProtocol: AnyObject {
     func getNewsByCategory(category: String)
     var newsDataByCatagory: [Article] { get }
     var recomendedNews: [Article] { get }
+    var selectedCategory: String { get set }
     func getRecomendedNews(categoryArray: [String])
     func loadImageByCategories(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
     func filterCategoriesArray(categories: [String]) -> [String]
+    func filterCategoriesForSelectedCategory(categories: [String]) -> String
 }
 
 class MainPresenter: MainPresenterProtocol {
     
     var selectedIndexPath: IndexPath = .init()
    // var favorities: [String : Bool] = .init()
-    
+    var selectedCategory: String = "business"
     var newsDataByCatagory: [Article] = .init()
     var recomendedNews: [Article] = .init()
 //    var categoriesDataLabel = OneItem.allCategoryLabel
@@ -63,14 +65,20 @@ class MainPresenter: MainPresenterProtocol {
         self.router = router
         self.newsManager = newsManager
         self.imageManager = imageManager
-        getNewsByCategory(category: "business")
+        getNewsByCategory(category: selectedCategory)
         getRecomendedNews(categoryArray: arrayCatgories)
     }
     
     func filterCategoriesArray(categories: [String]) -> [String]{
-        print("categories \(categories))")
-        print("filter categories array \(arrayCatgories.filter(categories.contains))")
-        return arrayCatgories.filter(categories.contains)
+//        print("categories \(categories))")
+//        print("filter categories array \(arrayCatgories.filter(categories.contains))")
+        let filteredCategories = arrayCatgories.filter(categories.contains)
+        let capitalizedCategories = categories.capitalizingFirstLetterOfEachElement()
+        return capitalizedCategories
+    }
+    func filterCategoriesForSelectedCategory(categories: [String]) -> String{
+        let filteredCategory = categories.filter { $0 == selectedCategory }
+        return filteredCategory.first ?? ""
     }
     
     
@@ -85,7 +93,7 @@ class MainPresenter: MainPresenterProtocol {
             DispatchQueue.main.async {
                 switch result{
                 case .success(let data):
-                    //print("data \(data)")
+                    print("data by category \(data)")
                     self.newsDataByCatagory = data.results ?? []
                     self.view?.reloadSectionCollectionView(section: 1)
                 case .failure(let error):

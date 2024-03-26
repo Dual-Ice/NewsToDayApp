@@ -51,9 +51,11 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
 //        print("categories \(categories))")
 //        print("filter categories array \(arrayCatgories.filter(categories.contains))")
         if searchWord == nil{
-            return arrayCatgories.filter(categories.contains)
+            let categories = arrayCatgories.filter(categories.contains)
+            let capitalizedCategories = categories.capitalizingFirstLetterOfEachElement()
+            return capitalizedCategories
         } else {
-            return categories
+            return categories.capitalizingFirstLetterOfEachElement()
         }
     
     }

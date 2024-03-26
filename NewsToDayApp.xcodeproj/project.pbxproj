@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		367268D82BB2A107007E82E6 /* OneItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367268D72BB2A107007E82E6 /* OneItem.swift */; };
 		367268DA2BB2C480007E82E6 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367268D92BB2C480007E82E6 /* PaddingLabel.swift */; };
+		367268DC2BB2D1E3007E82E6 /* String + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367268DB2BB2D1E3007E82E6 /* String + ext.swift */; };
 		369AB6192BA87E6600EBF483 /* Labels + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6182BA87E6600EBF483 /* Labels + ext.swift */; };
 		369AB61B2BA8833A00EBF483 /* UIImageView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB61A2BA8833A00EBF483 /* UIImageView + ext.swift */; };
 		369AB61F2BA88B6300EBF483 /* ConstColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB61E2BA88B6300EBF483 /* ConstColors.swift */; };
@@ -135,6 +136,7 @@
 /* Begin PBXFileReference section */
 		367268D72BB2A107007E82E6 /* OneItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OneItem.swift; path = NewsToDayApp/Factories/OneItem.swift; sourceTree = SOURCE_ROOT; };
 		367268D92BB2C480007E82E6 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		367268DB2BB2D1E3007E82E6 /* String + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + ext.swift"; sourceTree = "<group>"; };
 		369AB6182BA87E6600EBF483 /* Labels + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Labels + ext.swift"; sourceTree = "<group>"; };
 		369AB61A2BA8833A00EBF483 /* UIImageView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + ext.swift"; sourceTree = "<group>"; };
 		369AB61E2BA88B6300EBF483 /* ConstColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstColors.swift; sourceTree = "<group>"; };
@@ -610,6 +612,7 @@
 				369AB61A2BA8833A00EBF483 /* UIImageView + ext.swift */,
 				369AB6302BA972C000EBF483 /* CompositionalLayout.swift */,
 				369AB6482BA9DB3C00EBF483 /* UIImage + ext.swift */,
+				367268DB2BB2D1E3007E82E6 /* String + ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1031,6 +1034,7 @@
 				369AB6972BADB4D000EBF483 /* RecomendedRouter.swift in Sources */,
 				369AB62D2BA8BB7800EBF483 /* ImageViewsFactory.swift in Sources */,
 				369AB6792BAC8E8200EBF483 /* CategoriesView.swift in Sources */,
+				367268DC2BB2D1E3007E82E6 /* String + ext.swift in Sources */,
 				369AB66E2BAC5E6E00EBF483 /* BookmarksCell.swift in Sources */,
 				D97126F52BA7A3B500FF3048 /* Images.swift in Sources */,
 				369AB6562BAC3A5F00EBF483 /* DetailArticleRouter.swift in Sources */,

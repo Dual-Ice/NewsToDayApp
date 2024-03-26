@@ -83,18 +83,19 @@ final class DetailArticleView: CustomView {
     }
     
     private func createStackViewLabels(categories: [String]){
-        print("categories \(categories)")
         for category in categories {
-            let label =  PaddingLabel(withInsets: 0, 0, 5, 5)
-            label.text = category.uppercased()
-            label.textAlignment = .center
-            label.backgroundColor = UIColor(named: ConstColors.purplePrimary)
-            label.font = UIFont.TextFont.Main.tag
-            label.numberOfLines = 1
-            label.textColor = UIColor(named: ConstColors.customWhite)
-            label.layer.cornerRadius = 16
-            label.layer.masksToBounds = true
-            stackView.addArrangedSubview(label)
+            if stackView.arrangedSubviews.count < 3 {
+                let label =  PaddingLabel(withInsets: 0, 0, 5, 5)
+                label.text = category.uppercased()
+                label.textAlignment = .center
+                label.backgroundColor = UIColor(named: ConstColors.purplePrimary)
+                label.font = UIFont.TextFont.Main.tag
+                label.numberOfLines = 1
+                label.textColor = UIColor(named: ConstColors.customWhite)
+                label.layer.cornerRadius = 16
+                label.layer.masksToBounds = true
+                stackView.addArrangedSubview(label)
+            }
         }
     }
     

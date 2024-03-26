@@ -92,11 +92,12 @@ extension MainViewController: UICollectionViewDataSource{
         case .corusel(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArticleCouruselCell.resuseID, for: indexPath) as? ArticleCouruselCell else { return UICollectionViewCell() }
             let data = presenter?.newsDataByCatagory[indexPath.row]
+            let filterCategory = presenter?.filterCategoriesForSelectedCategory(categories: data?.category ?? [])
             presenter?.loadImageByCategories(imageUrl: data?.imageUrl, completion: { image in
                 let imageToUse = image ?? UIImage(named: "noImage")
-                cell.configCell(categoryLabelText: data?.category ?? [], articleNameText: data?.title, image: imageToUse, isLiked: data?.isFavourite ?? false)
+                cell.configCell(categoryLabelText: filterCategory, articleNameText: data?.title, image: imageToUse, isLiked: data?.isFavourite ?? false)
             })
-            cell.configCell(categoryLabelText:  data?.category ?? [], articleNameText: data?.title, image: nil, isLiked: data?.isFavourite ?? false) //favoriteData?[data] ?? false
+            cell.configCell(categoryLabelText:  filterCategory, articleNameText: data?.title, image: nil, isLiked: data?.isFavourite ?? false)
             cell.onFavoriteButtonTap = { [weak self] event in
                 self?.presenter?.handleCellEvent(article: indexPath.row, event: event)
             }
@@ -141,6 +142,7 @@ extension MainViewController: UICollectionViewDelegate{
                 }
                 cell.setSelectedColors()
                 presenter?.saveSelectedCell(indexPath: indexPath)
+                presenter?.selectedCategory = gategories[indexPath.row].articleCategoryValue
                 presenter?.getNewsByCategory(category: gategories[indexPath.row].articleCategoryValue)
             }
         case .corusel(_):

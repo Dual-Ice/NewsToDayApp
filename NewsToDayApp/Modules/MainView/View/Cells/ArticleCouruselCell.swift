@@ -110,8 +110,8 @@ class ArticleCouruselCell: UICollectionViewCell {
 
 //MARK: - Configure Cell UI Public Method
 extension ArticleCouruselCell{
-    func configCell(categoryLabelText: [String]?, articleNameText: String?, image: UIImage?, isLiked: Bool){
-        categoryLabel.text = categoryLabelText?.joined(separator: " ").uppercased()
+    func configCell(categoryLabelText: String?, articleNameText: String?, image: UIImage?, isLiked: Bool){
+        categoryLabel.text = categoryLabelText?.uppercased()
         articleNameLabel.text = articleNameText
         let favoriteImage: UIImage? = isLiked ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-bordered")
         favoriteButton.setBackgroundImage(favoriteImage, for: .normal)
