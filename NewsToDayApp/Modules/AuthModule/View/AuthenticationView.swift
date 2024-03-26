@@ -96,6 +96,7 @@ final class AuthenticationView: CustomView {
         title.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide.snp.top)
             make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
         }
     
         subTitle.snp.makeConstraints { make in
@@ -160,6 +161,8 @@ final class AuthenticationView: CustomView {
     }
     
     private func setupViews() {
+        title.textAlignment = .left
+        title.numberOfLines = 0
         subTitle.textAlignment = .left
         switch viewState {
         case .login:
