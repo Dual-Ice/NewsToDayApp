@@ -10,7 +10,7 @@ import UIKit
 protocol MainVCDelegate{
     func reloadCollectionView()
     func reloadCollectionView(section: Int)
-    func reloadOneCell(indexItem: Int)
+    func reloadOneCell(indexItem: Int, isLiked: Bool)
     func setSearchBarDelegate(vc: MainViewController)
     func setCollectionViewDelegate(vc: MainViewController)
     func setCollectionViewDataSource(vc: MainViewController)
@@ -41,16 +41,16 @@ class MainViewController: CustomViewController<MainView> {
 }
 //MARK: - MainViewProtocol
 extension MainViewController: MainViewProtocol {
+    func reloadOneCell(indexItem: Int, isLiked: Bool) {
+        mainView?.reloadOneCell(indexItem: indexItem, isLiked: isLiked)
+    }
+    
     func reloadSectionCollectionView(section: Int) {
         mainView?.reloadCollectionView(section: section)
     }
     
     func reloadCollectionView() {
         mainView?.reloadCollectionView()
-    }
-    
-    func reloadOneCell(indexItem: Int){
-        mainView?.reloadOneCell(indexItem: indexItem)
     }
 }
 //MARK: - MainViewDelegate

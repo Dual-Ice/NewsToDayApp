@@ -10,6 +10,7 @@ import SnapKit
 
 protocol ArticleCouruselCellDelegate: AnyObject {
     func tappedFavoriteButton()
+   
 }
 
 enum FavoriteButtonCellEvent {
@@ -123,5 +124,10 @@ extension ArticleCouruselCell{
             setUpSpiner() //добавить spineer
             backImage.backgroundColor = .none
         }
+    }
+    
+    func setImageForFavoriteButton(isLiked: Bool){
+        let favoriteImage: UIImage? = isLiked ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-bordered")
+        favoriteButton.setBackgroundImage(favoriteImage, for: .normal)
     }
 }

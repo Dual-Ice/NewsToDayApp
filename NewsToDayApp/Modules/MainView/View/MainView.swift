@@ -132,11 +132,12 @@ private extension MainView{
 
 //MARK: - MainVCDelegate
 extension MainView: MainVCDelegate{
-    func reloadOneCell(indexItem: Int) {
+    func reloadOneCell(indexItem: Int, isLiked: Bool) {
         let indexPath = IndexPath(item: indexItem, section: 1)
         DispatchQueue.main.async {
-            self.collectionView.reloadItems(at: [indexPath])
-            print("RELOAD ONE CELL")
+            if let cell = self.collectionView.cellForItem(at: indexPath) as? ArticleCouruselCell{
+                cell.setImageForFavoriteButton(isLiked: isLiked)
+            }
         }
     }
     

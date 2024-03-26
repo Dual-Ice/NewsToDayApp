@@ -11,7 +11,7 @@ import UIKit
 protocol MainViewProtocol: AnyObject {
     func reloadCollectionView()
     func reloadSectionCollectionView(section: Int)
-    func reloadOneCell(indexItem: Int)
+    func reloadOneCell(indexItem: Int, isLiked: Bool)
 }
 
 protocol MainPresenterProtocol: AnyObject {
@@ -141,7 +141,7 @@ class MainPresenter: MainPresenterProtocol {
         switch event {
         case .favoriteDidTapped:
             newsDataByCatagory[article].isFavourite = !newsDataByCatagory[article].isFavourite
-            view?.reloadOneCell(indexItem: article)
+            view?.reloadOneCell(indexItem: article, isLiked: newsDataByCatagory[article].isFavourite)
             if newsDataByCatagory[article].isFavourite == true {
                 //сохранить в закладки
             } else {
