@@ -13,6 +13,7 @@ protocol ProfileRouterProtocol: AnyObject {
     init(navigationVC: UINavigationController)
     func pushLanguagesVC()
     func pushTermsAndConditionsVC()
+    func pushAuthVC()
     
 }
 
@@ -33,6 +34,12 @@ class ProfileRouter: ProfileRouterProtocol {
         guard let navigationVC = navigationVC else { return }
         let termsAndConditionsVC = TermsAndConditionsBuilder(navigationVC: navigationVC).buildTermsAndConditionsVC()
         navigationVC.pushViewController(termsAndConditionsVC!, animated: true)
+    }
+    
+    func pushAuthVC() {
+        guard let navigationVC = navigationVC else { return }
+        let authVC = AuthBuilder().buildLoginView(navigationController: navigationVC)
+        navigationVC.pushViewController(authVC, animated: true)
     }
     
 }

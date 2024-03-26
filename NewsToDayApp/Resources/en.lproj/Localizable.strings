@@ -77,3 +77,33 @@
 "EmptyResponse" = "No data from network call!";
 "ErrorCodeResponse" = "Error code response";
 "InvalidImageData" = "Image has corrupted data";
+
+//MARK: - AuthScreen
+"AuthScreenLoginTitle" = "Welcome Back 👋";
+"AuthScreenLoginSubTitle" = "I am happy to see you again. You can continue where you left off by logging in.";
+"AuthScreenLoginButtonText" = "Sign In";
+"AuthScreenLoginTappableText" = "Sign up!";
+"AuthScreenLoginText" = "Don't have an account? Sign up!";
+"AuthScreenRegistrationTitle" = "Welcome to NewsToDay";
+"AuthScreenRegistrationSubTitle" = "Hello, I guess you are new around here. You can start using the application after sign up.";
+"AuthScreenRegistrationButtonText" = "Sign Up";
+"AuthScreenRegistrationTappableText" = "Sign in!";
+"AuthScreenRegistrationText" = "Already have an account? Sign in!";
+"AuthScreenUserNameField" = "Username";
+"AuthScreenUserEmailField" = "Email Address";
+"AuthScreenUserPasswordField" = "Password";
+"AuthScreenUserPasswordRepeatField" = "Repeat Password";
+
+"AuthScreenUDismissButtonText" = "Dismiss";
+"AuthScreenUserNameOrPasswordErrorTitle" = "Invalid username or password.";
+"AuthScreenUserNameOrPasswordErrorMessage" = "Please try again.";
+"AuthScreenUserNameErrorTitle" = "Invalid username";
+"AuthScreenUserNameErrorMessage" = "Username must contain at least 4 symbols. Please enter correct username.";
+"AuthScreenUserEmailErrorTitle" = "Invalid email";
+"AuthScreenUserEmailErrorMessage" = "Please enter correct email";
+"AuthScreenUserPasswordErrorTitle" = "Invalid password";
+"AuthScreenUserPasswordErrorMessage" = "Password must contain at least 6 symbols. Please enter correct password.";
+"AuthScreenUserPasswordRepeatErrorTitle" = "Password mismatch";
+"AuthScreenUserPasswordRepeatErrorMessage" = "Passwords do not match. Please try again.";
+
+
