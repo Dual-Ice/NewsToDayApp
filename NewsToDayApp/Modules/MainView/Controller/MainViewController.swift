@@ -11,6 +11,7 @@ protocol MainVCDelegate{
     func reloadCollectionView()
     func reloadCollectionView(section: Int)
     func changeFavoriteCelButtonBackGround(indexItem: Int, isLiked: Bool)
+    func setColorForFavorites(selectedIndexPath: [IndexPath], isLikedArray: [Bool])
     func setSearchBarDelegate(vc: MainViewController)
     func setCollectionViewDelegate(vc: MainViewController)
     func setCollectionViewDataSource(vc: MainViewController)
@@ -42,6 +43,10 @@ class MainViewController: CustomViewController<MainView> {
 }
 //MARK: - MainViewProtocol
 extension MainViewController: MainViewProtocol {
+    func updateFavoriteButton(indexPaths: [IndexPath], isLikedArray: [Bool]) {
+        mainView?.setColorForFavorites(selectedIndexPath: indexPaths, isLikedArray: isLikedArray)
+    }
+    
     func reloadOneCell(indexItem: Int, isLiked: Bool) {
         mainView?.changeFavoriteCelButtonBackGround(indexItem: indexItem, isLiked: isLiked)
     }

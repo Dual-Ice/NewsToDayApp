@@ -12,6 +12,7 @@ protocol MainViewProtocol: AnyObject {
     func reloadCollectionView()
     func reloadSectionCollectionView(section: Int)
     func reloadOneCell(indexItem: Int, isLiked: Bool)
+    func updateFavoriteButton(indexPaths: [IndexPath], isLikedArray: [Bool] )
 }
 
 protocol MainPresenterProtocol: AnyObject {
@@ -36,6 +37,7 @@ protocol MainPresenterProtocol: AnyObject {
     func filterCategoriesForSelectedCategory(categories: [String]) -> String
     
     func checkSelectedCategoriesRecommdations()
+    func checkCouruselFavorite()
 }
 
 class MainPresenter: MainPresenterProtocol {
@@ -74,6 +76,28 @@ class MainPresenter: MainPresenterProtocol {
         if savedCategories != arrayCatgories && !savedCategories.isEmpty {
             arrayCatgories = savedCategories
             getRecomendedNews(categoryArray: arrayCatgories)
+        }
+    }
+    
+    // MARK: - CheckCourusel favorite or not
+    func checkCouruselFavorite(){ // вызвать во ViewWillAppear
+        let savedCategories: [String : Article] = [:] // нужно заменить на сохраненные 
+        if !savedCategories.isEmpty{
+            let indexes = newsDataByCatagory.compactMap { newsData in
+                savedCategories.keys.contains(newsData.articleId) ? newsDataByCatagory.firstIndex(where: { $0.articleId == newsData.articleId }) : nil
+            }
+            
+            let indexPaths = indexes.compactMap { index in // делаем массив [IndexPath]
+                return IndexPath(item: index, section: 1)
+            }
+            
+            let isLikedArray = indexes.compactMap { index in
+                let articleId = newsDataByCatagory[index].articleId
+                let article = savedCategories[articleId]
+                return article?.isFavourite
+            }
+            
+            view?.updateFavoriteButton(indexPaths: indexPaths, isLikedArray: isLikedArray )
         }
     }
     

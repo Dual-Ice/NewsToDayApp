@@ -131,6 +131,14 @@ private extension MainView{
 
 //MARK: - MainVCDelegate
 extension MainView: MainVCDelegate{
+    func setColorForFavorites(selectedIndexPath: [IndexPath], isLikedArray: [Bool]) {
+        for (index,indexPath) in selectedIndexPath.enumerated(){
+            if let cell = self.collectionView.cellForItem(at: indexPath) as? ArticleCouruselCell{
+                cell.setImageForFavoriteButton(isLiked: isLikedArray[index])
+            }
+        }
+    }
+    
     func changeFavoriteCelButtonBackGround(indexItem: Int, isLiked: Bool) {
         let indexPath = IndexPath(item: indexItem, section: 1)
         DispatchQueue.main.async {
