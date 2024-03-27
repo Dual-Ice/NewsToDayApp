@@ -78,7 +78,7 @@ class MainView: CustomView {
         collectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(searchBar.snp.bottom).offset(16)
-            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-5)
+            make.bottom.equalToSuperview()
         }
     }
 }

@@ -64,6 +64,8 @@
 
 //MARK: - LanguagesView
 "LanguagesViewTitle" = "Language";
+"langChangeMessage" = "To change the language, close the app and re-launch it.";
+"alertTitle" = "Warning!";
 
 //MARK: - DetailArticleView
 "DetailArticleViewAuthor" = "Author";
