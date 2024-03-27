@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CategoriesVCDelegate{
-    func setDefaultColorCells(selectedIndexPath: [IndexPath])
+   // func setDefaultColorCells(selectedIndexPath: [IndexPath])
     func setCollectionViewDelegate(vc: CategoriesViewController)
     func setCollectionViewDataSource(vc: CategoriesViewController)
     func chechHiddenButtonOrNot(type: HideButtonOnCategoriesView?)
@@ -17,9 +17,19 @@ protocol CategoriesVCDelegate{
 
 class CategoriesViewController: CustomViewController<CategoriesView> {
     
-    var presenter: CategoriesPresenterProtocol?
-    var typeToHideButtonOrNot: HideButtonOnCategoriesView?
+    var presenter: CategoriesPresenterProtocol!
+    let typeToHideButtonOrNot: HideButtonOnCategoriesView
     private var categoriesView: CategoriesVCDelegate?
+    
+    init(typeToHideButtonOrNot: HideButtonOnCategoriesView) {
+        self.typeToHideButtonOrNot = typeToHideButtonOrNot
+        super.init(nibName: nil, bundle: nil)
+
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,9 +43,7 @@ class CategoriesViewController: CustomViewController<CategoriesView> {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        categoriesView?.setDefaultColorCells(selectedIndexPath: presenter?.selectedIndexPathArray ?? [])
-        presenter?.saveCategoriesArray()
-        
+        presenter.saveCategoriesArray()
     }
     
     private func setDelegates(){
@@ -55,20 +63,21 @@ extension CategoriesViewController: CategoriesPresenterViewProtocol {
 //MARK: - CategoriesViewDelegate
 extension CategoriesViewController: CategoriesViewDelegate {
     func tappedNextButton() {
-        print("tapped NextButton Onbording")
+        presenter.tappedNextButton()
     }
 }
 
 //MARK: - UICollectionViewDataSource
 extension CategoriesViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter?.data.count ?? 0
+        presenter.data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCell.resuseID, for: indexPath) as? CategoriesCell else { return UICollectionViewCell() }
-        let data = presenter?.data[indexPath.row]
-        cell.configCell(categoryLabelText: data?.categoryNameLabel ?? "", emojiString: data?.emojiString, categoriesValue: data?.categoryNameValue ?? "")
+        let data = presenter.data[indexPath.row]
+        cell.configCell(categoryLabelText: data.categoryLabel, emojiString: data.emojy, categoriesValue: data.categoryValue)
+        presenter.selectedIndexPathArray.contains(indexPath) ?  cell.setSelectedColors() :  cell.setDefaultColors() //меняем цвет для выбранных категорий при первой загрузки и с учетом переиспользования
         return cell
     }
     
@@ -79,36 +88,12 @@ extension CategoriesViewController: UICollectionViewDelegate{
         if let cell = collectionView.cellForItem(at: indexPath) as? CategoriesCell {
             if let indexPathToRemove = presenter?.selectedIndexPathArray.first(where: { $0 == indexPath }) {
                 cell.setDefaultColors()
-                presenter?.removeUnSelectedCell(indexPath: indexPathToRemove, category: cell.categoryTitle)
-                print("delete")
+                presenter.removeUnSelectedCell(indexPath: indexPathToRemove, category: cell.categoryTitle)
             } else {
                 cell.setSelectedColors()
-                presenter?.saveSelectedCell(indexPath: indexPath, category: cell.categoryTitle)
-                print("save")
+                presenter.saveSelectedCell(indexPath: indexPath, category: cell.categoryTitle)
             }
         }
-        
-        
-        //print(" array1 \(presenter?.selectedIndexPathArray)")
-//        if let cell = collectionView.cellForItem(at: indexPath) as? CategoriesCell, let presenter = presenter{
-//            cell.setSelectedColors()
-//            var cellWasRemoved = false
-//            for index in presenter.selectedIndexPathArray{
-//                if index == indexPath {
-//                    cell.setDefaultColors()
-//                    presenter.removeUnSelectedCell(indexPath: indexPath)
-//                    cellWasRemoved = true
-//                    print("delete")
-//                    break
-//                }
-//            }
-//
-//            if !cellWasRemoved {
-//                presenter.saveSelectedCell(indexPath: indexPath)
-//                print("save")
-//            }
-//        }
-       // print(" array2 \(presenter?.selectedIndexPathArray)")
     }
 }
 

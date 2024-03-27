@@ -14,12 +14,11 @@ protocol CategoriesBuilderProtocol: AnyObject {
 class CategoriesBuilder: CategoriesBuilderProtocol {
 
     func buildCategoriesView() -> UIViewController {
-        let vc = CategoriesViewController()
+        let vc = CategoriesViewController(typeToHideButtonOrNot: .categoriesInTabBar)
         let navigationController = UINavigationController(rootViewController: vc)
         let router = CategoriesRouter(navigationVC: navigationController)
         let presenter = CategoriesPresenter(view: vc, router: router)
         vc.presenter = presenter
-        vc.typeToHideButtonOrNot = .categoriesInTabBar // спрятать next button или нет 
         return navigationController
     }
 }

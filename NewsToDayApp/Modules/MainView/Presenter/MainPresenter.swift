@@ -28,7 +28,7 @@ protocol MainPresenterProtocol: AnyObject {
     func getNewsByCategory(category: String)
     var newsDataByCatagory: [Article] { get }
     var recomendedNews: [Article] { get }
-    var categoriesArray: [OneItem] { get }
+    var categoriesArray: [CategoriesModel] { get }
     var selectedCategory: String { get set }
     func getRecomendedNews(categoryArray: [String])
     func loadImageByCategories(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
@@ -42,7 +42,7 @@ class MainPresenter: MainPresenterProtocol {
     var selectedCategory: String = "business"
     var newsDataByCatagory: [Article] = .init()
     var recomendedNews: [Article] = .init()
-    var categoriesArray: [OneItem] = OneItem.allCases
+    var categoriesArray: [CategoriesModel] = CategoriesModel.allCases
         
     weak var view: MainViewProtocol?
     private var router: MainRouterProtocol?
@@ -62,8 +62,8 @@ class MainPresenter: MainPresenterProtocol {
         self.router = router
         self.newsManager = newsManager
         self.imageManager = imageManager
-        getNewsByCategory(category: selectedCategory)
-        getRecomendedNews(categoryArray: arrayCatgories)
+        //getNewsByCategory(category: selectedCategory)
+        //getRecomendedNews(categoryArray: arrayCatgories)
     }
     
     // MARK: - Prepare CategoriesArray

@@ -19,6 +19,7 @@ protocol CategoriesPresenterProtocol: AnyObject {
     func saveSelectedCell(indexPath: IndexPath, category: String)
     func removeUnSelectedCell(indexPath: IndexPath, category: String)
     func saveCategoriesArray()
+    func tappedNextButton()
     
 }
 
@@ -28,7 +29,7 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     
     private var categoriesArray: [String] = .init()
     
-    var data: [CategoriesModel] = CategoriesModel.getAllCategories()
+    var data: [CategoriesModel] = CategoriesModel.allCases
     
     private weak var view: CategoriesPresenterViewProtocol?
     private var router: CategoriesRouterProtocol?
@@ -36,6 +37,16 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     required init(view: CategoriesPresenterViewProtocol, router: CategoriesRouterProtocol) {
         self.view = view
         self.router = router
+        setSelectedColorForOnbordingSelection(selectedCategories: ["sports"])
+    }
+    
+    private func setSelectedColorForOnbordingSelection(selectedCategories: [String]){
+        let indexes = selectedCategories.compactMap { categoryValue in
+            data.firstIndex(where: { $0.categoryValue == categoryValue })
+        }
+        let indexPaths = indexes.map { IndexPath(item: $0, section: 0) }
+        categoriesArray = selectedCategories
+        selectedIndexPathArray = indexPaths
     }
     
     func saveSelectedCell(indexPath: IndexPath, category: String) {
@@ -54,9 +65,11 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     }
     
     func saveCategoriesArray(){
-        //print("categoriesArray saved\(categoriesArray)")
+        print("categoriesArray saved\(categoriesArray)")
         // categoriesArray сохранить, если отличается от уже сохраненного и не пустой
-        selectedIndexPathArray = .init()
-        categoriesArray = .init()
+    }
+    
+    func tappedNextButton() {
+        // нажали Next на onbording
     }
 }
