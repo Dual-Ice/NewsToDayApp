@@ -1,22 +1,62 @@
 //
-//  OneItem.swift
+//  CategoriesModel.swift
 //  NewsToDayApp
 //
-//  Created by Polina on 26.03.2024.
+//  Created by Polina on 27.03.2024.
 //
 
 import Foundation
-protocol OneItemProtocol{
+protocol CategoriesModelProtocol{
     var categoryLabel: String { get }
     var categoryValue: String { get }
+    var emojy: String { get }
 }
 
    
-enum OneItem: CaseIterable {
+enum CategoriesModel: CaseIterable {
     case business, health, science, sports, technology, crime, education, entertainment, environment, food, lifestyle, politics, other, top, tourism, world, domestic
 }
 
-extension OneItem: OneItemProtocol{
+extension CategoriesModel: CategoriesModelProtocol{
+    var emojy: String {
+        switch self {
+        case .business:
+            return "💼"
+        case .health:
+            return "🩺"
+        case .science:
+            return "🔬"
+        case .sports:
+            return "⚽️"
+        case .technology:
+            return "💻"
+        case .crime:
+            return "🚓"
+        case .education:
+            return "🎓"
+        case .entertainment:
+            return "🎬"
+        case .environment:
+            return "🌳"
+        case .food:
+            return "🍔"
+        case .lifestyle:
+            return "🛋️"
+        case .politics:
+            return "🗳️"
+        case .other:
+            return "❓"
+        case .top:
+            return "🔝"
+        case .tourism:
+            return "🏝️"
+        case .world:
+            return "🌐"
+        case .domestic:
+            return "🏠"
+        }
+    }
+
     var categoryValue: String {
         switch self{
         case .business:
@@ -82,7 +122,6 @@ extension OneItem: OneItemProtocol{
             return NSLocalizedString("CategoriesLifestyle", comment: "")
         case .politics:
             return NSLocalizedString("CategoriesPolitics", comment: "")
-            
         case .other:
             return NSLocalizedString("CategoriesOther", comment: "")
         case .top:
@@ -95,12 +134,4 @@ extension OneItem: OneItemProtocol{
             return NSLocalizedString("CategoriesDomestic", comment: "")
         }
     }
-    
-    static var allCategoryValues: [String] {
-           return OneItem.allCases.map { $0.categoryValue }
-       }
-    
-    static var allCategoryLabel: [String] {
-           return OneItem.allCases.map { $0.categoryLabel }
-       }
 }

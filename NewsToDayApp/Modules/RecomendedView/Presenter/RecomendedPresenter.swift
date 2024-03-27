@@ -49,13 +49,15 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
     
     func filterCategoriesArray(categories: [String]) -> [String]{
         if searchWord == nil{
-            let categories = arrayCatgories.filter(categories.contains)
-            let capitalizedCategories = categories.capitalizingFirstLetterOfEachElement()
+            let filteredCategories = arrayCatgories.filter(categories.contains)
+            let translatedArray = filteredCategories.translateCategories(filteredCategory: categories)
+            let capitalizedCategories = translatedArray.capitalizingFirstLetterOfEachElement()
             return capitalizedCategories
         } else {
-            return categories.capitalizingFirstLetterOfEachElement()
+            return categories.translateCategories(filteredCategory: categories).capitalizingFirstLetterOfEachElement()
         }
     }
+
     
     private func getRecomendedNews(request: NewsRequest){
         newsManager.getNews(with: request) { [weak self] result in
