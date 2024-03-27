@@ -95,18 +95,10 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editedImage = info[.editedImage] as? UIImage {
-            UserManager.shared.updateUserAvatar(avatar: editedImage) { [weak self] success, error in
-                if success {
-                    self?.customView.updateProfileImage(editedImage)
-                }
-            }
+            customView.updateProfileImage(editedImage)
             dismiss(animated: true, completion: nil)
         } else if let originalImage = info[.originalImage] as? UIImage {
-            UserManager.shared.updateUserAvatar(avatar: originalImage) { [weak self] success, error in
-                if success {
-                    self?.customView.updateProfileImage(originalImage)
-                }
-            }
+            customView.updateProfileImage(originalImage)
             dismiss(animated: true, completion: nil)
         }
     }
