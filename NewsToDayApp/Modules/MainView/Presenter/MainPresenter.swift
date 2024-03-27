@@ -28,6 +28,7 @@ protocol MainPresenterProtocol: AnyObject {
     func getNewsByCategory(category: String)
     var newsDataByCatagory: [Article] { get }
     var recomendedNews: [Article] { get }
+    var categoriesArray: [OneItem] { get }
     var selectedCategory: String { get set }
     func getRecomendedNews(categoryArray: [String])
     func loadImageByCategories(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
@@ -41,6 +42,7 @@ class MainPresenter: MainPresenterProtocol {
     var selectedCategory: String = "business"
     var newsDataByCatagory: [Article] = .init()
     var recomendedNews: [Article] = .init()
+    var categoriesArray: [OneItem] = OneItem.allCases
         
     weak var view: MainViewProtocol?
     private var router: MainRouterProtocol?
@@ -48,7 +50,7 @@ class MainPresenter: MainPresenterProtocol {
     private let newsManager: NewsManager
     
     var mockData: [ListSectionModel]{
-        MockData().sectionData
+        [ .categories, .corusel, .recomendations]
     }
     
     private var arrayCatgories: [String] {
@@ -66,16 +68,16 @@ class MainPresenter: MainPresenterProtocol {
     
     // MARK: - Prepare CategoriesArray
     func filterCategoriesArray(categories: [String]) -> [String]{
-//        print("categories \(categories))")
-//        print("filter categories array \(arrayCatgories.filter(categories.contains))")
         let filteredCategories = arrayCatgories.filter(categories.contains)
-        let capitalizedCategories = filteredCategories.capitalizingFirstLetterOfEachElement()
+        let translatedArray = filteredCategories.translateCategories(filteredCategory: categories)
+        let capitalizedCategories = translatedArray.capitalizingFirstLetterOfEachElement()
         return capitalizedCategories
     }
     
     func filterCategoriesForSelectedCategory(categories: [String]) -> String{
         let filteredCategory = categories.filter { $0 == selectedCategory }
-        return filteredCategory.first ?? ""
+        let translatedArray = filteredCategory.translateCategories(filteredCategory: categories)
+        return translatedArray.first ?? ""
     }
     
     // MARK: - Save IndexPath For SelectedIndexPath
@@ -111,8 +113,8 @@ class MainPresenter: MainPresenterProtocol {
                 case .success(let data):
                     print("DataNEWSRecomended \(data)")
                     self.recomendedNews = data.results ?? []
-                    self.view?.reloadCollectionView()
-                    //self.view?.reloadSectionCollectionView(section: 2)
+                    //self.view?.reloadCollectionView()
+                    self.view?.reloadSectionCollectionView(section: 2)
                 case .failure(let error):
                     print("DataNEWSRecomended error \(error.localizedDescription)")
                 }

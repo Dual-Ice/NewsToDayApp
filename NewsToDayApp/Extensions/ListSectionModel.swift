@@ -8,32 +8,32 @@
 import Foundation
 
 enum ListSectionModel{
-    case categories([MockItem])
-    case corusel([MockItem])
-    case recomendations([MockItem])
+    case categories
+    case corusel
+    case recomendations
     
-    private var itemsData: [MockItem] {
-        switch self {
-        case .categories(let categories):
-            return categories
-        case .corusel(let corusel):
-            return corusel
-        case .recomendations(let recomendations):
-            return recomendations
-        }
-    }
-    
-    var countData: Int{
-        itemsData.count
-    }
+//    private var itemsData: [MockItem] {
+//        switch self {
+//        case .categories(let categories):
+//            return categories
+//        case .corusel(let corusel):
+//            return corusel
+//        case .recomendations(let recomendations):
+//            return recomendations
+//        }
+//    }
+//    
+//    var countData: Int{
+//        itemsData.count
+//    }
     
     var title: String{
         switch self{
-        case .categories(_):
+        case .categories:
             return ""
-        case .corusel(_):
+        case .corusel:
             return ""
-        case .recomendations(_):
+        case .recomendations:
             return NSLocalizedString("ListSectionModelTitle", comment: "")
         }
     }

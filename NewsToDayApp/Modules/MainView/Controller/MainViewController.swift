@@ -68,11 +68,12 @@ extension MainViewController: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch presenter.mockData[section]{
-        case .categories(let categories):
-            return categories.count
-        case .corusel(_):
+        case .categories:
+            return presenter.categoriesArray.count
+        case .corusel:
+            print(" carusel COUNT \(presenter.newsDataByCatagory.count)")
             return presenter.newsDataByCatagory.count
-        case .recomendations(_):
+        case .recomendations:
             print("recomendations COUNT \(presenter.recomendedNews.count)")
             return presenter.recomendedNews.count
         }
@@ -81,12 +82,12 @@ extension MainViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let sections = presenter.mockData[indexPath.section]
         switch sections{
-        case .categories(let categories):
+        case .categories:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCell.resuseID, for: indexPath) as? CategoriesCell else { return UICollectionViewCell() }
-            cell.configCell(categoryLabelText: categories[indexPath.row].articleCategoryLabel, emojiString: nil, categoriesValue: categories[indexPath.row].articleCategoryValue)
+            cell.configCell(categoryLabelText:  presenter.categoriesArray[indexPath.row].categoryLabel, emojiString: nil, categoriesValue: presenter.categoriesArray[indexPath.row].categoryValue)
             presenter?.selectedIndexPath == indexPath ?  cell.setSelectedColors() : cell.setDefaultColors()// меняет цвет при переиспользовании ячейки
             return cell
-        case .corusel(_):
+        case .corusel:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArticleCouruselCell.resuseID, for: indexPath) as? ArticleCouruselCell else { return UICollectionViewCell() }
             let data = presenter.newsDataByCatagory[indexPath.row]
             let filterCategory = presenter.filterCategoriesForSelectedCategory(categories: data.category)
@@ -99,7 +100,7 @@ extension MainViewController: UICollectionViewDataSource{
                 self?.presenter.handleCellEvent(article: indexPath.row, event: event)
             }
             return cell
-        case .recomendations(_):
+        case .recomendations:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecomendedCell.resuseID, for: indexPath) as? RecomendedCell else { return UICollectionViewCell() }
             let data = presenter.recomendedNews[indexPath.row]
             let categoryFilter = presenter.filterCategoriesArray(categories: data.category)
@@ -130,8 +131,8 @@ extension MainViewController: UICollectionViewDataSource{
 //MARK: - UICollectionViewDelegate
 extension MainViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch presenter?.mockData[indexPath.section]{
-        case .categories(let categories):
+        switch presenter.mockData[indexPath.section]{
+        case .categories:
             if let cell = collectionView.cellForItem(at: indexPath) as? CategoriesCell {
                 if let previousCell = collectionView.cellForItem(at: presenter.selectedIndexPath) as? CategoriesCell {
                     previousCell.setDefaultColors()
@@ -139,15 +140,13 @@ extension MainViewController: UICollectionViewDelegate{
                 cell.setSelectedColors()
                 presenter.saveSelectedCell(indexPath: indexPath)
                 
-                presenter.selectedCategory = categories[indexPath.row].articleCategoryValue
-                presenter.getNewsByCategory(category: categories[indexPath.row].articleCategoryValue)
+                presenter.selectedCategory = presenter.categoriesArray[indexPath.row].categoryValue
+                presenter.getNewsByCategory(category: presenter.categoriesArray[indexPath.row].categoryValue)
             }
-        case .corusel(_):
+        case .corusel:
             presenter.goToDetailVC(data: presenter.newsDataByCatagory[indexPath.row])
-        case .recomendations(_):
+        case .recomendations:
             presenter.goToDetailVC(data: presenter.recomendedNews[indexPath.row])
-        case .none:
-            print("none case tapped")
         }
     }
 }

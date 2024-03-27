@@ -13,40 +13,50 @@ protocol OneItemProtocol{
 
    
 enum OneItem: CaseIterable {
-    case business, health, science, sports, technology, crime, education, entertainment, environment, food, lifestyle, politics
+    case business, health, science, sports, technology, crime, education, entertainment, environment, food, lifestyle, politics, other, top, tourism, world, domestic
 }
 
 extension OneItem: OneItemProtocol{
-    var categoryLabel: String {
+    var categoryValue: String {
         switch self{
         case .business:
-            return "Business"
+            return "business"
         case .health:
-            return "Health"
+            return "health"
         case .science:
-            return "Science"
+            return "science"
         case .sports:
-            return "Sports"
+            return "sports"
         case .technology:
-            return "Technology"
+            return "technology"
         case .crime:
-            return "Crime"
+            return "crime"
         case .education:
-            return "Education"
+            return "education"
         case .entertainment:
-            return "Entertainment"
+            return "entertainment"
         case .environment:
-            return "Environment"
+            return "environment"
         case .food:
-            return "Food"
+            return "food"
         case .lifestyle:
-            return "Lifestyle"
+            return "lifestyle"
         case .politics:
-            return "Politics"
+            return "politics"
+        case .other:
+            return "other"
+        case .top:
+            return "top"
+        case .tourism:
+            return "tourism"
+        case .world:
+            return "world"
+        case .domestic:
+            return "domestic"
         }
     }
 
-    var categoryValue: String {
+    var categoryLabel: String {
         switch self{
         case .business:
             return NSLocalizedString("CategoriesBusiness", comment: "")
@@ -72,6 +82,17 @@ extension OneItem: OneItemProtocol{
             return NSLocalizedString("CategoriesLifestyle", comment: "")
         case .politics:
             return NSLocalizedString("CategoriesPolitics", comment: "")
+            
+        case .other:
+            return NSLocalizedString("CategoriesOther", comment: "")
+        case .top:
+            return NSLocalizedString("CategoriesTop", comment: "")
+        case .tourism:
+            return NSLocalizedString("CategoriesTourism", comment: "")
+        case .world:
+            return NSLocalizedString("CategoriesWorld", comment: "")
+        case .domestic:
+            return NSLocalizedString("CategoriesDomestic", comment: "")
         }
     }
     

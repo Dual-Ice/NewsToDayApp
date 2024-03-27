@@ -83,7 +83,8 @@ final class DetailArticleView: CustomView {
     }
     
     private func createStackViewLabels(categories: [String]){
-        for category in categories {
+        let translatedCategories = categories.translateCategories(filteredCategory: categories)
+        for category in translatedCategories {
             if stackView.arrangedSubviews.count < 3 {
                 let label =  PaddingLabel(withInsets: 0, 0, 5, 5)
                 label.text = category.uppercased()

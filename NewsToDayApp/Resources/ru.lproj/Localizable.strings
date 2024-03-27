@@ -25,6 +25,11 @@
 "CategoriesFood" = "Еда";
 "CategoriesLifestyle" = "Образ жизни";
 "CategoriesPolitics" = "Политика";
+"CategoriesOther" = "Другое";
+"CategoriesTop" = "Топ";
+"CategoriesTourism" = "Туризм";
+"CategoriesWorld" = "Мир";
+"CategoriesDomestic" = "Домашний";
 
 //MARK: - Onbording
 "OnbordingNext" = "Далее";

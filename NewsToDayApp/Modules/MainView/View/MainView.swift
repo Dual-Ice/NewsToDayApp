@@ -90,13 +90,12 @@ private extension MainView{
             guard let self else { return nil }
             let data = delegate?.getData()
             let section = data?[sectionIndex]
-            //mockData[sectionIndex]
             switch section{
-            case .categories(_):
+            case .categories:
                return  createCategoriesSectionLayout()
-            case .corusel(_):
+            case .corusel:
                return createCoruselArticleSectionLayout()
-            case .recomendations(_):
+            case .recomendations:
                 return createRecomendedArticleSectionLayout()
             case .none:
                 return nil
@@ -160,10 +159,10 @@ extension MainView: MainVCDelegate{
     }
     
     func reloadCollectionView(section: Int) {
-        DispatchQueue.main.async {
+        //DispatchQueue.main.async {
             let indexSet = IndexSet(integer: section)
             self.collectionView.reloadSections(indexSet)
-        }
+        //}
     }
 }
 

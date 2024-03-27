@@ -26,6 +26,13 @@
 "CategoriesLifestyle" = "Lifestyle";
 "CategoriesPolitics" = "Politics";
 
+"CategoriesOther" = "Other";
+"CategoriesTop" = "Top";
+"CategoriesTourism" = "Tourism";
+"CategoriesWorld" = "World";
+"CategoriesDomestic" = "Domestic";
+
+
 
 //MARK: - Onbording
 "OnbordingNext" = "Next";
