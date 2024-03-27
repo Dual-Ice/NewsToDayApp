@@ -43,7 +43,10 @@ class CategoriesViewController: CustomViewController<CategoriesView> {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        presenter.saveCategoriesArray()
+        presenter.saveCategoriesArray() { saved, error in
+            print(saved)
+            print(error)
+        }
     }
     
     private func setDelegates(){

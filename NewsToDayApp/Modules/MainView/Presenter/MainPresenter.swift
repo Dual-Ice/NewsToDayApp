@@ -191,6 +191,7 @@ class MainPresenter: MainPresenterProtocol {
     func handleCellEvent(article: Int, event: FavoriteButtonCellEvent) {
         switch event {
         case .favoriteDidTapped:
+            
             newsDataByCatagory[article].isFavourite = !newsDataByCatagory[article].isFavourite
             view?.reloadOneCell(indexItem: article, isLiked: newsDataByCatagory[article].isFavourite)
             if newsDataByCatagory[article].isFavourite == true {
@@ -198,9 +199,19 @@ class MainPresenter: MainPresenterProtocol {
                 user?.articles.append(newsDataByCatagory[article])
             } else {
                 //удалить из закладок если нажал на кнопку в ячейки повторно
+                if let index = user?.articles.firstIndex(where: { $0.articleId == newsDataByCatagory[article].articleId }) {
+                    // Удаляем элемент из массива
+                    user?.articles.remove(at: index)
+                }
             }
-            
-            // save user
+            FirestoreManager.shared.setCollection(
+                with: user!
+            ) { wasSet, error in
+//                if let error = error {
+//                    completion(false, error)
+//                }
+//                completion(true, nil)
+            }
         }
     }
     // MARK: - Navigation

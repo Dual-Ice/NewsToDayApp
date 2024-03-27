@@ -9,7 +9,7 @@ import UIKit
 
 protocol ProfilePresenterViewProtocol: AnyObject {
     
-    func render(with user: FirestoreUser)
+    func render(with user: FirestoreUser?)
 }
 
 protocol ProfilePresenterProtocol: AnyObject {
@@ -38,10 +38,7 @@ class ProfilePresenter: ProfilePresenterProtocol {
         self.view = view
         self.router = router
         self.user = user
-        AuthManager.shared.fetchUser { [weak self] user, error in
-            guard let user = user else { return }
-            self?.view?.render(with: user)
-        }
+        self.view?.render(with: user)
     }
     
     func goToLanguagesVC() {

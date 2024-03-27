@@ -13,7 +13,6 @@ class ProfileViewController: CustomViewController<ProfileView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setDelegates()
     }
     
@@ -28,7 +27,7 @@ class ProfileViewController: CustomViewController<ProfileView> {
 }
 
 extension ProfileViewController: ProfilePresenterViewProtocol {
-    func render(with user: FirestoreUser) {
+    func render(with user: FirestoreUser?) {
         customView.configView(with: user)
     }
 }

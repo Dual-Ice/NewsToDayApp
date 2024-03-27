@@ -70,8 +70,21 @@ class DetailArticlePresenter: DetailArticlePresenterProtocol {
         view?.changeBacgroundImageButton(isLiked: data.isFavourite)
         if data.isFavourite == true {
             //сохранить в закладки
+            user?.articles.append(data)
         } else {
             //удалить из закладок если нажал на кнопку в ячейки повторно
+            if let index = user?.articles.firstIndex(where: { $0.articleId == data.articleId }) {
+                // Удаляем элемент из массива
+                user?.articles.remove(at: index)
+            }
+        }
+        FirestoreManager.shared.setCollection(
+            with: user!
+        ) { wasSet, error in
+//                if let error = error {
+//                    completion(false, error)
+//                }
+//                completion(true, nil)
         }
     }
 }
