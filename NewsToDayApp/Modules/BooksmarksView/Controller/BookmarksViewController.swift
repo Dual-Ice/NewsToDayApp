@@ -17,7 +17,7 @@ protocol BookmarksVCDelegate{
 
 class BookmarksViewController: CustomViewController<BookmarksView> {
     
-    var presenter: BookmarksPresenterProtocol?
+    var presenter: BookmarksPresenterProtocol!
     var bookmarksView: BookmarksVCDelegate?
     
     override func viewDidLoad() {
@@ -28,6 +28,8 @@ class BookmarksViewController: CustomViewController<BookmarksView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        presenter.checkBookmarks()
+        presenter.getSaveAtricles()
     }
     
     private func setDelegates(){
@@ -35,12 +37,15 @@ class BookmarksViewController: CustomViewController<BookmarksView> {
         bookmarksView = customView
         bookmarksView?.setTableDelegate(vc: self)
         bookmarksView?.setTableViewDataSource(vc: self)
-        presenter?.checkBookmarks()
     }
     
 }
 //MARK: - BookmarksPresenterViewProtocol
 extension BookmarksViewController: BookmarksPresenterViewProtocol {
+    func reloadTableView() {
+        bookmarksView?.reloadTableView()
+    }
+    
     func emptyBookmarks() {
         bookmarksView?.emptyBookmarsTrue()
     }
@@ -57,19 +62,37 @@ extension BookmarksViewController: BookmarksViewDelegate{
 //MARK: - UITableViewDataSource
 extension BookmarksViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        presenter?.data.count ?? 0
+        presenter.data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BookmarksCell.resuseID, for: indexPath) as? BookmarksCell else {return UITableViewCell()}
-        let data = presenter?.data[indexPath.row]
+        let data = presenter.data[indexPath.row]
         cell.selectionStyle = .none
-        cell.configCell(categoryLabelText: data?.articleCategoryLabel, articleNameText: data?.articleName, image: UIImage(named: data?.image ?? ""))
+        cell.configCell(categoryLabelText: data.articleCategoryLabel, articleNameText: data.articleName, image: UIImage(named: data.image))
+        // когда будут данные не моковые расскоментировать
+//        let filterCategories = presenter.filterCategoriesArray(categories: data.category)
+//        presenter.loadImage(imageUrl: data.imageUrl, completion: { image in
+//            let imageToUse = image ?? UIImage(named: "noImage")
+//            cell.configCell(categoryLabelText: filterCategories.joined(separator: ","), articleNameText: data.title, image: imageToUse)
+//        })
+//        cell.configCell(categoryLabelText: filterCategories.joined(separator: ","), articleNameText: data.title, image: nil)
         return cell
     }
 
 }
 //MARK: - UITableViewDelegate
 extension BookmarksViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+      if editingStyle == .delete {
+          let data = presenter.data[indexPath.row]
+          presenter.deleteOneArticle(articleId: data.id) // это для мок данных 
+          //presenter.deleteOneItem(articleId: "") // подставить presenter.data[indexPath.row].articleId
+          tableView.deleteRows(at: [indexPath], with: .automatic)
+      }
+    }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //presenter.goToDetailVC(data: presenter.data[indexPath.row])
+    }
 }

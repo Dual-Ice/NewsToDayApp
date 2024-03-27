@@ -13,18 +13,15 @@ struct MockItem: Hashable{
     let articleCategoryLabel: String
     let articleName: String
     let articleCategoryValue: String
+    let id: String
 }
 
 extension MockItem{
     static func  getArticleModel() -> [MockItem]{
         [
-            .init(image: "default", articleCategoryLabel: "Business", articleName: "The latest situation in the presidential election", articleCategoryValue: "Business"),
-            .init(image: "default", articleCategoryLabel: "Entertainment", articleName: "The latest situation in the presidential election", articleCategoryValue: "Entertainment"),
-            .init(image: "default", articleCategoryLabel: "General", articleName: "The latest situation in the presidential election", articleCategoryValue: "General"),
-            .init(image: "default", articleCategoryLabel: "Health", articleName: "The latest situation in the presidential election", articleCategoryValue: "Health"),
-            .init(image: "default", articleCategoryLabel: "Science", articleName: "The latest situation in the presidential election", articleCategoryValue: "Science"),
-            .init(image: "default", articleCategoryLabel: "Sports", articleName: "The latest situation in the presidential election", articleCategoryValue: "Sports"),
-            .init(image: "default", articleCategoryLabel: "Technology", articleName: "The latest situation in the presidential election", articleCategoryValue: "Technology"),
+            .init(image: "default", articleCategoryLabel: "Business", articleName: "The latest situation in the presidential election", articleCategoryValue: "Business", id: "1"),
+            .init(image: "default", articleCategoryLabel: "Entertainment", articleName: "The latest situation in the presidential election", articleCategoryValue: "Entertainment", id: "2"),
+            .init(image: "default", articleCategoryLabel: "General", articleName: "The latest situation in the presidential election", articleCategoryValue: "General", id: "3"),
        ]
     }
 }

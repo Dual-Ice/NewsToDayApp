@@ -81,7 +81,7 @@ class MainPresenter: MainPresenterProtocol {
     
     // MARK: - CheckCourusel favorite or not
     func checkCouruselFavorite(){ // вызвать во ViewWillAppear
-        let savedCategories: [String : Article] = [:] // нужно заменить на сохраненные 
+        let savedCategories: [String : Article] = [:] // нужно заменить на сохраненные
         if !savedCategories.isEmpty{
             let indexes = newsDataByCatagory.compactMap { newsData in
                 savedCategories.keys.contains(newsData.articleId) ? newsDataByCatagory.firstIndex(where: { $0.articleId == newsData.articleId }) : nil
@@ -97,7 +97,9 @@ class MainPresenter: MainPresenterProtocol {
                 return article?.isFavourite
             }
             
-            view?.updateFavoriteButton(indexPaths: indexPaths, isLikedArray: isLikedArray )
+            if !indexPaths.isEmpty && !isLikedArray.isEmpty{
+                view?.updateFavoriteButton(indexPaths: indexPaths, isLikedArray: isLikedArray )
+            }
         }
     }
     
