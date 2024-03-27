@@ -137,6 +137,7 @@
 		D918D5702BAE3AA6005B0DD3 /* TermsAndConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918D5642BAE3AA6005B0DD3 /* TermsAndConditionsView.swift */; };
 		D918D5742BB1B8C3005B0DD3 /* LanguagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918D5732BB1B8C3005B0DD3 /* LanguagesService.swift */; };
 		D93DD60A2BB2058000BAA536 /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93DD6092BB2058000BAA536 /* Languages.swift */; };
+		D93DD60C2BB376A800BAA536 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93DD60B2BB376A800BAA536 /* UserManager.swift */; };
 		D97126CA2BA7906000FF3048 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D97126C52BA7906000FF3048 /* Inter-Medium.ttf */; };
 		D97126CB2BA7906000FF3048 /* Adamina-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D97126C62BA7906000FF3048 /* Adamina-Regular.ttf */; };
 		D97126CC2BA7906000FF3048 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D97126C72BA7906000FF3048 /* Inter-SemiBold.ttf */; };
@@ -272,6 +273,7 @@
 		D918D5642BAE3AA6005B0DD3 /* TermsAndConditionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsView.swift; sourceTree = "<group>"; };
 		D918D5732BB1B8C3005B0DD3 /* LanguagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LanguagesService.swift; path = NewsToDayApp/Extensions/LanguagesService.swift; sourceTree = SOURCE_ROOT; };
 		D93DD6092BB2058000BAA536 /* Languages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
+		D93DD60B2BB376A800BAA536 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		D97126C52BA7906000FF3048 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
 		D97126C62BA7906000FF3048 /* Adamina-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Adamina-Regular.ttf"; sourceTree = "<group>"; };
 		D97126C72BA7906000FF3048 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -819,6 +821,7 @@
 				A5CBDBB42BA75EA800C81385 /* Auth */,
 				A5CBDBB32BA75E9F00C81385 /* Network */,
 				D918D5732BB1B8C3005B0DD3 /* LanguagesService.swift */,
+				D93DD60B2BB376A800BAA536 /* UserManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1280,6 +1283,7 @@
 				369AB63E2BA97A5300EBF483 /* ArticleCouruselCell.swift in Sources */,
 				369AB61F2BA88B6300EBF483 /* ConstColors.swift in Sources */,
 				D97126FD2BAA01EA00FF3048 /* ImageManager.swift in Sources */,
+				D93DD60C2BB376A800BAA536 /* UserManager.swift in Sources */,
 				A5CBDBCD2BA76E3D00C81385 /* MainView.swift in Sources */,
 				369AB6822BAD909A00EBF483 /* MockData.swift in Sources */,
 				369AB6672BAC4ACB00EBF483 /* BookmarksPresenter.swift in Sources */,

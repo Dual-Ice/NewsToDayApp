@@ -54,6 +54,9 @@ extension AuthManager {
                 username: username,
                 email: email,
                 userID: resultUser.uid
+//                image: nil,
+//                categories: [],
+//                articles: []
             )
             
             FirestoreManager.shared.setCollection(

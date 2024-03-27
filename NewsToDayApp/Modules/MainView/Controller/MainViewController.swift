@@ -83,7 +83,6 @@ extension MainViewController: UICollectionViewDataSource{
             //print(" carusel COUNT \(presenter.newsDataByCatagory.count)")
             return presenter.newsDataByCatagory.count
         case .recomendations:
-            //print("recomendations COUNT \(presenter.recomendedNews.count)")
             return presenter.recomendedNews.count
         }
     }

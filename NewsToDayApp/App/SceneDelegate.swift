@@ -37,7 +37,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = navigationController
             
         } else {
-            let tabBarController = CustomTabBarController()
+            var myUser: FirestoreUser?
+            AuthManager.shared.fetchUser { [weak self] user, error in
+                guard let user = user else { return }
+                myUser = user
+            }
+            let tabBarController = CustomTabBarController(user: myUser)
             window?.rootViewController = tabBarController
         }
     }

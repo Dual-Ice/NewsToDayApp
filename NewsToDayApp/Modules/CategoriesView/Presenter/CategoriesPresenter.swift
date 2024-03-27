@@ -13,7 +13,10 @@ protocol CategoriesPresenterViewProtocol: AnyObject {
 }
 
 protocol CategoriesPresenterProtocol: AnyObject {
-    init(view: CategoriesPresenterViewProtocol, router: CategoriesRouterProtocol)
+    init(view: CategoriesPresenterViewProtocol,
+         router: CategoriesRouterProtocol,
+         user: FirestoreUser?
+    )
     var data: [CategoriesModel] { get }
     var selectedIndexPathArray: [IndexPath] { get }
     func saveSelectedCell(indexPath: IndexPath, category: String)
@@ -27,6 +30,8 @@ protocol CategoriesPresenterProtocol: AnyObject {
 class CategoriesPresenter: CategoriesPresenterProtocol {
     var selectedIndexPathArray: [IndexPath] = .init()
     
+    var user: FirestoreUser?
+    
     private var categoriesArray: [String] = .init()
     
     var data: [CategoriesModel] = CategoriesModel.allCases
@@ -34,9 +39,12 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     private weak var view: CategoriesPresenterViewProtocol?
     private var router: CategoriesRouterProtocol?
     
-    required init(view: CategoriesPresenterViewProtocol, router: CategoriesRouterProtocol) {
+    required init(view: CategoriesPresenterViewProtocol,
+                  router: CategoriesRouterProtocol,
+                  user: FirestoreUser?) {
         self.view = view
         self.router = router
+        self.user = user
         setSelectedColorForOnbordingSelection(selectedCategories: ["sports"])
     }
     

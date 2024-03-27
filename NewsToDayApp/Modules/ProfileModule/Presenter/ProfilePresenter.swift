@@ -14,7 +14,9 @@ protocol ProfilePresenterViewProtocol: AnyObject {
 
 protocol ProfilePresenterProtocol: AnyObject {
     
-    init(view: ProfilePresenterViewProtocol, router: ProfileRouterProtocol)
+    init(view: ProfilePresenterViewProtocol,
+         router: ProfileRouterProtocol,
+         user: FirestoreUser?)
     func goToLanguagesVC()
     func goToTermsAndConditionsVC()
     func goToAuthVC()
@@ -24,12 +26,18 @@ protocol ProfilePresenterProtocol: AnyObject {
 
 class ProfilePresenter: ProfilePresenterProtocol {
     
+    var user: FirestoreUser?
+    
     weak var view: ProfilePresenterViewProtocol?
     var router: ProfileRouterProtocol?
     
-    required init(view: ProfilePresenterViewProtocol, router: ProfileRouterProtocol) {
+    required init(view: ProfilePresenterViewProtocol,
+                  router: ProfileRouterProtocol,
+                  user: FirestoreUser?
+    ) {
         self.view = view
         self.router = router
+        self.user = user
         AuthManager.shared.fetchUser { [weak self] user, error in
             guard let user = user else { return }
             self?.view?.render(with: user)

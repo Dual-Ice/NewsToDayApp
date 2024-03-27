@@ -16,7 +16,11 @@ protocol BookmarksPresenterViewProtocol: AnyObject {
 
 protocol BookmarksPresenterProtocol: AnyObject {
     
-    init(view: BookmarksPresenterViewProtocol, router: BookmarksRouter, imageManager: ImageManager)
+    init(view: BookmarksPresenterViewProtocol,
+         router: BookmarksRouter,
+         imageManager: ImageManager,
+         user: FirestoreUser?
+    )
     var data: [MockItem] { get }
     func checkBookmarks()
     func deleteOneArticle(articleId: String)
@@ -30,16 +34,23 @@ protocol BookmarksPresenterProtocol: AnyObject {
 class BookmarksPresenter: BookmarksPresenterProtocol {
     var data: [MockItem] = MockItem.getArticleModel()
     
+    var user: FirestoreUser?
+    
     weak var view: BookmarksPresenterViewProtocol?
     var router: BookmarksRouter?
     let imageManager: ImageManager
     
     private var arrayCategories: [String] = []
     
-    required init(view: BookmarksPresenterViewProtocol, router: BookmarksRouter, imageManager: ImageManager) {
+    required init(view: BookmarksPresenterViewProtocol, 
+                  router: BookmarksRouter,
+                  imageManager: ImageManager,
+                  user: FirestoreUser?
+    ) {
         self.view = view
         self.router = router
         self.imageManager = imageManager
+        self.user = user
     }
     
     // MARK: - Prepare CategoriesArray
@@ -80,7 +91,7 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
         //view?.reloadTableView()
     }
     
-    func goToDetailVC(data: Article){
-        router?.goToDetailVC(data: data)
+    func goToDetailVC(data: Article) {
+        router?.goToDetailVC(data: data, user: self.user)
     }
 }

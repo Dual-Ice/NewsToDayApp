@@ -44,7 +44,9 @@ extension ProfileViewController: ProfileViewDelegate {
             
             if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
                 sceneDelegate.checkAuthentication()
+                return
             }
+            self.presenter?.goToAuthVC()
         }
     }
     
@@ -94,10 +96,18 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editedImage = info[.editedImage] as? UIImage {
-            customView.updateProfileImage(editedImage)
+            UserManager.shared.updateUserAvatar(avatar: editedImage) { [weak self] success, error in
+                if success {
+                    self?.customView.updateProfileImage(editedImage)
+                }
+            }
             dismiss(animated: true, completion: nil)
         } else if let originalImage = info[.originalImage] as? UIImage {
-            customView.updateProfileImage(originalImage)
+            UserManager.shared.updateUserAvatar(avatar: originalImage) { [weak self] success, error in
+                if success {
+                    self?.customView.updateProfileImage(originalImage)
+                }
+            }
             dismiss(animated: true, completion: nil)
         }
     }

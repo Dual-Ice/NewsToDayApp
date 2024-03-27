@@ -11,7 +11,7 @@ import UIKit
 protocol BookmarksRouterProtocol: AnyObject {
     
     init(navigationVC: UINavigationController)
-    func goToDetailVC(data: Article)
+    func goToDetailVC(data: Article, user: FirestoreUser?)
 }
 
 class BookmarksRouter: BookmarksRouterProtocol {
@@ -22,9 +22,9 @@ class BookmarksRouter: BookmarksRouterProtocol {
         self.navigationVC = navigationVC
     }
     
-    func goToDetailVC(data: Article){
+    func goToDetailVC(data: Article, user: FirestoreUser?){
         guard let navigationVC else { return }
-        let detailVC = DetailArticleBuilder(navigationVC: navigationVC).buildDetailArticleVC(data: data)
+        let detailVC = DetailArticleBuilder(navigationVC: navigationVC).buildDetailArticleVC(data: data, user: user)
         guard let detailVC else { return }
         navigationVC.pushViewController(detailVC, animated: true)
     }

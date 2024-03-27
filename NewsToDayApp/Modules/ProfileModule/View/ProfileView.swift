@@ -126,7 +126,7 @@ class ProfileView: CustomView {
         profileName.text = user.username
         profileEmail.text = user.email
 //        if user.image != nil {
-//            profileImage.image = UIImage(data: user.image!)
+//            profileImage.image = UIImage(data: Data(base64Encoded: user.image!)!)
 //        }
     }
     

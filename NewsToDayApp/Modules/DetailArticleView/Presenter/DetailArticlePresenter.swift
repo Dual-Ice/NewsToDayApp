@@ -14,7 +14,12 @@ protocol DetailArticlePresenterViewProtocol: AnyObject {
 }
 
 protocol DetailArticlePresenterProtocol: AnyObject {
-    init( view: DetailArticlePresenterViewProtocol, router: DetailArticleRouterProtocol, imageManager: ImageManager,  data: Article)
+    init(view: DetailArticlePresenterViewProtocol,
+         router: DetailArticleRouterProtocol,
+         imageManager: ImageManager,
+         data: Article,
+         user: FirestoreUser?
+    )
     var data: Article { get }
     func dismissDetailArticleVC()
     func loadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
@@ -28,12 +33,18 @@ class DetailArticlePresenter: DetailArticlePresenterProtocol {
     private var router: DetailArticleRouterProtocol?
     let imageManager: ImageManager
     var data: Article
-   
+    var user: FirestoreUser?
     
-    required init(view: DetailArticlePresenterViewProtocol, router: DetailArticleRouterProtocol, imageManager: ImageManager, data: Article ) {
+    required init(view: DetailArticlePresenterViewProtocol,
+                  router: DetailArticleRouterProtocol,
+                  imageManager: ImageManager,
+                  data: Article,
+                  user: FirestoreUser?
+    ) {
         self.data = data
         self.view = view
         self.router = router
+        self.user = user
         self.imageManager = imageManager
     }
     
