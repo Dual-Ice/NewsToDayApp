@@ -34,10 +34,18 @@ extension LanguagesViewController: LanguagesViewDelegate {
     func languageButtonTapped(value: String?) {
         LanguagesService.setLanguage(code: value ?? "")
         customView.configView(currentLanguageCode: LanguagesService.getCurrentLanguageCode())
+        present(showAlert(title: NSLocalizedString("alertTitle", comment: ""), message: NSLocalizedString("langChangeMessage", comment: "")), animated: true)
     }
     
     func tappedBackButton() {
         presenter?.dismissLanguagesVC()
+    }
+    
+    func showAlert(title: String, message: String) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(defaultAction)
+        return alert
     }
     
 }

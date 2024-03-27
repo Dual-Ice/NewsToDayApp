@@ -56,6 +56,8 @@
 
 //MARK: - LanguagesView
 "LanguagesViewTitle" = "Язык приложения";
+"langChangeMessage" = "Для смены языка закройте приложение и запустите его заново.";
+"alertTitle" = "Внимание!";
 
 //MARK: - DetailArticleView
 "DetailArticleViewAuthor" = "Автор";
