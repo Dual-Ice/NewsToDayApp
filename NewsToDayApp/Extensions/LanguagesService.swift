@@ -23,6 +23,8 @@ final class LanguagesService {
     }
     
     static func getCurrentLanguageCodeForRequest() -> String {
+        let lang = getCurrentLanguageCode()
+        print(lang)
         switch getCurrentLanguageCode() {
         case "en-US":
             return "en"
