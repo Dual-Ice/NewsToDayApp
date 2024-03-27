@@ -34,6 +34,8 @@ protocol MainPresenterProtocol: AnyObject {
     func loadImageByCategories(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
     func filterCategoriesArray(categories: [String]) -> [String]
     func filterCategoriesForSelectedCategory(categories: [String]) -> String
+    
+    func checkSelectedCategoriesRecommdations()
 }
 
 class MainPresenter: MainPresenterProtocol {
@@ -53,17 +55,26 @@ class MainPresenter: MainPresenterProtocol {
         [ .categories, .corusel, .recomendations]
     }
     
-    private var arrayCatgories: [String] {
-        ["science", "health"]
-    }
+    private var arrayCatgories: [String] = []
     
     required init(view: MainViewProtocol, router: MainRouterProtocol, newsManager: NewsManager, imageManager: ImageManager ) {
         self.view = view
         self.router = router
         self.newsManager = newsManager
         self.imageManager = imageManager
+        arrayCatgories = ["health", "sports"] //при иницилизации получаем сохраненный массив с категориями
         //getNewsByCategory(category: selectedCategory)
         //getRecomendedNews(categoryArray: arrayCatgories)
+        
+    }
+    
+    // MARK: - CheckSelectedCattegories for recomendation
+    func checkSelectedCategoriesRecommdations(){
+        let savedCategories =  ["health", "sports"]  //получаем сохраненный массив с категориям
+        if savedCategories != arrayCatgories && !savedCategories.isEmpty {
+            arrayCatgories = savedCategories
+            getRecomendedNews(categoryArray: arrayCatgories)
+        }
     }
     
     // MARK: - Prepare CategoriesArray

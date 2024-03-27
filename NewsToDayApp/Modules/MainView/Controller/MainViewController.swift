@@ -29,6 +29,7 @@ class MainViewController: CustomViewController<MainView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        presenter.checkSelectedCategoriesRecommdations()
     }
    
     private func setDelegates(){
