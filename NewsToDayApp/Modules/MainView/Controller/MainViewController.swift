@@ -11,7 +11,7 @@ protocol MainVCDelegate{
     func reloadCollectionView()
     func reloadCollectionView(section: Int)
     func changeFavoriteCelButtonBackGround(indexItem: Int, isLiked: Bool)
-    func setColorForFavorites(selectedIndexPath: [IndexPath], isLikedArray: [Bool])
+    //func setColorForFavorites(selectedIndexPath: [IndexPath], isLikedArray: [Bool])
     func setSearchBarDelegate(vc: MainViewController)
     func setCollectionViewDelegate(vc: MainViewController)
     func setCollectionViewDataSource(vc: MainViewController)
@@ -21,6 +21,9 @@ class MainViewController: CustomViewController<MainView> {
     
     var presenter: MainPresenterProtocol!
     var mainView: MainVCDelegate?
+    
+//    var imageCacheCourusel: [IndexPath: UIImage] = [:]
+//    var imageCacheRecomendation: [IndexPath: UIImage] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +46,9 @@ class MainViewController: CustomViewController<MainView> {
 }
 //MARK: - MainViewProtocol
 extension MainViewController: MainViewProtocol {
-    func updateFavoriteButton(indexPaths: [IndexPath], isLikedArray: [Bool]) {
-        mainView?.setColorForFavorites(selectedIndexPath: indexPaths, isLikedArray: isLikedArray)
-    }
+//    func updateFavoriteButton(indexPaths: [IndexPath], isLikedArray: [Bool]) {
+//        mainView?.setColorForFavorites(selectedIndexPath: indexPaths, isLikedArray: isLikedArray)
+//    }
     
     func reloadOneCell(indexItem: Int, isLiked: Bool) {
         mainView?.changeFavoriteCelButtonBackGround(indexItem: indexItem, isLiked: isLiked)
@@ -77,10 +80,10 @@ extension MainViewController: UICollectionViewDataSource{
         case .categories:
             return presenter.categoriesArray.count
         case .corusel:
-            print(" carusel COUNT \(presenter.newsDataByCatagory.count)")
+            //print(" carusel COUNT \(presenter.newsDataByCatagory.count)")
             return presenter.newsDataByCatagory.count
         case .recomendations:
-            print("recomendations COUNT \(presenter.recomendedNews.count)")
+            //print("recomendations COUNT \(presenter.recomendedNews.count)")
             return presenter.recomendedNews.count
         }
     }
@@ -97,27 +100,58 @@ extension MainViewController: UICollectionViewDataSource{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArticleCouruselCell.resuseID, for: indexPath) as? ArticleCouruselCell else { return UICollectionViewCell() }
             let data = presenter.newsDataByCatagory[indexPath.row]
             let filterCategory = presenter.filterCategoriesForSelectedCategory(categories: data.category)
-            presenter.loadImageByCategories(imageUrl: data.imageUrl, completion: { image in
-                let imageToUse = image ?? UIImage(named: "noImage")
-                cell.configCell(categoryLabelText: filterCategory, articleNameText: data.title, image: imageToUse, isLiked: data.isFavourite)
-            })
-            cell.configCell(categoryLabelText: filterCategory, articleNameText: data.title, image: nil, isLiked: data.isFavourite)
+            let currentIndexPath = indexPath
+            if let cachedImage = presenter.imageCacheCourusel[currentIndexPath] {
+                cell.configCell(categoryLabelText: filterCategory, articleNameText: data.title, image: cachedImage, isLiked: data.isFavourite)
+            } else {
+                presenter.loadImageByCategories(imageUrl: data.imageUrl, completion: {[currentIndexPath] image in
+                    let imageToUse = image ?? UIImage(named: "noImage")
+                    self.presenter.imageCacheCourusel[currentIndexPath] = imageToUse
+                    if let visibleCell = collectionView.cellForItem(at: currentIndexPath) as? ArticleCouruselCell {
+                        visibleCell.configCell(categoryLabelText: filterCategory, articleNameText: data.title, image: imageToUse, isLiked: data.isFavourite)
+                    }
+                })
+                cell.configCell(categoryLabelText: filterCategory, articleNameText: data.title, image: nil, isLiked: data.isFavourite)
+            }
             cell.onFavoriteButtonTap = { [weak self] event in
                 self?.presenter.handleCellEvent(article: indexPath.row, event: event)
             }
             return cell
+            //            presenter.loadImageByCategories(imageUrl: data.imageUrl, completion: { image in
+            //                let imageToUse = image ?? UIImage(named: "noImage")
+            //                cell.configCell(categoryLabelText: filterCategory, articleNameText: data.title, image: imageToUse, isLiked: data.isFavourite)
+            //            })
+            //            cell.configCell(categoryLabelText: filterCategory, articleNameText: data.title, image: nil, isLiked: data.isFavourite)
+            //            cell.onFavoriteButtonTap = { [weak self] event in
+            //                self?.presenter.handleCellEvent(article: indexPath.row, event: event)
+            //            }
+            //            return cell
         case .recomendations:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecomendedCell.resuseID, for: indexPath) as? RecomendedCell else { return UICollectionViewCell() }
             let data = presenter.recomendedNews[indexPath.row]
             let categoryFilter = presenter.filterCategoriesArray(categories: data.category)
-            presenter.loadImageByCategories(imageUrl: data.imageUrl, completion: {  image in
-                
-                let articleNameText = data.title
-                let imageToUse = image ?? UIImage(named: "noImage")
-                cell.configCell(categoryLabelText: categoryFilter, articleNameText: articleNameText, image: imageToUse)
-            })
-            cell.configCell(categoryLabelText: categoryFilter, articleNameText: data.title, image: nil)
+            let currentIndexPath = indexPath
+            if let cachedImage = presenter.imageCacheRecomendation[currentIndexPath] {
+                cell.configCell(categoryLabelText: categoryFilter, articleNameText: data.title, image: cachedImage)
+            } else {
+                presenter.loadImageByCategories(imageUrl: data.imageUrl, completion: { [currentIndexPath] image in
+                    let imageToUse = image ?? UIImage(named: "noImage")
+                    self.presenter.imageCacheRecomendation[currentIndexPath] = imageToUse
+                    if let visibleCell = collectionView.cellForItem(at: currentIndexPath) as? RecomendedCell {
+                        visibleCell.configCell(categoryLabelText: categoryFilter, articleNameText: data.title, image: imageToUse)
+                    }
+                })
+                cell.configCell(categoryLabelText: categoryFilter, articleNameText: data.title, image: nil)
+            }
             return cell
+//            presenter.loadImageByCategories(imageUrl: data.imageUrl, completion: {  image in
+//                
+//                let articleNameText = data.title
+//                let imageToUse = image ?? UIImage(named: "noImage")
+//                cell.configCell(categoryLabelText: categoryFilter, articleNameText: articleNameText, image: imageToUse)
+//            })
+//            cell.configCell(categoryLabelText: categoryFilter, articleNameText: data.title, image: nil)
+
         }
     }
     
@@ -147,6 +181,7 @@ extension MainViewController: UICollectionViewDelegate{
                 presenter.saveSelectedCell(indexPath: indexPath)
                 
                 presenter.selectedCategory = presenter.categoriesArray[indexPath.row].categoryValue
+                presenter.imageCacheCourusel = [:] //чистим словарь перед сменой категории
                 presenter.getNewsByCategory(category: presenter.categoriesArray[indexPath.row].categoryValue)
             }
         case .corusel:

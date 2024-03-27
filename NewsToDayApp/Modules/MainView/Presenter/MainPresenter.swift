@@ -12,7 +12,7 @@ protocol MainViewProtocol: AnyObject {
     func reloadCollectionView()
     func reloadSectionCollectionView(section: Int)
     func reloadOneCell(indexItem: Int, isLiked: Bool)
-    func updateFavoriteButton(indexPaths: [IndexPath], isLikedArray: [Bool] )
+    //func updateFavoriteButton(indexPaths: [IndexPath], isLikedArray: [Bool] )
 }
 
 protocol MainPresenterProtocol: AnyObject {
@@ -36,6 +36,9 @@ protocol MainPresenterProtocol: AnyObject {
     func filterCategoriesArray(categories: [String]) -> [String]
     func filterCategoriesForSelectedCategory(categories: [String]) -> String
     
+    var imageCacheCourusel: [IndexPath: UIImage] { get set }
+    var imageCacheRecomendation: [IndexPath: UIImage] { get set }
+    
     func checkSelectedCategoriesRecommdations()
     func checkCouruselFavorite()
 }
@@ -47,6 +50,9 @@ class MainPresenter: MainPresenterProtocol {
     var newsDataByCatagory: [Article] = .init()
     var recomendedNews: [Article] = .init()
     var categoriesArray: [CategoriesModel] = CategoriesModel.allCases
+    
+    var imageCacheCourusel: [IndexPath: UIImage] = [:]
+    var imageCacheRecomendation: [IndexPath: UIImage] = [:]
         
     weak var view: MainViewProtocol?
     private var router: MainRouterProtocol?
@@ -65,8 +71,8 @@ class MainPresenter: MainPresenterProtocol {
         self.newsManager = newsManager
         self.imageManager = imageManager
         arrayCatgories = ["health", "sports"] //при иницилизации получаем сохраненный массив с категориями
-        //getNewsByCategory(category: selectedCategory)
-        //getRecomendedNews(categoryArray: arrayCatgories)
+        getNewsByCategory(category: selectedCategory)
+        getRecomendedNews(categoryArray: arrayCatgories)
         
     }
     
@@ -76,6 +82,7 @@ class MainPresenter: MainPresenterProtocol {
         if savedCategories != arrayCatgories && !savedCategories.isEmpty {
             arrayCatgories = savedCategories
             getRecomendedNews(categoryArray: arrayCatgories)
+            imageCacheRecomendation = [:] // почистить при новом запросе
         }
     }
     
@@ -83,23 +90,18 @@ class MainPresenter: MainPresenterProtocol {
     func checkCouruselFavorite(){ // вызвать во ViewWillAppear
         let savedCategories: [String : Article] = [:] // нужно заменить на сохраненные
         if !savedCategories.isEmpty{
-            let indexes = newsDataByCatagory.compactMap { newsData in
-                savedCategories.keys.contains(newsData.articleId) ? newsDataByCatagory.firstIndex(where: { $0.articleId == newsData.articleId }) : nil
+            for (index,article) in newsDataByCatagory.enumerated() {
+                if let savedArticle = savedCategories[article.articleId], savedArticle.isFavourite {
+                    newsDataByCatagory[index].isFavourite = true
+                }
             }
             
-            let indexPaths = indexes.compactMap { index in // делаем массив [IndexPath]
-                return IndexPath(item: index, section: 1)
+            for (index,article) in recomendedNews.enumerated() {
+                if let savedArticle = savedCategories[article.articleId], savedArticle.isFavourite {
+                    recomendedNews[index].isFavourite = true
+                }
             }
-            
-            let isLikedArray = indexes.compactMap { index in
-                let articleId = newsDataByCatagory[index].articleId
-                let article = savedCategories[articleId]
-                return article?.isFavourite
-            }
-            
-            if !indexPaths.isEmpty && !isLikedArray.isEmpty{
-                view?.updateFavoriteButton(indexPaths: indexPaths, isLikedArray: isLikedArray )
-            }
+            //reloadCollectionView
         }
     }
     

@@ -45,16 +45,16 @@ extension CategoriesModel: CategoriesModelProtocol{
         case .politics:
             return "🗳️"
         case .other:
-               return "❓"
-           case .top:
-               return "🔝"
-           case .tourism:
-               return "🏝️"
-           case .world:
-               return "🌐"
-           case .domestic:
-               return "🏠"
-           }
+            return "❓"
+        case .top:
+            return "🔝"
+        case .tourism:
+            return "🏝️"
+        case .world:
+            return "🌐"
+        case .domestic:
+            return "🏠"
+        }
     }
 
     var categoryValue: String {

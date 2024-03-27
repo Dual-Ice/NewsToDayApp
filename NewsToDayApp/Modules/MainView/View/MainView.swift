@@ -113,7 +113,7 @@ private extension MainView{
     private func createCoruselArticleSectionLayout() -> NSCollectionLayoutSection{
         let item = CompositionalLayout.createItem(width: .fractionalWidth(1), height: .fractionalHeight(1), spacing: 0)
         let group = CompositionalLayout.createGroup(alignment: .horizontal, width: .fractionalWidth(0.8), height: .estimated(256), subitems: [item])
-        let section = CompositionalLayout.createSection(group: group, scrollBehavior: .groupPaging, groupSpacing: 16, leading: 16, trailing: 16, top: 8, bottom: 32, supplementary: nil)
+        let section = CompositionalLayout.createSection(group: group, scrollBehavior: .continuous, groupSpacing: 16, leading: 16, trailing: 16, top: 8, bottom: 32, supplementary: nil)
         return section
     }
 
@@ -131,13 +131,13 @@ private extension MainView{
 
 //MARK: - MainVCDelegate
 extension MainView: MainVCDelegate{
-    func setColorForFavorites(selectedIndexPath: [IndexPath], isLikedArray: [Bool]) {
-        for (index,indexPath) in selectedIndexPath.enumerated(){
-            if let cell = self.collectionView.cellForItem(at: indexPath) as? ArticleCouruselCell{
-                cell.setImageForFavoriteButton(isLiked: isLikedArray[index])
-            }
-        }
-    }
+//    func setColorForFavorites(selectedIndexPath: [IndexPath], isLikedArray: [Bool]) {
+//        for (index,indexPath) in selectedIndexPath.enumerated(){
+//            if let cell = self.collectionView.cellForItem(at: indexPath) as? ArticleCouruselCell{
+//                cell.setImageForFavoriteButton(isLiked: isLikedArray[index])
+//            }
+//        }
+//    }
     
     func changeFavoriteCelButtonBackGround(indexItem: Int, isLiked: Bool) {
         let indexPath = IndexPath(item: indexItem, section: 1)
