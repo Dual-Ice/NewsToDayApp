@@ -88,16 +88,16 @@ open class CustomTabBarController: UITabBarController, CustomTabBarViewProtocol 
     func setupViewControllers() {
         
         let mainVC = MainBuilder().buildMainView(user: user)
-        mainVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemMain", comment: ""), image: UIImage(systemName: "house.fill"), tag: 0)
+        mainVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemMain", comment: ""), image: UIImage.Icons.main, tag: 0)
         
         let categoriesVC = CategoriesBuilder().buildCategoriesView(user: user)
-        categoriesVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemCategories", comment: ""), image: UIImage(systemName: "square.grid.2x2.fill"), tag: 1)
+        categoriesVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemCategories", comment: ""), image: UIImage.Icons.categories, tag: 1)
         
         let profileVC = ProfileBuilder().buildProfileView(user: user)
-        profileVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemProfile", comment: ""), image: UIImage(systemName: "person.fill"), tag: 3)
+        profileVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemProfile", comment: ""), image: UIImage.Icons.user, tag: 3)
         
         let bookMarksVC = BookmarksBuilder().buildBookmarksView(user: user)
-        bookMarksVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemBookmarks", comment: ""), image: UIImage(systemName: "bookmark.fill"), tag: 2)
+        bookMarksVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemBookmarks", comment: ""), image: UIImage.Icons.bookmarkFill, tag: 2)
         
         viewControllers = [mainVC, categoriesVC, bookMarksVC, profileVC]
         

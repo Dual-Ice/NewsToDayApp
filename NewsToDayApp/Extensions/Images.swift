@@ -54,6 +54,10 @@ extension UIImage {
             return UIImage(systemName: "arrowshape.turn.up.right")
         }
         
+        static var userName: UIImage? {
+            return UIImage(systemName: "person")
+        }
+        
         static var email: UIImage? {
             return UIImage(systemName: "envelope")
         }
@@ -73,34 +77,11 @@ extension UIImage {
         static var userAvatar: UIImage? {
             return UIImage(systemName: "person.crop.circle.fill")
         }
-        
-        static var userBasic: UIImage? {
-            return UIImage(named: "user-basic")
-        }
-        
-        static var userEditing: UIImage? {
-            return UIImage(named: "user-editing")
-        }
-        
-        static var passwordBasic: UIImage? {
-            return UIImage(named: "password-basic")
-        }
-        
-        static var passwordEditing: UIImage? {
-            return UIImage(named: "password-editing")
-        }
-        
-        static var emailBasic: UIImage? {
-            return UIImage(named: "email-basic")
-        }
-        
-        static var emailEditing: UIImage? {
-            return UIImage(named: "email-editing")
-        }
     }
+    
     enum Images {
         static var noImage: UIImage? {
-            return UIImage(named: "noImage")
+            return UIImage(named: "no-image")
         }
     }
 }

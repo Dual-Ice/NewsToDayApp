@@ -18,7 +18,7 @@ final class BaseTextField: UITextField {
         
         layer.addSublayer(borderLayer)
         borderLayer.isHidden = true
-        tintColor = .systemGray2
+        tintColor = UIColor(named: ConstColors.greyPrimary)
     }
     
     required init?(coder: NSCoder) {
@@ -37,7 +37,7 @@ final class BaseTextField: UITextField {
             borderLayer.isHidden = false
             backgroundColor = UIColor(named: ConstColors.customWhite)
         } else {
-            tintColor = .systemGray2
+            tintColor = UIColor(named: ConstColors.greyPrimary)
             borderLayer.isHidden = true
             backgroundColor = UIColor(named: ConstColors.greyLighter)
         }
