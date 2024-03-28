@@ -87,7 +87,8 @@ class MainPresenter: MainPresenterProtocol {
     }
     
     // MARK: - CheckCourusel favorite or not
-    func checkCouruselFavorite(){ // вызвать во ViewWillAppear
+    func checkCouruselFavorite(){ // вызвать во ViewWillAppear и при изменение данных в getNewsByCategory и getRecomendedNews
+        print("checkCouruselFavorite")
         let savedCategories: [Article] = [] // нужно заменить на сохраненные
         if !savedCategories.isEmpty{
             let savedArticleIds = savedCategories.map { $0.articleId }
@@ -104,7 +105,7 @@ class MainPresenter: MainPresenterProtocol {
                 }
             }
         }
-        //view?.reloadCollectionView()
+        view?.reloadCollectionView()
     }
     
     // MARK: - Prepare CategoriesArray
@@ -137,7 +138,8 @@ class MainPresenter: MainPresenterProtocol {
                 case .success(let data):
                     //print("Data by category \(data)")
                     self.newsDataByCatagory = data.results ?? []
-                    self.view?.reloadSectionCollectionView(section: 1)
+                    self.checkCouruselFavorite()
+                    //self.view?.reloadSectionCollectionView(section: 1)
                 case .failure(let error):
                     print("DataByCategory error \(error.localizedDescription)")
                 }
@@ -154,8 +156,8 @@ class MainPresenter: MainPresenterProtocol {
                 case .success(let data):
                     print("DataNEWSRecomended \(data)")
                     self.recomendedNews = data.results ?? []
-                    //self.view?.reloadCollectionView()
-                    self.view?.reloadSectionCollectionView(section: 2)
+                    self.checkCouruselFavorite()
+                    //self.view?.reloadSectionCollectionView(section: 2)
                 case .failure(let error):
                     print("DataNEWSRecomended error \(error.localizedDescription)")
                 }

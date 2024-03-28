@@ -60,7 +60,7 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
             return categories.translateCategories(filteredCategory: categories).capitalizingFirstLetterOfEachElement()
         }
     }
-    // MARK: - checkCouruselFavorite()
+    // MARK: - checkFavorite()
     private func checkFavorite(){ // вызвать в getRecomendedNews после получения data и уюрать релоад в getRecomendedNews после получении data
         let savedCategories: [Article] = [] // нужно заменить на сохраненные
         if !savedCategories.isEmpty{
