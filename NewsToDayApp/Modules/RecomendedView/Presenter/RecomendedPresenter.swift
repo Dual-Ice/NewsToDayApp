@@ -58,7 +58,6 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
         self.searchWord = searchWord
         self.user = user
         self.arrayCatgories = user?.categories ?? []
-        print("SEARCH WORD \(searchWord)")
         searchWord != nil ? getRecomendedNews(request: NewsRequest(query: searchWord)) : getRecomendedNews(request: NewsRequest(categories: arrayCatgories))
     }
     

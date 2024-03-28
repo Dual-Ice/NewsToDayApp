@@ -33,6 +33,13 @@
 
 //MARK: - Onbording
 "OnbordingNext" = "Далее";
+"OnbordingGetStarted" = "Начнем!";
+"OnbordingFirstTitle" = "Прежде всего";
+"OnbordingSecondTitle" = "Важно";
+"OnbordingThirdTitle" = "Ты готов";
+"OnbordingFirstDescription" = "Все новости в одном месте, узнавайте последние новости первым";
+"OnbordingSecondDescription" = "Всегда будьте в курсе последних событий";
+"OnbordingThirdDescription" = "Получать новую информацию";
 
 //MARK: - MainView
 "MainViewSearchBar" = "Поиск";

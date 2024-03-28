@@ -36,6 +36,14 @@
 
 //MARK: - Onbording
 "OnbordingNext" = "Next";
+"OnbordingGetStarted" = "Get Started";
+"OnbordingFirstTitle" = "First to know";
+"OnbordingSecondTitle" = "It's important";
+"OnbordingThirdTitle" = "You are ready";
+"OnbordingFirstDescription" = "All news in one place, be the first to know last news";
+"OnbordingSecondDescription" = "Always be up to date with the latest events";
+"OnbordingThirdDescription" = "Receive new information";
+
 
 //MARK: - MainView
 "MainViewSearchBar" = "Search";

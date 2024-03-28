@@ -51,14 +51,13 @@ class OnbordingCell: UICollectionViewCell {
         imageCart.snp.makeConstraints { make in
             make.leading.equalTo(contentView.snp.leading).offset(32)
             make.trailing.equalTo(contentView.snp.trailing).offset(-32)
-             make.top.equalTo(contentView.snp.top)
-             make.height.equalTo(336)
+            make.top.equalTo(contentView.snp.top)
+            make.height.equalTo(336)
          }
 
          titleLabel.snp.makeConstraints { make in
-             make.top.equalTo(imageCart.snp.bottom).offset(82)
+             make.top.equalTo(imageCart.snp.bottom).offset(40)
              make.centerX.equalTo(contentView.snp.centerX)
-        
              make.leading.equalTo(contentView.snp.leading).offset(80)
              make.trailing.equalTo(contentView.snp.trailing).offset(-80)
          }
@@ -66,7 +65,6 @@ class OnbordingCell: UICollectionViewCell {
          descriptionLabel.snp.makeConstraints { make in
              make.top.equalTo(titleLabel.snp.bottom).offset(24)
              make.centerX.equalTo(contentView.snp.centerX)
-             //make.height.equalTo(30)
              make.leading.equalTo(contentView.snp.leading).offset(80)
              make.trailing.equalTo(contentView.snp.trailing).offset(-80)
          }

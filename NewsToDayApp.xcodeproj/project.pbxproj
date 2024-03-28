@@ -15,6 +15,11 @@
 		367269282BB57802007E82E6 /* city2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 367269272BB57802007E82E6 /* city2.jpeg */; };
 		3672692A2BB57831007E82E6 /* OnbordingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367269292BB57831007E82E6 /* OnbordingModel.swift */; };
 		3672692C2BB57869007E82E6 /* OnbordingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3672692B2BB57869007E82E6 /* OnbordingCell.swift */; };
+		3672692E2BB598E1007E82E6 /* OnbordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3672692D2BB598E1007E82E6 /* OnbordingView.swift */; };
+		367269302BB59904007E82E6 /* OnbordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3672692F2BB59904007E82E6 /* OnbordingViewController.swift */; };
+		367269322BB5994F007E82E6 /* OnbordingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367269312BB5994F007E82E6 /* OnbordingPresenter.swift */; };
+		367269342BB5997C007E82E6 /* OnbordingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367269332BB5997C007E82E6 /* OnbordingRouter.swift */; };
+		367269362BB5999A007E82E6 /* OnbordingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367269352BB5999A007E82E6 /* OnbordingBuilder.swift */; };
 		369AB6192BA87E6600EBF483 /* Labels + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6182BA87E6600EBF483 /* Labels + ext.swift */; };
 		369AB61B2BA8833A00EBF483 /* UIImageView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB61A2BA8833A00EBF483 /* UIImageView + ext.swift */; };
 		369AB61F2BA88B6300EBF483 /* ConstColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB61E2BA88B6300EBF483 /* ConstColors.swift */; };
@@ -183,6 +188,11 @@
 		367269272BB57802007E82E6 /* city2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = city2.jpeg; sourceTree = "<group>"; };
 		367269292BB57831007E82E6 /* OnbordingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbordingModel.swift; sourceTree = "<group>"; };
 		3672692B2BB57869007E82E6 /* OnbordingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbordingCell.swift; sourceTree = "<group>"; };
+		3672692D2BB598E1007E82E6 /* OnbordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbordingView.swift; sourceTree = "<group>"; };
+		3672692F2BB59904007E82E6 /* OnbordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbordingViewController.swift; sourceTree = "<group>"; };
+		367269312BB5994F007E82E6 /* OnbordingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbordingPresenter.swift; sourceTree = "<group>"; };
+		367269332BB5997C007E82E6 /* OnbordingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbordingRouter.swift; sourceTree = "<group>"; };
+		367269352BB5999A007E82E6 /* OnbordingBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbordingBuilder.swift; sourceTree = "<group>"; };
 		369AB6182BA87E6600EBF483 /* Labels + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Labels + ext.swift"; sourceTree = "<group>"; };
 		369AB61A2BA8833A00EBF483 /* UIImageView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + ext.swift"; sourceTree = "<group>"; };
 		369AB61E2BA88B6300EBF483 /* ConstColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstColors.swift; sourceTree = "<group>"; };
@@ -372,6 +382,7 @@
 		3672691B2BB57777007E82E6 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				367269312BB5994F007E82E6 /* OnbordingPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -379,6 +390,7 @@
 		3672691C2BB57781007E82E6 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				367269332BB5997C007E82E6 /* OnbordingRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -394,6 +406,7 @@
 		3672691E2BB57793007E82E6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3672692F2BB59904007E82E6 /* OnbordingViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -402,6 +415,7 @@
 			isa = PBXGroup;
 			children = (
 				367269212BB577B0007E82E6 /* Cell */,
+				3672692D2BB598E1007E82E6 /* OnbordingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -409,6 +423,7 @@
 		367269202BB577A4007E82E6 /* Builder */ = {
 			isa = PBXGroup;
 			children = (
+				367269352BB5999A007E82E6 /* OnbordingBuilder.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
@@ -1399,6 +1414,7 @@
 				369AB62F2BA8CADB00EBF483 /* ButtonsFactory.swift in Sources */,
 				59DEB0682BB1B8240011DE99 /* AuthPresenter.swift in Sources */,
 				59DEB07C2BB1B8890011DE99 /* TextFieldFactory.swift in Sources */,
+				367269342BB5997C007E82E6 /* OnbordingRouter.swift in Sources */,
 				59DEB07A2BB1B85E0011DE99 /* FirestoreManager.swift in Sources */,
 				A5CBDBF82BA77E0100C81385 /* ProfileRouter.swift in Sources */,
 				3672692C2BB57869007E82E6 /* OnbordingCell.swift in Sources */,
@@ -1419,6 +1435,7 @@
 				369AB6692BAC4B7D00EBF483 /* BookmarksRouter.swift in Sources */,
 				369AB69D2BB19D2200EBF483 /* SpinnersFactory.swift in Sources */,
 				367268DA2BB2C480007E82E6 /* PaddingLabel.swift in Sources */,
+				367269302BB59904007E82E6 /* OnbordingViewController.swift in Sources */,
 				369AB6912BADB1CD00EBF483 /* RecomendedViewController.swift in Sources */,
 				D918D56E2BAE3AA6005B0DD3 /* TermsAndConditionsPresenter.swift in Sources */,
 				369AB6522BAB29D100EBF483 /* DetailArticleView.swift in Sources */,
@@ -1434,6 +1451,7 @@
 				D97126F52BA7A3B500FF3048 /* Images.swift in Sources */,
 				369AB6562BAC3A5F00EBF483 /* DetailArticleRouter.swift in Sources */,
 				369AB6192BA87E6600EBF483 /* Labels + ext.swift in Sources */,
+				3672692E2BB598E1007E82E6 /* OnbordingView.swift in Sources */,
 				D918D56F2BAE3AA6005B0DD3 /* TermsAndConditionsRouter.swift in Sources */,
 				A5CBDBFE2BA77FEB00C81385 /* ProfileBuilder.swift in Sources */,
 				369AB6352BA9752A00EBF483 /* MockItem.swift in Sources */,
@@ -1443,6 +1461,7 @@
 				A5CBDBC32BA7627F00C81385 /* MainPresenter.swift in Sources */,
 				369AB66B2BAC4C5B00EBF483 /* BookmarksBuilder.swift in Sources */,
 				D97126F92BAA005A00FF3048 /* NewsManager.swift in Sources */,
+				367269362BB5999A007E82E6 /* OnbordingBuilder.swift in Sources */,
 				D918D5692BAE3AA6005B0DD3 /* LanguagesPresenter.swift in Sources */,
 				A5CBDBFA2BA77F4900C81385 /* ProfileViewController.swift in Sources */,
 				369AB65A2BAC3DD000EBF483 /* DetailArticlePresenter.swift in Sources */,
@@ -1450,6 +1469,7 @@
 				59DEB06D2BB1B8240011DE99 /* AuthViewController.swift in Sources */,
 				A5CBDBCB2BA76E1200C81385 /* MainViewController.swift in Sources */,
 				D97126D02BA7910C00FF3048 /* Fonts.swift in Sources */,
+				367269322BB5994F007E82E6 /* OnbordingPresenter.swift in Sources */,
 				369AB6472BA9C95400EBF483 /* SearchBarView.swift in Sources */,
 				369AB6652BAC4A6B00EBF483 /* BookmarksViewController.swift in Sources */,
 				3672692A2BB57831007E82E6 /* OnbordingModel.swift in Sources */,
