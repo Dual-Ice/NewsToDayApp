@@ -122,6 +122,7 @@
 		A5CBDC3E2BA7AD3700C81385 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A5CBDC3D2BA7AD3700C81385 /* GoogleSignIn */; };
 		A5CBDC402BA7AD3700C81385 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5CBDC3F2BA7AD3700C81385 /* GoogleSignInSwift */; };
 		A5CBDC432BA7AE5E00C81385 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5CBDC452BA7AE5E00C81385 /* Localizable.strings */; };
+		D911F7262BB6044E00610473 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D911F7252BB6044E00610473 /* UserManager.swift */; };
 		D918D52C2BAE0818005B0DD3 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918D52B2BAE0818005B0DD3 /* CustomButton.swift */; };
 		D918D5672BAE3AA6005B0DD3 /* LanguagesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918D5512BAE3AA6005B0DD3 /* LanguagesBuilder.swift */; };
 		D918D5682BAE3AA6005B0DD3 /* LanguagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918D5532BAE3AA6005B0DD3 /* LanguagesViewController.swift */; };
@@ -237,6 +238,7 @@
 		A5CBDBFD2BA77FEB00C81385 /* ProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBuilder.swift; sourceTree = "<group>"; };
 		A5CBDC442BA7AE5E00C81385 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5CBDC462BA7AE7500C81385 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D911F7252BB6044E00610473 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		D918D52B2BAE0818005B0DD3 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		D918D5512BAE3AA6005B0DD3 /* LanguagesBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguagesBuilder.swift; sourceTree = "<group>"; };
 		D918D5532BAE3AA6005B0DD3 /* LanguagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguagesViewController.swift; sourceTree = "<group>"; };
@@ -841,6 +843,7 @@
 				A5CBDBB42BA75EA800C81385 /* Auth */,
 				A5CBDBB32BA75E9F00C81385 /* Network */,
 				D918D5732BB1B8C3005B0DD3 /* LanguagesService.swift */,
+				D911F7252BB6044E00610473 /* UserManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1259,6 +1262,7 @@
 				D918D56B2BAE3AA6005B0DD3 /* LanguagesView.swift in Sources */,
 				A5CBDBC52BA7630F00C81385 /* MainRouter.swift in Sources */,
 				59DEB06F2BB1B8240011DE99 /* BaseTextField.swift in Sources */,
+				D911F7262BB6044E00610473 /* UserManager.swift in Sources */,
 				369AB63E2BA97A5300EBF483 /* ArticleCouruselCell.swift in Sources */,
 				369AB61F2BA88B6300EBF483 /* ConstColors.swift in Sources */,
 				D97126FD2BAA01EA00FF3048 /* ImageManager.swift in Sources */,
