@@ -6,7 +6,7 @@
 //
 
 
-import Foundation
+import UIKit
 
 protocol OnbordingRouterProtocol: AnyObject {
     
@@ -16,7 +16,9 @@ protocol OnbordingRouterProtocol: AnyObject {
 
 class OnbordingRouter: OnbordingRouterProtocol {
     func goToCategoriesVC() {
-    
+        //let categoriesVC = CategoriesBuilder().buildCategoriesView(user: user, type: .categoriesOnbording)
+//        categoriesVC.modalPresentationStyle = .fullScreen
+//        categoriesVC.modalTransitionStyle = .flipHorizontal
     }
     
 }

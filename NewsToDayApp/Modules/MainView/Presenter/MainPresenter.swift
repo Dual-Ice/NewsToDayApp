@@ -51,7 +51,7 @@ protocol MainPresenterProtocol: AnyObject {
 
 class MainPresenter: MainPresenterProtocol {
     
-    var selectedIndexPath: IndexPath = .init()
+    var selectedIndexPath: IndexPath = IndexPath(item: 0, section: 0)
     var selectedCategory: String = "business"
     var newsDataByCatagory: [Article] = .init()
     var recomendedNews: [Article] = .init()

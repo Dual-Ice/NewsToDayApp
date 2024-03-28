@@ -88,7 +88,7 @@ final class OnbordingView: CustomView{
         buttonNext.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.bottom.equalToSuperview().offset(-16)
+            make.bottom.equalToSuperview().offset(-60)
             make.height.equalTo(56)
         }
     }

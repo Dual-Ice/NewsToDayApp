@@ -86,11 +86,13 @@ open class CustomTabBarController: UITabBarController, CustomTabBarViewProtocol 
     
     
     func setupViewControllers() {
+//        let onbording = OnbordingBuilder().buildOnbordingVC()
+//        onbording.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemCategories", comment: ""), image: UIImage(systemName: "square.grid.2x2.fill"), tag: 1)
         
         let mainVC = MainBuilder().buildMainView(user: user)
         mainVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemMain", comment: ""), image: UIImage(systemName: "house.fill"), tag: 0)
         
-        let categoriesVC = CategoriesBuilder().buildCategoriesView(user: user)
+        let categoriesVC = CategoriesBuilder().buildCategoriesView(user: user, type: .categoriesInTabBar)
         categoriesVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemCategories", comment: ""), image: UIImage(systemName: "square.grid.2x2.fill"), tag: 1)
         
         let profileVC = ProfileBuilder().buildProfileView(user: user)

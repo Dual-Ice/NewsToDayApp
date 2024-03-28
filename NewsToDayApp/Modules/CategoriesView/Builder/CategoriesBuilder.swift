@@ -8,13 +8,13 @@
 import UIKit
 protocol CategoriesBuilderProtocol: AnyObject {
     
-    func buildCategoriesView(user: FirestoreUser?) -> UIViewController
+    func buildCategoriesView(user: FirestoreUser?, type: HideButtonOnCategoriesView) -> UIViewController
 }
 
 class CategoriesBuilder: CategoriesBuilderProtocol {
 
-    func buildCategoriesView(user: FirestoreUser?) -> UIViewController {
-        let vc = CategoriesViewController(typeToHideButtonOrNot: .categoriesInTabBar)
+    func buildCategoriesView(user: FirestoreUser?, type: HideButtonOnCategoriesView) -> UIViewController {
+        let vc = CategoriesViewController(typeToHideButtonOrNot: type)
         let navigationController = UINavigationController(rootViewController: vc)
         let router = CategoriesRouter(navigationVC: navigationController)
         let presenter = CategoriesPresenter(
