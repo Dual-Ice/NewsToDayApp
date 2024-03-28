@@ -18,6 +18,7 @@ protocol BookmarksPresenterProtocol: AnyObject {
     
     init(view: BookmarksPresenterViewProtocol, router: BookmarksRouter, imageManager: ImageManager)
     var data: [MockItem] { get }
+    var imageCacheBookmarks: [IndexPath: UIImage] { get set }
     func checkBookmarks()
     func deleteOneArticle(articleId: String)
     func getSaveAtricles()
@@ -29,6 +30,7 @@ protocol BookmarksPresenterProtocol: AnyObject {
 
 class BookmarksPresenter: BookmarksPresenterProtocol {
     var data: [MockItem] = MockItem.getArticleModel()
+    var imageCacheBookmarks: [IndexPath: UIImage] = [:]
     
     weak var view: BookmarksPresenterViewProtocol?
     var router: BookmarksRouter?

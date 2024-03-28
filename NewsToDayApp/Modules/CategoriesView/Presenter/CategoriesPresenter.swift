@@ -8,7 +8,6 @@
 import Foundation
 
 protocol CategoriesPresenterViewProtocol: AnyObject {
-
     
 }
 
@@ -70,6 +69,11 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     }
     
     func tappedNextButton() {
+        if categoriesArray.isEmpty{
+            print("Please select category")
+        } else {
+            print("go next screen")
+        }
         // нажали Next на onbording
     }
 }

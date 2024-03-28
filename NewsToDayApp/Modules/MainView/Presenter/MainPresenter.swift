@@ -81,28 +81,30 @@ class MainPresenter: MainPresenterProtocol {
         let savedCategories =  ["health", "sports"]  //получаем сохраненный массив с категориям
         if savedCategories != arrayCatgories && !savedCategories.isEmpty {
             arrayCatgories = savedCategories
-            getRecomendedNews(categoryArray: arrayCatgories)
             imageCacheRecomendation = [:] // почистить при новом запросе
+            getRecomendedNews(categoryArray: arrayCatgories)
         }
     }
     
     // MARK: - CheckCourusel favorite or not
     func checkCouruselFavorite(){ // вызвать во ViewWillAppear
-        let savedCategories: [String : Article] = [:] // нужно заменить на сохраненные
+        let savedCategories: [Article] = [] // нужно заменить на сохраненные
         if !savedCategories.isEmpty{
+            let savedArticleIds = savedCategories.map { $0.articleId }
+            
             for (index,article) in newsDataByCatagory.enumerated() {
-                if let savedArticle = savedCategories[article.articleId], savedArticle.isFavourite {
+                if savedArticleIds.contains(article.articleId) {
                     newsDataByCatagory[index].isFavourite = true
                 }
             }
             
             for (index,article) in recomendedNews.enumerated() {
-                if let savedArticle = savedCategories[article.articleId], savedArticle.isFavourite {
+                if savedArticleIds.contains(article.articleId) {
                     recomendedNews[index].isFavourite = true
                 }
             }
-            //reloadCollectionView
         }
+        //view?.reloadCollectionView()
     }
     
     // MARK: - Prepare CategoriesArray
