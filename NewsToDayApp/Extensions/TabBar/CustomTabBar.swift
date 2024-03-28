@@ -14,8 +14,8 @@ open class CustomTabBarController: UITabBarController, CustomTabBarViewProtocol 
         static let tabBarButtonType = "UITabBarButton"
         static let borderWidth: CGFloat = 0.5
         static let borderColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
-        static let whiteBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.7)
-        static let blackBackgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+        static let whiteBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        static let blackBackgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.9)
         static let fullAlpha: CGFloat = 1.0
         static let emptyAlpha: CGFloat = 0.0
         

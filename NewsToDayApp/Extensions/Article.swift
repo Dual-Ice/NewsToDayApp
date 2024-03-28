@@ -37,7 +37,7 @@ struct Article: Codable {
         description = try container.decodeIfPresent(String.self, forKey: .description)
         imageUrl = try container.decodeIfPresent(String.self, forKey: .imageUrl)
         category = try container.decode([String].self, forKey: .category)
-        creator = try container.decodeIfPresent([String].self, forKey: .creator)
-        isFavourite = false
+        creator = try container.decodeIfPresent([String].self, forKey: .creator) ?? []
+        isFavourite = try container.decodeIfPresent(Bool.self, forKey: .isFavourite) ?? false
     }
 }
