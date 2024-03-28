@@ -32,6 +32,7 @@ class MainViewController: CustomViewController<MainView> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("willappear")
         navigationController?.navigationBar.isHidden = true
         presenter.checkSelectedCategoriesRecommdations()
         presenter.checkCouruselFavorite()
@@ -114,7 +115,11 @@ extension MainViewController: UICollectionViewDataSource{
                 cell.configCell(categoryLabelText: filterCategory, articleNameText: data.title, image: nil, isLiked: data.isFavourite)
             }
             cell.onFavoriteButtonTap = { [weak self] event in
-                self?.presenter.handleCellEvent(article: indexPath.row, event: event)
+                self?.presenter.handleCellEvent(article: indexPath.row, event: event) { error in
+                    if error != nil {
+                        print("Error is occured during removing article from favorite")
+                    }
+                }
             }
             return cell
             //            presenter.loadImageByCategories(imageUrl: data.imageUrl, completion: { image in

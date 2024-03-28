@@ -9,20 +9,19 @@ import UIKit
 
 protocol ProfileBuilderProtocol: AnyObject {
     
-    func buildProfileView(user: FirestoreUser?) -> UIViewController
+    func buildProfileView() -> UIViewController
     
 }
 
 class ProfileBuilder: ProfileBuilderProtocol {
 
-    func buildProfileView(user: FirestoreUser?) -> UIViewController {
+    func buildProfileView() -> UIViewController {
         let vc = ProfileViewController()
         let navigationController = UINavigationController(rootViewController: vc)
         let router = ProfileRouter(navigationVC: navigationController)
         let presenter = ProfilePresenter(
             view: vc,
-            router: router,
-            user: user
+            router: router
         )
         vc.presenter = presenter
         return navigationController

@@ -17,13 +17,12 @@ protocol DetailArticlePresenterProtocol: AnyObject {
     init(view: DetailArticlePresenterViewProtocol,
          router: DetailArticleRouterProtocol,
          imageManager: ImageManager,
-         data: Article,
-         user: FirestoreUser?
+         data: Article
     )
     var data: Article { get }
     func dismissDetailArticleVC()
     func loadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
-    func saveToBookMarks()
+    func saveToBookMarks(completion: @escaping (Error?) -> Void)
     
 }
 
@@ -33,18 +32,15 @@ class DetailArticlePresenter: DetailArticlePresenterProtocol {
     private var router: DetailArticleRouterProtocol?
     let imageManager: ImageManager
     var data: Article
-    var user: FirestoreUser?
     
     required init(view: DetailArticlePresenterViewProtocol,
                   router: DetailArticleRouterProtocol,
                   imageManager: ImageManager,
-                  data: Article,
-                  user: FirestoreUser?
+                  data: Article
     ) {
         self.data = data
         self.view = view
         self.router = router
-        self.user = user
         self.imageManager = imageManager
     }
     
@@ -65,26 +61,17 @@ class DetailArticlePresenter: DetailArticlePresenterProtocol {
         })
     }
     
-    func saveToBookMarks() {
+    func saveToBookMarks(completion: @escaping (Error?) -> Void) {
         data.isFavourite = !(data.isFavourite)
         view?.changeBacgroundImageButton(isLiked: data.isFavourite)
         if data.isFavourite == true {
-            //сохранить в закладки
-            user?.articles.append(data)
-        } else {
-            //удалить из закладок если нажал на кнопку в ячейки повторно
-            if let index = user?.articles.firstIndex(where: { $0.articleId == data.articleId }) {
-                // Удаляем элемент из массива
-                user?.articles.remove(at: index)
+            UserManager.shared.addArticleFavorite(article: data) { error in
+                completion(error)
             }
-        }
-        FirestoreManager.shared.setCollection(
-            with: user!
-        ) { wasSet, error in
-//                if let error = error {
-//                    completion(false, error)
-//                }
-//                completion(true, nil)
+        } else {
+            UserManager.shared.deleteArticleFromFavorite(articleId: data.articleId) { error in
+                completion(error)
+            }
         }
     }
 }

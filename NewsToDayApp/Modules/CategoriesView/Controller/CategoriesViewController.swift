@@ -43,9 +43,12 @@ class CategoriesViewController: CustomViewController<CategoriesView> {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        presenter.saveCategoriesArray() { saved, error in
-            print(saved)
-            print(error)
+        
+        print("willDISappear")
+        presenter.saveCategoriesArray() { error in
+            if let error = error {
+                print("Error is occured during categories saving")
+            }
         }
     }
     

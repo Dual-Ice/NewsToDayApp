@@ -40,17 +40,6 @@ open class CustomTabBarController: UITabBarController, CustomTabBarViewProtocol 
         return tabBar.subviews.filter { String(describing: type(of: $0)) == Constants.tabBarButtonType }
     }()
     
-    private var user: FirestoreUser?
-    
-    init(user: FirestoreUser?) {
-        self.user = user
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required public init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     open override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -87,16 +76,16 @@ open class CustomTabBarController: UITabBarController, CustomTabBarViewProtocol 
     
     func setupViewControllers() {
         
-        let mainVC = MainBuilder().buildMainView(user: user)
+        let mainVC = MainBuilder().buildMainView()
         mainVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemMain", comment: ""), image: UIImage.Icons.main, tag: 0)
         
-        let categoriesVC = CategoriesBuilder().buildCategoriesView(user: user)
+        let categoriesVC = CategoriesBuilder().buildCategoriesView()
         categoriesVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemCategories", comment: ""), image: UIImage.Icons.categories, tag: 1)
         
-        let profileVC = ProfileBuilder().buildProfileView(user: user)
+        let profileVC = ProfileBuilder().buildProfileView()
         profileVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemProfile", comment: ""), image: UIImage.Icons.user, tag: 3)
         
-        let bookMarksVC = BookmarksBuilder().buildBookmarksView(user: user)
+        let bookMarksVC = BookmarksBuilder().buildBookmarksView()
         bookMarksVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemBookmarks", comment: ""), image: UIImage.Icons.bookmarkFill, tag: 2)
         
         viewControllers = [mainVC, categoriesVC, bookMarksVC, profileVC]
@@ -176,7 +165,7 @@ open class CustomTabBarController: UITabBarController, CustomTabBarViewProtocol 
         let image = viewControllers?[safeSelectedIndex].tabBarItem.selectedImage?.withRenderingMode(.alwaysTemplate)
         imageView = UIImageView(image: image)
         imageView?.contentMode = UIView.ContentMode.scaleAspectFit
-        imageView?.tintColor = tabBar.tintColor
+        imageView?.tintColor = UIColor(named: ConstColors.purplePrimary)
         circle?.addSubview(imageView!)
         imageView?.center = CGPoint(x: CGFloat(center), y: CGFloat(center))
     }

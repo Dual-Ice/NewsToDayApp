@@ -29,7 +29,7 @@ class BookmarksViewController: CustomViewController<BookmarksView> {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
         presenter.checkBookmarks()
-        presenter.getSaveAtricles()
+        presenter.getAtriclesFromUser()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -98,8 +98,14 @@ extension BookmarksViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
       if editingStyle == .delete {
           let data = presenter.data[indexPath.row]
-//          presenter.deleteOneArticle(articleId: data.articleId) // это для мок данных
-          presenter.deleteOneArticle(articleId: data.articleId) // подставить presenter.data[indexPath.row].articleId
+//          presenter.deleteArticle(articleId: data.articleId) // это для мок данных
+          presenter.deleteArticle(articleId: data.articleId) { error in
+              if error != nil {
+                  print("Error is occured during removing article from favorite")
+              }
+          }
+              
+           // подставить presenter.data[indexPath.row].articleId
           tableView.deleteRows(at: [indexPath], with: .automatic)
       }
     }
