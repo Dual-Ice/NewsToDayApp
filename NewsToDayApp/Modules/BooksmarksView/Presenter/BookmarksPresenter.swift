@@ -16,8 +16,12 @@ protocol BookmarksPresenterViewProtocol: AnyObject {
 
 protocol BookmarksPresenterProtocol: AnyObject {
     
-    init(view: BookmarksPresenterViewProtocol, router: BookmarksRouter, imageManager: ImageManager)
-    var data: [MockItem] { get }
+    init(view: BookmarksPresenterViewProtocol,
+         router: BookmarksRouter,
+         imageManager: ImageManager,
+         user: FirestoreUser?
+    )
+    var data: [Article] { get }
     var imageCacheBookmarks: [IndexPath: UIImage] { get set }
     func checkBookmarks()
     func deleteOneArticle(articleId: String)
@@ -29,7 +33,9 @@ protocol BookmarksPresenterProtocol: AnyObject {
 
 
 class BookmarksPresenter: BookmarksPresenterProtocol {
-    var data: [MockItem] = MockItem.getArticleModel()
+    var data: [Article] = []
+    
+    var user: FirestoreUser?
     var imageCacheBookmarks: [IndexPath: UIImage] = [:]
     
     weak var view: BookmarksPresenterViewProtocol?
@@ -38,10 +44,15 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
     
     private var arrayCategories: [String] = []
     
-    required init(view: BookmarksPresenterViewProtocol, router: BookmarksRouter, imageManager: ImageManager) {
+    required init(view: BookmarksPresenterViewProtocol, 
+                  router: BookmarksRouter,
+                  imageManager: ImageManager,
+                  user: FirestoreUser?
+    ) {
         self.view = view
         self.router = router
         self.imageManager = imageManager
+        self.user = user
     }
     
     // MARK: - Prepare CategoriesArray
@@ -71,18 +82,31 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
     }
     
     func deleteOneArticle(articleId: String){
-        data = data.filter { $0.id != articleId } //это для мок данных
+        data = data.filter { $0.articleId != articleId } //это для мок данных
         // удалить из базы данных
         // обновить data для этого вызвать getSaveAtricles()
+        if let index = user?.articles.firstIndex(where: { $0.articleId == articleId }) {
+            user?.articles.remove(at: index)
+        }
+    
+        FirestoreManager.shared.setCollection(
+            with: user!
+        ) { wasSet, error in
+        //                if let error = error {
+        //                    completion(false, error)
+        //                }
+        //                completion(true, nil)
+        }
          view?.reloadTableView()
     }
     
     func getSaveAtricles(){
         //записать в data значение из базы данных
-        //view?.reloadTableView()
+        data = user?.articles ?? []
+        view?.reloadTableView()
     }
     
-    func goToDetailVC(data: Article){
-        router?.goToDetailVC(data: data)
+    func goToDetailVC(data: Article) {
+        router?.goToDetailVC(data: data, user: self.user)
     }
 }

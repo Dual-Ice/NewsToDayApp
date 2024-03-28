@@ -15,7 +15,13 @@ protocol RecomendedPresenterViewProtocol: AnyObject {
 
 protocol RecomendedPresenterProtocol: AnyObject {
     
-    init(view: RecomendedPresenterViewProtocol, router: RecomendedRouterProtocol, newsManager: NewsManager, imageManager: ImageManager, searchWord: String?)
+    init(view: RecomendedPresenterViewProtocol,
+         router: RecomendedRouterProtocol,
+         newsManager: NewsManager,
+         imageManager: ImageManager,
+         user: FirestoreUser?,
+         searchWord: String?
+    )
     var data: [Article] { get }
     var imageCacheRecomendation: [IndexPath: UIImage] { get set }
     func loadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
@@ -36,16 +42,23 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
     private let imageManager: ImageManager
     private let searchWord: String?
     
-    private var arrayCatgories: [String] = []
+    var user: FirestoreUser?
+    private var arrayCatgories: [String] = .init()
     
-    required init(view: RecomendedPresenterViewProtocol, router: RecomendedRouterProtocol, newsManager: NewsManager, imageManager: ImageManager, searchWord: String?) {
+    required init(view: RecomendedPresenterViewProtocol,
+                  router: RecomendedRouterProtocol,
+                  newsManager: NewsManager,
+                  imageManager: ImageManager,
+                  user: FirestoreUser?,
+                  searchWord: String?) {
         self.view = view
         self.router = router
         self.newsManager = newsManager
         self.imageManager = imageManager
         self.searchWord = searchWord
-        //print("SEARCH WORD \(searchWord)")
-        arrayCatgories =  ["science", "health"] //получить из сохранненных
+        self.user = user
+        self.arrayCatgories = user?.categories ?? []
+        print("SEARCH WORD \(searchWord)")
         searchWord != nil ? getRecomendedNews(request: NewsRequest(query: searchWord)) : getRecomendedNews(request: NewsRequest(categories: arrayCatgories))
     }
     
@@ -60,20 +73,6 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
             return categories.translateCategories(filteredCategory: categories).capitalizingFirstLetterOfEachElement()
         }
     }
-    // MARK: - checkFavorite()
-    private func checkFavorite(){ // вызвать в getRecomendedNews после получения data и уюрать релоад в getRecomendedNews после получении data
-        let savedCategories: [Article] = [] // нужно заменить на сохраненные
-        if !savedCategories.isEmpty{
-            let savedArticleIds = savedCategories.map { $0.articleId }
-            
-            for (index,article) in data.enumerated() {
-                if savedArticleIds.contains(article.articleId) {
-                    data[index].isFavourite = true
-                }
-            }
-        }
-        //view?.reloadTableView()
-    }
 
     // MARK: - Network
     private func getRecomendedNews(request: NewsRequest){
@@ -83,12 +82,28 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
                 switch result{
                 case .success(let data):
                     self.data = data.results ?? []
-                    self.view?.reloadTableView()
+//                    self.view?.reloadTableView()
+                    self.checkFavorite()
                 case .failure(let error):
                     print("DataNEWSRecomended RecomendedVC error \(error.localizedDescription)")
                 }
             }
         }
+    }
+    
+    // MARK: - checkFavorite()
+    private func checkFavorite(){ // вызвать в getRecomendedNews после получения data и уюрать релоад в getRecomendedNews после получении data
+        let savedArticles: [Article] = user?.articles ?? [] // нужно заменить на сохраненные
+        if !savedArticles.isEmpty{
+            let savedArticleIds = savedArticles.map { $0.articleId }
+
+            for (index,article) in data.enumerated() {
+                if savedArticleIds.contains(article.articleId) {
+                    data[index].isFavourite = true
+                }
+            }
+        }
+        view?.reloadTableView()
     }
     
     func loadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void) {
@@ -103,9 +118,9 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
             }
         })
     }
-    // MARK: - Navigation
-    func goToDetailVC(data: Article){
-        router?.goToDetailVC(data: data)
+    
+    func goToDetailVC(data: Article) {
+        router?.goToDetailVC(data: data, user: self.user)
     }
     
     func dismisRecomendedVC(){

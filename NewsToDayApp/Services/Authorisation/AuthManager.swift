@@ -53,7 +53,10 @@ extension AuthManager {
             let user = FirestoreUser(
                 username: username,
                 email: email,
-                userID: resultUser.uid
+                userID: resultUser.uid,
+                image: "",
+                categories: [],
+                articles: []
             )
             
             FirestoreManager.shared.setCollection(

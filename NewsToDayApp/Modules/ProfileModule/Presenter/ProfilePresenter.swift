@@ -9,12 +9,14 @@ import UIKit
 
 protocol ProfilePresenterViewProtocol: AnyObject {
     
-    func render(with user: FirestoreUser)
+    func render(with user: FirestoreUser?)
 }
 
 protocol ProfilePresenterProtocol: AnyObject {
     
-    init(view: ProfilePresenterViewProtocol, router: ProfileRouterProtocol)
+    init(view: ProfilePresenterViewProtocol,
+         router: ProfileRouterProtocol,
+         user: FirestoreUser?)
     func goToLanguagesVC()
     func goToTermsAndConditionsVC()
     func goToAuthVC()
@@ -24,16 +26,19 @@ protocol ProfilePresenterProtocol: AnyObject {
 
 class ProfilePresenter: ProfilePresenterProtocol {
     
+    var user: FirestoreUser?
+    
     weak var view: ProfilePresenterViewProtocol?
     var router: ProfileRouterProtocol?
     
-    required init(view: ProfilePresenterViewProtocol, router: ProfileRouterProtocol) {
+    required init(view: ProfilePresenterViewProtocol,
+                  router: ProfileRouterProtocol,
+                  user: FirestoreUser?
+    ) {
         self.view = view
         self.router = router
-        AuthManager.shared.fetchUser { [weak self] user, error in
-            guard let user = user else { return }
-            self?.view?.render(with: user)
-        }
+        self.user = user
+        self.view?.render(with: user)
     }
     
     func goToLanguagesVC() {

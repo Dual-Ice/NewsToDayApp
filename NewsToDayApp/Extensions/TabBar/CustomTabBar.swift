@@ -14,8 +14,8 @@ open class CustomTabBarController: UITabBarController, CustomTabBarViewProtocol 
         static let tabBarButtonType = "UITabBarButton"
         static let borderWidth: CGFloat = 0.5
         static let borderColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
-        static let whiteBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.7)
-        static let blackBackgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+        static let whiteBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        static let blackBackgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.9)
         static let fullAlpha: CGFloat = 1.0
         static let emptyAlpha: CGFloat = 0.0
         
@@ -39,6 +39,17 @@ open class CustomTabBarController: UITabBarController, CustomTabBarViewProtocol 
     private lazy var tabBarItems: [UIView] = {
         return tabBar.subviews.filter { String(describing: type(of: $0)) == Constants.tabBarButtonType }
     }()
+    
+    private var user: FirestoreUser?
+    
+    init(user: FirestoreUser?) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,16 +87,16 @@ open class CustomTabBarController: UITabBarController, CustomTabBarViewProtocol 
     
     func setupViewControllers() {
         
-        let mainVC = MainBuilder().buildMainView()
+        let mainVC = MainBuilder().buildMainView(user: user)
         mainVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemMain", comment: ""), image: UIImage(systemName: "house.fill"), tag: 0)
         
-        let categoriesVC = CategoriesBuilder().buildCategoriesView()
+        let categoriesVC = CategoriesBuilder().buildCategoriesView(user: user)
         categoriesVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemCategories", comment: ""), image: UIImage(systemName: "square.grid.2x2.fill"), tag: 1)
         
-        let profileVC = ProfileBuilder().buildProfileView()
+        let profileVC = ProfileBuilder().buildProfileView(user: user)
         profileVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemProfile", comment: ""), image: UIImage(systemName: "person.fill"), tag: 3)
         
-        let bookMarksVC = BookmarksBuilder().buildBookmarksView()
+        let bookMarksVC = BookmarksBuilder().buildBookmarksView(user: user)
         bookMarksVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemBookmarks", comment: ""), image: UIImage(systemName: "bookmark.fill"), tag: 2)
         
         viewControllers = [mainVC, categoriesVC, bookMarksVC, profileVC]
