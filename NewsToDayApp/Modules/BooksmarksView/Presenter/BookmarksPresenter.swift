@@ -16,7 +16,11 @@ protocol BookmarksPresenterViewProtocol: AnyObject {
 
 protocol BookmarksPresenterProtocol: AnyObject {
     
-    init(view: BookmarksPresenterViewProtocol, router: BookmarksRouter, imageManager: ImageManager)
+    init(view: BookmarksPresenterViewProtocol,
+         router: BookmarksRouter,
+         imageManager: ImageManager,
+         user: FirestoreUser?
+    )
     var data: [MockItem] { get }
     func checkBookmarks()
     func deleteOneArticle(articleId: String)
@@ -30,16 +34,24 @@ protocol BookmarksPresenterProtocol: AnyObject {
 class BookmarksPresenter: BookmarksPresenterProtocol {
     var data: [MockItem] = MockItem.getArticleModel()
     
+    var user: FirestoreUser?
+    
     weak var view: BookmarksPresenterViewProtocol?
     var router: BookmarksRouter?
     let imageManager: ImageManager
     
     private var arrayCategories: [String] = []
     
-    required init(view: BookmarksPresenterViewProtocol, router: BookmarksRouter, imageManager: ImageManager) {
+    required init(view: BookmarksPresenterViewProtocol, 
+                  router: BookmarksRouter,
+                  imageManager: ImageManager,
+                  user: FirestoreUser?
+    ) {
         self.view = view
         self.router = router
         self.imageManager = imageManager
+        self.user = user
+//        self.data = user?.articles
     }
     
     // MARK: - Prepare CategoriesArray
@@ -72,6 +84,18 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
         data = data.filter { $0.id != articleId } //это для мок данных
         // удалить из базы данных
         // обновить data для этого вызвать getSaveAtricles()
+        if let index = user?.articles.firstIndex(where: { $0.articleId == articleId }) {
+            user?.articles.remove(at: index)
+        }
+    
+        FirestoreManager.shared.setCollection(
+            with: user!
+        ) { wasSet, error in
+        //                if let error = error {
+        //                    completion(false, error)
+        //                }
+        //                completion(true, nil)
+        }
          view?.reloadTableView()
     }
     
@@ -80,7 +104,7 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
         //view?.reloadTableView()
     }
     
-    func goToDetailVC(data: Article){
-        router?.goToDetailVC(data: data)
+    func goToDetailVC(data: Article) {
+        router?.goToDetailVC(data: data, user: self.user)
     }
 }

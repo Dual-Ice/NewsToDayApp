@@ -37,8 +37,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = navigationController
             
         } else {
-            let tabBarController = CustomTabBarController()
-            window?.rootViewController = tabBarController
+            AuthManager.shared.fetchUser { [weak self] user, error in
+                guard let user = user else { return }
+                let tabBarController = CustomTabBarController(user: user)
+                self?.window?.rootViewController = tabBarController
+            }
         }
     }
 

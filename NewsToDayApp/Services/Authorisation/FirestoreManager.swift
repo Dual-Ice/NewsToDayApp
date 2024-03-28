@@ -12,6 +12,9 @@ final class FirestoreManager {
     enum CollectionPath {
         static let username = "username"
         static let email = "email"
+        static let image = "image"
+        static let categories = "categories"
+        static let articles = "articles"
     }
     
     static let shared = FirestoreManager()
@@ -31,7 +34,10 @@ final class FirestoreManager {
             .document(user.userID)
             .setData([
                 CollectionPath.username: user.username,
-                CollectionPath.email: user.email
+                CollectionPath.email: user.email,
+                CollectionPath.image: user.image,
+                CollectionPath.articles: user.articles,
+                CollectionPath.categories: user.categories
             ]) { error in
                 if let error = error {
                     completion(false, error)
@@ -57,8 +63,18 @@ final class FirestoreManager {
                    let snapshotData = snapshot.data(),
                    let username = snapshotData[CollectionPath.username] as? String,
                    let email = snapshotData[CollectionPath.email] as? String {
-                    let user = FirestoreUser(username: username, email: email, userID: id)
-                    completion(user, nil)
+                        let image = snapshotData[CollectionPath.image] as? String ?? ""
+                        let categories = snapshotData[CollectionPath.categories] as? [String] ?? []
+                        let articles = snapshotData[CollectionPath.articles] as? [Article] ?? []
+                        let user = FirestoreUser(
+                            username: username,
+                            email: email,
+                            userID: id,
+                            image: image,
+                            categories: categories,
+                            articles: articles
+                        )
+                        completion(user, nil)
                 }
             }
     }

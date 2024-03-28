@@ -122,11 +122,12 @@ class ProfileView: CustomView {
         signOutButton.addTarget(nil, action: #selector(signOutButtonTapped), for: .touchUpInside)
     }
     
-    func configView(with user: FirestoreUser) {
-        profileName.text = user.username
-        profileEmail.text = user.email
+    func configView(with user: FirestoreUser?) {
+        guard let profiledUser = user else { return }
+        profileName.text = profiledUser.username
+        profileEmail.text = profiledUser.email
 //        if user.image != nil {
-//            profileImage.image = UIImage(data: user.image!)
+//            profileImage.image = UIImage(data: Data(base64Encoded: user.image!)!)
 //        }
     }
     

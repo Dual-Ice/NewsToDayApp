@@ -16,7 +16,13 @@ protocol MainViewProtocol: AnyObject {
 }
 
 protocol MainPresenterProtocol: AnyObject {
-    init(view: MainViewProtocol, router: MainRouterProtocol, newsManager: NewsManager,  imageManager: ImageManager )
+    init(view: MainViewProtocol,
+         router: MainRouterProtocol,
+         newsManager: NewsManager,
+         imageManager: ImageManager,
+         user: FirestoreUser?
+    )
+    
     var mockData: [ListSectionModel] { get }
     var selectedIndexPath: IndexPath { get }
     func saveSelectedCell(indexPath: IndexPath)
@@ -49,6 +55,7 @@ class MainPresenter: MainPresenterProtocol {
     var selectedCategory: String = "business"
     var newsDataByCatagory: [Article] = .init()
     var recomendedNews: [Article] = .init()
+    var user: FirestoreUser?
     var categoriesArray: [CategoriesModel] = CategoriesModel.allCases
     
     var imageCacheCourusel: [IndexPath: UIImage] = [:]
@@ -65,11 +72,18 @@ class MainPresenter: MainPresenterProtocol {
     
     private var arrayCatgories: [String] = []
     
-    required init(view: MainViewProtocol, router: MainRouterProtocol, newsManager: NewsManager, imageManager: ImageManager ) {
+    required init(
+        view: MainViewProtocol,
+        router: MainRouterProtocol,
+        newsManager: NewsManager,
+        imageManager: ImageManager,
+        user: FirestoreUser?
+    ) {
         self.view = view
         self.router = router
         self.newsManager = newsManager
         self.imageManager = imageManager
+        self.user = user
         arrayCatgories = ["health", "sports"] //при иницилизации получаем сохраненный массив с категориями
         getNewsByCategory(category: selectedCategory)
         getRecomendedNews(categoryArray: arrayCatgories)
@@ -150,7 +164,7 @@ class MainPresenter: MainPresenterProtocol {
             DispatchQueue.main.async {
                 switch result{
                 case .success(let data):
-                    print("DataNEWSRecomended \(data)")
+//                    print("DataNEWSRecomended \(data)")
                     self.recomendedNews = data.results ?? []
                     //self.view?.reloadCollectionView()
                     self.view?.reloadSectionCollectionView(section: 2)
@@ -177,26 +191,40 @@ class MainPresenter: MainPresenterProtocol {
     func handleCellEvent(article: Int, event: FavoriteButtonCellEvent) {
         switch event {
         case .favoriteDidTapped:
+            
             newsDataByCatagory[article].isFavourite = !newsDataByCatagory[article].isFavourite
             view?.reloadOneCell(indexItem: article, isLiked: newsDataByCatagory[article].isFavourite)
             if newsDataByCatagory[article].isFavourite == true {
                 //сохранить в закладки
+                user?.articles.append(newsDataByCatagory[article])
             } else {
                 //удалить из закладок если нажал на кнопку в ячейки повторно
+                if let index = user?.articles.firstIndex(where: { $0.articleId == newsDataByCatagory[article].articleId }) {
+                    // Удаляем элемент из массива
+                    user?.articles.remove(at: index)
+                }
+            }
+            FirestoreManager.shared.setCollection(
+                with: user!
+            ) { wasSet, error in
+//                if let error = error {
+//                    completion(false, error)
+//                }
+//                completion(true, nil)
             }
         }
     }
     // MARK: - Navigation
     func goToDetailVC(data: Article) {
-        router?.pushDetailVC(data: data)
+        router?.pushDetailVC(data: data, user: self.user)
     }
     
     func goToRecomendedVC() {
-        router?.pushRecomendedView()
+        router?.pushRecomendedView(user: self.user)
     }
     
     func goToSearchByWorldVC(searchWord: String){
-        router?.pushSearchByWordScreen(searchWord: searchWord)
+        router?.pushSearchByWordScreen(user: self.user, searchWord: searchWord)
     }
     
 }

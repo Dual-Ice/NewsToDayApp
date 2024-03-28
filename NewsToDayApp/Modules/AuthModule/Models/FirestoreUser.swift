@@ -12,4 +12,8 @@ struct FirestoreUser {
     let username: String
     let email: String
     let userID: String
+    var image: String
+    var categories: [String]
+    var articles: [Article]
+    
 }
