@@ -40,9 +40,7 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
     private let searchWord: String?
     
     var user: FirestoreUser?
-    private var arrayCatgories: [String] {
-        ["science", "health"]
-    }
+    private var arrayCatgories: [String] = .init()
     
     required init(view: RecomendedPresenterViewProtocol,
                   router: RecomendedRouterProtocol,
@@ -56,6 +54,7 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
         self.imageManager = imageManager
         self.searchWord = searchWord
         self.user = user
+        self.arrayCatgories = user?.categories ?? []
         print("SEARCH WORD \(searchWord)")
         searchWord != nil ? getRecomendedNews(request: NewsRequest(query: searchWord)) : getRecomendedNews(request: NewsRequest(categories: arrayCatgories))
     }
@@ -79,12 +78,28 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
                 switch result{
                 case .success(let data):
                     self.data = data.results ?? []
-                    self.view?.reloadTableView()
+//                    self.view?.reloadTableView()
+                    self.checkFavorite()
                 case .failure(let error):
                     print("DataNEWSRecomended RecomendedVC error \(error.localizedDescription)")
                 }
             }
         }
+    }
+    
+    // MARK: - checkFavorite()
+    private func checkFavorite(){ // вызвать в getRecomendedNews после получения data и уюрать релоад в getRecomendedNews после получении data
+        let savedArticles: [Article] = user?.articles ?? [] // нужно заменить на сохраненные
+        if !savedArticles.isEmpty{
+            let savedArticleIds = savedArticles.map { $0.articleId }
+
+            for (index,article) in data.enumerated() {
+                if savedArticleIds.contains(article.articleId) {
+                    data[index].isFavourite = true
+                }
+            }
+        }
+        view?.reloadTableView()
     }
     
     func loadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void) {

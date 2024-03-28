@@ -30,13 +30,25 @@ final class FirestoreManager {
         with user: FirestoreUser,
         completion: @escaping (Bool, Error?) -> Void
     ) {
+        var articlesJSON: [[String: Any]] = []
+        for article in user.articles {
+            do {
+                let articleData = try JSONEncoder().encode(article)
+                if let json = try JSONSerialization.jsonObject(with: articleData, options: []) as? [String: Any] {
+                    articlesJSON.append(json)
+                }
+            } catch {
+                print("Error encoding article to JSON: \(error)")
+            }
+        }
+        
         db.collection(environment)
             .document(user.userID)
             .setData([
                 CollectionPath.username: user.username,
                 CollectionPath.email: user.email,
                 CollectionPath.image: user.image,
-                CollectionPath.articles: user.articles,
+                CollectionPath.articles: articlesJSON,
                 CollectionPath.categories: user.categories
             ]) { error in
                 if let error = error {
@@ -65,14 +77,24 @@ final class FirestoreManager {
                    let email = snapshotData[CollectionPath.email] as? String {
                         let image = snapshotData[CollectionPath.image] as? String ?? ""
                         let categories = snapshotData[CollectionPath.categories] as? [String] ?? []
-                        let articles = snapshotData[CollectionPath.articles] as? [Article] ?? []
+                        let articles = snapshotData[CollectionPath.articles] as? [[String: Any]] ?? []
+                        var articlesArray: [Article] = []
+                        for articleJSON in articles {
+                            do {
+                                let articleData = try JSONSerialization.data(withJSONObject: articleJSON, options: [])
+                                let article = try JSONDecoder().decode(Article.self, from: articleData)
+                                articlesArray.append(article)
+                            } catch {
+                                print("Error decoding article JSON: \(error)")
+                            }
+                        }
                         let user = FirestoreUser(
                             username: username,
                             email: email,
                             userID: id,
                             image: image,
                             categories: categories,
-                            articles: articles
+                            articles: articlesArray
                         )
                         completion(user, nil)
                 }

@@ -84,7 +84,7 @@ class MainPresenter: MainPresenterProtocol {
         self.newsManager = newsManager
         self.imageManager = imageManager
         self.user = user
-        arrayCatgories = ["health", "sports"] //при иницилизации получаем сохраненный массив с категориями
+        arrayCatgories = user?.categories ?? []//["health", "sports"] //при иницилизации получаем сохраненный массив с категориями
         getNewsByCategory(category: selectedCategory)
         getRecomendedNews(categoryArray: arrayCatgories)
         
@@ -92,7 +92,7 @@ class MainPresenter: MainPresenterProtocol {
     
     // MARK: - CheckSelectedCattegories for recomendation
     func checkSelectedCategoriesRecommdations(){
-        let savedCategories =  ["health", "sports"]  //получаем сохраненный массив с категориям
+        let savedCategories = user?.categories ?? []// ["health", "sports"]  //получаем сохраненный массив с категориям
         if savedCategories != arrayCatgories && !savedCategories.isEmpty {
             arrayCatgories = savedCategories
             getRecomendedNews(categoryArray: arrayCatgories)
@@ -101,22 +101,25 @@ class MainPresenter: MainPresenterProtocol {
     }
     
     // MARK: - CheckCourusel favorite or not
-    func checkCouruselFavorite(){ // вызвать во ViewWillAppear
-        let savedCategories: [String : Article] = [:] // нужно заменить на сохраненные
-        if !savedCategories.isEmpty{
+    func checkCouruselFavorite(){ // вызвать во ViewWillAppear и при изменение данных в getNewsByCategory и getRecomendedNews
+        print("checkCouruselFavorite")
+        let savedArticles: [Article] = user?.articles ?? [] // нужно заменить на сохраненные
+        if !savedArticles.isEmpty{
+            let savedArticleIds = savedArticles.map { $0.articleId }
+
             for (index,article) in newsDataByCatagory.enumerated() {
-                if let savedArticle = savedCategories[article.articleId], savedArticle.isFavourite {
+                if savedArticleIds.contains(article.articleId) {
                     newsDataByCatagory[index].isFavourite = true
                 }
             }
-            
+
             for (index,article) in recomendedNews.enumerated() {
-                if let savedArticle = savedCategories[article.articleId], savedArticle.isFavourite {
+                if savedArticleIds.contains(article.articleId) {
                     recomendedNews[index].isFavourite = true
                 }
             }
-            //reloadCollectionView
         }
+        view?.reloadCollectionView()
     }
     
     // MARK: - Prepare CategoriesArray
@@ -149,7 +152,8 @@ class MainPresenter: MainPresenterProtocol {
                 case .success(let data):
                     //print("Data by category \(data)")
                     self.newsDataByCatagory = data.results ?? []
-                    self.view?.reloadSectionCollectionView(section: 1)
+//                    self.view?.reloadSectionCollectionView(section: 1)
+                    self.checkCouruselFavorite()
                 case .failure(let error):
                     print("DataByCategory error \(error.localizedDescription)")
                 }
@@ -167,7 +171,8 @@ class MainPresenter: MainPresenterProtocol {
 //                    print("DataNEWSRecomended \(data)")
                     self.recomendedNews = data.results ?? []
                     //self.view?.reloadCollectionView()
-                    self.view?.reloadSectionCollectionView(section: 2)
+//                    self.view?.reloadSectionCollectionView(section: 2)
+                    self.checkCouruselFavorite()
                 case .failure(let error):
                     print("DataNEWSRecomended error \(error.localizedDescription)")
                 }

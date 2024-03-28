@@ -21,7 +21,7 @@ protocol BookmarksPresenterProtocol: AnyObject {
          imageManager: ImageManager,
          user: FirestoreUser?
     )
-    var data: [MockItem] { get }
+    var data: [Article] { get }
     func checkBookmarks()
     func deleteOneArticle(articleId: String)
     func getSaveAtricles()
@@ -32,7 +32,7 @@ protocol BookmarksPresenterProtocol: AnyObject {
 
 
 class BookmarksPresenter: BookmarksPresenterProtocol {
-    var data: [MockItem] = MockItem.getArticleModel()
+    var data: [Article] = []
     
     var user: FirestoreUser?
     
@@ -51,7 +51,6 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
         self.router = router
         self.imageManager = imageManager
         self.user = user
-//        self.data = user?.articles
     }
     
     // MARK: - Prepare CategoriesArray
@@ -81,7 +80,7 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
     }
     
     func deleteOneArticle(articleId: String){
-        data = data.filter { $0.id != articleId } //это для мок данных
+        data = data.filter { $0.articleId != articleId } //это для мок данных
         // удалить из базы данных
         // обновить data для этого вызвать getSaveAtricles()
         if let index = user?.articles.firstIndex(where: { $0.articleId == articleId }) {
@@ -101,7 +100,8 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
     
     func getSaveAtricles(){
         //записать в data значение из базы данных
-        //view?.reloadTableView()
+        data = user?.articles ?? []
+        view?.reloadTableView()
     }
     
     func goToDetailVC(data: Article) {
