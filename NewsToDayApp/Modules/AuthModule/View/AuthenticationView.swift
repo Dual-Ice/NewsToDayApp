@@ -35,16 +35,16 @@ final class AuthenticationView: CustomView {
     private let subTitle = LabelsFactory.makeTextLabel()
 
     private lazy var userNameTextField = TextFieldFactory
-        .makeTextField(placeholder: NSLocalizedString("AuthScreenUserNameField", comment: ""), image: UIImage.Icons.userBasic)
+        .makeTextField(placeholder: NSLocalizedString("AuthScreenUserNameField", comment: ""), image: UIImage.Icons.userName)
     
     private lazy var emailTextField = TextFieldFactory
-        .makeTextField(placeholder: NSLocalizedString("AuthScreenUserEmailField", comment: ""), image: UIImage.Icons.emailBasic)
+        .makeTextField(placeholder: NSLocalizedString("AuthScreenUserEmailField", comment: ""), image: UIImage.Icons.email)
 
     private lazy var passwordTextField = TextFieldFactory
-        .makeSecureTextField(placeholder: NSLocalizedString("AuthScreenUserPasswordField", comment: ""), image: UIImage.Icons.passwordBasic)
+        .makeSecureTextField(placeholder: NSLocalizedString("AuthScreenUserPasswordField", comment: ""), image: UIImage.Icons.password)
     
     private lazy var repeatPasswordTextField = TextFieldFactory
-        .makeSecureTextField(placeholder: NSLocalizedString("AuthScreenUserPasswordRepeatField", comment: ""), image: UIImage.Icons.passwordBasic)
+        .makeSecureTextField(placeholder: NSLocalizedString("AuthScreenUserPasswordRepeatField", comment: ""), image: UIImage.Icons.password)
     
     private lazy var loginButton: UIButton = {
         let button = ButtonsFactory.makeButton()
@@ -298,31 +298,11 @@ final class AuthenticationView: CustomView {
 extension AuthenticationView: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField === userNameTextField {
-            textField.setIcon(UIImage.Icons.userEditing)
-        }
-        if textField === emailTextField {
-            textField.setIcon(UIImage.Icons.emailEditing)
-        }
-        if textField === passwordTextField || textField === repeatPasswordTextField {
-            textField.setIcon(UIImage.Icons.passwordEditing)
-        }
-        
         guard let textField = textField as? BaseTextField else { return }
         textField.modify()
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField === userNameTextField {
-            textField.setIcon(UIImage.Icons.userBasic)
-        }
-        if textField === emailTextField {
-            textField.setIcon(UIImage.Icons.emailBasic)
-        }
-        if textField === passwordTextField || textField === repeatPasswordTextField {
-            textField.setIcon(UIImage.Icons.passwordBasic)
-            textField.isSecureTextEntry = true
-        }
         guard let textField = textField as? BaseTextField else { return }
         textField.modify()
     }

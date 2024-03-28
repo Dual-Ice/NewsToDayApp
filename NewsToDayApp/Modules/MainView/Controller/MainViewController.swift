@@ -105,7 +105,7 @@ extension MainViewController: UICollectionViewDataSource{
                 cell.configCell(categoryLabelText: filterCategory, articleNameText: data.title, image: cachedImage, isLiked: data.isFavourite)
             } else {
                 presenter.loadImageByCategories(imageUrl: data.imageUrl, completion: {[currentIndexPath] image in
-                    let imageToUse = image ?? UIImage(named: "noImage")
+                    let imageToUse = image ?? UIImage.Images.noImage
                     self.presenter.imageCacheCourusel[currentIndexPath] = imageToUse
                     if let visibleCell = collectionView.cellForItem(at: currentIndexPath) as? ArticleCouruselCell {
                         visibleCell.configCell(categoryLabelText: filterCategory, articleNameText: data.title, image: imageToUse, isLiked: data.isFavourite)
@@ -118,7 +118,7 @@ extension MainViewController: UICollectionViewDataSource{
             }
             return cell
             //            presenter.loadImageByCategories(imageUrl: data.imageUrl, completion: { image in
-            //                let imageToUse = image ?? UIImage(named: "noImage")
+            //                let imageToUse = image ?? UIImage.Images.noImage
             //                cell.configCell(categoryLabelText: filterCategory, articleNameText: data.title, image: imageToUse, isLiked: data.isFavourite)
             //            })
             //            cell.configCell(categoryLabelText: filterCategory, articleNameText: data.title, image: nil, isLiked: data.isFavourite)
@@ -135,7 +135,7 @@ extension MainViewController: UICollectionViewDataSource{
                 cell.configCell(categoryLabelText: categoryFilter, articleNameText: data.title, image: cachedImage)
             } else {
                 presenter.loadImageByCategories(imageUrl: data.imageUrl, completion: { [currentIndexPath] image in
-                    let imageToUse = image ?? UIImage(named: "noImage")
+                    let imageToUse = image ?? UIImage.Images.noImage
                     self.presenter.imageCacheRecomendation[currentIndexPath] = imageToUse
                     if let visibleCell = collectionView.cellForItem(at: currentIndexPath) as? RecomendedCell {
                         visibleCell.configCell(categoryLabelText: categoryFilter, articleNameText: data.title, image: imageToUse)
@@ -147,7 +147,7 @@ extension MainViewController: UICollectionViewDataSource{
 //            presenter.loadImageByCategories(imageUrl: data.imageUrl, completion: {  image in
 //                
 //                let articleNameText = data.title
-//                let imageToUse = image ?? UIImage(named: "noImage")
+//                let imageToUse = image ?? UIImage.Images.noImage
 //                cell.configCell(categoryLabelText: categoryFilter, articleNameText: articleNameText, image: imageToUse)
 //            })
 //            cell.configCell(categoryLabelText: categoryFilter, articleNameText: data.title, image: nil)

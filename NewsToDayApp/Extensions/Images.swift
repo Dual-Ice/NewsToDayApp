@@ -11,51 +11,27 @@ import UIKit.UIImage
 extension UIImage {
     enum Icons {
         static var user: UIImage? {
-            return UIImage(named: "user")
-        }
-        
-        static var userSelected: UIImage? {
-            return UIImage(named: "user-selected")
+            return UIImage(systemName: "person.fill")
         }
         
         static var categories: UIImage? {
-            return UIImage(named: "categories")
-        }
-        
-        static var categoriesSelected: UIImage? {
-            return UIImage(named: "categories-selected")
+            return UIImage(systemName: "square.grid.2x2.fill")
         }
         
         static var main: UIImage? {
-            return UIImage(named: "main")
+            return UIImage(systemName: "house.fill")
         }
         
-        static var mainSelected: UIImage? {
-            return UIImage(named: "main-selected")
+        static var bookmarkEmpty: UIImage? {
+            return UIImage(systemName: "bookmark")
         }
         
-        static var bookmark: UIImage? {
-            return UIImage(named: "bookmark")
-        }
-        
-        static var bookmarkSelected: UIImage? {
-            return UIImage(named: "bookmark-selected")
-        }
-        
-        static var bookmarkBordered: UIImage? {
-            return UIImage(named: "bookmark-bordered")
-        }
-        
-        static var bookmarkFilled: UIImage? {
-            return UIImage(named: "bookmark-filled")
+        static var bookmarkFill: UIImage? {
+            return UIImage(systemName: "bookmark.fill")
         }
         
         static var book: UIImage? {
-            return UIImage(named: "book-alt")
-        }
-        
-        static var angleRight: UIImage? {
-            return UIImage(named: "angle-right")
+            return UIImage(systemName: "text.book.closed")
         }
         
         static var arrowLeft: UIImage? {
@@ -70,20 +46,28 @@ extension UIImage {
             return UIImage(systemName: "checkmark")
         }
         
-        static var email: UIImage? {
-            return UIImage(named: "email")
-        }
-        
-        static var password: UIImage? {
-            return UIImage(named: "password")
-        }
-        
         static var search: UIImage? {
-            return UIImage(named: "search")
+            return UIImage(systemName: "magnifyingglass")
         }
         
         static var share: UIImage? {
-            return UIImage(named: "share")
+            return UIImage(systemName: "arrowshape.turn.up.right")
+        }
+        
+        static var userName: UIImage? {
+            return UIImage(systemName: "person")
+        }
+        
+        static var email: UIImage? {
+            return UIImage(systemName: "envelope")
+        }
+        
+        static var password: UIImage? {
+            return UIImage(systemName: "lock")
+        }
+        
+        static var secureInput: UIImage? {
+            return UIImage(systemName: "eye")
         }
         
         static var signout: UIImage? {
@@ -93,33 +77,11 @@ extension UIImage {
         static var userAvatar: UIImage? {
             return UIImage(systemName: "person.crop.circle.fill")
         }
-        
-        static var userBasic: UIImage? {
-            return UIImage(named: "user-basic")
-        }
-        
-        static var userEditing: UIImage? {
-            return UIImage(named: "user-editing")
-        }
-        
-        static var passwordBasic: UIImage? {
-            return UIImage(named: "password-basic")
-        }
-        
-        static var passwordEditing: UIImage? {
-            return UIImage(named: "password-editing")
-        }
-        
-        static var emailBasic: UIImage? {
-            return UIImage(named: "email-basic")
-        }
-        
-        static var emailEditing: UIImage? {
-            return UIImage(named: "email-editing")
-        }
-        
-        static var secureInput: UIImage? {
-            return UIImage(named: "secureInput")
+    }
+    
+    enum Images {
+        static var noImage: UIImage? {
+            return UIImage(named: "no-image")
         }
     }
 }

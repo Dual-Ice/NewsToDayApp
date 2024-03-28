@@ -81,7 +81,7 @@ extension BookmarksViewController: UITableViewDataSource{
             cell.configCell(categoryLabelText: filterCategories.joined(separator: ","), articleNameText: data.title, image: cachedImage)
         } else {
             presenter.loadImage(imageUrl: data.imageUrl, completion: { [currentIndexPath] image in
-                let imageToUse = image ?? UIImage(named: "noImage")
+                let imageToUse = image ?? UIImage.Images.noImage
                 self.presenter.imageCacheBookmarks[currentIndexPath] = imageToUse
                 if let visibleCell = tableView.cellForRow(at: currentIndexPath) as? BookmarksCell {
                     visibleCell.configCell(categoryLabelText: filterCategories.joined(separator: ","), articleNameText: data.title, image: imageToUse)

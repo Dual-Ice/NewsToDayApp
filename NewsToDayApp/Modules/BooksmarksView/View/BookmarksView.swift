@@ -18,7 +18,7 @@ class BookmarksView: CustomView {
     private let subTitle = LabelsFactory.makeTextLabel()
     private let tableView = UITableView()
     private let circleView = ImageViewFactory.makeCornerRadiusImage()
-    private let bookImage = UIImageView(image: UIImage(named: "book-alt"))
+    private let bookImage = UIImageView(image: UIImage.Icons.book?.withTintColor(UIColor(named: ConstColors.purplePrimary)!))
     private let emptyBookmarksLabel = LabelsFactory.makeTextLabel()
     
     override func setViews() {

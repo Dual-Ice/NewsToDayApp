@@ -69,7 +69,7 @@ final class DetailArticleView: CustomView {
             backImage.backgroundColor = .none
         }
         //MARK: - config favoriteButton
-        let favoriteImage: UIImage? = isLiked ?? false ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-bordered")
+        let favoriteImage: UIImage? = isLiked ?? false ? UIImage.Icons.bookmarkFill : UIImage.Icons.bookmarkEmpty
         favoriteButton.setBackgroundImage(favoriteImage, for: .normal)
         //MARK: - config Labels
         createStackViewLabels(categories: data?.category ?? [])
@@ -87,7 +87,7 @@ final class DetailArticleView: CustomView {
         for category in translatedCategories {
             if stackView.arrangedSubviews.count < 3 {
                 let label =  PaddingLabel(withInsets: 0, 0, 5, 5)
-                label.text = category.uppercased()
+                label.text = category
                 label.textAlignment = .center
                 label.backgroundColor = UIColor(named: ConstColors.purplePrimary)
                 label.font = UIFont.TextFont.Main.tag
@@ -213,14 +213,16 @@ final class DetailArticleView: CustomView {
         //MARK: - setUp Buttons
         favoriteButton.backgroundColor = .clear
         favoriteButton.addTarget(nil, action: #selector(favoriteTapped), for: .touchUpInside)
-        favoriteButton.setBackgroundImage(UIImage(named: "bookmark-light"), for: .normal)
+        favoriteButton.setBackgroundImage(UIImage.Icons.book, for: .normal)
+        favoriteButton.tintColor = UIColor(named: ConstColors.customWhite)
         backButton.backgroundColor = .clear
         backButton.addTarget(nil, action: #selector(backTapped), for: .touchUpInside)
         backButton.setBackgroundImage(UIImage(systemName: "arrow.left"), for: .normal)
         backButton.tintColor = .white
         shareButton.backgroundColor = .clear
         shareButton.addTarget(nil, action: #selector(shareTapped), for: .touchUpInside)
-        shareButton.setBackgroundImage(UIImage(named: "share"), for: .normal)
+        shareButton.setBackgroundImage(UIImage.Icons.share, for: .normal)
+        shareButton.tintColor = UIColor(named: ConstColors.customWhite)
     }
     
     @objc private func favoriteTapped(){
@@ -239,7 +241,7 @@ final class DetailArticleView: CustomView {
 // MARK: - DetailArticleVCDelegate
 extension DetailArticleView: DetailArticleVCDelegate{
     func changeBacgroundImageButton(isLiked: Bool) {
-        let favoriteImage: UIImage? = isLiked ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-bordered")
+        let favoriteImage: UIImage? = isLiked ? UIImage.Icons.bookmarkFill : UIImage.Icons.bookmarkEmpty
         favoriteButton.setBackgroundImage(favoriteImage, for: .normal)
     }
 }
