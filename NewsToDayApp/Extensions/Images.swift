@@ -122,4 +122,9 @@ extension UIImage {
             return UIImage(named: "secureInput")
         }
     }
+    enum Images {
+        static var noImage: UIImage? {
+            return UIImage(named: "noImage")
+        }
+    }
 }
