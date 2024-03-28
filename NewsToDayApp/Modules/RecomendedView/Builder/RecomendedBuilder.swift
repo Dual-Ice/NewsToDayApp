@@ -9,7 +9,7 @@ import UIKit
 
 protocol RecomendedBuilderProtocol: AnyObject {
     
-    func buildRecomendedVC(user: FirestoreUser?, searchWord: String?) -> UIViewController?
+    func buildRecomendedVC(searchWord: String?) -> UIViewController?
 }
 
 class RecomendedBuilder: RecomendedBuilderProtocol{
@@ -19,7 +19,7 @@ class RecomendedBuilder: RecomendedBuilderProtocol{
         self.navigationVC = navigationVC
     }
     
-    func buildRecomendedVC(user: FirestoreUser?, searchWord: String?) -> UIViewController? {
+    func buildRecomendedVC(searchWord: String?) -> UIViewController? {
        guard let navigationVC = navigationVC else { return nil}
         let vc = RecomendedViewController()
         let router = RecomendedRouter(navigationVC: navigationVC)
@@ -30,7 +30,6 @@ class RecomendedBuilder: RecomendedBuilderProtocol{
             router: router,
             newsManager: newsManager,
             imageManager: imageManager,
-            user: user,
             searchWord: searchWord
         )
         vc.presenter = presenter

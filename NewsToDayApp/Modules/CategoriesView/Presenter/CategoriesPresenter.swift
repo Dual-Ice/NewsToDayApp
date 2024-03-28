@@ -13,14 +13,13 @@ protocol CategoriesPresenterViewProtocol: AnyObject {
 
 protocol CategoriesPresenterProtocol: AnyObject {
     init(view: CategoriesPresenterViewProtocol,
-         router: CategoriesRouterProtocol,
-         user: FirestoreUser?
+         router: CategoriesRouterProtocol
     )
     var data: [CategoriesModel] { get }
     var selectedIndexPathArray: [IndexPath] { get }
     func saveSelectedCell(indexPath: IndexPath, category: String)
     func removeUnSelectedCell(indexPath: IndexPath, category: String)
-    func saveCategoriesArray(completion: @escaping (Bool, Error?) -> Void)
+    func saveCategoriesArray(completion: @escaping (Error?) -> Void)
     func tappedNextButton()
     
 }
@@ -28,8 +27,6 @@ protocol CategoriesPresenterProtocol: AnyObject {
 
 class CategoriesPresenter: CategoriesPresenterProtocol {
     var selectedIndexPathArray: [IndexPath] = .init()
-    
-    var user: FirestoreUser?
     
     private var categoriesArray: [String] = .init()
     
@@ -39,12 +36,10 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     private var router: CategoriesRouterProtocol?
     
     required init(view: CategoriesPresenterViewProtocol,
-                  router: CategoriesRouterProtocol,
-                  user: FirestoreUser?) {
+                  router: CategoriesRouterProtocol) {
         self.view = view
         self.router = router
-        self.user = user
-        setSelectedColorForOnbordingSelection(selectedCategories: user?.categories ?? [])
+        setSelectedColorForOnbordingSelection(selectedCategories: UserManager.shared.getCategories())
     }
     
     private func setSelectedColorForOnbordingSelection(selectedCategories: [String]){
@@ -71,18 +66,13 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
         }
     }
     
-    func saveCategoriesArray(completion: @escaping (Bool, Error?) -> Void){
+    func saveCategoriesArray(completion: @escaping ( Error?) -> Void){
         print("categoriesArray saved\(categoriesArray)")
-        user?.categories = categoriesArray
-        FirestoreManager.shared.setCollection(
-            with: user!
-        ) { wasSet, error in
+        UserManager.shared.updateCategories(categories: categoriesArray) { error in
             if let error = error {
-                completion(false, error)
+                completion(error)
             }
-            completion(true, nil)
         }
-        // categoriesArray сохранить, если отличается от уже сохраненного и не пустой
     }
     
     func tappedNextButton() {

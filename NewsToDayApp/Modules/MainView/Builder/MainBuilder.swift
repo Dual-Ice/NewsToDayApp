@@ -10,12 +10,12 @@ import UIKit
 
 protocol MainBuilderProtocol: AnyObject {
     
-    func buildMainView(user: FirestoreUser?) -> UIViewController
+    func buildMainView() -> UIViewController
 }
 
 class MainBuilder: MainBuilderProtocol {
     
-    func buildMainView(user: FirestoreUser?) -> UIViewController {
+    func buildMainView() -> UIViewController {
         let vc = MainViewController()
         let navigationController = UINavigationController(rootViewController: vc)
         let router = MainRouter(navigationVC: navigationController)
@@ -25,8 +25,7 @@ class MainBuilder: MainBuilderProtocol {
             view: vc,
             router: router,
             newsManager: newsManager,
-            imageManager: imageManager,
-            user: user
+            imageManager: imageManager
         )
         vc.presenter = presenter
         return navigationController

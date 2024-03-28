@@ -8,7 +8,7 @@
 import UIKit
 protocol BookmarksBuilderProtocol: AnyObject {
     
-    func buildBookmarksView(user: FirestoreUser?) -> UIViewController
+    func buildBookmarksView() -> UIViewController
 }
 
 class BookmarksBuilder: BookmarksBuilderProtocol {
@@ -24,7 +24,7 @@ class BookmarksBuilder: BookmarksBuilderProtocol {
 //        return vc
 //    }
     
-    func buildBookmarksView(user: FirestoreUser?) -> UIViewController {
+    func buildBookmarksView() -> UIViewController {
         let vc = BookmarksViewController()
         let navigationController = UINavigationController(rootViewController: vc)
         let router = BookmarksRouter(navigationVC: navigationController)
@@ -32,8 +32,7 @@ class BookmarksBuilder: BookmarksBuilderProtocol {
         let presenter = BookmarksPresenter(
             view: vc,
             router: router,
-            imageManager: imageManager,
-            user: user
+            imageManager: imageManager
         )
         vc.presenter = presenter
         return navigationController

@@ -14,6 +14,7 @@ class ProfileViewController: CustomViewController<ProfileView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
+        customView.configView(with: UserManager.shared.getUserProfileData())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -23,12 +24,6 @@ class ProfileViewController: CustomViewController<ProfileView> {
     
     private func setDelegates(){
         customView.delegate = self
-    }
-}
-
-extension ProfileViewController: ProfilePresenterViewProtocol {
-    func render(with user: FirestoreUser?) {
-        customView.configView(with: user)
     }
 }
 
@@ -95,9 +90,19 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editedImage = info[.editedImage] as? UIImage {
+            UserManager.shared.updateUserAvatar(avatar: editedImage) { error in
+                if error != nil {
+                    print("Error is occured during saving new user avatar")
+                }
+            }
             customView.updateProfileImage(editedImage)
             dismiss(animated: true, completion: nil)
         } else if let originalImage = info[.originalImage] as? UIImage {
+            UserManager.shared.updateUserAvatar(avatar: originalImage) { error in
+                if error != nil {
+                    print("Error is occured during saving new user avatar")
+                }
+            }
             customView.updateProfileImage(originalImage)
             dismiss(animated: true, completion: nil)
         }
@@ -107,4 +112,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         dismiss(animated: true, completion: nil)
     }
 
+}
+
+extension ProfileViewController: ProfilePresenterViewProtocol {
+    
 }

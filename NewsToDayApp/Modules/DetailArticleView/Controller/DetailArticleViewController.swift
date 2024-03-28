@@ -52,7 +52,11 @@ extension DetailArticleViewController: DetailArticleViewDelegate {
     }
     
     func tappedFavoriteButton() {
-        presenter?.saveToBookMarks()
+        presenter?.saveToBookMarks() { error in
+            if error != nil {
+                print("Error is occured during switching article favorite property")
+            }
+        }
     }
     
     func tappedShareButton() {

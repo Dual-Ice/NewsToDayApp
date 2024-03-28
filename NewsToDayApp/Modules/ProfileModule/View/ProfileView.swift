@@ -108,6 +108,7 @@ class ProfileView: CustomView {
         profileImage.backgroundColor = UIColor(named: ConstColors.greyLighter)
         profileImage.layer.cornerRadius = 36
         profileImage.image = UIImage.Icons.userAvatar
+        profileImage.tintColor = UIColor(named: ConstColors.purpleLight)
         makeProfileImageTappable()
         
         profileName.text = ""
@@ -122,13 +123,13 @@ class ProfileView: CustomView {
         signOutButton.addTarget(nil, action: #selector(signOutButtonTapped), for: .touchUpInside)
     }
     
-    func configView(with user: FirestoreUser?) {
-        guard let profiledUser = user else { return }
-        profileName.text = profiledUser.username
-        profileEmail.text = profiledUser.email
-//        if user.image != nil {
-//            profileImage.image = UIImage(data: Data(base64Encoded: user.image!)!)
-//        }
+    func configView(with userData: UserData) {
+        profileName.text = userData.username
+        profileEmail.text = userData.email
+        guard let image = userData.image else { return }
+        
+        profileImage.image = image
+        
     }
     
     
