@@ -22,6 +22,7 @@ protocol BookmarksPresenterProtocol: AnyObject {
          user: FirestoreUser?
     )
     var data: [Article] { get }
+    var imageCacheBookmarks: [IndexPath: UIImage] { get set }
     func checkBookmarks()
     func deleteOneArticle(articleId: String)
     func getSaveAtricles()
@@ -35,6 +36,7 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
     var data: [Article] = []
     
     var user: FirestoreUser?
+    var imageCacheBookmarks: [IndexPath: UIImage] = [:]
     
     weak var view: BookmarksPresenterViewProtocol?
     var router: BookmarksRouter?

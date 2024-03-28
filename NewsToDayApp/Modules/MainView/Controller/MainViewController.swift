@@ -34,6 +34,7 @@ class MainViewController: CustomViewController<MainView> {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
         presenter.checkSelectedCategoriesRecommdations()
+        presenter.checkCouruselFavorite()
     }
    
     private func setDelegates(){

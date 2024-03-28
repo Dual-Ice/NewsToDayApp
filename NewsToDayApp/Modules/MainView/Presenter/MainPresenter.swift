@@ -95,8 +95,8 @@ class MainPresenter: MainPresenterProtocol {
         let savedCategories = user?.categories ?? []// ["health", "sports"]  //получаем сохраненный массив с категориям
         if savedCategories != arrayCatgories && !savedCategories.isEmpty {
             arrayCatgories = savedCategories
-            getRecomendedNews(categoryArray: arrayCatgories)
             imageCacheRecomendation = [:] // почистить при новом запросе
+            getRecomendedNews(categoryArray: arrayCatgories)
         }
     }
     

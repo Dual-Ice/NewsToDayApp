@@ -58,9 +58,10 @@ class CategoriesView: CustomView {
         if let typeToHideButtonOrNot{
              switch typeToHideButtonOrNot {
              case .categoriesInTabBar:
-                 button.isHidden = true
-                 button.isUserInteractionEnabled = false
-                 
+                 button.removeFromSuperview()
+                 collectionView.snp.makeConstraints { make in
+                     make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-20)
+                 }                 
              case .categoriesOnbording:
                  button.isHidden = false
              }
@@ -87,13 +88,13 @@ class CategoriesView: CustomView {
             make.top.equalTo(subTitle.snp.bottom).offset(32)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.bottom.equalTo(button.snp.top).offset(-8)
+            make.bottom.equalTo(button.snp.top).offset(-16)
         }
         
         button.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.top.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-80)
+            make.top.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-40)
             make.height.equalTo(56)
         }
     }

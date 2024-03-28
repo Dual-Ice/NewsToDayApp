@@ -23,6 +23,7 @@ protocol RecomendedPresenterProtocol: AnyObject {
          searchWord: String?
     )
     var data: [Article] { get }
+    var imageCacheRecomendation: [IndexPath: UIImage] { get set }
     func loadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
     func goToDetailVC(data: Article)
     func dismisRecomendedVC()
@@ -32,6 +33,8 @@ protocol RecomendedPresenterProtocol: AnyObject {
 
 class RecomendedPresenter: RecomendedPresenterProtocol {
     var data: [Article] = .init()
+    
+    var imageCacheRecomendation: [IndexPath: UIImage] = [:]
     
     weak var view: RecomendedPresenterViewProtocol?
     var router: RecomendedRouterProtocol?
@@ -59,6 +62,7 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
         searchWord != nil ? getRecomendedNews(request: NewsRequest(query: searchWord)) : getRecomendedNews(request: NewsRequest(categories: arrayCatgories))
     }
     
+    // MARK: - FilterCategories and translate
     func filterCategoriesArray(categories: [String]) -> [String]{
         if searchWord == nil{
             let filteredCategories = arrayCatgories.filter(categories.contains)
@@ -70,7 +74,7 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
         }
     }
 
-    
+    // MARK: - Network
     private func getRecomendedNews(request: NewsRequest){
         newsManager.getNews(with: request) { [weak self] result in
             guard let self else { return }

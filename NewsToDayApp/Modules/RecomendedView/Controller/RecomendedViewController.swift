@@ -28,6 +28,11 @@ class RecomendedViewController: CustomViewController<RecomendedView> {
         navigationController?.navigationBar.isHidden = true
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presenter.imageCacheRecomendation = [:] // чистим словарь с картинка
+    }
+    
     private func setDelegates(){
         customView.delegate = self
         recomendedView = customView
@@ -62,12 +67,26 @@ extension RecomendedViewController: UITableViewDataSource{
         cell.selectionStyle = .none
         let data = presenter.data[indexPath.row]
         let filterCategories = presenter.filterCategoriesArray(categories: data.category)
-        presenter?.loadImage(imageUrl: data.imageUrl, completion: { image in
-            let imageToUse = image ?? UIImage(named: "noImage")
-            cell.configCell(categoryLabelText: filterCategories.joined(separator: ","), articleNameText: data.title, image: imageToUse)
-        })
-        cell.configCell(categoryLabelText: filterCategories.joined(separator: ","), articleNameText: data.title, image: nil)
+        let currentIndexPath = indexPath
+        if let cachedImage = presenter.imageCacheRecomendation[currentIndexPath] {
+            cell.configCell(categoryLabelText: filterCategories.joined(separator: ","), articleNameText: data.title, image: cachedImage)
+        } else {
+            presenter.loadImage(imageUrl: data.imageUrl, completion: { [currentIndexPath] image in
+                let imageToUse = image ?? UIImage(named: "noImage")
+                self.presenter.imageCacheRecomendation[currentIndexPath] = imageToUse
+                if let visibleCell = tableView.cellForRow(at: currentIndexPath) as? BookmarksCell {
+                    visibleCell.configCell(categoryLabelText: filterCategories.joined(separator: ","), articleNameText: data.title, image: imageToUse)
+                }
+            })
+            cell.configCell(categoryLabelText: filterCategories.joined(separator: ","), articleNameText: data.title, image: nil)
+        }
         return cell
+//        presenter?.loadImage(imageUrl: data.imageUrl, completion: { image in
+//            let imageToUse = image ?? UIImage(named: "noImage")
+//            cell.configCell(categoryLabelText: filterCategories.joined(separator: ","), articleNameText: data.title, image: imageToUse)
+//        })
+//        cell.configCell(categoryLabelText: filterCategories.joined(separator: ","), articleNameText: data.title, image: nil)
+   
     }
 
 }
