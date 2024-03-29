@@ -88,9 +88,8 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
     }
     
     // MARK: - checkFavorite()
-     func checkFavorite(){ // вызвать в getRecomendedNews после получения data и уюрать релоад в getRecomendedNews после получении data
+     func checkFavorite(){ // вызвать в getRecomendedNews после получения data
         let savedArticles: [Article] = UserManager.shared.getFavoriteArticles()
-        //if !savedArticles.isEmpty{
             let savedArticleIds = savedArticles.map { $0.articleId }
 
             for (index,article) in data.enumerated() {
@@ -100,7 +99,6 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
                     data[index].isFavourite = false
                 }
             }
-        //}
         view?.reloadTableView()
     }
     

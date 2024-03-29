@@ -114,6 +114,7 @@ extension CategoriesViewController: UICollectionViewDelegate{
                 cell.setSelectedColors()
                 presenter.saveSelectedCell(indexPath: indexPath, category: cell.categoryTitle)
             }
+            presenter.checkCategoriesQuantity()
         }
     }
 }

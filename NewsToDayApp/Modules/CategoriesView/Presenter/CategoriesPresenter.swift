@@ -24,6 +24,7 @@ protocol CategoriesPresenterProtocol: AnyObject {
     func saveCategoriesArray(categoriesMode: CategoriesViewMode, completion: @escaping (Error?) -> Void)
     func tappedNextButton()
     func setSelectedColorForOnbordingSelection(selectedCategories: [String])
+    func checkCategoriesQuantity()
     
 }
 
@@ -85,5 +86,13 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     func tappedNextButton() {
         UserDefaults.standard.set(true, forKey: "isOnboardingCompleted")
         self.view?.checkAuth()
+    }
+    
+    func checkCategoriesQuantity(){
+        if selectedIndexPathArray.count > 5 {
+            selectedIndexPathArray.removeFirst()
+            categoriesArray.removeFirst()
+            view?.reloadCollectionView()
+        }
     }
 }
