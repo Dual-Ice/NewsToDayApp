@@ -84,8 +84,8 @@ final class UserManager {
     
     func updateUserAvatar(avatar: UIImage, completion: @escaping (Error?) -> Void) {
         if let base64String = avatar.pngData()?.base64EncodedString() {
-            user?.image = base64String
-            backupUser()
+            let pathToAvatar = saveUserAvatarToUD(with: user?.userID ?? "", avatar: base64String)
+            user?.image = pathToAvatar
             DispatchQueue.main.async {
                 FirestoreManager.shared.setCollection(
                     with: self.user!
@@ -169,7 +169,7 @@ final class UserManager {
     }
     
     private func makeUserImage() -> UIImage? {
-        guard let imageData = user?.image, !imageData.isEmpty else {
+        guard let imageData = getUserAvatarFromUD(by: user?.userID ?? ""), !imageData.isEmpty else {
             return nil
         }
             
@@ -179,4 +179,27 @@ final class UserManager {
         
         return UIImage(data: imageDataDecoded)
     }
+    
+    private func getKeyForUserAvatar(by userId: String) -> String {
+        return "user-" + userId + "-avatar"
+    }
+    
+    private func saveUserAvatarToUD(with userId: String, avatar: String) -> String {
+        let key = getKeyForUserAvatar(by: userId)
+        UserDefaults.standard.set(avatar, forKey: key)
+        return key
+    }
+    
+    private func getUserAvatarFromUD(by userId: String) -> String? {
+        let key = getKeyForUserAvatar(by: userId)
+        let defaults = UserDefaults.standard
+            
+        guard let avatarString = defaults.string(forKey: key) else {
+            return nil
+        }
+        
+        return avatarString
+    }
+    
+    
 }
