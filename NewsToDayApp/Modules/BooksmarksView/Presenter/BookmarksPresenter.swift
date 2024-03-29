@@ -77,12 +77,12 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
     }
     
      func checkBookmarks(){ 
-        //проверяем базу данных если пустая вызываем emptyBookmarks() иначе fullBookmarks()
-        view?.fullBookmarks()
+         data.isEmpty ? view?.emptyBookmarks() : view?.fullBookmarks()//проверяем базу данных если пустая вызываем emptyBookmarks() иначе fullBookmarks()
+        
     }
     
     func deleteOneArticle(articleId: String){
-        data = data.filter { $0.articleId != articleId } //это для мок данных
+        data = data.filter { $0.articleId != articleId } //удаляем из data
         // удалить из базы данных
         // обновить data для этого вызвать getSaveAtricles()
         if let index = user?.articles.firstIndex(where: { $0.articleId == articleId }) {

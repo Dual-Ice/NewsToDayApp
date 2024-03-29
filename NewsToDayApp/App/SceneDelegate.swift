@@ -24,6 +24,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let navigationVC = CustomTabBarController()
 //        window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()
+        //            if  UserDefaults.standard.bool(forKey: "isOnboardingCompleted"){
+        //                // tabBar
+        //            }else{
+        //                // onbording
+        //            }
+
         checkAuthentication()
     }
     

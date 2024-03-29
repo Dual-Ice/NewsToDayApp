@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol CategoriesPresenterViewProtocol: AnyObject {
     
@@ -89,6 +90,8 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
         if categoriesArray.isEmpty{
             print("Please select category")
         } else {
+            router?.customTabBar = view as? UIViewController
+            router?.goToCustomTabBar()
             print("go next screen")
         }
         // нажали Next на onbording

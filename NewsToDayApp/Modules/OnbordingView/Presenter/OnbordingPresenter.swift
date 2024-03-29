@@ -7,6 +7,7 @@
 
 
 import Foundation
+import UIKit
 protocol OnbordingPresenterViewProtocol: AnyObject {
     
     
@@ -25,11 +26,13 @@ class OnbordingPresenter: OnbordingPresenterProtocol {
     required init(view: OnbordingPresenterViewProtocol,  router: OnbordingRouterProtocol) {
         self.view = view
         self.router = router
+        router.viewController = view as? UIViewController
     }
     
     var data: [OnbordingModel] = OnbordingModel.getOnbordingModel()
     
     func goToCategoriesVC(){
+       // UserDefaults.standard.set(true, forKey: "isOnboardingCompleted")
         router?.goToCategoriesVC()
     }
     
