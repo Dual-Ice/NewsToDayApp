@@ -19,14 +19,13 @@ protocol MainPresenterProtocol: AnyObject {
     init(view: MainViewProtocol,
          router: MainRouterProtocol,
          newsManager: NewsManager,
-         imageManager: ImageManager,
-         user: FirestoreUser?
+         imageManager: ImageManager
     )
     
     var mockData: [ListSectionModel] { get }
     var selectedIndexPath: IndexPath { get }
     func saveSelectedCell(indexPath: IndexPath)
-    func handleCellEvent(article: Int, event: FavoriteButtonCellEvent)
+    func handleCellEvent(article: Int, event: FavoriteButtonCellEvent, completion: @escaping (Error?) -> Void)
     
     func goToDetailVC(data: Article)
     func goToRecomendedVC()
@@ -55,7 +54,6 @@ class MainPresenter: MainPresenterProtocol {
     var selectedCategory: String = "business"
     var newsDataByCatagory: [Article] = .init()
     var recomendedNews: [Article] = .init()
-    var user: FirestoreUser?
     var categoriesArray: [CategoriesModel] = CategoriesModel.allCases
     
     var imageCacheCourusel: [IndexPath: UIImage] = [:]
@@ -70,46 +68,47 @@ class MainPresenter: MainPresenterProtocol {
         [ .categories, .corusel, .recomendations]
     }
     
-    private var arrayCatgories: [String] = []
+    private var arrayCategories: [String] = []
     
     required init(
         view: MainViewProtocol,
         router: MainRouterProtocol,
         newsManager: NewsManager,
-        imageManager: ImageManager,
-        user: FirestoreUser?
+        imageManager: ImageManager
     ) {
         self.view = view
         self.router = router
         self.newsManager = newsManager
         self.imageManager = imageManager
-        self.user = user
-        arrayCatgories = user?.categories ?? []//["health", "sports"] //при иницилизации получаем сохраненный массив с категориями
+        arrayCategories = UserManager.shared.getCategories()
         getNewsByCategory(category: selectedCategory)
-        getRecomendedNews(categoryArray: arrayCatgories)
+        getRecomendedNews(categoryArray: arrayCategories)
         
     }
     
     // MARK: - CheckSelectedCattegories for recomendation
     func checkSelectedCategoriesRecommdations(){
-        let savedCategories = user?.categories ?? []// ["health", "sports"]  //получаем сохраненный массив с категориям
-        if savedCategories != arrayCatgories && !savedCategories.isEmpty {
-            arrayCatgories = savedCategories
+        let currentCategories = UserManager.shared.getCategories()
+        print("currentCategories \(currentCategories)")
+        if currentCategories != arrayCategories && !currentCategories.isEmpty {
+            arrayCategories = currentCategories
             imageCacheRecomendation = [:] // почистить при новом запросе
-            getRecomendedNews(categoryArray: arrayCatgories)
+            getRecomendedNews(categoryArray: arrayCategories)
         }
     }
     
     // MARK: - CheckCourusel favorite or not
     func checkCouruselFavorite(){ // вызвать во ViewWillAppear и при изменение данных в getNewsByCategory и getRecomendedNews
         print("checkCouruselFavorite")
-        let savedArticles: [Article] = user?.articles ?? [] // нужно заменить на сохраненные
+        let savedArticles: [Article] = UserManager.shared.getFavoriteArticles() // нужно заменить на сохраненные
         if !savedArticles.isEmpty{
             let savedArticleIds = savedArticles.map { $0.articleId }
 
             for (index,article) in newsDataByCatagory.enumerated() {
                 if savedArticleIds.contains(article.articleId) {
                     newsDataByCatagory[index].isFavourite = true
+                } else {
+                    newsDataByCatagory[index].isFavourite = false
                 }
             }
 
@@ -124,7 +123,7 @@ class MainPresenter: MainPresenterProtocol {
     
     // MARK: - Prepare CategoriesArray
     func filterCategoriesArray(categories: [String]) -> [String]{
-        let filteredCategories = arrayCatgories.filter(categories.contains)
+        let filteredCategories = arrayCategories.filter(categories.contains)
         let translatedArray = filteredCategories.translateCategories(filteredCategory: categories)
         let capitalizedCategories = translatedArray.capitalizingFirstLetterOfEachElement()
         return capitalizedCategories
@@ -193,7 +192,7 @@ class MainPresenter: MainPresenterProtocol {
         })
     }
     // MARK: - Save To BookMarks
-    func handleCellEvent(article: Int, event: FavoriteButtonCellEvent) {
+    func handleCellEvent(article: Int, event: FavoriteButtonCellEvent, completion: @escaping (Error?) -> Void) {
         switch event {
         case .favoriteDidTapped:
             
@@ -201,35 +200,27 @@ class MainPresenter: MainPresenterProtocol {
             view?.reloadOneCell(indexItem: article, isLiked: newsDataByCatagory[article].isFavourite)
             if newsDataByCatagory[article].isFavourite == true {
                 //сохранить в закладки
-                user?.articles.append(newsDataByCatagory[article])
-            } else {
-                //удалить из закладок если нажал на кнопку в ячейки повторно
-                if let index = user?.articles.firstIndex(where: { $0.articleId == newsDataByCatagory[article].articleId }) {
-                    // Удаляем элемент из массива
-                    user?.articles.remove(at: index)
+                UserManager.shared.addArticleFavorite(article: newsDataByCatagory[article]) { error in
+                    completion(error)
                 }
-            }
-            FirestoreManager.shared.setCollection(
-                with: user!
-            ) { wasSet, error in
-//                if let error = error {
-//                    completion(false, error)
-//                }
-//                completion(true, nil)
+            } else {
+                UserManager.shared.deleteArticleFromFavorite(articleId: newsDataByCatagory[article].articleId) { error in
+                    completion(error)
+                }
             }
         }
     }
     // MARK: - Navigation
     func goToDetailVC(data: Article) {
-        router?.pushDetailVC(data: data, user: self.user)
+        router?.pushDetailVC(data: data)
     }
     
     func goToRecomendedVC() {
-        router?.pushRecomendedView(user: self.user)
+        router?.pushRecomendedView()
     }
     
     func goToSearchByWorldVC(searchWord: String){
-        router?.pushSearchByWordScreen(user: self.user, searchWord: searchWord)
+        router?.pushSearchByWordScreen(searchWord: searchWord)
     }
     
 }

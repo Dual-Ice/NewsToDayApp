@@ -114,8 +114,9 @@ extension ArticleCouruselCell{
     func configCell(categoryLabelText: String?, articleNameText: String?, image: UIImage?, isLiked: Bool){
         categoryLabel.text = categoryLabelText?.uppercased()
         articleNameLabel.text = articleNameText
-        let favoriteImage: UIImage? = isLiked ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-bordered")
+        let favoriteImage: UIImage? = isLiked ? UIImage.Icons.bookmarkFill : UIImage.Icons.bookmarkEmpty
         favoriteButton.setBackgroundImage(favoriteImage, for: .normal)
+        favoriteButton.tintColor = .white
         if let image = image{
             spinner.stopAnimating()
             spinner.removeFromSuperview()
@@ -127,7 +128,7 @@ extension ArticleCouruselCell{
     }
     
     func setImageForFavoriteButton(isLiked: Bool){
-        let favoriteImage: UIImage? = isLiked ? UIImage(named: "bookmark-selected") : UIImage(named: "bookmark-bordered")
+        let favoriteImage: UIImage? = isLiked ? UIImage.Icons.bookmarkFill : UIImage.Icons.bookmarkEmpty
         favoriteButton.setBackgroundImage(favoriteImage, for: .normal)
     }
 }

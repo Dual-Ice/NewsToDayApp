@@ -9,14 +9,12 @@ import UIKit
 
 protocol ProfilePresenterViewProtocol: AnyObject {
     
-    func render(with user: FirestoreUser?)
 }
 
 protocol ProfilePresenterProtocol: AnyObject {
     
     init(view: ProfilePresenterViewProtocol,
-         router: ProfileRouterProtocol,
-         user: FirestoreUser?)
+         router: ProfileRouterProtocol)
     func goToLanguagesVC()
     func goToTermsAndConditionsVC()
     func goToAuthVC()
@@ -25,20 +23,14 @@ protocol ProfilePresenterProtocol: AnyObject {
 
 
 class ProfilePresenter: ProfilePresenterProtocol {
-    
-    var user: FirestoreUser?
-    
     weak var view: ProfilePresenterViewProtocol?
     var router: ProfileRouterProtocol?
     
     required init(view: ProfilePresenterViewProtocol,
-                  router: ProfileRouterProtocol,
-                  user: FirestoreUser?
+                  router: ProfileRouterProtocol
     ) {
         self.view = view
         self.router = router
-        self.user = user
-        self.view?.render(with: user)
     }
     
     func goToLanguagesVC() {

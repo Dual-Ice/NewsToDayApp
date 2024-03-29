@@ -35,7 +35,7 @@ class SearchBarView: UISearchBar {
         
         // Create a custom view for leftView
         let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 24)) // 40 widt + spacing between leftView and search
-        if let image = UIImage(systemName: "magnifyingglass") {
+        if let image = UIImage.Icons.search {
             let imageView = UIImageView(image: image)
             imageView.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
             imageView.tintColor = color

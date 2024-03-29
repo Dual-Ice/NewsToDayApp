@@ -11,9 +11,9 @@ import UIKit
 protocol MainRouterProtocol: AnyObject {
     
     init(navigationVC: UINavigationController)
-    func pushDetailVC(data: Article, user: FirestoreUser?)
-    func pushRecomendedView(user: FirestoreUser?)
-    func pushSearchByWordScreen(user: FirestoreUser?, searchWord: String)
+    func pushDetailVC(data: Article)
+    func pushRecomendedView()
+    func pushSearchByWordScreen(searchWord: String)
 }
 
 class MainRouter: MainRouterProtocol {
@@ -24,23 +24,23 @@ class MainRouter: MainRouterProtocol {
         self.navigationVC = navigationVC
     }
     
-    func pushDetailVC(data: Article, user: FirestoreUser?) {
+    func pushDetailVC(data: Article) {
         guard let navigationVC = navigationVC else { return }
-        let detailVC = DetailArticleBuilder(navigationVC: navigationVC).buildDetailArticleVC(data: data, user: user)
+        let detailVC = DetailArticleBuilder(navigationVC: navigationVC).buildDetailArticleVC(data: data)
         guard let detailVC = detailVC else { return }
         navigationVC.pushViewController(detailVC, animated: true)
     }
     
-    func pushRecomendedView(user: FirestoreUser?){
+    func pushRecomendedView(){
         guard let navigationVC = navigationVC else { return }
-        let recomendedVC = RecomendedBuilder(navigationVC: navigationVC).buildRecomendedVC(user: user, searchWord: nil)
+        let recomendedVC = RecomendedBuilder(navigationVC: navigationVC).buildRecomendedVC(searchWord: nil)
         guard let recomendedVC else { return }
         navigationVC.pushViewController(recomendedVC, animated: true)
     }
     
-    func pushSearchByWordScreen(user: FirestoreUser?, searchWord: String){
+    func pushSearchByWordScreen(searchWord: String){
         guard let navigationVC = navigationVC else { return }
-        let serachByWordVC = RecomendedBuilder(navigationVC: navigationVC).buildRecomendedVC(user: user, searchWord: searchWord)
+        let serachByWordVC = RecomendedBuilder(navigationVC: navigationVC).buildRecomendedVC(searchWord: searchWord)
         guard let serachByWordVC else { return }
         navigationVC.pushViewController(serachByWordVC, animated: true)
     }

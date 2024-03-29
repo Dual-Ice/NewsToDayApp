@@ -25,7 +25,7 @@ class DetailArticleViewController: CustomViewController<DetailArticleView> {
     private func configView(){
         presenter?.loadImage(imageUrl: presenter?.data.imageUrl, completion: { [weak self] image in
             guard let self else { return }
-            let imageToUse = image ?? UIImage(named: "noImage")
+            let imageToUse = image ?? UIImage.Images.noImage
             self.customView.configView(data: self.presenter?.data , isLiked: self.presenter?.data.isFavourite, image: imageToUse)
             
         })
@@ -53,7 +53,11 @@ extension DetailArticleViewController: DetailArticleViewDelegate {
     }
     
     func tappedFavoriteButton() {
-        presenter?.saveToBookMarks()
+        presenter?.saveToBookMarks() { error in
+            if error != nil {
+                print("Error is occured during switching article favorite property")
+            }
+        }
     }
     
     func tappedShareButton() {

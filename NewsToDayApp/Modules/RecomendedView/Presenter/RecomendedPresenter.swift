@@ -19,7 +19,6 @@ protocol RecomendedPresenterProtocol: AnyObject {
          router: RecomendedRouterProtocol,
          newsManager: NewsManager,
          imageManager: ImageManager,
-         user: FirestoreUser?,
          searchWord: String?
     )
     var data: [Article] { get }
@@ -42,22 +41,20 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
     private let imageManager: ImageManager
     private let searchWord: String?
     
-    var user: FirestoreUser?
     private var arrayCatgories: [String] = .init()
     
     required init(view: RecomendedPresenterViewProtocol,
                   router: RecomendedRouterProtocol,
                   newsManager: NewsManager,
                   imageManager: ImageManager,
-                  user: FirestoreUser?,
                   searchWord: String?) {
         self.view = view
         self.router = router
         self.newsManager = newsManager
         self.imageManager = imageManager
         self.searchWord = searchWord
-        self.user = user
-        self.arrayCatgories = user?.categories ?? []
+        self.arrayCatgories = UserManager.shared.getCategories()
+        print("SEARCH WORD \(searchWord)")
         searchWord != nil ? getRecomendedNews(request: NewsRequest(query: searchWord)) : getRecomendedNews(request: NewsRequest(categories: arrayCatgories))
     }
     
@@ -92,7 +89,7 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
     
     // MARK: - checkFavorite()
     private func checkFavorite(){ // вызвать в getRecomendedNews после получения data и уюрать релоад в getRecomendedNews после получении data
-        let savedArticles: [Article] = user?.articles ?? [] // нужно заменить на сохраненные
+        let savedArticles: [Article] = UserManager.shared.getFavoriteArticles()
         if !savedArticles.isEmpty{
             let savedArticleIds = savedArticles.map { $0.articleId }
 
@@ -119,7 +116,7 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
     }
     
     func goToDetailVC(data: Article) {
-        router?.goToDetailVC(data: data, user: self.user)
+        router?.goToDetailVC(data: data)
     }
     
     func dismisRecomendedVC(){

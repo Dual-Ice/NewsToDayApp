@@ -10,7 +10,7 @@ import UIKit
 
 protocol DetailBuilderProtocol: AnyObject {
     
-    func buildDetailArticleVC(data: Article, user: FirestoreUser?) -> UIViewController?
+    func buildDetailArticleVC(data: Article) -> UIViewController?
 }
 
 class DetailArticleBuilder: DetailBuilderProtocol{
@@ -20,7 +20,7 @@ class DetailArticleBuilder: DetailBuilderProtocol{
         self.navigationVC = navigationVC
     }
     
-    func buildDetailArticleVC(data: Article, user: FirestoreUser?) -> UIViewController? {
+    func buildDetailArticleVC(data: Article) -> UIViewController? {
         guard let navigationVC = navigationVC else { return nil}
         let vc = DetailArticleViewController()
         let router = DetailArticleRouter(navigationVC: navigationVC)
@@ -29,8 +29,7 @@ class DetailArticleBuilder: DetailBuilderProtocol{
             view: vc,
             router: router,
             imageManager: imageManager,
-            data: data,
-            user: user
+            data: data
         )
         vc.presenter = presenter
         return vc

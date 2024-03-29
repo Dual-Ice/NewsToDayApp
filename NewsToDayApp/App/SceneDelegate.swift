@@ -45,7 +45,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             AuthManager.shared.fetchUser { [weak self] user, error in
                 guard let user = user else { return }
-                let tabBarController = CustomTabBarController(user: user)
+                UserManager.shared.syncUser(userObject: user)
+                let tabBarController = CustomTabBarController()
                 self?.window?.rootViewController = tabBarController
             }
         }

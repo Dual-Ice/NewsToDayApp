@@ -18,14 +18,13 @@ protocol BookmarksPresenterProtocol: AnyObject {
     
     init(view: BookmarksPresenterViewProtocol,
          router: BookmarksRouter,
-         imageManager: ImageManager,
-         user: FirestoreUser?
+         imageManager: ImageManager
     )
     var data: [Article] { get }
     var imageCacheBookmarks: [IndexPath: UIImage] { get set }
     func checkBookmarks()
-    func deleteOneArticle(articleId: String)
-    func getSaveAtricles()
+    func deleteArticle(articleId: String, completion: @escaping ( Error?) -> Void)
+    func getAtriclesFromUser()
     func goToDetailVC(data: Article)
     func filterCategoriesArray(categories: [String]) -> [String]
     func loadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
@@ -35,7 +34,6 @@ protocol BookmarksPresenterProtocol: AnyObject {
 class BookmarksPresenter: BookmarksPresenterProtocol {
     var data: [Article] = []
     
-    var user: FirestoreUser?
     var imageCacheBookmarks: [IndexPath: UIImage] = [:]
     
     weak var view: BookmarksPresenterViewProtocol?
@@ -46,13 +44,11 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
     
     required init(view: BookmarksPresenterViewProtocol, 
                   router: BookmarksRouter,
-                  imageManager: ImageManager,
-                  user: FirestoreUser?
+                  imageManager: ImageManager
     ) {
         self.view = view
         self.router = router
         self.imageManager = imageManager
-        self.user = user
     }
     
     // MARK: - Prepare CategoriesArray
@@ -76,37 +72,38 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
         })
     }
     
-     func checkBookmarks(){ 
-         data.isEmpty ? view?.emptyBookmarks() : view?.fullBookmarks()//проверяем базу данных если пустая вызываем emptyBookmarks() иначе fullBookmarks()
+    func checkBookmarks(){
+        //проверяем базу данных если пустая вызываем emptyBookmarks() иначе fullBookmarks()
+        if UserManager.shared.getFavoriteArticles().isEmpty {
+            view?.emptyBookmarks()
+            return
+        }
+        view?.fullBookmarks()
         
     }
+//        FirestoreManager.shared.setCollection(
+//            with: user!
+//        ) { wasSet, error in
+//            //                if let error = error {
+//            //                    completion(false, error)
+//            //                }
+//            //                completion(true, nil)
+        
     
-    func deleteOneArticle(articleId: String){
-        data = data.filter { $0.articleId != articleId } //удаляем из data
-        // удалить из базы данных
-        // обновить data для этого вызвать getSaveAtricles()
-        if let index = user?.articles.firstIndex(where: { $0.articleId == articleId }) {
-            user?.articles.remove(at: index)
+    func deleteArticle(articleId: String, completion: @escaping ( Error?) -> Void){
+        UserManager.shared.deleteArticleFromFavorite(articleId: articleId) { error in
+            completion(error)
         }
-    
-        FirestoreManager.shared.setCollection(
-            with: user!
-        ) { wasSet, error in
-        //                if let error = error {
-        //                    completion(false, error)
-        //                }
-        //                completion(true, nil)
-        }
-         view?.reloadTableView()
+        getAtriclesFromUser()
     }
     
-    func getSaveAtricles(){
+    func getAtriclesFromUser(){
         //записать в data значение из базы данных
-        data = user?.articles ?? []
+        data = UserManager.shared.getFavoriteArticles()
         view?.reloadTableView()
     }
     
     func goToDetailVC(data: Article) {
-        router?.goToDetailVC(data: data, user: self.user)
+        router?.goToDetailVC(data: data)
     }
 }
