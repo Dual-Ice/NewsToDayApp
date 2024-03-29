@@ -99,16 +99,16 @@ class MainPresenter: MainPresenterProtocol {
     
     // MARK: - CheckCourusel favorite or not
     func checkCouruselFavorite(){ // вызвать во ViewWillAppear и при изменение данных в getNewsByCategory и getRecomendedNews
-        print("checkCouruselFavorite")
+        //print("checkCouruselFavorite")
         let savedArticles: [Article] = UserManager.shared.getFavoriteArticles() // нужно заменить на сохраненные
-        print("SavedArticel \(savedArticles)")
+       // print("SavedArticel \(savedArticles)")
        // if !savedArticles.isEmpty{
             let savedArticleIds = savedArticles.map { $0.articleId }
 
             for (index,article) in newsDataByCatagory.enumerated() {
                 if savedArticleIds.contains(article.articleId) {
                     newsDataByCatagory[index].isFavourite = true
-                    print("NEWS TITLE \(newsDataByCatagory[index].title)")
+                    //print("NEWS TITLE \(newsDataByCatagory[index].title)")
                 } else {
                     newsDataByCatagory[index].isFavourite = false // для чего
                 }

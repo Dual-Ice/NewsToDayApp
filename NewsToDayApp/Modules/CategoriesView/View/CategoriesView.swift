@@ -61,7 +61,7 @@ class CategoriesView: CustomView {
                  button.removeFromSuperview()
                  collectionView.snp.makeConstraints { make in
                      make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-20)
-                 }                 
+                 }    
              case .categoriesOnbording:
                  button.isHidden = false
              }
@@ -110,14 +110,9 @@ class CategoriesView: CustomView {
 
 //MARK: - CategoriesVCDelegate
 extension CategoriesView: CategoriesVCDelegate {
-//    func setDefaultColorCells(selectedIndexPath: [IndexPath]) {
-//        print("SELECTED INDEXPATH View \(selectedIndexPath)")
-//        for indexPath in selectedIndexPath {
-//            if let cell = self.collectionView.cellForItem(at: indexPath) as? CategoriesCell{
-//                cell.setSelectedColors()
-//            }
-//        }
-//    }
+    func reloadCategoriesCollection() {
+        collectionView.reloadData()
+    }
     
     func chechHiddenButtonOrNot(type: HideButtonOnCategoriesView?) {
         checkHideButtonOrNot(typeToHideButtonOrNot: type)
@@ -131,6 +126,4 @@ extension CategoriesView: CategoriesVCDelegate {
     func setCollectionViewDataSource(vc: CategoriesViewController) {
         collectionView.dataSource = vc
     }
-    
-    
 }

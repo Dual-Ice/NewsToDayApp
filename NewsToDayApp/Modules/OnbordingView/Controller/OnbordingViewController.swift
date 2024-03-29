@@ -52,7 +52,6 @@ extension OnbordingViewController: OnbordingViewDelegate{
     func tappedNextButton() {
         if currentPage == presenter.data.count - 1{
             presenter.goToCategoriesVC()
-            print("go to categories")
         }else{
             currentPage += 1
             let indexPath = IndexPath(item: currentPage, section: 0)
@@ -63,7 +62,11 @@ extension OnbordingViewController: OnbordingViewDelegate{
 
 // MARK: - OnbordingPresenterViewProtocol
 extension OnbordingViewController: OnbordingPresenterViewProtocol{
-    
+    func checkAuthOrNot() {
+        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+            sceneDelegate.checkAuthentication()
+        }
+    }
 }
 
 // MARK: - UICollectionViewDelegate

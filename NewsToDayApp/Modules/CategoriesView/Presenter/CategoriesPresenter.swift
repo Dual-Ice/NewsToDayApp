@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 protocol CategoriesPresenterViewProtocol: AnyObject {
-    
+    func checkAuthOrNot()
+    func reloadCollectionView()
 }
 
 protocol CategoriesPresenterProtocol: AnyObject {
@@ -22,6 +23,7 @@ protocol CategoriesPresenterProtocol: AnyObject {
     func removeUnSelectedCell(indexPath: IndexPath, category: String)
     func saveCategoriesArray(completion: @escaping (Error?) -> Void)
     func tappedNextButton()
+    func setSelectedColorForOnbordingSelection(selectedCategories: [String])
     
 }
 
@@ -40,22 +42,23 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
                   router: CategoriesRouterProtocol) {
         self.view = view
         self.router = router
-        setSelectedColorForOnbordingSelection(selectedCategories: UserManager.shared.getCategories())
+//        setSelectedColorForOnbordingSelection(selectedCategories: UserManager.shared.getCategories())
     }
     
-    private func setSelectedColorForOnbordingSelection(selectedCategories: [String]){
+    func setSelectedColorForOnbordingSelection(selectedCategories: [String]){
         let indexes = selectedCategories.compactMap { categoryValue in
             data.firstIndex(where: { $0.categoryValue == categoryValue })
         }
         let indexPaths = indexes.map { IndexPath(item: $0, section: 0) }
         categoriesArray = selectedCategories
+        print("CategoriesVC selected \(categoriesArray)")
         selectedIndexPathArray = indexPaths
+        view?.reloadCollectionView()
     }
     
     func saveSelectedCell(indexPath: IndexPath, category: String) {
         selectedIndexPathArray.append(indexPath)
         categoriesArray.append(category)
-       // print("categortArray1 \(categoriesArray)")
     }
     
     func removeUnSelectedCell(indexPath: IndexPath, category: String) {
@@ -63,7 +66,6 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
         if let indexToRemove{
             selectedIndexPathArray.remove(at: indexToRemove)
             categoriesArray.remove(at: indexToRemove)
-           // print("categortArray2 \(categoriesArray)")
         }
     }
     
@@ -80,10 +82,8 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
         if categoriesArray.isEmpty{
             print("Please select category")
         } else {
-            router?.customTabBar = view as? UIViewController
-            router?.goToCustomTabBar()
-            print("go next screen")
+            UserDefaults.standard.set(true, forKey: "isOnboardingCompleted")
+            self.view?.checkAuthOrNot()
         }
-        // нажали Next на onbording
     }
 }

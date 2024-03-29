@@ -9,10 +9,10 @@
 import UIKit
 
 protocol CategoriesVCDelegate{
-   // func setDefaultColorCells(selectedIndexPath: [IndexPath])
     func setCollectionViewDelegate(vc: CategoriesViewController)
     func setCollectionViewDataSource(vc: CategoriesViewController)
     func chechHiddenButtonOrNot(type: HideButtonOnCategoriesView?)
+    func reloadCategoriesCollection()
 }
 
 class CategoriesViewController: CustomViewController<CategoriesView> {
@@ -24,7 +24,6 @@ class CategoriesViewController: CustomViewController<CategoriesView> {
     init(typeToHideButtonOrNot: HideButtonOnCategoriesView) {
         self.typeToHideButtonOrNot = typeToHideButtonOrNot
         super.init(nibName: nil, bundle: nil)
-
     }
     
     required init?(coder: NSCoder) {
@@ -43,13 +42,16 @@ class CategoriesViewController: CustomViewController<CategoriesView> {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         print("willDISappear")
         presenter.saveCategoriesArray() { error in
             if let error = error {
                 print("Error is occured during categories saving")
             }
         }
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.setSelectedColorForOnbordingSelection(selectedCategories: UserManager.shared.getCategories())
     }
     
     private func setDelegates(){
@@ -63,8 +65,15 @@ class CategoriesViewController: CustomViewController<CategoriesView> {
 }
 //MARK: - CategoriesPresenterViewProtocol
 extension CategoriesViewController: CategoriesPresenterViewProtocol {
-  
+    func reloadCollectionView() {
+        categoriesView?.reloadCategoriesCollection()
+    }
     
+    func checkAuthOrNot() {
+        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+            sceneDelegate.checkAuthentication()
+        }
+    }
 }
 //MARK: - CategoriesViewDelegate
 extension CategoriesViewController: CategoriesViewDelegate {

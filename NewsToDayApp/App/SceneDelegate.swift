@@ -18,19 +18,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
+        window?.makeKeyAndVisible()
 //        let navigationVC = UINavigationController()
 //        let mainVC = MainBuilder(navigationVC: navigationVC).buildMainView()
 //        navigationVC.setViewControllers([mainVC], animated: true)
 //        let navigationVC = CustomTabBarController()
 //        window?.rootViewController = navigationVC
-        window?.makeKeyAndVisible()
-        //            if  UserDefaults.standard.bool(forKey: "isOnboardingCompleted"){
-        //                // tabBar
-        //            }else{
-        //                // onbording
-        //            }
-
-        checkAuthentication()
+        
+//        UserDefaults.standard.set(false, forKey: "isOnboardingCompleted")
+//        print("KEY \(UserDefaults.standard.bool(forKey: "isOnboardingCompleted"))")
+        if  UserDefaults.standard.bool(forKey: "isOnboardingCompleted"){
+            checkAuthentication()
+        }else{
+            let vc = OnbordingBuilder().buildOnbordingVC()
+            vc.modalPresentationStyle = .fullScreen
+            self.window?.rootViewController = vc
+        }
+        
+        
     }
     
     func checkAuthentication() {
@@ -43,11 +48,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = navigationController
             
         } else {
-            AuthManager.shared.fetchUser { [weak self] user, error in
-                guard let user = user else { return }
-                UserManager.shared.syncUser(userObject: user)
-                let tabBarController = CustomTabBarController()
-                self?.window?.rootViewController = tabBarController
+            if  UserDefaults.standard.bool(forKey: "isOnboardingCompleted"){
+                AuthManager.shared.fetchUser { [weak self] user, error in
+                    guard let user = user else { return }
+                    UserManager.shared.syncUser(userObject: user)
+                    let tabBarController = CustomTabBarController()
+                    self?.window?.rootViewController = tabBarController
+                }
+            } else {
+                let vc = CategoriesBuilder().buildCategoriesView(type: .categoriesOnbording)
+                vc.modalPresentationStyle = .fullScreen
+                self.window?.rootViewController = vc
             }
         }
     }

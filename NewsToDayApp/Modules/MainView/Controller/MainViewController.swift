@@ -32,7 +32,7 @@ class MainViewController: CustomViewController<MainView> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("willappear")
+        //print("willappear")
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = false
         presenter.checkCouruselFavorite()
