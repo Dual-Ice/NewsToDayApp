@@ -13,7 +13,7 @@ protocol DetailArticleVCDelegate{
 
 class DetailArticleViewController: CustomViewController<DetailArticleView> {
 
-    var presenter: DetailArticlePresenterProtocol?
+    var presenter: DetailArticlePresenterProtocol!
     var detailView: DetailArticleVCDelegate?
     
     override func viewDidLoad() {
@@ -23,13 +23,13 @@ class DetailArticleViewController: CustomViewController<DetailArticleView> {
     }
     
     private func configView(){
-        presenter?.loadImage(imageUrl: presenter?.data.imageUrl, completion: { [weak self] image in
+        presenter.loadImage(imageUrl: presenter?.data.imageUrl, completion: { [weak self] image in
             guard let self else { return }
             let imageToUse = image ?? UIImage.Images.noImage
-            self.customView.configView(data: self.presenter?.data , isLiked: self.presenter?.data.isFavourite, image: imageToUse)
+            self.customView.configView(data: self.presenter.data , isLiked: self.presenter.data.isFavourite, image: imageToUse)
             
         })
-        customView.configView(data: presenter?.data , isLiked: self.presenter?.data.isFavourite, image: nil)
+        customView.configView(data: presenter?.data , isLiked: self.presenter.data.isFavourite, image: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,7 +37,7 @@ class DetailArticleViewController: CustomViewController<DetailArticleView> {
         self.navigationItem.setHidesBackButton(true, animated: false)
         navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
-        presenter?.checkFavorite()
+        presenter.checkFavorite()
     }
     
     private func setDelegates(){
@@ -50,11 +50,11 @@ class DetailArticleViewController: CustomViewController<DetailArticleView> {
 //MARK: - DetailArticleViewDelegate
 extension DetailArticleViewController: DetailArticleViewDelegate {
     func tappedBackButton() {
-        presenter?.dismissDetailArticleVC()
+        presenter.dismissDetailArticleVC()
     }
     
     func tappedFavoriteButton() {
-        presenter?.saveToBookMarks() { error in
+        presenter.saveToBookMarks() { error in
             if error != nil {
                 print("Error is occured during switching article favorite property")
             }
@@ -62,6 +62,8 @@ extension DetailArticleViewController: DetailArticleViewDelegate {
     }
     
     func tappedShareButton() {
+        let activityViewController = UIActivityViewController(activityItems: [presenter.data.link], applicationActivities: nil)
+        present(activityViewController, animated: true, completion: nil)
     }
 }
 
