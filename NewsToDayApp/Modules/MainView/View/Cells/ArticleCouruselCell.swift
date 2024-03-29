@@ -10,7 +10,6 @@ import SnapKit
 
 protocol ArticleCouruselCellDelegate: AnyObject {
     func tappedFavoriteButton()
-   
 }
 
 enum FavoriteButtonCellEvent {
@@ -19,7 +18,6 @@ enum FavoriteButtonCellEvent {
 
 class ArticleCouruselCell: UICollectionViewCell {
     static let resuseID = "ArticleCouruselCell"
-    //weak var delegate: ArticleCouruselCellDelegate?
     var onFavoriteButtonTap: ((FavoriteButtonCellEvent) -> Void)?
     
     private let categoryLabel = LabelsFactory.makeCategoryLabel()
@@ -69,7 +67,6 @@ class ArticleCouruselCell: UICollectionViewCell {
     @objc private func favoriteTapped(){
         let event = FavoriteButtonCellEvent.favoriteDidTapped
         onFavoriteButtonTap?(event)
-        //delegate?.tappedFavoriteButton()
     }
     
     private func setViews(){
@@ -122,7 +119,7 @@ extension ArticleCouruselCell{
             spinner.removeFromSuperview()
             backImage.image = image
         } else{
-            setUpSpiner() //добавить spineer
+            setUpSpiner() 
             backImage.backgroundColor = .none
         }
     }

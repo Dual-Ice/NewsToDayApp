@@ -15,11 +15,10 @@ extension Array where Element == String {
         }
     }
     
-    func translateCategories(filteredCategory: [String]) -> [String] {
+    func translateCategories(categoriesToTranslate: [String]) -> [String] {
         let arrayAllCategoriesValue = CategoriesModel.allCases.map { $0.categoryValue }
         let arrayAllCategoriesLabel = CategoriesModel.allCases.map { $0.categoryLabel }
-      //  let categoriesToTranslate = arrayAllCategoriesValue.filter(filteredCategory.contains)
-        let indexes = filteredCategory.compactMap { arrayAllCategoriesValue.firstIndex(of: $0) } // находим индексы отфильтрованных категорий в arrayAllCategoriesValue
+        let indexes = categoriesToTranslate.compactMap { arrayAllCategoriesValue.firstIndex(of: $0) } // индексы отфильтрованных категорий в arrayAllCategoriesValue
         let translatedArray = indexes.compactMap {  arrayAllCategoriesLabel.indices.contains($0) ? arrayAllCategoriesLabel[$0] : nil } // по найденным индексам ищем соответсвие arrayAllCategoriesLabel и из соответсвий формируем новый массив
         return translatedArray
        }

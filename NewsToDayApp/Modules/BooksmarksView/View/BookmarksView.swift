@@ -8,8 +8,7 @@
 import UIKit
 import SnapKit
 
-protocol BookmarksViewDelegate: AnyObject {
-}
+protocol BookmarksViewDelegate: AnyObject {}
 
 class BookmarksView: CustomView {
     weak var delegate: BookmarksViewDelegate?

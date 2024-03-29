@@ -30,10 +30,9 @@ protocol CategoriesPresenterProtocol: AnyObject {
 
 class CategoriesPresenter: CategoriesPresenterProtocol {
     var selectedIndexPathArray: [IndexPath] = .init()
+    var data: [CategoriesModel] = CategoriesModel.allCases
     
     private var categoriesArray: [String] = .init()
-    
-    var data: [CategoriesModel] = CategoriesModel.allCases
     
     private weak var view: CategoriesPresenterViewProtocol?
     private var router: CategoriesRouterProtocol?

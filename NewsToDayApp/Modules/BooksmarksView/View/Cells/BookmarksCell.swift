@@ -81,8 +81,8 @@ class BookmarksCell: UITableViewCell {
 
 //MARK: - Configure Cell UI Public Method
 extension BookmarksCell{
-    func configCell(categoryLabelText: String?, articleNameText: String?, image: UIImage?){
-        categoryLabel.text = categoryLabelText
+    func configCell(categoryLabelText: [String]?, articleNameText: String?, image: UIImage?){
+        categoryLabel.text = categoryLabelText?.joined(separator: " ")
         articleNameLabel.text = articleNameText
         if let image = image{
             spinner.stopAnimating()

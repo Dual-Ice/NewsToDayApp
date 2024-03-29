@@ -23,7 +23,7 @@ protocol DetailArticlePresenterProtocol: AnyObject {
     func dismissDetailArticleVC()
     func loadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
     func saveToBookMarks(completion: @escaping (Error?) -> Void)
-    
+    func checkFavorite()
 }
 
 class DetailArticlePresenter: DetailArticlePresenterProtocol {
@@ -47,6 +47,18 @@ class DetailArticlePresenter: DetailArticlePresenterProtocol {
     func dismissDetailArticleVC(){
         router?.dismissDetailVC()
     }
+    
+    func checkFavorite(){
+        let savedArticles: [Article] = UserManager.shared.getFavoriteArticles()
+        let savedArticleIds = savedArticles.map { $0.articleId }
+        
+        if savedArticleIds.contains(data.articleId) {
+            data.isFavourite = true
+        } else {
+            data.isFavourite = false
+        }
+        view?.changeBacgroundImageButton(isLiked: data.isFavourite)
+   }
     
     func loadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void) {
         imageManager.getImage(for: imageUrl, completion: { result in

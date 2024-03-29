@@ -11,7 +11,6 @@ protocol MainVCDelegate{
     func reloadCollectionView()
     func reloadCollectionView(section: Int)
     func changeFavoriteCelButtonBackGround(indexItem: Int, isLiked: Bool)
-    //func setColorForFavorites(selectedIndexPath: [IndexPath], isLikedArray: [Bool])
     func setSearchBarDelegate(vc: MainViewController)
     func setCollectionViewDelegate(vc: MainViewController)
     func setCollectionViewDataSource(vc: MainViewController)
@@ -21,9 +20,6 @@ class MainViewController: CustomViewController<MainView> {
     
     var presenter: MainPresenterProtocol!
     var mainView: MainVCDelegate?
-    
-//    var imageCacheCourusel: [IndexPath: UIImage] = [:]
-//    var imageCacheRecomendation: [IndexPath: UIImage] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +28,6 @@ class MainViewController: CustomViewController<MainView> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //print("willappear")
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = false
         presenter.checkCouruselFavorite()
@@ -53,10 +48,6 @@ class MainViewController: CustomViewController<MainView> {
 }
 //MARK: - MainViewProtocol
 extension MainViewController: MainViewProtocol {
-//    func updateFavoriteButton(indexPaths: [IndexPath], isLikedArray: [Bool]) {
-//        mainView?.setColorForFavorites(selectedIndexPath: indexPaths, isLikedArray: isLikedArray)
-//    }
-    
     func reloadOneCell(indexItem: Int, isLiked: Bool) {
         mainView?.changeFavoriteCelButtonBackGround(indexItem: indexItem, isLiked: isLiked)
     }
@@ -72,22 +63,21 @@ extension MainViewController: MainViewProtocol {
 //MARK: - MainViewDelegate
 extension MainViewController: MainViewDelegate{
     func getData() -> [ListSectionModel] {
-        presenter.mockData
+        presenter.sectionsData
     }
 }
 
 //MARK: - UICollectionViewDataSource
 extension MainViewController: UICollectionViewDataSource{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        presenter.mockData.count
+        presenter.sectionsData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch presenter.mockData[section]{
+        switch presenter.sectionsData[section]{
         case .categories:
             return presenter.categoriesArray.count
         case .corusel:
-            //print(" carusel COUNT \(presenter.newsDataByCatagory.count)")
             return presenter.newsDataByCatagory.count
         case .recomendations:
             return presenter.recomendedNews.count
@@ -95,12 +85,12 @@ extension MainViewController: UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let sections = presenter.mockData[indexPath.section]
+        let sections = presenter.sectionsData[indexPath.section]
         switch sections{
         case .categories:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCell.resuseID, for: indexPath) as? CategoriesCell else { return UICollectionViewCell() }
             cell.configCell(categoryLabelText:  presenter.categoriesArray[indexPath.row].categoryLabel, emojiString: nil, categoriesValue: presenter.categoriesArray[indexPath.row].categoryValue)
-            presenter?.selectedIndexPath == indexPath ?  cell.setSelectedColors() : cell.setDefaultColors()// меняет цвет при переиспользовании ячейки
+            presenter?.selectedIndexPath == indexPath ?  cell.setSelectedColors() : cell.setDefaultColors()// меняет цвет для выбранных при переиспользовании ячейки
             return cell
         case .corusel:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArticleCouruselCell.resuseID, for: indexPath) as? ArticleCouruselCell else { return UICollectionViewCell() }
@@ -127,15 +117,6 @@ extension MainViewController: UICollectionViewDataSource{
                 }
             }
             return cell
-            //            presenter.loadImageByCategories(imageUrl: data.imageUrl, completion: { image in
-            //                let imageToUse = image ?? UIImage.Images.noImage
-            //                cell.configCell(categoryLabelText: filterCategory, articleNameText: data.title, image: imageToUse, isLiked: data.isFavourite)
-            //            })
-            //            cell.configCell(categoryLabelText: filterCategory, articleNameText: data.title, image: nil, isLiked: data.isFavourite)
-            //            cell.onFavoriteButtonTap = { [weak self] event in
-            //                self?.presenter.handleCellEvent(article: indexPath.row, event: event)
-            //            }
-            //            return cell
         case .recomendations:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecomendedCell.resuseID, for: indexPath) as? RecomendedCell else { return UICollectionViewCell() }
             let data = presenter.recomendedNews[indexPath.row]
@@ -154,14 +135,6 @@ extension MainViewController: UICollectionViewDataSource{
                 cell.configCell(categoryLabelText: categoryFilter, articleNameText: data.title, image: nil)
             }
             return cell
-//            presenter.loadImageByCategories(imageUrl: data.imageUrl, completion: {  image in
-//                
-//                let articleNameText = data.title
-//                let imageToUse = image ?? UIImage.Images.noImage
-//                cell.configCell(categoryLabelText: categoryFilter, articleNameText: articleNameText, image: imageToUse)
-//            })
-//            cell.configCell(categoryLabelText: categoryFilter, articleNameText: data.title, image: nil)
-
         }
     }
     
@@ -169,7 +142,7 @@ extension MainViewController: UICollectionViewDataSource{
         switch kind{
         case UICollectionView.elementKindSectionHeader:
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderRecomendedView.resuseID, for: indexPath) as? HeaderRecomendedView else { return UICollectionReusableView()}
-            let data = presenter.mockData
+            let data = presenter.sectionsData
             header.configureHeader(sectionTitle: data[indexPath.section].title)
             header.delegate = self
             return header
@@ -181,7 +154,7 @@ extension MainViewController: UICollectionViewDataSource{
 //MARK: - UICollectionViewDelegate
 extension MainViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch presenter.mockData[indexPath.section]{
+        switch presenter.sectionsData[indexPath.section]{
         case .categories:
             if let cell = collectionView.cellForItem(at: indexPath) as? CategoriesCell {
                 if let previousCell = collectionView.cellForItem(at: presenter.selectedIndexPath) as? CategoriesCell {

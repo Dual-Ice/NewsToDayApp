@@ -18,6 +18,7 @@ final class DetailArticleView: CustomView {
     weak var delegate: DetailArticleViewDelegate?
     
     private let backImage = ImageViewFactory.makeCornerRadiusImage()
+    
     private let backView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
@@ -25,7 +26,6 @@ final class DetailArticleView: CustomView {
         return view
     }()
     
-   // private let categoryLabel = LabelsFactory.makeCategoryTagLabel()
     private let articleNameLabel = LabelsFactory.makeArticleHeaderLabel()
     private let authorNameLabel = LabelsFactory.makeArticleHeaderLabel()
     private let authorLabel = LabelsFactory.makeCategoryLabel()
@@ -50,7 +50,6 @@ final class DetailArticleView: CustomView {
         return stackView
     }()
       
-    
     private let favoriteButton = ButtonsFactory.makeButton()
     private let backButton = ButtonsFactory.makeButton()
     private let shareButton = ButtonsFactory.makeButton()
@@ -73,7 +72,6 @@ final class DetailArticleView: CustomView {
         favoriteButton.setBackgroundImage(favoriteImage, for: .normal)
         //MARK: - config Labels
         createStackViewLabels(categories: data?.category ?? [])
-        //categoryLabel.text = data?.category.joined(separator: ",").uppercased()
         articleNameLabel.text = data?.title
         authorNameLabel.text = data?.creator?.joined(separator: ",")  ?? ""
         //MARK: - config newsText
@@ -83,7 +81,7 @@ final class DetailArticleView: CustomView {
     }
     
     private func createStackViewLabels(categories: [String]){
-        let translatedCategories = categories.translateCategories(filteredCategory: categories)
+        let translatedCategories = categories.translateCategories(categoriesToTranslate: categories)
         for category in translatedCategories {
             if stackView.arrangedSubviews.count < 3 {
                 let label =  PaddingLabel(withInsets: 0, 0, 5, 5)
@@ -117,7 +115,6 @@ final class DetailArticleView: CustomView {
         [
             backImage,
             stackView,
-            //categoryLabel,
             articleNameLabel,
             authorNameLabel,
             authorLabel,
@@ -142,7 +139,6 @@ final class DetailArticleView: CustomView {
         stackView.snp.makeConstraints { make in
             make.bottom.equalTo(articleNameLabel.snp.top).offset(-16)
             make.leading.equalToSuperview().offset(16)
-            //make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(32)
         }
         
@@ -191,7 +187,6 @@ final class DetailArticleView: CustomView {
             make.leading.equalToSuperview().offset(16)
             make.width.height.equalTo(28)
         }
-        
     }
     
     private func setUpViews(){
@@ -206,10 +201,6 @@ final class DetailArticleView: CustomView {
         resultLabel.textColor = UIColor(named: ConstColors.blackPrimary)
         resultLabel.font = UIFont.TextFont.Main.recommendedArticleLabel
         resultLabel.text = NSLocalizedString("DetailArticleViewResult", comment: "")
-//        categoryLabel.textAlignment = .center
-//        categoryLabel.backgroundColor = UIColor(named: ConstColors.purplePrimary)
-//        categoryLabel.layer.cornerRadius = 16
-//        categoryLabel.layer.masksToBounds = true
         //MARK: - setUp Buttons
         favoriteButton.backgroundColor = .clear
         favoriteButton.addTarget(nil, action: #selector(favoriteTapped), for: .touchUpInside)

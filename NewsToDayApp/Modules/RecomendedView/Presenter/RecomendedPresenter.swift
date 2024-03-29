@@ -55,7 +55,6 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
         self.imageManager = imageManager
         self.searchWord = searchWord
         self.arrayCatgories = UserManager.shared.getCategories()
-        print("SEARCH WORD \(searchWord)")
         searchWord != nil ? getRecomendedNews(request: NewsRequest(query: searchWord)) : getRecomendedNews(request: NewsRequest(categories: arrayCatgories))
     }
     
@@ -63,11 +62,12 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
     func filterCategoriesArray(categories: [String]) -> [String]{
         if searchWord == nil{
             let filteredCategories = arrayCatgories.filter(categories.contains)
-            let translatedArray = filteredCategories.translateCategories(filteredCategory: categories)
+            let translatedArray = filteredCategories.translateCategories(categoriesToTranslate: categories)
             let capitalizedCategories = translatedArray.capitalizingFirstLetterOfEachElement()
-            return capitalizedCategories
+            return capitalizedCategories.count > 2 ? Array(capitalizedCategories.prefix(2)) : capitalizedCategories
         } else {
-            return categories.translateCategories(filteredCategory: categories).capitalizingFirstLetterOfEachElement()
+            let capitalizedCategories = categories.translateCategories(categoriesToTranslate: categories).capitalizingFirstLetterOfEachElement()
+            return capitalizedCategories.count > 2 ? Array(capitalizedCategories.prefix(2)) : capitalizedCategories
         }
     }
 
@@ -79,7 +79,6 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
                 switch result{
                 case .success(let data):
                     self.data = data.results ?? []
-//                    self.view?.reloadTableView()
                     self.checkFavorite()
                 case .failure(let error):
                     print("DataNEWSRecomended RecomendedVC error \(error.localizedDescription)")

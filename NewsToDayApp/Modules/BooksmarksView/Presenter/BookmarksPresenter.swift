@@ -53,7 +53,7 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
     
     // MARK: - Prepare CategoriesArray
     func filterCategoriesArray(categories: [String]) -> [String]{
-        let translatedArray = categories.translateCategories(filteredCategory: categories)
+        let translatedArray = categories.translateCategories(categoriesToTranslate: categories)
         let capitalizedCategories = translatedArray.capitalizingFirstLetterOfEachElement()
         let finalArray = capitalizedCategories.count > 2 ? Array(capitalizedCategories.prefix(2)) : capitalizedCategories
         return finalArray
