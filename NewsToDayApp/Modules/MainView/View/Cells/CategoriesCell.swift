@@ -20,20 +20,7 @@ class CategoriesCell: UICollectionViewCell {
         setViews()
         layoutViews()
     }
-  
-//    override var isSelected: Bool {
-//        didSet {
-//            if isSelected {
-//                categoryLabel.textColor = UIColor(named: ConstColors.customWhite)
-//                backImage.backgroundColor = UIColor(named: ConstColors.purplePrimary)
-//                print("Sellected \(backImage.backgroundColor)")
-//            } else {
-//                categoryLabel.textColor = UIColor(named: ConstColors.greyPrimary)
-//                backImage.backgroundColor = UIColor(named: ConstColors.greyLighter)
-//            }
-//        }
-//    }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -75,7 +62,6 @@ extension CategoriesCell{
             categoryLabel.text = categoryLabelText
             categoryTitle = categoriesValue
         }
-        
     }
     
     func setSelectedColors(){

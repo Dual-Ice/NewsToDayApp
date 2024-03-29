@@ -15,6 +15,7 @@ struct NewsRequest {
 
 class NewsManager: NetworkManager {
     private let apiUrl = "https://newsdata.io/api/1/news"
+    // If you want to run app outside of xcode place api key here
     private let apiKey = ProcessInfo.processInfo.environment["API_KEY"] ?? ""
     
     func getNews(with request: NewsRequest, completion: @escaping (Result<Response, Error>) -> Void) {

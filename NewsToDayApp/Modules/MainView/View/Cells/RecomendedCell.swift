@@ -88,7 +88,7 @@ extension RecomendedCell{
             spinner.removeFromSuperview()
             backImage.image = image
         } else{
-            setUpSpiner() //добавить spinner
+            setUpSpiner() 
             backImage.backgroundColor = .white
         }
     }

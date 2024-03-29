@@ -5,7 +5,6 @@
 //  Created by Polina on 21.03.2024.
 //
 
-import Foundation
 import UIKit
 
 protocol DetailArticleRouterProtocol: AnyObject {
@@ -17,8 +16,6 @@ protocol DetailArticleRouterProtocol: AnyObject {
 
 class DetailArticleRouter: DetailArticleRouterProtocol {
 
-    
-  
     weak var navigationVC: UINavigationController?
     
     required init(navigationVC: UINavigationController) {
@@ -28,5 +25,4 @@ class DetailArticleRouter: DetailArticleRouterProtocol {
     func dismissDetailVC() {
         navigationVC?.popViewController(animated: true)
     }
-    
 }

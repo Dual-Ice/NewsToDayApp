@@ -28,13 +28,14 @@ class BookmarksViewController: CustomViewController<BookmarksView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
         presenter.checkBookmarks()
         presenter.getAtriclesFromUser()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        presenter.imageCacheBookmarks = [:] //чистим словарь с кешированными картинка для переиспользования ячейки
+        presenter.imageCacheBookmarks = [:]
     }
     
     private func setDelegates(){
@@ -43,8 +44,8 @@ class BookmarksViewController: CustomViewController<BookmarksView> {
         bookmarksView?.setTableDelegate(vc: self)
         bookmarksView?.setTableViewDataSource(vc: self)
     }
-    
 }
+
 //MARK: - BookmarksPresenterViewProtocol
 extension BookmarksViewController: BookmarksPresenterViewProtocol {
     func reloadTableView() {
@@ -61,9 +62,8 @@ extension BookmarksViewController: BookmarksPresenterViewProtocol {
 }
 
 //MARK: - BookmarksViewDelegate
-extension BookmarksViewController: BookmarksViewDelegate{
-    
-}
+extension BookmarksViewController: BookmarksViewDelegate{}
+
 //MARK: - UITableViewDataSource
 extension BookmarksViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,22 +72,22 @@ extension BookmarksViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BookmarksCell.resuseID, for: indexPath) as? BookmarksCell else {return UITableViewCell()}
-        let data = presenter.data[indexPath.row]
         cell.selectionStyle = .none
-       
+        
+        let data = presenter.data[indexPath.row]
         let filterCategories = presenter.filterCategoriesArray(categories: data.category)
         let currentIndexPath = indexPath
         if let cachedImage = presenter.imageCacheBookmarks[currentIndexPath] {
-            cell.configCell(categoryLabelText: filterCategories.joined(separator: ","), articleNameText: data.title, image: cachedImage)
+            cell.configCell(categoryLabelText: filterCategories, articleNameText: data.title, image: cachedImage)
         } else {
             presenter.loadImage(imageUrl: data.imageUrl, completion: { [currentIndexPath] image in
                 let imageToUse = image ?? UIImage.Images.noImage
                 self.presenter.imageCacheBookmarks[currentIndexPath] = imageToUse
                 if let visibleCell = tableView.cellForRow(at: currentIndexPath) as? BookmarksCell {
-                    visibleCell.configCell(categoryLabelText: filterCategories.joined(separator: ","), articleNameText: data.title, image: imageToUse)
+                    visibleCell.configCell(categoryLabelText: filterCategories, articleNameText: data.title, image: imageToUse)
                 }
             })
-            cell.configCell(categoryLabelText: filterCategories.joined(separator: ","), articleNameText: data.title, image: nil)
+            cell.configCell(categoryLabelText: filterCategories, articleNameText: data.title, image: nil)
         }
         return cell
     }

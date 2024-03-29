@@ -33,6 +33,13 @@
 
 //MARK: - Onbording
 "OnbordingNext" = "Далее";
+"OnbordingGetStarted" = "Начнем!";
+"OnbordingFirstTitle" = "Прежде всего";
+"OnbordingSecondTitle" = "Важно";
+"OnbordingThirdTitle" = "Ты готов";
+"OnbordingFirstDescription" = "Все новости в одном месте, узнавайте последние новости первым";
+"OnbordingSecondDescription" = "Всегда будьте в курсе последних событий";
+"OnbordingThirdDescription" = "Получать новую информацию";
 
 //MARK: - MainView
 "MainViewSearchBar" = "Поиск";
@@ -47,8 +54,8 @@
 
 //MARK: - BookmarksView
 "BookmarksViewTitle" = "Закладки";
-"BookmarksViewSubTitle" = "Сохранненые статьи в библиотеку";
-"BookmarksViewEmptyText" = "Нет сохранненых статей. Начни читать и сохранять статьи";
+"BookmarksViewSubTitle" = "Сохранненые статьи в библиотеке";
+"BookmarksViewEmptyText" = "Нет сохранненых статей. Начни читать и изучать мир";
 
 //MARK: - ProfileView
 "ProfleViewTitle" = "Профиль";

@@ -30,6 +30,7 @@ extension AuthManager {
     }
     func registerUser(
         with userRequest: RegisterUserRequest,
+        and categories: [String],
         completion: @escaping (Bool, Error?) -> Void
     ) {
         let username = userRequest.username
@@ -55,7 +56,7 @@ extension AuthManager {
                 email: email,
                 userID: resultUser.uid,
                 image: "",
-                categories: [],
+                categories: categories,
                 articles: []
             )
             

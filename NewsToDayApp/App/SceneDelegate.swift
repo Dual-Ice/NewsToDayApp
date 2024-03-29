@@ -18,13 +18,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
+        window?.makeKeyAndVisible()
 //        let navigationVC = UINavigationController()
 //        let mainVC = MainBuilder(navigationVC: navigationVC).buildMainView()
 //        navigationVC.setViewControllers([mainVC], animated: true)
 //        let navigationVC = CustomTabBarController()
 //        window?.rootViewController = navigationVC
-        window?.makeKeyAndVisible()
-        checkAuthentication()
+
+        if  UserDefaults.standard.bool(forKey: "isOnboardingCompleted"){
+            checkAuthentication()
+        } else {
+            let vc = OnbordingBuilder().buildOnbordingVC()
+            vc.modalPresentationStyle = .fullScreen
+            self.window?.rootViewController = vc
+        }
     }
     
     func checkAuthentication() {

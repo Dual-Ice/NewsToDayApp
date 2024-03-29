@@ -16,9 +16,9 @@ struct OnbordingModel{
 extension OnbordingModel{
     static func  getOnbordingModel() -> [OnbordingModel]{
         [
-            .init(image: "first", title: "First to know", description: "All news in one place, be the first to know last news"),
-            .init(image: "second", title: "It's important", description: "Always be up to date with the latest events"),
-            .init(image: "third", title: "You are ready", description: "Receive new information"),
+            .init(image: "first", title: NSLocalizedString("OnbordingFirstTitle", comment: ""), description: NSLocalizedString("OnbordingFirstDescription", comment: "")),
+            .init(image: "second", title: NSLocalizedString("OnbordingSecondTitle", comment: ""), description: NSLocalizedString("OnbordingSecondDescription", comment: "")),
+            .init(image: "third", title: NSLocalizedString("OnbordingThirdTitle", comment: ""), description: NSLocalizedString("OnbordingThirdDescription", comment: "")),
        ]
     }
 }

@@ -79,7 +79,7 @@ open class CustomTabBarController: UITabBarController, CustomTabBarViewProtocol 
         let mainVC = MainBuilder().buildMainView()
         mainVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemMain", comment: ""), image: UIImage.Icons.main, tag: 0)
         
-        let categoriesVC = CategoriesBuilder().buildCategoriesView()
+        let categoriesVC = CategoriesBuilder().buildCategoriesView(mode: .categoriesInTabBar)
         categoriesVC.tabBarItem = UITabBarItem(title: NSLocalizedString("UITabBarItemCategories", comment: ""), image: UIImage.Icons.categories, tag: 1)
         
         let profileVC = ProfileBuilder().buildProfileView()

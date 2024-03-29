@@ -36,6 +36,8 @@ class DetailArticleViewController: CustomViewController<DetailArticleView> {
         super.viewWillAppear(animated)
         self.navigationItem.setHidesBackButton(true, animated: false)
         navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+        presenter?.checkFavorite()
     }
     
     private func setDelegates(){
@@ -60,9 +62,7 @@ extension DetailArticleViewController: DetailArticleViewDelegate {
     }
     
     func tappedShareButton() {
-        print("tappedShareButton")
     }
-    
 }
 
 //MARK: - DetailArticlePresenterViewProtocol

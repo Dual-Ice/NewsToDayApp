@@ -15,7 +15,8 @@ protocol AuthPresenterViewProtocol: AnyObject {
 protocol AuthPresenterProtocol: AnyObject {
     
     func showSignUpScreen()
-    func showMainScreen()
+    func getOnboardingCategories() -> [String]
+    func clearOnboardingCategories()
     
     init(view: AuthPresenterViewProtocol, router: LoginRouterProtocol)
     
@@ -32,12 +33,20 @@ class AuthPresenter: AuthPresenterProtocol {
         self.router = router
     }
     
+    func getOnboardingCategories() -> [String] {
+        let categories = UserDefaults.standard.array(forKey: "onboardingCategories")
+        if categories == nil {
+            return []
+        }
+        
+        return categories as? [String] ?? []
+    }
+    func clearOnboardingCategories() {
+        UserDefaults.standard.removeObject(forKey: "onboardingCategories")
+    }
+    
     
     func showSignUpScreen() {
         router?.showSignUpScreen()
-    }
-    
-    func showMainScreen() {
-        //
     }
 }

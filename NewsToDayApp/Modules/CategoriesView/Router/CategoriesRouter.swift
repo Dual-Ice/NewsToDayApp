@@ -9,9 +9,7 @@
 import UIKit
 
 protocol CategoriesRouterProtocol: AnyObject {
-    
     init(navigationVC: UINavigationController)
-    
 }
 
 class CategoriesRouter: CategoriesRouterProtocol {
@@ -21,5 +19,4 @@ class CategoriesRouter: CategoriesRouterProtocol {
     required init(navigationVC: UINavigationController) {
         self.navigationVC = navigationVC
     }
-    
 }

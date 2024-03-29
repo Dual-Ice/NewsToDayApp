@@ -27,6 +27,7 @@ protocol RecomendedPresenterProtocol: AnyObject {
     func goToDetailVC(data: Article)
     func dismisRecomendedVC()
     func filterCategoriesArray(categories: [String]) -> [String]
+    func checkFavorite()
 }
 
 
@@ -54,7 +55,6 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
         self.imageManager = imageManager
         self.searchWord = searchWord
         self.arrayCatgories = UserManager.shared.getCategories()
-        print("SEARCH WORD \(searchWord)")
         searchWord != nil ? getRecomendedNews(request: NewsRequest(query: searchWord)) : getRecomendedNews(request: NewsRequest(categories: arrayCatgories))
     }
     
@@ -62,11 +62,12 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
     func filterCategoriesArray(categories: [String]) -> [String]{
         if searchWord == nil{
             let filteredCategories = arrayCatgories.filter(categories.contains)
-            let translatedArray = filteredCategories.translateCategories(filteredCategory: categories)
+            let translatedArray = filteredCategories.translateCategories(categoriesToTranslate: categories)
             let capitalizedCategories = translatedArray.capitalizingFirstLetterOfEachElement()
-            return capitalizedCategories
+            return capitalizedCategories.count > 2 ? Array(capitalizedCategories.prefix(2)) : capitalizedCategories
         } else {
-            return categories.translateCategories(filteredCategory: categories).capitalizingFirstLetterOfEachElement()
+            let capitalizedCategories = categories.translateCategories(categoriesToTranslate: categories).capitalizingFirstLetterOfEachElement()
+            return capitalizedCategories.count > 2 ? Array(capitalizedCategories.prefix(2)) : capitalizedCategories
         }
     }
 
@@ -78,7 +79,6 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
                 switch result{
                 case .success(let data):
                     self.data = data.results ?? []
-//                    self.view?.reloadTableView()
                     self.checkFavorite()
                 case .failure(let error):
                     print("DataNEWSRecomended RecomendedVC error \(error.localizedDescription)")
@@ -88,17 +88,19 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
     }
     
     // MARK: - checkFavorite()
-    private func checkFavorite(){ // вызвать в getRecomendedNews после получения data и уюрать релоад в getRecomendedNews после получении data
+     func checkFavorite(){ // вызвать в getRecomendedNews после получения data и уюрать релоад в getRecomendedNews после получении data
         let savedArticles: [Article] = UserManager.shared.getFavoriteArticles()
-        if !savedArticles.isEmpty{
+        //if !savedArticles.isEmpty{
             let savedArticleIds = savedArticles.map { $0.articleId }
 
             for (index,article) in data.enumerated() {
                 if savedArticleIds.contains(article.articleId) {
                     data[index].isFavourite = true
+                } else {
+                    data[index].isFavourite = false
                 }
             }
-        }
+        //}
         view?.reloadTableView()
     }
     

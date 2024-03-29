@@ -53,7 +53,7 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
     
     // MARK: - Prepare CategoriesArray
     func filterCategoriesArray(categories: [String]) -> [String]{
-        let translatedArray = categories.translateCategories(filteredCategory: categories)
+        let translatedArray = categories.translateCategories(categoriesToTranslate: categories)
         let capitalizedCategories = translatedArray.capitalizingFirstLetterOfEachElement()
         let finalArray = capitalizedCategories.count > 2 ? Array(capitalizedCategories.prefix(2)) : capitalizedCategories
         return finalArray
@@ -72,16 +72,16 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
         })
     }
     
-     func checkBookmarks(){ 
+    func checkBookmarks(){
         //проверяем базу данных если пустая вызываем emptyBookmarks() иначе fullBookmarks()
-         if UserManager.shared.getFavoriteArticles().isEmpty {
-            view?.emptyBookmarks()
-            return
-        }
-        view?.fullBookmarks()
+        UserManager.shared.getFavoriteArticles().isEmpty ?  view?.emptyBookmarks() : view?.fullBookmarks()
     }
     
     func deleteArticle(articleId: String, completion: @escaping ( Error?) -> Void){
+        let newData = data.filter { $0.articleId != articleId }
+        if newData.isEmpty{
+            view?.emptyBookmarks()
+        }
         UserManager.shared.deleteArticleFromFavorite(articleId: articleId) { error in
             completion(error)
         }
