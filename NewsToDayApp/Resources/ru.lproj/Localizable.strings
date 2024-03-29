@@ -54,8 +54,8 @@
 
 //MARK: - BookmarksView
 "BookmarksViewTitle" = "Закладки";
-"BookmarksViewSubTitle" = "Сохранненые статьи в библиотеку";
-"BookmarksViewEmptyText" = "Нет сохранненых статей. Начни читать и сохранять статьи";
+"BookmarksViewSubTitle" = "Сохранненые статьи в библиотеке";
+"BookmarksViewEmptyText" = "Нет сохранненых статей. Начни читать и изучать мир";
 
 //MARK: - ProfileView
 "ProfleViewTitle" = "Профиль";

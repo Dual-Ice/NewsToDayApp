@@ -34,8 +34,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             vc.modalPresentationStyle = .fullScreen
             self.window?.rootViewController = vc
         }
-        
-        
     }
     
     func checkAuthentication() {

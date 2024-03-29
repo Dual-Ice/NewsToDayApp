@@ -74,23 +74,14 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
     
     func checkBookmarks(){
         //проверяем базу данных если пустая вызываем emptyBookmarks() иначе fullBookmarks()
-        if UserManager.shared.getFavoriteArticles().isEmpty {
-            view?.emptyBookmarks()
-            return
-        }
-        view?.fullBookmarks()
-        
+        UserManager.shared.getFavoriteArticles().isEmpty ?  view?.emptyBookmarks() : view?.fullBookmarks()
     }
-//        FirestoreManager.shared.setCollection( // для чего
-//            with: user!
-//        ) { wasSet, error in
-//            //                if let error = error {
-//            //                    completion(false, error)
-//            //                }
-//            //                completion(true, nil)
-        
     
     func deleteArticle(articleId: String, completion: @escaping ( Error?) -> Void){
+        let newData = data.filter { $0.articleId != articleId }
+        if newData.isEmpty{
+            view?.emptyBookmarks()
+        }
         UserManager.shared.deleteArticleFromFavorite(articleId: articleId) { error in
             completion(error)
         }
