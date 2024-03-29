@@ -8,13 +8,13 @@
 import UIKit
 protocol CategoriesBuilderProtocol: AnyObject {
     
-    func buildCategoriesView(type: HideButtonOnCategoriesView) -> UIViewController
+    func buildCategoriesView(mode: CategoriesViewMode) -> UIViewController
 }
 
 class CategoriesBuilder: CategoriesBuilderProtocol {
 
-    func buildCategoriesView(type: HideButtonOnCategoriesView) -> UIViewController {
-        let vc = CategoriesViewController(typeToHideButtonOrNot: type)
+    func buildCategoriesView(mode: CategoriesViewMode) -> UIViewController {
+        let vc = CategoriesViewController(mode: mode)
         let navigationController = UINavigationController(rootViewController: vc)
         let router = CategoriesRouter(navigationVC: navigationController)
         let presenter = CategoriesPresenter(

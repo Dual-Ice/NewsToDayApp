@@ -29,6 +29,10 @@ final class UserManager {
             user = userObject
             return
         }
+        if backupedUser.userID != userObject.userID {
+            user = userObject
+            return
+        }
         
         if !areEqual(backupedUser, userObject) {
             user = backupedUser

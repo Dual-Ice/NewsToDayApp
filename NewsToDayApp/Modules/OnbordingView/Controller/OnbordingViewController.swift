@@ -62,10 +62,15 @@ extension OnbordingViewController: OnbordingViewDelegate{
 
 // MARK: - OnbordingPresenterViewProtocol
 extension OnbordingViewController: OnbordingPresenterViewProtocol{
-    func checkAuthOrNot() {
-        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-            sceneDelegate.checkAuthentication()
-        }
+//    func checkAuth() {
+//        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+//            sceneDelegate.checkAuthentication()
+//        }
+//    }
+    func goToCategories() {
+        let vc = CategoriesBuilder().buildCategoriesView(mode: .categoriesOnbording)
+        vc.modalPresentationStyle = .fullScreen
+        self.view?.window?.rootViewController = vc
     }
 }
 

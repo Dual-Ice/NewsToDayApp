@@ -24,12 +24,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        navigationVC.setViewControllers([mainVC], animated: true)
 //        let navigationVC = CustomTabBarController()
 //        window?.rootViewController = navigationVC
-        
-//        UserDefaults.standard.set(false, forKey: "isOnboardingCompleted")
-//        print("KEY \(UserDefaults.standard.bool(forKey: "isOnboardingCompleted"))")
+
         if  UserDefaults.standard.bool(forKey: "isOnboardingCompleted"){
             checkAuthentication()
-        }else{
+        } else {
             let vc = OnbordingBuilder().buildOnbordingVC()
             vc.modalPresentationStyle = .fullScreen
             self.window?.rootViewController = vc
@@ -46,17 +44,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = navigationController
             
         } else {
-            if  UserDefaults.standard.bool(forKey: "isOnboardingCompleted"){
-                AuthManager.shared.fetchUser { [weak self] user, error in
-                    guard let user = user else { return }
-                    UserManager.shared.syncUser(userObject: user)
-                    let tabBarController = CustomTabBarController()
-                    self?.window?.rootViewController = tabBarController
-                }
-            } else {
-                let vc = CategoriesBuilder().buildCategoriesView(type: .categoriesOnbording)
-                vc.modalPresentationStyle = .fullScreen
-                self.window?.rootViewController = vc
+            AuthManager.shared.fetchUser { [weak self] user, error in
+                guard let user = user else { return }
+                UserManager.shared.syncUser(userObject: user)
+                let tabBarController = CustomTabBarController()
+                self?.window?.rootViewController = tabBarController
             }
         }
     }

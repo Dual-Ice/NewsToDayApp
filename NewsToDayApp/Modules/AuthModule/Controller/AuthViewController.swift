@@ -41,11 +41,10 @@ import UIKit
 
 final class AuthViewController: CustomViewController<AuthenticationView> {
     
-    var presenter: AuthPresenterProtocol?
+    var presenter: AuthPresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         customView.delegate = self
     }
 }
@@ -67,9 +66,8 @@ extension AuthViewController: AuthenticationViewDelegate {
     }
     
     func handleRegisterButtonTap(with request: RegisterUserRequest) {
-        AuthManager.shared.registerUser(with: request) { wasRegistered, error in
-            //
-            
+        AuthManager.shared.registerUser(with: request, and: presenter.getOnboardingCategories()) { wasRegistered, error in
+            self.presenter.clearOnboardingCategories()
             if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
                 sceneDelegate.checkAuthentication()
             }

@@ -11,18 +11,18 @@ import UIKit
 protocol CategoriesVCDelegate{
     func setCollectionViewDelegate(vc: CategoriesViewController)
     func setCollectionViewDataSource(vc: CategoriesViewController)
-    func chechHiddenButtonOrNot(type: HideButtonOnCategoriesView?)
+    func nextButtonConfigurate(mode: CategoriesViewMode?)
     func reloadCategoriesCollection()
 }
 
 class CategoriesViewController: CustomViewController<CategoriesView> {
     
     var presenter: CategoriesPresenterProtocol!
-    let typeToHideButtonOrNot: HideButtonOnCategoriesView
+    let categoriesMode: CategoriesViewMode
     private var categoriesView: CategoriesVCDelegate?
     
-    init(typeToHideButtonOrNot: HideButtonOnCategoriesView) {
-        self.typeToHideButtonOrNot = typeToHideButtonOrNot
+    init(mode: CategoriesViewMode) {
+        self.categoriesMode = mode
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,6 +33,10 @@ class CategoriesViewController: CustomViewController<CategoriesView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
+        if self.categoriesMode == .categoriesOnbording {
+            UserDefaults.standard.removeObject(forKey: "isOnboardingCompleted")
+            UserDefaults.standard.removeObject(forKey: "onboardingCategories")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,7 +47,8 @@ class CategoriesViewController: CustomViewController<CategoriesView> {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         print("willDISappear")
-        presenter.saveCategoriesArray() { error in
+
+        presenter.saveCategoriesArray(categoriesMode: categoriesMode) { error in
             if let error = error {
                 print("Error is occured during categories saving")
             }
@@ -51,6 +56,7 @@ class CategoriesViewController: CustomViewController<CategoriesView> {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        // fix this line
         presenter.setSelectedColorForOnbordingSelection(selectedCategories: UserManager.shared.getCategories())
     }
     
@@ -59,7 +65,7 @@ class CategoriesViewController: CustomViewController<CategoriesView> {
         categoriesView = customView
         categoriesView?.setCollectionViewDelegate(vc: self)
         categoriesView?.setCollectionViewDataSource(vc: self)
-        categoriesView?.chechHiddenButtonOrNot(type: typeToHideButtonOrNot)
+        categoriesView?.nextButtonConfigurate(mode: categoriesMode)
     }
     
 }
@@ -69,7 +75,7 @@ extension CategoriesViewController: CategoriesPresenterViewProtocol {
         categoriesView?.reloadCategoriesCollection()
     }
     
-    func checkAuthOrNot() {
+    func checkAuth() {
         if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
             sceneDelegate.checkAuthentication()
         }

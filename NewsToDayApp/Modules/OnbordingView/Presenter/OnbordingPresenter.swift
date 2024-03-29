@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 protocol OnbordingPresenterViewProtocol: AnyObject {
-    func checkAuthOrNot()
+//    func checkAuth()
+    func goToCategories()
     
 }
 
@@ -34,7 +35,7 @@ class OnbordingPresenter: OnbordingPresenterProtocol {
     var data: [OnbordingModel] = OnbordingModel.getOnbordingModel()
     
     func goToCategoriesVC(){
-        view?.checkAuthOrNot()
+        view?.goToCategories()
     }
     
 }

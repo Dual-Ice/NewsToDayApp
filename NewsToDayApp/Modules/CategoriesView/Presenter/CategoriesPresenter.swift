@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol CategoriesPresenterViewProtocol: AnyObject {
-    func checkAuthOrNot()
+    func checkAuth()
     func reloadCollectionView()
 }
 
@@ -21,7 +21,7 @@ protocol CategoriesPresenterProtocol: AnyObject {
     var selectedIndexPathArray: [IndexPath] { get }
     func saveSelectedCell(indexPath: IndexPath, category: String)
     func removeUnSelectedCell(indexPath: IndexPath, category: String)
-    func saveCategoriesArray(completion: @escaping (Error?) -> Void)
+    func saveCategoriesArray(categoriesMode: CategoriesViewMode, completion: @escaping (Error?) -> Void)
     func tappedNextButton()
     func setSelectedColorForOnbordingSelection(selectedCategories: [String])
     
@@ -68,8 +68,13 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
         }
     }
     
-    func saveCategoriesArray(completion: @escaping ( Error?) -> Void){
+    func saveCategoriesArray(categoriesMode: CategoriesViewMode,  completion: @escaping ( Error?) -> Void){
         print("categoriesArray saved\(categoriesArray)")
+        if categoriesMode == .categoriesOnbording {
+            UserDefaults.standard.set(categoriesArray, forKey: "onboardingCategories")
+            return
+        }
+        
         UserManager.shared.updateCategories(categories: categoriesArray) { error in
             if let error = error {
                 completion(error)
@@ -78,11 +83,7 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     }
     
     func tappedNextButton() {
-        if categoriesArray.isEmpty{
-            print("Please select category")
-        } else {
-            UserDefaults.standard.set(true, forKey: "isOnboardingCompleted")
-            self.view?.checkAuthOrNot()
-        }
+        UserDefaults.standard.set(true, forKey: "isOnboardingCompleted")
+        self.view?.checkAuth()
     }
 }
