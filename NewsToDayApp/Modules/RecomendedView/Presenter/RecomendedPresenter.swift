@@ -27,6 +27,7 @@ protocol RecomendedPresenterProtocol: AnyObject {
     func goToDetailVC(data: Article)
     func dismisRecomendedVC()
     func filterCategoriesArray(categories: [String]) -> [String]
+    func checkFavorite()
 }
 
 
@@ -88,17 +89,19 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
     }
     
     // MARK: - checkFavorite()
-    private func checkFavorite(){ // вызвать в getRecomendedNews после получения data и уюрать релоад в getRecomendedNews после получении data
+     func checkFavorite(){ // вызвать в getRecomendedNews после получения data и уюрать релоад в getRecomendedNews после получении data
         let savedArticles: [Article] = UserManager.shared.getFavoriteArticles()
-        if !savedArticles.isEmpty{
+        //if !savedArticles.isEmpty{
             let savedArticleIds = savedArticles.map { $0.articleId }
 
             for (index,article) in data.enumerated() {
                 if savedArticleIds.contains(article.articleId) {
                     data[index].isFavourite = true
+                } else {
+                    data[index].isFavourite = false
                 }
             }
-        }
+        //}
         view?.reloadTableView()
     }
     

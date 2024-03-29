@@ -81,7 +81,7 @@ class BookmarksPresenter: BookmarksPresenterProtocol {
         view?.fullBookmarks()
         
     }
-//        FirestoreManager.shared.setCollection(
+//        FirestoreManager.shared.setCollection( // для чего
 //            with: user!
 //        ) { wasSet, error in
 //            //                if let error = error {

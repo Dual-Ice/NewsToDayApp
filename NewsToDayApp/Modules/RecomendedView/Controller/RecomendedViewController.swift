@@ -26,6 +26,8 @@ class RecomendedViewController: CustomViewController<RecomendedView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
+        presenter.checkFavorite()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

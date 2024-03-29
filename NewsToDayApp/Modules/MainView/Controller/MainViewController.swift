@@ -34,6 +34,7 @@ class MainViewController: CustomViewController<MainView> {
         super.viewWillAppear(animated)
         print("willappear")
         navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
         presenter.checkCouruselFavorite()
     }
     

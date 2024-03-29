@@ -20,6 +20,7 @@ class ProfileViewController: CustomViewController<ProfileView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
     }
     
     private func setDelegates(){
