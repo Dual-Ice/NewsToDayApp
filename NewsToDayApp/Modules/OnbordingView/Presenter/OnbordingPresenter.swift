@@ -9,9 +9,7 @@
 import Foundation
 import UIKit
 protocol OnbordingPresenterViewProtocol: AnyObject {
-//    func checkAuth()
     func goToCategories()
-    
 }
 
 protocol OnbordingPresenterProtocol: AnyObject {

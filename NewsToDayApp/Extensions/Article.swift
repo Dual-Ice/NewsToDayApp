@@ -14,6 +14,7 @@ struct Response: Codable {
 struct Article: Codable {
     let articleId: String
     let title: String
+    let link: String
     let description: String?
     let imageUrl: String?
     let category: [String]
@@ -24,6 +25,7 @@ struct Article: Codable {
         case articleId
         case title
         case description
+        case link
         case imageUrl
         case category
         case creator
@@ -35,6 +37,7 @@ struct Article: Codable {
         articleId = try container.decode(String.self, forKey: .articleId)
         title = try container.decode(String.self, forKey: .title)
         description = try container.decodeIfPresent(String.self, forKey: .description)
+        link = try container.decode(String.self, forKey: .link)
         imageUrl = try container.decodeIfPresent(String.self, forKey: .imageUrl)
         category = try container.decode([String].self, forKey: .category)
         creator = try container.decodeIfPresent([String].self, forKey: .creator) ?? []
