@@ -59,6 +59,10 @@ extension MainViewController: MainViewProtocol {
     func reloadCollectionView() {
         mainView?.reloadCollectionView()
     }
+    
+    func showAlert(error: String) {
+        AuthAlertManager.shared.showDefaultAlert(on: self, title: "Warning", message: error)
+    }
 }
 //MARK: - MainViewDelegate
 extension MainViewController: MainViewDelegate{

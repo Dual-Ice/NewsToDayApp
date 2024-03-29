@@ -12,6 +12,7 @@ protocol MainViewProtocol: AnyObject {
     func reloadCollectionView()
     func reloadSectionCollectionView(section: Int)
     func reloadOneCell(indexItem: Int, isLiked: Bool)
+    func showAlert(error: String)
 }
 
 protocol MainPresenterProtocol: AnyObject {
@@ -168,6 +169,7 @@ class MainPresenter: MainPresenterProtocol {
                     self.recomendedNews = data.results ?? []
                     self.checkCouruselFavorite()
                 case .failure(let error):
+                    self.view?.showAlert(error: error.localizedDescription)
                     print("DataNEWSRecomended error \(error.localizedDescription)")
                 }
             }

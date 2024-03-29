@@ -51,6 +51,7 @@ final class AuthAlertManager {
         }
     }
     
+    
     private func presentBasicAlert(
         on viewController: UIViewController,
         title: String,
@@ -107,5 +108,12 @@ extension AuthAlertManager {
             title: NSLocalizedString("AuthScreenUserPasswordRepeatErrorTitle", comment: ""),
             message: NSLocalizedString("AuthScreenUserPasswordRepeatErrorMessage", comment: "")
         )
+    }
+    
+    func showDefaultAlert(on viewController: UIViewController, title: String, message: String) {
+        presentBasicAlert(
+            on: viewController,
+            title: title,
+            message: message)
     }
 }
