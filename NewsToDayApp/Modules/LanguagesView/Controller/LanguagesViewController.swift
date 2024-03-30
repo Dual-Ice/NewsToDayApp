@@ -34,7 +34,7 @@ extension LanguagesViewController: LanguagesViewDelegate {
     func languageButtonTapped(value: String?) {
         LanguagesService.setLanguage(code: value ?? "")
         customView.configView(currentLanguageCode: LanguagesService.getCurrentLanguageCode())
-        present(showAlert(title: NSLocalizedString("alertTitle", comment: ""), message: NSLocalizedString("langChangeMessage", comment: "")), animated: true)
+        AuthAlertManager.shared.showDefaultAlert(on: self, title: NSLocalizedString("alertTitle", comment: ""), message: NSLocalizedString("langChangeMessage", comment: ""))
     }
     
     func tappedBackButton() {

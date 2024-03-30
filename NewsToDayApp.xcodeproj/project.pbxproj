@@ -127,6 +127,7 @@
 		A5CBDC3E2BA7AD3700C81385 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A5CBDC3D2BA7AD3700C81385 /* GoogleSignIn */; };
 		A5CBDC402BA7AD3700C81385 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5CBDC3F2BA7AD3700C81385 /* GoogleSignInSwift */; };
 		A5CBDC432BA7AE5E00C81385 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5CBDC452BA7AE5E00C81385 /* Localizable.strings */; };
+		A5CBDC4D2BB8313E00C81385 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDC4C2BB8313E00C81385 /* Theme.swift */; };
 		D911F7262BB6044E00610473 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D911F7252BB6044E00610473 /* UserManager.swift */; };
 		D918D52C2BAE0818005B0DD3 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918D52B2BAE0818005B0DD3 /* CustomButton.swift */; };
 		D918D5672BAE3AA6005B0DD3 /* LanguagesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918D5512BAE3AA6005B0DD3 /* LanguagesBuilder.swift */; };
@@ -248,6 +249,7 @@
 		A5CBDBFD2BA77FEB00C81385 /* ProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBuilder.swift; sourceTree = "<group>"; };
 		A5CBDC442BA7AE5E00C81385 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5CBDC462BA7AE7500C81385 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5CBDC4C2BB8313E00C81385 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		D911F7252BB6044E00610473 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		D918D52B2BAE0818005B0DD3 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		D918D5512BAE3AA6005B0DD3 /* LanguagesBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguagesBuilder.swift; sourceTree = "<group>"; };
@@ -816,6 +818,7 @@
 				D918D52B2BAE0818005B0DD3 /* CustomButton.swift */,
 				D93DD6092BB2058000BAA536 /* Languages.swift */,
 				367268DB2BB2D1E3007E82E6 /* String + ext.swift */,
+				A5CBDC4C2BB8313E00C81385 /* Theme.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1251,19 +1254,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				367269242BB577F1007E82E6 /* city3.jpg in Resources */,
+				367269242BB577F1007E82E6 /* third.jpg in Resources */,
 				A5CBDBA62BA75DD900C81385 /* LaunchScreen.storyboard in Resources */,
 				D97126CB2BA7906000FF3048 /* Adamina-Regular.ttf in Resources */,
 				A5CBDBA32BA75DD900C81385 /* Assets.xcassets in Resources */,
 				D97126CE2BA7906000FF3048 /* Inter-Bold.ttf in Resources */,
-				367269282BB57802007E82E6 /* city2.jpeg in Resources */,
+				367269282BB57802007E82E6 /* first.jpeg in Resources */,
 				A5CBDC432BA7AE5E00C81385 /* Localizable.strings in Resources */,
 				D97126CC2BA7906000FF3048 /* Inter-SemiBold.ttf in Resources */,
 				D97126CD2BA7906000FF3048 /* Inter-Regular.ttf in Resources */,
 				59DEB08D2BB1B9C60011DE99 /* GoogleService-Info.plist in Resources */,
 				D97126CA2BA7906000FF3048 /* Inter-Medium.ttf in Resources */,
 				369AB69B2BB16FA800EBF483 /* no-image.png in Resources */,
-				367269262BB577FB007E82E6 /* city1.jpeg in Resources */,
+				367269262BB577FB007E82E6 /* second.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1302,6 +1305,7 @@
 				369AB6432BA9A07600EBF483 /* HeaderRecomendedView.swift in Sources */,
 				59DEB06C2BB1B8240011DE99 /* FirestoreUser.swift in Sources */,
 				A5CBDB9C2BA75DD500C81385 /* SceneDelegate.swift in Sources */,
+				A5CBDC4D2BB8313E00C81385 /* Theme.swift in Sources */,
 				D93DD60A2BB2058000BAA536 /* Languages.swift in Sources */,
 				A5CBDBC92BA7638500C81385 /* CustomView.swift in Sources */,
 				59DEB0912BB1BD080011DE99 /* UITapGestureRecognizer + AttributedTextLocator.swift in Sources */,

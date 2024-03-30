@@ -21,6 +21,7 @@ class ProfileViewController: CustomViewController<ProfileView> {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = false
+        customView.setAppThemeSwitch()
     }
     
     private func setDelegates(){
@@ -55,6 +56,17 @@ extension ProfileViewController: ProfileViewDelegate {
     
     func changeProfileImage() {
         showImagePicker()
+    }
+    
+    func changeTheme(_ sender: UISegmentedControl) {
+        if (sender.selectedSegmentIndex == 1 ){
+            print("UISwitch state is now ON")
+            UserDefaults.standard.setValue(Theme.dark.rawValue, forKey: "theme")
+        }
+        else{
+            print("UISwitch state is now Off")
+            UserDefaults.standard.setValue(Theme.light.rawValue, forKey: "theme")
+        }
     }
     
 }

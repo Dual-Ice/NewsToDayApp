@@ -18,6 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
+        UserDefaults.standard.addObserver(self, forKeyPath: "theme", options: [.new], context: nil)
+       let theme = UserDefaults.standard.object(forKey: "theme") as? String
+        if theme == "dark" {
+            window?.overrideUserInterfaceStyle = Theme.dark.uiInterfaceStyle
+        }
+        
         window?.makeKeyAndVisible()
 //        let navigationVC = UINavigationController()
 //        let mainVC = MainBuilder(navigationVC: navigationVC).buildMainView()
@@ -31,6 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let vc = OnbordingBuilder().buildOnbordingVC()
             vc.modalPresentationStyle = .fullScreen
             self.window?.rootViewController = vc
+            UserDefaults.standard.addObserver(self, forKeyPath: "theme", options: [.new], context: nil)
         }
     }
     
@@ -42,6 +49,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             )
             navigationController.setViewControllers([vc], animated: true)
             window?.rootViewController = navigationController
+            UserDefaults.standard.addObserver(self, forKeyPath: "theme", options: [.new], context: nil)
             
         } else {
             AuthManager.shared.fetchUser { [weak self] user, error in
@@ -49,9 +57,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 UserManager.shared.syncUser(userObject: user)
                 let tabBarController = CustomTabBarController()
                 self?.window?.rootViewController = tabBarController
+                UserDefaults.standard.addObserver(self!, forKeyPath: "theme", options: [.new], context: nil)
             }
         }
     }
+    
+    deinit {
+        
+        UserDefaults.standard.removeObserver(self, forKeyPath: "theme", context: nil)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        guard  let change = change,
+            object != nil,
+            let themeValue = change[.newKey] as? String,
+            let theme = Theme(rawValue: themeValue)?.uiInterfaceStyle
+        else { return }
+
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveLinear, animations: { [weak self] in
+            self?.window?.overrideUserInterfaceStyle = theme
+        }, completion: .none)
+    }
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

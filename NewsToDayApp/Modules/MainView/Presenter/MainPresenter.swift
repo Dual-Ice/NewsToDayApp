@@ -153,6 +153,7 @@ class MainPresenter: MainPresenterProtocol {
                     self.newsDataByCatagory = data.results ?? []
                     self.checkCouruselFavorite()
                 case .failure(let error):
+                    self.view?.showAlert(error: error.localizedDescription)
                     print("DataByCategory error \(error.localizedDescription)")
                 }
             }

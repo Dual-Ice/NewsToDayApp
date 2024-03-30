@@ -12,6 +12,7 @@ protocol ProfileViewDelegate: AnyObject {
     func languageButtonTapped()
     func termsAndConditionsButtonTapped()
     func changeProfileImage()
+    func changeTheme(_ sender: UISegmentedControl)
 }
 
 class ProfileView: CustomView {
@@ -21,6 +22,34 @@ class ProfileView: CustomView {
     private let profileName = LabelsFactory.makeArticleHeaderLabel()
     private let profileEmail = LabelsFactory.makeCategoryLabel()
     private let profileImage = ImageViewFactory.makeCornerRadiusImage()
+    
+    private lazy var changeThemeView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: ConstColors.greyLighter)
+        view.layer.cornerRadius = 12
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var changeThemeLabel: UILabel = {
+        let label = UILabel()
+        label.text = NSLocalizedString("ProfleViewchangeThemeLabel", comment: "")
+        label.font = UIFont.TextFont.Screen.button
+        label.textColor = UIColor(named: ConstColors.greyDarker)
+        label.textAlignment = .left
+        return label
+    }()
+    
+    private lazy var themePickerSegmentedControl: UISegmentedControl = {
+        let sc = UISegmentedControl(items: [NSLocalizedString("backgroundForSCLight", comment: ""), NSLocalizedString("backgroundForSCDark", comment: "")])
+        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: ConstColors.greyDarker)!]
+        sc.setTitleTextAttributes(titleTextAttributes, for: .normal)
+        sc.setTitleTextAttributes(titleTextAttributes, for: .selected)
+        sc.selectedSegmentTintColor = .white
+        sc.selectedSegmentIndex = 0
+        sc.translatesAutoresizingMaskIntoConstraints = false
+        return sc
+    }()
     
     private let languageButton = CustomButton(
         label: NSLocalizedString("ProfleViewLanguageButton", comment: ""),
@@ -45,7 +74,7 @@ class ProfileView: CustomView {
     )
     override func setViews() {
         setUpViews()
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor(named: ConstColors.customWhite)
         [
             title,
             profileName,
@@ -55,6 +84,9 @@ class ProfileView: CustomView {
             termsAndConditionsButton,
             signOutButton
         ].forEach{ addSubview($0) }
+        addSubview(changeThemeView)
+        changeThemeView.addSubview(changeThemeLabel)
+        changeThemeView.addSubview(themePickerSegmentedControl)
     }
     
     override func layoutViews() {
@@ -85,6 +117,23 @@ class ProfileView: CustomView {
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(56)
+        }
+        
+        changeThemeView.snp.makeConstraints { make in
+            make.top.equalTo(languageButton.snp.bottom).offset(20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.height.equalTo(56)
+        }
+        changeThemeLabel.snp.makeConstraints { make in
+            make.leading.equalTo(changeThemeView.snp.leading).offset(20)
+            make.centerY.equalTo(changeThemeView.snp.centerY)
+        }
+        
+        themePickerSegmentedControl.snp.makeConstraints { make in
+            make.trailing.equalTo(changeThemeView.snp.trailing).offset(-20)
+            make.centerY.equalTo(changeThemeView.snp.centerY)
+            make.leading.equalTo(changeThemeLabel.snp.trailing).offset(20)
         }
         
         termsAndConditionsButton.snp.makeConstraints { make in
@@ -121,6 +170,7 @@ class ProfileView: CustomView {
         languageButton.addTarget(nil, action: #selector(languageButtonTapped), for: .touchUpInside)
         termsAndConditionsButton.addTarget(nil, action: #selector(termsAndConditionsButtonTapped), for: .touchUpInside)
         signOutButton.addTarget(nil, action: #selector(signOutButtonTapped), for: .touchUpInside)
+        themePickerSegmentedControl.addTarget(nil, action: #selector(appThemeSelected), for: .valueChanged)
     }
     
     func configView(with userData: UserData) {
@@ -147,6 +197,15 @@ class ProfileView: CustomView {
         profileImage.addGestureRecognizer(tapRecognizer)
     }
     
+    func setAppThemeSwitch() {
+        let theme = UserDefaults.standard.object(forKey: "theme") as? String
+        if theme == "dark" {
+            themePickerSegmentedControl.selectedSegmentIndex = 1
+        } else {
+            themePickerSegmentedControl.selectedSegmentIndex = 0
+        }
+    }
+    
     func updateProfileImage(_ image: UIImage) {
         profileImage.image = image
     }
@@ -166,5 +225,9 @@ class ProfileView: CustomView {
     
     @objc private func profileImageTapped(_ gesture: UITapGestureRecognizer) {
         delegate?.changeProfileImage()
+    }
+    
+    @objc private func appThemeSelected(_ sender: UISegmentedControl) {
+        delegate?.changeTheme(sender)
     }
 }
