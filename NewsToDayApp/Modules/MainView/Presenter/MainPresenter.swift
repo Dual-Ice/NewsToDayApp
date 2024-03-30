@@ -87,7 +87,7 @@ class MainPresenter: MainPresenterProtocol {
     // MARK: - CheckSelectedCattegories for recomendation
     func updateRecommendations(){
         let currentCategories = UserManager.shared.getCategories()
-        if currentCategories != arrayCategories && !currentCategories.isEmpty {
+        if currentCategories != arrayCategories || currentCategories.isEmpty {
             arrayCategories = currentCategories
             imageCacheRecomendation = [:] // почистить при новом запросе
             getRecomendedNews(categoryArray: arrayCategories)
