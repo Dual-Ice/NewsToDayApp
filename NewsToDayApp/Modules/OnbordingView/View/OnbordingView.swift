@@ -73,7 +73,7 @@ final class OnbordingView: CustomView{
     
     override func layoutViews() {
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(76)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(50)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
             make.bottom.equalTo(pageControl.snp.top).offset(-16)
