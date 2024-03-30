@@ -33,10 +33,6 @@ class CategoriesViewController: CustomViewController<CategoriesView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
-        if self.categoriesMode == .categoriesOnbording {
-            UserDefaults.standard.removeObject(forKey: "isOnboardingCompleted")
-            UserDefaults.standard.removeObject(forKey: "onboardingCategories")
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,7 +42,6 @@ class CategoriesViewController: CustomViewController<CategoriesView> {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("willDISappear")
 
         presenter.saveCategoriesArray(categoriesMode: categoriesMode) { error in
             if let error = error {
@@ -57,7 +52,7 @@ class CategoriesViewController: CustomViewController<CategoriesView> {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // fix this line
-        presenter.setSelectedColorForOnbordingSelection(selectedCategories: UserManager.shared.getCategories())
+        presenter.markCategoriesAsSelected(categories: UserManager.shared.getCategories())
     }
     
     private func setDelegates(){
@@ -75,10 +70,13 @@ extension CategoriesViewController: CategoriesPresenterViewProtocol {
         categoriesView?.reloadCategoriesCollection()
     }
     
-    func checkAuth() {
-        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-            sceneDelegate.checkAuthentication()
-        }
+    func goToMain() {
+        let tabBarController = CustomTabBarController()
+        self.view.window?.rootViewController = tabBarController
+        UserDefaults.standard.addObserver(self, forKeyPath: "theme", options: [.new], context: nil)
+//        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+//            sceneDelegate.checkAuthentication()
+//        }
     }
 }
 //MARK: - CategoriesViewDelegate

@@ -51,7 +51,7 @@ final class OnbordingViewController: CustomViewController<OnbordingView> {
 extension OnbordingViewController: OnbordingViewDelegate{
     func tappedNextButton() {
         if currentPage == presenter.data.count - 1{
-            presenter.goToCategoriesVC()
+            presenter.goToAuth()
         }else{
             currentPage += 1
             let indexPath = IndexPath(item: currentPage, section: 0)
@@ -62,15 +62,10 @@ extension OnbordingViewController: OnbordingViewDelegate{
 
 // MARK: - OnbordingPresenterViewProtocol
 extension OnbordingViewController: OnbordingPresenterViewProtocol{
-//    func checkAuth() {
-//        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-//            sceneDelegate.checkAuthentication()
-//        }
-//    }
-    func goToCategories() {
-        let vc = CategoriesBuilder().buildCategoriesView(mode: .categoriesOnbording)
-        vc.modalPresentationStyle = .fullScreen
-        self.view?.window?.rootViewController = vc
+    func goToAuth() {
+        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+            sceneDelegate.checkAuthentication()
+        }
     }
 }
 

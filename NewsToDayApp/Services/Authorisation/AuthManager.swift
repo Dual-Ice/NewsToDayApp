@@ -30,8 +30,7 @@ extension AuthManager {
     }
     func registerUser(
         with userRequest: RegisterUserRequest,
-        and categories: [String],
-        completion: @escaping (Bool, Error?) -> Void
+        completion: @escaping (FirestoreUser?, Error?) -> Void
     ) {
         let username = userRequest.username
         let email = userRequest.email
@@ -42,12 +41,12 @@ extension AuthManager {
             password: password
         ) { result, error in
             if let error = error {
-                completion(false, error)
+                completion(nil, error)
                 return
             }
             
             guard let resultUser = result?.user else {
-                completion(false, nil)
+                completion(nil, nil)
                 return
             }
             
@@ -56,7 +55,7 @@ extension AuthManager {
                 email: email,
                 userID: resultUser.uid,
                 image: "",
-                categories: categories,
+                categories: [],
                 articles: []
             )
             
@@ -64,9 +63,9 @@ extension AuthManager {
                 with: user
             ) { wasSet, error in
                 if let error = error {
-                    completion(false, error)
+                    completion(nil, error)
                 }
-                completion(true, nil)
+                completion(user, nil)
             }
         }
     }

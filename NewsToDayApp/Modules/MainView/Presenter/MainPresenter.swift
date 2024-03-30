@@ -45,7 +45,7 @@ protocol MainPresenterProtocol: AnyObject {
     var imageCacheCourusel: [IndexPath: UIImage] { get set }
     var imageCacheRecomendation: [IndexPath: UIImage] { get set }
     
-    func checkSelectedCategoriesRecommdations()
+    func updateRecommendations()
     func checkCouruselFavorite()
 }
 
@@ -81,16 +81,12 @@ class MainPresenter: MainPresenterProtocol {
         self.router = router
         self.newsManager = newsManager
         self.imageManager = imageManager
-        arrayCategories = UserManager.shared.getCategories()
         getNewsByCategory(category: selectedCategory)
-        getRecomendedNews(categoryArray: arrayCategories)
-        
     }
     
     // MARK: - CheckSelectedCattegories for recomendation
-    func checkSelectedCategoriesRecommdations(){
+    func updateRecommendations(){
         let currentCategories = UserManager.shared.getCategories()
-        print("currentCategories \(currentCategories)")
         if currentCategories != arrayCategories && !currentCategories.isEmpty {
             arrayCategories = currentCategories
             imageCacheRecomendation = [:] // почистить при новом запросе

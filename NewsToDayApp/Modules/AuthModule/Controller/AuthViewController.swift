@@ -7,38 +7,6 @@
 
 import UIKit
 
-//final class LoginViewController: CustomViewController<LoginView> {
-//    
-//    var presenter: LoginPresenterProtocol?
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//        (view as! LoginView).delegate = self
-//    }
-//}
-//
-//extension LoginViewController: LoginPresenterViewProtocol {
-//    
-//}
-//
-//extension LoginViewController: LoginViewDelegate {
-//    
-//    func handleLoginTap(with userRequest: LoginUserRequest) {
-//        AuthManager.shared.signIn(with: userRequest) { error in
-//            
-//        }
-//    }
-//    
-//    func handleSignUpTap() {
-//        presenter?.showSignUpScreen()
-//    }
-//    
-//    func showAlert(for alertType: AlertType.Login) {
-//        
-//    }
-//}
-
 final class AuthViewController: CustomViewController<AuthenticationView> {
     
     var presenter: AuthPresenterProtocol!
@@ -50,6 +18,11 @@ final class AuthViewController: CustomViewController<AuthenticationView> {
 }
 
 extension AuthViewController: AuthPresenterViewProtocol {
+    func goToCategories() {
+        let vc = CategoriesBuilder().buildCategoriesView(mode: .categoriesOnbording)
+        vc.modalPresentationStyle = .fullScreen
+        self.view?.window?.rootViewController = vc
+    }
     
 }
 
@@ -66,11 +39,18 @@ extension AuthViewController: AuthenticationViewDelegate {
     }
     
     func handleRegisterButtonTap(with request: RegisterUserRequest) {
-        AuthManager.shared.registerUser(with: request, and: presenter.getOnboardingCategories()) { wasRegistered, error in
-            self.presenter.clearOnboardingCategories()
-            if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-                sceneDelegate.checkAuthentication()
+        AuthManager.shared.registerUser(with: request) { registeredUser, error in
+            if let error = error {
+                AuthAlertManager.shared.showDefaultAlert(on: self, title: NSLocalizedString("AuthSceenRegistrationErrorTitle", comment: ""), message: error.localizedDescription)
+                return
             }
+            
+            guard let user = registeredUser else {
+                AuthAlertManager.shared.showDefaultAlert(on: self, title: NSLocalizedString("AuthSceenRegistrationErrorTitle", comment: ""), message: NSLocalizedString("AuthSceenRegistrationUnexpectedError", comment: ""))
+                return
+            }
+            UserManager.shared.setUser(userObject: user)
+            self.presenter.goToCategories()
         }
     }
     
@@ -81,4 +61,5 @@ extension AuthViewController: AuthenticationViewDelegate {
     func showRegisterAlert(for status: AuthAlertManager.RegisterAlert) {
         AuthAlertManager.shared.showRegisterAlert(on: self, for: status)
     }
+    
 }
