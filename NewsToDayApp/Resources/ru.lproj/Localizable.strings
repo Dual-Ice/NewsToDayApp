@@ -62,6 +62,9 @@
 "ProfleViewLanguageButton" = "Язык";
 "ProfleViewTermsAndConditionsButton" = "Условия и положения";
 "ProfleViewSignOutButton" = "Выйти";
+"ProfleViewchangeThemeLabel" = "Темная тема:";
+"backgroundForSCLight" = "Выкл";
+"backgroundForSCDark" = "Вкл";
 
 //MARK: - TermsAndConditionsView
 "TermsAndConditionsViewTitle" = "Условия и положения";
