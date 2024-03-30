@@ -121,3 +121,6 @@
 "AuthScreenUserPasswordErrorMessage" = "Пароль должен содержать как минимум 6 символов. Пожалуйста, введите корректный пароль.";
 "AuthScreenUserPasswordRepeatErrorTitle" = "Пароли не совпадают";
 "AuthScreenUserPasswordRepeatErrorMessage" = "Пароли не совпали, попробуйте ещё раз.";
+"AuthSceenRegistrationErrorTitle" = "Упс, ошибка";
+"AuthSceenRegistrationUserError" = "Ошибка регистрации пользователя";
+"AuthSceenRegistrationUnexpectedError" = "Неожиданная ошибка";

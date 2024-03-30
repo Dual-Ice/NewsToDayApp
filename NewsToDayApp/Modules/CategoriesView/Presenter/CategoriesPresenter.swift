@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol CategoriesPresenterViewProtocol: AnyObject {
-    func checkAuth()
+    func goToMain()
     func reloadCollectionView()
 }
 
@@ -23,7 +23,7 @@ protocol CategoriesPresenterProtocol: AnyObject {
     func removeUnSelectedCell(indexPath: IndexPath, category: String)
     func saveCategoriesArray(categoriesMode: CategoriesViewMode, completion: @escaping (Error?) -> Void)
     func tappedNextButton()
-    func setSelectedColorForOnbordingSelection(selectedCategories: [String])
+    func markCategoriesAsSelected(categories: [String])
     func checkCategoriesQuantity()
     
 }
@@ -45,13 +45,12 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
 //        setSelectedColorForOnbordingSelection(selectedCategories: UserManager.shared.getCategories())
     }
     
-    func setSelectedColorForOnbordingSelection(selectedCategories: [String]){
-        let indexes = selectedCategories.compactMap { categoryValue in
+    func markCategoriesAsSelected(categories: [String]){
+        let indexes = categories.compactMap { categoryValue in
             data.firstIndex(where: { $0.categoryValue == categoryValue })
         }
         let indexPaths = indexes.map { IndexPath(item: $0, section: 0) }
-        categoriesArray = selectedCategories
-        print("CategoriesVC selected \(categoriesArray)")
+        categoriesArray = categories
         selectedIndexPathArray = indexPaths
         view?.reloadCollectionView()
     }
@@ -70,12 +69,6 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     }
     
     func saveCategoriesArray(categoriesMode: CategoriesViewMode,  completion: @escaping ( Error?) -> Void){
-        print("categoriesArray saved\(categoriesArray)")
-        if categoriesMode == .categoriesOnbording {
-            UserDefaults.standard.set(categoriesArray, forKey: "onboardingCategories")
-            return
-        }
-        
         UserManager.shared.updateCategories(categories: categoriesArray) { error in
             if let error = error {
                 completion(error)
@@ -84,8 +77,7 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     }
     
     func tappedNextButton() {
-        UserDefaults.standard.set(true, forKey: "isOnboardingCompleted")
-        self.view?.checkAuth()
+        self.view?.goToMain()
     }
     
     func checkCategoriesQuantity(){

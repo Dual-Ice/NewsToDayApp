@@ -35,7 +35,7 @@ class MainViewController: CustomViewController<MainView> {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        presenter.checkSelectedCategoriesRecommdations()
+        presenter.updateRecommendations()
     }
    
     private func setDelegates(){

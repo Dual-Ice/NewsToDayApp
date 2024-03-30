@@ -164,6 +164,7 @@ final class AuthenticationView: CustomView {
         title.textAlignment = .left
         title.numberOfLines = 0
         subTitle.textAlignment = .left
+        emailTextField.autocapitalizationType = .none
         switch viewState {
         case .login:
             setupLoginViews()
@@ -188,6 +189,8 @@ final class AuthenticationView: CustomView {
         } completion: { [self] completed in
             userNameTextField.text = ""
             repeatPasswordTextField.text = ""
+            emailTextField.text = ""
+            passwordTextField.text = ""
         }
     }
     

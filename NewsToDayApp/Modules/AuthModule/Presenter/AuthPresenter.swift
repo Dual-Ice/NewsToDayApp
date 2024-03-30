@@ -8,15 +8,12 @@
 import UIKit
 
 protocol AuthPresenterViewProtocol: AnyObject {
-    
-    
+    func goToCategories()
 }
 
 protocol AuthPresenterProtocol: AnyObject {
-    
     func showSignUpScreen()
-    func getOnboardingCategories() -> [String]
-    func clearOnboardingCategories()
+    func goToCategories()
     
     init(view: AuthPresenterViewProtocol, router: LoginRouterProtocol)
     
@@ -32,21 +29,12 @@ class AuthPresenter: AuthPresenterProtocol {
         self.view = view
         self.router = router
     }
-    
-    func getOnboardingCategories() -> [String] {
-        let categories = UserDefaults.standard.array(forKey: "onboardingCategories")
-        if categories == nil {
-            return []
-        }
         
-        return categories as? [String] ?? []
-    }
-    func clearOnboardingCategories() {
-        UserDefaults.standard.removeObject(forKey: "onboardingCategories")
-    }
-    
-    
     func showSignUpScreen() {
         router?.showSignUpScreen()
+    }
+    
+    func goToCategories() {
+        view?.goToCategories()
     }
 }

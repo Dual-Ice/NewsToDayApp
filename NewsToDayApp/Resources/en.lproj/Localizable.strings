@@ -125,5 +125,8 @@
 "AuthScreenUserPasswordErrorMessage" = "Password must contain at least 6 symbols. Please enter correct password.";
 "AuthScreenUserPasswordRepeatErrorTitle" = "Password mismatch";
 "AuthScreenUserPasswordRepeatErrorMessage" = "Passwords do not match. Please try again.";
+"AuthSceenRegistrationErrorTitle" = "Oh, it's an error";
+"AuthSceenRegistrationUserError" = "User's registration error";
+"AuthSceenRegistrationUnexpectedError" = "Unexpected error";
 
 

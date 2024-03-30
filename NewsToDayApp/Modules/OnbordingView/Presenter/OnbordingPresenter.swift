@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 protocol OnbordingPresenterViewProtocol: AnyObject {
-    func goToCategories()
+    func goToAuth()
 }
 
 protocol OnbordingPresenterProtocol: AnyObject {
     init( view: OnbordingPresenterViewProtocol, router: OnbordingRouterProtocol)
     var data: [OnbordingModel] { get }
-    func goToCategoriesVC()
+    func goToAuth()
 }
 
 class OnbordingPresenter: OnbordingPresenterProtocol {
@@ -32,8 +32,9 @@ class OnbordingPresenter: OnbordingPresenterProtocol {
     
     var data: [OnbordingModel] = OnbordingModel.getOnbordingModel()
     
-    func goToCategoriesVC(){
-        view?.goToCategories()
+    func goToAuth(){
+        UserDefaults.standard.set(true, forKey: "isOnboardingCompleted")
+        view?.goToAuth()
     }
     
 }
