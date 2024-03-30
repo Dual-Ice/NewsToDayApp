@@ -35,7 +35,7 @@ class OnbordingCell: UICollectionViewCell {
     }
     
     private func setUpViews(){
-        
+        imageCart.contentMode = .scaleAspectFit
     }
     
     
@@ -52,7 +52,7 @@ class OnbordingCell: UICollectionViewCell {
             make.leading.equalTo(contentView.snp.leading).offset(32)
             make.trailing.equalTo(contentView.snp.trailing).offset(-32)
             make.top.equalTo(contentView.snp.top)
-            make.height.equalTo(336)
+            make.height.equalTo(356)
          }
 
          titleLabel.snp.makeConstraints { make in
@@ -65,8 +65,8 @@ class OnbordingCell: UICollectionViewCell {
          descriptionLabel.snp.makeConstraints { make in
              make.top.equalTo(titleLabel.snp.bottom).offset(24)
              make.centerX.equalTo(contentView.snp.centerX)
-             make.leading.equalTo(contentView.snp.leading).offset(80)
-             make.trailing.equalTo(contentView.snp.trailing).offset(-80)
+             make.leading.equalTo(contentView.snp.leading).offset(40)
+             make.trailing.equalTo(contentView.snp.trailing).offset(-40)
          }
     }
 }
@@ -77,5 +77,6 @@ extension OnbordingCell{
         titleLabel.text = titleText
         descriptionLabel.text = descriptionText
         imageCart.image = image
+        
     }
 }

@@ -38,11 +38,10 @@ extension ProfileViewController: ProfileViewDelegate {
                 return
             }
             
-            if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-                sceneDelegate.checkAuthentication()
-                return
-            }
-            self.presenter?.goToAuthVC()
+            let vc = OnbordingBuilder().buildOnbordingVC()
+            vc.modalPresentationStyle = .fullScreen
+            self.view.window?.rootViewController = vc
+            UserDefaults.standard.addObserver(self, forKeyPath: "theme", options: [.new], context: nil)
         }
     }
     
