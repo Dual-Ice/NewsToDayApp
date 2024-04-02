@@ -27,7 +27,6 @@ protocol RecomendedPresenterProtocol: AnyObject {
     func goToDetailVC(data: Article)
     func dismisRecomendedVC()
     func filterCategoriesArray(categories: [String]) -> [String]
-    func checkFavorite()
 }
 
 
@@ -79,27 +78,12 @@ class RecomendedPresenter: RecomendedPresenterProtocol {
                 switch result{
                 case .success(let data):
                     self.data = data.results ?? []
-                    self.checkFavorite()
+                    self.view?.reloadTableView()
                 case .failure(let error):
                     print("DataNEWSRecomended RecomendedVC error \(error.localizedDescription)")
                 }
             }
         }
-    }
-    
-    // MARK: - checkFavorite()
-     func checkFavorite(){ // вызвать в getRecomendedNews после получения data
-        let savedArticles: [Article] = UserManager.shared.getFavoriteArticles()
-            let savedArticleIds = savedArticles.map { $0.articleId }
-
-            for (index,article) in data.enumerated() {
-                if savedArticleIds.contains(article.articleId) {
-                    data[index].isFavourite = true
-                } else {
-                    data[index].isFavourite = false
-                }
-            }
-        view?.reloadTableView()
     }
     
     func loadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void) {

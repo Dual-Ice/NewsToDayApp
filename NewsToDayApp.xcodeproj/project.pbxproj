@@ -24,7 +24,6 @@
 		369AB62D2BA8BB7800EBF483 /* ImageViewsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB62C2BA8BB7800EBF483 /* ImageViewsFactory.swift */; };
 		369AB62F2BA8CADB00EBF483 /* ButtonsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB62E2BA8CADB00EBF483 /* ButtonsFactory.swift */; };
 		369AB6312BA972C000EBF483 /* CompositionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6302BA972C000EBF483 /* CompositionalLayout.swift */; };
-		369AB6352BA9752A00EBF483 /* MockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6342BA9752A00EBF483 /* MockItem.swift */; };
 		369AB6392BA976EB00EBF483 /* ListSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6382BA976EB00EBF483 /* ListSectionModel.swift */; };
 		369AB63C2BA97A3800EBF483 /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB63B2BA97A3800EBF483 /* CategoriesCell.swift */; };
 		369AB63E2BA97A5300EBF483 /* ArticleCouruselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB63D2BA97A5300EBF483 /* ArticleCouruselCell.swift */; };
@@ -48,7 +47,6 @@
 		369AB67B2BAC8EA800EBF483 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB67A2BAC8EA800EBF483 /* CategoriesViewController.swift */; };
 		369AB67D2BAC8F2400EBF483 /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB67C2BAC8F2400EBF483 /* CategoriesPresenter.swift */; };
 		369AB67F2BAC8F9800EBF483 /* CategoriesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB67E2BAC8F9800EBF483 /* CategoriesRouter.swift */; };
-		369AB6822BAD909A00EBF483 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6812BAD909A00EBF483 /* MockData.swift */; };
 		369AB68F2BADB11300EBF483 /* RecomendedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB68E2BADB11300EBF483 /* RecomendedView.swift */; };
 		369AB6912BADB1CD00EBF483 /* RecomendedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6902BADB1CD00EBF483 /* RecomendedViewController.swift */; };
 		369AB6932BADB30700EBF483 /* RecomendedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB6922BADB30700EBF483 /* RecomendedPresenter.swift */; };
@@ -174,7 +172,6 @@
 		369AB62C2BA8BB7800EBF483 /* ImageViewsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewsFactory.swift; sourceTree = "<group>"; };
 		369AB62E2BA8CADB00EBF483 /* ButtonsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsFactory.swift; sourceTree = "<group>"; };
 		369AB6302BA972C000EBF483 /* CompositionalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionalLayout.swift; sourceTree = "<group>"; };
-		369AB6342BA9752A00EBF483 /* MockItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MockItem.swift; path = NewsToDayApp/Extensions/MockItem.swift; sourceTree = SOURCE_ROOT; };
 		369AB6382BA976EB00EBF483 /* ListSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListSectionModel.swift; path = NewsToDayApp/Extensions/ListSectionModel.swift; sourceTree = SOURCE_ROOT; };
 		369AB63B2BA97A3800EBF483 /* CategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
 		369AB63D2BA97A5300EBF483 /* ArticleCouruselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCouruselCell.swift; sourceTree = "<group>"; };
@@ -198,7 +195,6 @@
 		369AB67A2BAC8EA800EBF483 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		369AB67C2BAC8F2400EBF483 /* CategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesPresenter.swift; sourceTree = "<group>"; };
 		369AB67E2BAC8F9800EBF483 /* CategoriesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRouter.swift; sourceTree = "<group>"; };
-		369AB6812BAD909A00EBF483 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MockData.swift; path = NewsToDayApp/Modules/CategoriesView/Router/MockData.swift; sourceTree = SOURCE_ROOT; };
 		369AB68E2BADB11300EBF483 /* RecomendedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendedView.swift; sourceTree = "<group>"; };
 		369AB6902BADB1CD00EBF483 /* RecomendedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendedViewController.swift; sourceTree = "<group>"; };
 		369AB6922BADB30700EBF483 /* RecomendedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendedPresenter.swift; sourceTree = "<group>"; };
@@ -928,9 +924,7 @@
 		A5CBDBB92BA75F1600C81385 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				369AB6342BA9752A00EBF483 /* MockItem.swift */,
 				369AB6382BA976EB00EBF483 /* ListSectionModel.swift */,
-				369AB6812BAD909A00EBF483 /* MockData.swift */,
 				367268DD2BB41AFD007E82E6 /* CategoriesModel.swift */,
 			);
 			path = Model;
@@ -1285,7 +1279,6 @@
 				369AB61F2BA88B6300EBF483 /* ConstColors.swift in Sources */,
 				D97126FD2BAA01EA00FF3048 /* ImageManager.swift in Sources */,
 				A5CBDBCD2BA76E3D00C81385 /* MainView.swift in Sources */,
-				369AB6822BAD909A00EBF483 /* MockData.swift in Sources */,
 				369AB6672BAC4ACB00EBF483 /* BookmarksPresenter.swift in Sources */,
 				D918D56A2BAE3AA6005B0DD3 /* LanguagesRouter.swift in Sources */,
 				369AB6952BADB41400EBF483 /* RecomendedBuilder.swift in Sources */,
@@ -1354,7 +1347,6 @@
 				3672692E2BB598E1007E82E6 /* OnbordingView.swift in Sources */,
 				D918D56F2BAE3AA6005B0DD3 /* TermsAndConditionsRouter.swift in Sources */,
 				A5CBDBFE2BA77FEB00C81385 /* ProfileBuilder.swift in Sources */,
-				369AB6352BA9752A00EBF483 /* MockItem.swift in Sources */,
 				A5CBDBBC2BA7618D00C81385 /* MainBuilder.swift in Sources */,
 				369AB6492BA9DB3C00EBF483 /* UIImage + ext.swift in Sources */,
 				59DEB0692BB1B8240011DE99 /* LoginUserRequest.swift in Sources */,

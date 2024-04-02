@@ -95,7 +95,7 @@ class MainPresenter: MainPresenterProtocol {
     }
     
     // MARK: - CheckCourusel favorite or not
-    func checkCouruselFavorite(){ // вызвать во ViewWillAppear и при изменение данных в getNewsByCategory и getRecomendedNews
+    func checkCouruselFavorite(){ // вызвать во ViewWillAppear и при изменение данных в getNewsByCategory
         let savedArticles: [Article] = UserManager.shared.getFavoriteArticles()
         let savedArticleIds = savedArticles.map { $0.articleId }
         
@@ -107,15 +107,7 @@ class MainPresenter: MainPresenterProtocol {
             }
         }
         
-        for (index,article) in recomendedNews.enumerated() {
-            if savedArticleIds.contains(article.articleId) {
-                recomendedNews[index].isFavourite = true
-            } else {
-                recomendedNews[index].isFavourite = false
-            }
-        }
-        
-        view?.reloadCollectionView()
+        view?.reloadSectionCollectionView(section: 1)
     }
     
     // MARK: - Prepare CategoriesArray
@@ -140,7 +132,6 @@ class MainPresenter: MainPresenterProtocol {
     // MARK: - Network
     func getNewsByCategory(category: String){
         let request = NewsRequest(categories: [category])
-        newsDataByCatagory = .init() //очищать массив при переключении категории
         newsManager.getNews(with: request) { [weak self] result in
             guard let self else { return }
             DispatchQueue.main.async {
@@ -158,13 +149,12 @@ class MainPresenter: MainPresenterProtocol {
     
     func getRecomendedNews(categoryArray: [String]){
         let request = NewsRequest(categories: categoryArray, size: 5)
-        recomendedNews = .init() //очищать массив при смене массива категорий
         newsManager.getNews(with: request) { result in
             DispatchQueue.main.async {
                 switch result{
                 case .success(let data):
                     self.recomendedNews = data.results ?? []
-                    self.checkCouruselFavorite()
+                    self.view?.reloadSectionCollectionView(section: 2)
                 case .failure(let error):
                     self.view?.showAlert(error: error.localizedDescription)
                     print("DataNEWSRecomended error \(error.localizedDescription)")
